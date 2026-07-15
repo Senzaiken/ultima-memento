@@ -439,6 +439,11 @@ namespace Server
 
 		public static void Invoke( string method )
 		{
+			Invoke( method, null );
+		}
+
+		public static void Invoke( string method, Predicate<Type> filter )
+		{
 			List<MethodInfo> invoke = new List<MethodInfo>();
 
 			for( int a = 0; a < m_Assemblies.Length; ++a )
@@ -447,6 +452,9 @@ namespace Server
 
 				for( int i = 0; i < types.Length; ++i )
 				{
+					if( filter != null && !filter( types[i] ) )
+						continue;
+
 					MethodInfo m = types[i].GetMethod( method, BindingFlags.Static | BindingFlags.Public );
 
 					if( m != null )
@@ -462,6 +470,12 @@ namespace Server
 
 		private static Dictionary<Assembly, TypeCache> m_TypeCaches = new Dictionary<Assembly, TypeCache>();
 		private static TypeCache m_NullCache;
+
+		public static void ClearTypeCaches()
+		{
+			m_TypeCaches.Clear();
+			m_NullCache = null;
+		}
 
 		public static TypeCache GetTypeCache( Assembly asm )
 		{

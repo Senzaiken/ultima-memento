@@ -272,6 +272,11 @@ namespace Server.Commands
 			m_Entries[command] = new CommandEntry( command, handler, access );
 		}
 
+		public static void Reset()
+		{
+			m_Entries.Clear();
+		}
+
 		private static AccessLevel m_BadCommandIngoreLevel = AccessLevel.Player;
 
 		public static AccessLevel BadCommandIgnoreLevel{ get{ return m_BadCommandIngoreLevel; } set{ m_BadCommandIngoreLevel = value; } }

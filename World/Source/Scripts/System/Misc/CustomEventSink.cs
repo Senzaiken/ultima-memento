@@ -174,5 +174,17 @@ namespace Server
 			if (CombatQuestCompleted != null)
 				CombatQuestCompleted( new CombatQuestCompletedArgs( from, award ) );
 		}
+
+		public static void Reset()
+		{
+			LandChanged = null;
+			ChatMessage = null;
+			LootPull = null;
+			EventLogged = null;
+			BeginJourney = null;
+			AchievementObtained = null;
+			PlayerVendorSale = null;
+			CombatQuestCompleted = null;
+		}
 	}
 }

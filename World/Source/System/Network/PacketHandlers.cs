@@ -69,6 +69,14 @@ namespace Server.Network
 		private static EncodedPacketHandler[] m_EncodedHandlersLow;
 		private static Dictionary<int, EncodedPacketHandler> m_EncodedHandlersHigh;
 
+		private static PacketHandler[] m_DefaultHandlers;
+		private static PacketHandler[] m_Default6017Handlers;
+		private static PacketHandler[] m_DefaultExtendedHandlersLow;
+		private static Dictionary<int, PacketHandler> m_DefaultExtendedHandlersHigh;
+
+		private static EncodedPacketHandler[] m_DefaultEncodedHandlersLow;
+		private static Dictionary<int, EncodedPacketHandler> m_DefaultEncodedHandlersHigh;
+
 		public static PacketHandler[] Handlers
 		{
 			get{ return m_Handlers; }
@@ -176,6 +184,86 @@ namespace Server.Network
 			RegisterEncoded( 0x28, true, new OnEncodedPacketReceive( GuildGumpRequest ) );
 
 			RegisterEncoded( 0x32, true, new OnEncodedPacketReceive( QuestGumpRequest ) );
+
+			CaptureDefaults();
+		}
+
+		private static void CaptureDefaults()
+		{
+			m_DefaultHandlers = CopyHandlers( m_Handlers );
+			m_Default6017Handlers = CopyHandlers( m_6017Handlers );
+			m_DefaultExtendedHandlersLow = CopyHandlers( m_ExtendedHandlersLow );
+			m_DefaultExtendedHandlersHigh = CopyHandlers( m_ExtendedHandlersHigh );
+			m_DefaultEncodedHandlersLow = CopyEncodedHandlers( m_EncodedHandlersLow );
+			m_DefaultEncodedHandlersHigh = CopyEncodedHandlers( m_EncodedHandlersHigh );
+		}
+
+		public static void ResetScriptHandlers()
+		{
+			m_Handlers = CopyHandlers( m_DefaultHandlers );
+			m_6017Handlers = CopyHandlers( m_Default6017Handlers );
+			m_ExtendedHandlersLow = CopyHandlers( m_DefaultExtendedHandlersLow );
+			m_ExtendedHandlersHigh = CopyHandlers( m_DefaultExtendedHandlersHigh );
+			m_EncodedHandlersLow = CopyEncodedHandlers( m_DefaultEncodedHandlersLow );
+			m_EncodedHandlersHigh = CopyEncodedHandlers( m_DefaultEncodedHandlersHigh );
+		}
+
+		private static PacketHandler[] CopyHandlers( PacketHandler[] source )
+		{
+			PacketHandler[] copy = new PacketHandler[source.Length];
+
+			for ( int i = 0; i < source.Length; ++i )
+				copy[i] = CopyHandler( source[i] );
+
+			return copy;
+		}
+
+		private static Dictionary<int, PacketHandler> CopyHandlers( Dictionary<int, PacketHandler> source )
+		{
+			Dictionary<int, PacketHandler> copy = new Dictionary<int, PacketHandler>();
+
+			foreach ( KeyValuePair<int, PacketHandler> kvp in source )
+				copy[kvp.Key] = CopyHandler( kvp.Value );
+
+			return copy;
+		}
+
+		private static PacketHandler CopyHandler( PacketHandler handler )
+		{
+			if ( handler == null )
+				return null;
+
+			PacketHandler copy = new PacketHandler( handler.PacketID, handler.Length, handler.Ingame, handler.OnReceive );
+			copy.ThrottleCallback = handler.ThrottleCallback;
+			return copy;
+		}
+
+		private static EncodedPacketHandler[] CopyEncodedHandlers( EncodedPacketHandler[] source )
+		{
+			EncodedPacketHandler[] copy = new EncodedPacketHandler[source.Length];
+
+			for ( int i = 0; i < source.Length; ++i )
+				copy[i] = CopyEncodedHandler( source[i] );
+
+			return copy;
+		}
+
+		private static Dictionary<int, EncodedPacketHandler> CopyEncodedHandlers( Dictionary<int, EncodedPacketHandler> source )
+		{
+			Dictionary<int, EncodedPacketHandler> copy = new Dictionary<int, EncodedPacketHandler>();
+
+			foreach ( KeyValuePair<int, EncodedPacketHandler> kvp in source )
+				copy[kvp.Key] = CopyEncodedHandler( kvp.Value );
+
+			return copy;
+		}
+
+		private static EncodedPacketHandler CopyEncodedHandler( EncodedPacketHandler handler )
+		{
+			if ( handler == null )
+				return null;
+
+			return new EncodedPacketHandler( handler.PacketID, handler.Ingame, handler.OnReceive );
 		}
 
 		public static void Register( int packetID, int length, bool ingame, OnPacketReceive onReceive )

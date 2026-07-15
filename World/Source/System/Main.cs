@@ -57,6 +57,7 @@ namespace Server
 		private static bool m_Cache = true;
 		private static bool m_HaltOnWarning;
 		private static bool m_VBdotNET;
+		private static bool m_HotReload;
 		private static MultiTextWriter m_MultiConOut;
 
 		private static bool m_Profiling;
@@ -105,6 +106,7 @@ namespace Server
 		public static bool Debug { get { return m_Debug; } }
 		internal static bool HaltOnWarning { get { return m_HaltOnWarning; } }
 		internal static bool VBdotNet { get { return m_VBdotNET; } }
+		public static bool HotReload { get { return m_HotReload; } }
 		public static List<string> DataDirectories { get { return m_DataDirectories; } }
 		public static Assembly Assembly { get { return m_Assembly; } set { m_Assembly = value; } }
 		public static Version Version { get { return m_Assembly.GetName().Version; } }
@@ -403,6 +405,8 @@ namespace Server
 					m_HaltOnWarning = true;
 				else if ( Insensitive.Equals( args[i], "-vb" ) )
 					m_VBdotNET = true;
+				else if ( Insensitive.Equals( args[i], "-hotreload" ) )
+					m_HotReload = true;
 			}
 
 			try
@@ -490,6 +494,9 @@ namespace Server
 
 			ScriptCompiler.Invoke( "Initialize" );
 
+			if( m_HotReload )
+				HotReloadManager.Start();
+
 			MessagePump messagePump = new MessagePump();
 
 			timerThread.Start();
@@ -562,6 +569,9 @@ namespace Server
 
 				if ( m_VBdotNET )
 					Utility.Separate( sb, "-vb", " " );
+
+				if ( m_HotReload )
+					Utility.Separate( sb, "-hotreload", " " );
 
 				return sb.ToString();
 			}

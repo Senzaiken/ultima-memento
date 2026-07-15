@@ -1248,8 +1248,17 @@ namespace Server
 			WorldLoad = null;
 			WorldSave = null;
 			SetAbility = null;
+			FastWalk = null;
+			CreateGuild = null;
+			ServerStarted = null;
 			GuildGumpRequest = null;
 			QuestGumpRequest = null;
+			ClientVersionReceived = null;
+			ResourceHarvestSuccess = null;
+			OnKilledBy = null;
+			CraftSuccess = null;
+			SkillGain = null;
+			OnEnterRegion = null;
 		}
 	}
 }
