@@ -1,0 +1,474 @@
+[
+  {
+    "item_id": 17844,
+    "item_hex": "0x45B4",
+    "hue": 2748,
+    "label": "Atlantis: broken column",
+    "tiledata_name": "break pillar",
+    "height": 25,
+    "impassable": true,
+    "atlantis_example": [
+      4253,
+      2605,
+      -127
+    ]
+  },
+  {
+    "item_id": 17845,
+    "item_hex": "0x45B5",
+    "hue": 2748,
+    "label": "Atlantis: broken column",
+    "tiledata_name": "break pillar",
+    "height": 25,
+    "impassable": true,
+    "atlantis_example": [
+      4253,
+      2615,
+      -127
+    ]
+  },
+  {
+    "item_id": 4971,
+    "item_hex": "0x136B",
+    "hue": 2827,
+    "label": "Atlantis: small rock",
+    "tiledata_name": "rock",
+    "height": 2,
+    "impassable": true,
+    "atlantis_example": [
+      4364,
+      2599,
+      -127
+    ]
+  },
+  {
+    "item_id": 4973,
+    "item_hex": "0x136D",
+    "hue": 2827,
+    "label": "Atlantis: scattered rocks",
+    "tiledata_name": "rocks",
+    "height": 2,
+    "impassable": true,
+    "atlantis_example": [
+      4367,
+      2592,
+      -127
+    ]
+  },
+  {
+    "item_id": 19498,
+    "item_hex": "0x4C2A",
+    "hue": 2826,
+    "label": "Atlantis: stone vase",
+    "tiledata_name": "stone vase",
+    "height": 5,
+    "impassable": true,
+    "atlantis_example": [
+      4277,
+      2600,
+      -121
+    ]
+  },
+  {
+    "item_id": 20415,
+    "item_hex": "0x4FBF",
+    "hue": 2826,
+    "label": "Atlantis: dolphin statue",
+    "tiledata_name": "dolphin statue",
+    "height": 10,
+    "impassable": true,
+    "atlantis_example": [
+      4300,
+      2592,
+      -127
+    ]
+  },
+  {
+    "item_id": 25159,
+    "item_hex": "0x6247",
+    "hue": 0,
+    "label": "Atlantis: marine rock",
+    "tiledata_name": "rock",
+    "height": 10,
+    "impassable": true,
+    "atlantis_example": [
+      4207,
+      2606,
+      -127
+    ]
+  },
+  {
+    "item_id": 25163,
+    "item_hex": "0x624B",
+    "hue": 0,
+    "label": "Atlantis: marine rocks",
+    "tiledata_name": "rocks",
+    "height": 5,
+    "impassable": true,
+    "atlantis_example": [
+      4207,
+      2605,
+      -127
+    ]
+  },
+  {
+    "item_id": 25277,
+    "item_hex": "0x62BD",
+    "hue": 0,
+    "label": "Atlantis: marine rock",
+    "tiledata_name": "rock",
+    "height": 15,
+    "impassable": true,
+    "atlantis_example": [
+      4207,
+      2608,
+      -127
+    ]
+  },
+  {
+    "item_id": 25429,
+    "item_hex": "0x6355",
+    "hue": 0,
+    "label": "Atlantis: marine rock",
+    "tiledata_name": "rock",
+    "height": 10,
+    "impassable": true,
+    "atlantis_example": [
+      4219,
+      2615,
+      -127
+    ]
+  },
+  {
+    "item_id": 30144,
+    "item_hex": "0x75C0",
+    "hue": 0,
+    "label": "Atlantis: marine rock",
+    "tiledata_name": "rock",
+    "height": 10,
+    "impassable": true,
+    "atlantis_example": [
+      4210,
+      2617,
+      -127
+    ]
+  },
+  {
+    "item_id": 30145,
+    "item_hex": "0x75C1",
+    "hue": 0,
+    "label": "Atlantis: marine rock",
+    "tiledata_name": "rock",
+    "height": 15,
+    "impassable": true,
+    "atlantis_example": [
+      4207,
+      2612,
+      -127
+    ]
+  },
+  {
+    "item_id": 30643,
+    "item_hex": "0x77B3",
+    "hue": 0,
+    "label": "Atlantis: sea shell",
+    "tiledata_name": "sea shell",
+    "height": 8,
+    "impassable": true,
+    "atlantis_example": [
+      4237,
+      2548,
+      -127
+    ]
+  },
+  {
+    "item_id": 30645,
+    "item_hex": "0x77B5",
+    "hue": 0,
+    "label": "Atlantis: sea shell",
+    "tiledata_name": "sea shell",
+    "height": 8,
+    "impassable": true,
+    "atlantis_example": [
+      4208,
+      2615,
+      -127
+    ]
+  },
+  {
+    "item_id": 30649,
+    "item_hex": "0x77B9",
+    "hue": 0,
+    "label": "Atlantis: sea shell",
+    "tiledata_name": "sea shell",
+    "height": 8,
+    "impassable": true,
+    "atlantis_example": [
+      4215,
+      2602,
+      -127
+    ]
+  },
+  {
+    "item_id": 3241,
+    "item_hex": "0x0CA9",
+    "hue": 2977,
+    "label": "Atlantis: marine planting",
+    "tiledata_name": "snake plant",
+    "height": 3,
+    "impassable": false,
+    "atlantis_example": [
+      4226,
+      2597,
+      -127
+    ]
+  },
+  {
+    "item_id": 3248,
+    "item_hex": "0x0CB0",
+    "hue": 2977,
+    "label": "Atlantis: grasses",
+    "tiledata_name": "grasses",
+    "height": 0,
+    "impassable": false,
+    "atlantis_example": [
+      4240,
+      2545,
+      -127
+    ]
+  },
+  {
+    "item_id": 3310,
+    "item_hex": "0x0CEE",
+    "hue": 2977,
+    "label": "Atlantis: wall growth",
+    "tiledata_name": "vines",
+    "height": 0,
+    "impassable": false,
+    "atlantis_example": [
+      4228,
+      2568,
+      -127
+    ]
+  },
+  {
+    "item_id": 25472,
+    "item_hex": "0x6380",
+    "hue": 2319,
+    "label": "Atlantis: blue crystal",
+    "tiledata_name": "glowing crystal",
+    "height": 15,
+    "impassable": false,
+    "atlantis_example": [
+      4280,
+      2587,
+      -110
+    ]
+  },
+  {
+    "item_id": 25477,
+    "item_hex": "0x6385",
+    "hue": 2319,
+    "label": "Atlantis: blue crystal",
+    "tiledata_name": "glowing crystal",
+    "height": 15,
+    "impassable": false,
+    "atlantis_example": [
+      4253,
+      2606,
+      -110
+    ]
+  },
+  {
+    "item_id": 3088,
+    "item_hex": "0x0C10",
+    "hue": 2739,
+    "label": "Atlantis: broken chair",
+    "tiledata_name": "broken chair",
+    "height": 2,
+    "impassable": true,
+    "atlantis_example": [
+      4284,
+      2607,
+      -127
+    ]
+  },
+  {
+    "item_id": 3089,
+    "item_hex": "0x0C11",
+    "hue": 2739,
+    "label": "Atlantis: broken chair",
+    "tiledata_name": "broken chair",
+    "height": 2,
+    "impassable": true,
+    "atlantis_example": [
+      4286,
+      2613,
+      -127
+    ]
+  },
+  {
+    "item_id": 3118,
+    "item_hex": "0x0C2E",
+    "hue": 2751,
+    "label": "Atlantis: timber debris",
+    "tiledata_name": "debris",
+    "height": 1,
+    "impassable": false,
+    "atlantis_example": [
+      4284,
+      2610,
+      -127
+    ]
+  },
+  {
+    "item_id": 3120,
+    "item_hex": "0x0C30",
+    "hue": 2767,
+    "label": "Atlantis: debris",
+    "tiledata_name": "debris",
+    "height": 1,
+    "impassable": false,
+    "atlantis_example": [
+      4288,
+      2644,
+      -115
+    ]
+  },
+  {
+    "item_id": 12079,
+    "item_hex": "0x2F2F",
+    "hue": 2765,
+    "label": "Atlantis: bed part A",
+    "tiledata_name": "broken bed",
+    "height": 2,
+    "impassable": true,
+    "atlantis_example": [
+      4312,
+      2601,
+      -127
+    ]
+  },
+  {
+    "item_id": 12080,
+    "item_hex": "0x2F30",
+    "hue": 2765,
+    "label": "Atlantis: bed part B",
+    "tiledata_name": "broken bed",
+    "height": 2,
+    "impassable": true,
+    "atlantis_example": [
+      4313,
+      2601,
+      -127
+    ]
+  },
+  {
+    "item_id": 6910,
+    "item_hex": "0x1AFE",
+    "hue": 2767,
+    "label": "Atlantis: clay urn",
+    "tiledata_name": "clay urn",
+    "height": 5,
+    "impassable": true,
+    "atlantis_example": [
+      4312,
+      2699,
+      -127
+    ]
+  },
+  {
+    "item_id": 20469,
+    "item_hex": "0x4FF5",
+    "hue": 0,
+    "label": "Atlantis: sea chest",
+    "tiledata_name": "sea chest",
+    "height": 5,
+    "impassable": true,
+    "atlantis_example": [
+      4312,
+      2600,
+      -127
+    ]
+  },
+  {
+    "item_id": 2273,
+    "item_hex": "0x08E1",
+    "hue": 2487,
+    "label": "Poseidon: rock formation",
+    "tiledata_name": "stalagmites",
+    "height": 10,
+    "impassable": true,
+    "atlantis_example": null
+  },
+  {
+    "item_id": 7604,
+    "item_hex": "0x1DB4",
+    "hue": 0,
+    "label": "Poseidon: broken barrel",
+    "tiledata_name": "broken barrel",
+    "height": 2,
+    "impassable": true,
+    "atlantis_example": null
+  },
+  {
+    "item_id": 5368,
+    "item_hex": "0x14F8",
+    "hue": 0,
+    "label": "Poseidon: coiled rope",
+    "tiledata_name": "rope",
+    "height": 1,
+    "impassable": false,
+    "atlantis_example": null
+  },
+  {
+    "item_id": 2200,
+    "item_hex": "0x0898",
+    "hue": 2877,
+    "label": "Furnace: anchor",
+    "tiledata_name": "anchor",
+    "height": 4,
+    "impassable": true,
+    "atlantis_example": null
+  },
+  {
+    "item_id": 7843,
+    "item_hex": "0x1EA3",
+    "hue": 2863,
+    "label": "Furnace: hanging net",
+    "tiledata_name": "net",
+    "height": 15,
+    "impassable": true,
+    "atlantis_example": null
+  },
+  {
+    "item_id": 3332,
+    "item_hex": "0x0D04",
+    "hue": 0,
+    "label": "Flooded Temple: plants",
+    "tiledata_name": "water plants",
+    "height": 0,
+    "impassable": false,
+    "atlantis_example": null
+  },
+  {
+    "item_id": 26005,
+    "item_hex": "0x6595",
+    "hue": 0,
+    "label": "Optional: coral art",
+    "tiledata_name": "coral",
+    "height": 8,
+    "impassable": true,
+    "atlantis_example": null
+  },
+  {
+    "item_id": 26006,
+    "item_hex": "0x6596",
+    "hue": 0,
+    "label": "Optional: coral art",
+    "tiledata_name": "coral",
+    "height": 8,
+    "impassable": true,
+    "atlantis_example": null
+  }
+]

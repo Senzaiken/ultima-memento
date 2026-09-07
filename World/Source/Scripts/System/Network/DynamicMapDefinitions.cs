@@ -4,7 +4,7 @@ namespace Server.Network
 {
     public class DynamicMapDefinitions
     {
-		public static bool Enabled = false;
+		public static bool Enabled = true;
 
         public static void Initialize()
         {

@@ -1,0 +1,935 @@
+# Atlantis underwater-city preview, version 1.
+# Fixed groups; administrator command: [AtlantisDecor preview
+# section group art hue x y z
+# Existing decoration is preserved. No map/statics files are written.
+
+# north_001_fallen_colonnade
+north north_001_fallen_colonnade 0x45B4 2748 4340 2520 -127
+north north_001_fallen_colonnade 0x136B 2827 4341 2522 -127
+north north_001_fallen_colonnade 0x136D 2827 4342 2520 -127
+north north_001_fallen_colonnade 0x6355 0 4344 2520 -127
+north north_001_fallen_colonnade 0x0CA9 2977 4344 2522 -127
+north north_001_fallen_colonnade 0x77B3 0 4342 2522 -127
+north north_001_fallen_colonnade 0x0CB0 2977 4340 2523 -127
+
+# north_002_stone_seats
+north north_002_stone_seats 0x1218 2722 4456 2545 -127
+north north_002_stone_seats 0x1219 2722 4459 2545 -127
+north north_002_stone_seats 0x4C2A 2826 4457 2545 -127
+north north_002_stone_seats 0x136D 2827 4458 2547 -127
+north north_002_stone_seats 0x6597 0 4460 2546 -127
+north north_002_stone_seats 0x77B3 0 4456 2548 -127
+north north_002_stone_seats 0x0CA9 2977 4459 2548 -127
+
+# north_003_fallen_colonnade
+north north_003_fallen_colonnade 0x45B4 2748 4320 2554 -127
+north north_003_fallen_colonnade 0x136B 2827 4321 2556 -127
+north north_003_fallen_colonnade 0x136D 2827 4322 2554 -127
+north north_003_fallen_colonnade 0x6355 0 4324 2554 -127
+north north_003_fallen_colonnade 0x0CA9 2977 4324 2556 -127
+north north_003_fallen_colonnade 0x77B3 0 4322 2556 -127
+north north_003_fallen_colonnade 0x0CB0 2977 4320 2557 -127
+
+# north_004_shell_nursery
+north north_004_shell_nursery 0x75C0 0 4383 2528 -127
+north north_004_shell_nursery 0x6595 0 4385 2528 -127
+north north_004_shell_nursery 0x6597 0 4387 2528 -127
+north north_004_shell_nursery 0x77B9 0 4384 2530 -127
+north north_004_shell_nursery 0x77B5 0 4386 2530 -127
+north north_004_shell_nursery 0x0CA9 2977 4387 2531 -127
+north north_004_shell_nursery 0x0CB0 2977 4383 2531 -127
+
+# north_005_fallen_colonnade
+north north_005_fallen_colonnade 0x45B4 2748 4408 2536 -127
+north north_005_fallen_colonnade 0x136B 2827 4409 2538 -127
+north north_005_fallen_colonnade 0x136D 2827 4410 2536 -127
+north north_005_fallen_colonnade 0x6355 0 4412 2536 -127
+north north_005_fallen_colonnade 0x0CA9 2977 4412 2538 -127
+north north_005_fallen_colonnade 0x77B3 0 4410 2538 -127
+north north_005_fallen_colonnade 0x0CB0 2977 4408 2539 -127
+
+# north_006_drowned_relic
+north north_006_drowned_relic 0x4FBF 2826 4449 2569 -127
+north north_006_drowned_relic 0x4C2A 2826 4451 2569 -127
+north north_006_drowned_relic 0x136B 2827 4448 2570 -127
+north north_006_drowned_relic 0x6595 0 4452 2570 -127
+north north_006_drowned_relic 0x0CA9 2977 4450 2571 -127
+north north_006_drowned_relic 0x77B9 0 4452 2572 -127
+
+# north_007_coral_garden
+north north_007_coral_garden 0x75C1 0 4331 2576 -127
+north north_007_coral_garden 0x624B 0 4332 2577 -127
+north north_007_coral_garden 0x6596 0 4334 2576 -127
+north north_007_coral_garden 0x0CA9 2977 4335 2577 -127
+north north_007_coral_garden 0x77B5 0 4333 2578 -127
+north north_007_coral_garden 0x0CB0 2977 4331 2579 -127
+north north_007_coral_garden 0x136D 2827 4335 2579 -127
+
+# north_008_stone_seats
+north north_008_stone_seats 0x1218 2722 4432 2576 -127
+north north_008_stone_seats 0x1219 2722 4435 2576 -127
+north north_008_stone_seats 0x4C2A 2826 4433 2576 -127
+north north_008_stone_seats 0x136D 2827 4434 2578 -127
+north north_008_stone_seats 0x6597 0 4436 2577 -127
+north north_008_stone_seats 0x77B3 0 4432 2579 -127
+north north_008_stone_seats 0x0CA9 2977 4435 2579 -127
+
+# north_009_crystal_growth
+north north_009_crystal_growth 0x62BD 0 4426 2536 -127
+north north_009_crystal_growth 0x61DD 0 4429 2536 -127
+north north_009_crystal_growth 0x624B 0 4427 2537 -127
+north north_009_crystal_growth 0x0CA9 2977 4430 2537 -127
+north north_009_crystal_growth 0x77B5 0 4428 2538 -127
+north north_009_crystal_growth 0x136B 2827 4426 2539 -127
+
+# north_010_fallen_colonnade
+north north_010_fallen_colonnade 0x45B4 2748 4384 2567 -127
+north north_010_fallen_colonnade 0x136B 2827 4385 2569 -127
+north north_010_fallen_colonnade 0x136D 2827 4386 2567 -127
+north north_010_fallen_colonnade 0x6355 0 4388 2567 -127
+north north_010_fallen_colonnade 0x0CA9 2977 4388 2569 -127
+north north_010_fallen_colonnade 0x77B3 0 4386 2569 -127
+north north_010_fallen_colonnade 0x0CB0 2977 4384 2570 -127
+
+# north_011_fallen_colonnade
+north north_011_fallen_colonnade 0x45B4 2748 4425 2568 -127
+north north_011_fallen_colonnade 0x136B 2827 4426 2570 -127
+north north_011_fallen_colonnade 0x136D 2827 4427 2568 -127
+north north_011_fallen_colonnade 0x6355 0 4429 2568 -127
+north north_011_fallen_colonnade 0x0CA9 2977 4429 2570 -127
+north north_011_fallen_colonnade 0x77B3 0 4427 2570 -127
+north north_011_fallen_colonnade 0x0CB0 2977 4425 2571 -127
+
+# north_012_stone_seats
+north north_012_stone_seats 0x1218 2722 4444 2536 -127
+north north_012_stone_seats 0x1219 2722 4447 2536 -127
+north north_012_stone_seats 0x4C2A 2826 4445 2536 -127
+north north_012_stone_seats 0x136D 2827 4446 2538 -127
+north north_012_stone_seats 0x6597 0 4448 2537 -127
+north north_012_stone_seats 0x77B3 0 4444 2539 -127
+north north_012_stone_seats 0x0CA9 2977 4447 2539 -127
+
+# north_013_weathered_monument
+north north_013_weathered_monument 0x45B5 2748 4419 2560 -127
+north north_013_weathered_monument 0x136D 2827 4418 2561 -127
+north north_013_weathered_monument 0x136B 2827 4420 2562 -127
+north north_013_weathered_monument 0x4C2A 2826 4422 2560 -127
+north north_013_weathered_monument 0x624B 0 4421 2561 -127
+north north_013_weathered_monument 0x0CA9 2977 4422 2563 -127
+
+# north_014_shell_nursery
+north north_014_shell_nursery 0x75C0 0 4361 2536 -127
+north north_014_shell_nursery 0x6595 0 4363 2536 -127
+north north_014_shell_nursery 0x6597 0 4365 2536 -127
+north north_014_shell_nursery 0x77B9 0 4362 2538 -127
+north north_014_shell_nursery 0x77B5 0 4364 2538 -127
+north north_014_shell_nursery 0x0CA9 2977 4365 2539 -127
+north north_014_shell_nursery 0x0CB0 2977 4361 2539 -127
+
+# north_015_coral_garden
+north north_015_coral_garden 0x75C1 0 4462 2536 -127
+north north_015_coral_garden 0x624B 0 4463 2537 -127
+north north_015_coral_garden 0x6596 0 4465 2536 -127
+north north_015_coral_garden 0x0CA9 2977 4466 2537 -127
+north north_015_coral_garden 0x77B5 0 4464 2538 -127
+north north_015_coral_garden 0x0CB0 2977 4462 2539 -127
+north north_015_coral_garden 0x136D 2827 4466 2539 -127
+
+# north_016_fallen_colonnade
+north north_016_fallen_colonnade 0x45B4 2748 4386 2544 -127
+north north_016_fallen_colonnade 0x136B 2827 4387 2546 -127
+north north_016_fallen_colonnade 0x136D 2827 4388 2544 -127
+north north_016_fallen_colonnade 0x6355 0 4390 2544 -127
+north north_016_fallen_colonnade 0x0CA9 2977 4390 2546 -127
+north north_016_fallen_colonnade 0x77B3 0 4388 2546 -127
+north north_016_fallen_colonnade 0x0CB0 2977 4386 2547 -127
+
+# north_017_drowned_relic
+north north_017_drowned_relic 0x4FBF 2826 4437 2560 -127
+north north_017_drowned_relic 0x4C2A 2826 4439 2560 -127
+north north_017_drowned_relic 0x136B 2827 4436 2561 -127
+north north_017_drowned_relic 0x6595 0 4440 2561 -127
+north north_017_drowned_relic 0x0CA9 2977 4438 2562 -127
+north north_017_drowned_relic 0x77B9 0 4440 2563 -127
+
+# north_018_drowned_relic
+north north_018_drowned_relic 0x4FBF 2826 4386 2576 -127
+north north_018_drowned_relic 0x4C2A 2826 4388 2576 -127
+north north_018_drowned_relic 0x136B 2827 4385 2577 -127
+north north_018_drowned_relic 0x6595 0 4389 2577 -127
+north north_018_drowned_relic 0x0CA9 2977 4387 2578 -127
+north north_018_drowned_relic 0x77B9 0 4389 2579 -127
+
+# north_019_drowned_relic
+north north_019_drowned_relic 0x4FBF 2826 4330 2520 -127
+north north_019_drowned_relic 0x4C2A 2826 4332 2520 -127
+north north_019_drowned_relic 0x136B 2827 4329 2521 -127
+north north_019_drowned_relic 0x6595 0 4333 2521 -127
+north north_019_drowned_relic 0x0CA9 2977 4331 2522 -127
+north north_019_drowned_relic 0x77B9 0 4333 2523 -127
+
+# north_020_coral_garden
+north north_020_coral_garden 0x75C1 0 4321 2544 -127
+north north_020_coral_garden 0x624B 0 4322 2545 -127
+north north_020_coral_garden 0x6596 0 4324 2544 -127
+north north_020_coral_garden 0x0CA9 2977 4325 2545 -127
+north north_020_coral_garden 0x77B5 0 4323 2546 -127
+north north_020_coral_garden 0x0CB0 2977 4321 2547 -127
+north north_020_coral_garden 0x136D 2827 4325 2547 -127
+
+# north_021_coral_garden
+north north_021_coral_garden 0x75C1 0 4440 2544 -127
+north north_021_coral_garden 0x624B 0 4441 2545 -127
+north north_021_coral_garden 0x6596 0 4443 2544 -127
+north north_021_coral_garden 0x0CA9 2977 4444 2545 -127
+north north_021_coral_garden 0x77B5 0 4442 2546 -127
+north north_021_coral_garden 0x0CB0 2977 4440 2547 -127
+north north_021_coral_garden 0x136D 2827 4444 2547 -127
+
+# north_022_drowned_relic
+north north_022_drowned_relic 0x4FBF 2826 4425 2551 -127
+north north_022_drowned_relic 0x4C2A 2826 4427 2551 -127
+north north_022_drowned_relic 0x136B 2827 4424 2552 -127
+north north_022_drowned_relic 0x6595 0 4428 2552 -127
+north north_022_drowned_relic 0x0CA9 2977 4426 2553 -127
+north north_022_drowned_relic 0x77B9 0 4428 2554 -127
+
+# north_023_drowned_relic
+north north_023_drowned_relic 0x4FBF 2826 4415 2568 -127
+north north_023_drowned_relic 0x4C2A 2826 4417 2568 -127
+north north_023_drowned_relic 0x136B 2827 4414 2569 -127
+north north_023_drowned_relic 0x6595 0 4418 2569 -127
+north north_023_drowned_relic 0x0CA9 2977 4416 2570 -127
+north north_023_drowned_relic 0x77B9 0 4418 2571 -127
+
+# north_024_shell_nursery
+north north_024_shell_nursery 0x75C0 0 4360 2579 -127
+north north_024_shell_nursery 0x6595 0 4362 2579 -127
+north north_024_shell_nursery 0x6597 0 4364 2579 -127
+north north_024_shell_nursery 0x77B9 0 4361 2581 -127
+north north_024_shell_nursery 0x77B5 0 4363 2581 -127
+north north_024_shell_nursery 0x0CA9 2977 4364 2582 -127
+north north_024_shell_nursery 0x0CB0 2977 4360 2582 -127
+
+# north_025_drowned_relic
+north north_025_drowned_relic 0x4FBF 2826 4376 2544 -127
+north north_025_drowned_relic 0x4C2A 2826 4378 2544 -127
+north north_025_drowned_relic 0x136B 2827 4375 2545 -127
+north north_025_drowned_relic 0x6595 0 4379 2545 -127
+north north_025_drowned_relic 0x0CA9 2977 4377 2546 -127
+north north_025_drowned_relic 0x77B9 0 4379 2547 -127
+
+# north_026_weathered_monument
+north north_026_weathered_monument 0x45B5 2748 4385 2559 -127
+north north_026_weathered_monument 0x136D 2827 4384 2560 -127
+north north_026_weathered_monument 0x136B 2827 4386 2561 -127
+north north_026_weathered_monument 0x4C2A 2826 4388 2559 -127
+north north_026_weathered_monument 0x624B 0 4387 2560 -127
+north north_026_weathered_monument 0x0CA9 2977 4388 2562 -127
+
+# north_027_weathered_monument
+north north_027_weathered_monument 0x45B5 2748 4457 2578 -127
+north north_027_weathered_monument 0x136D 2827 4456 2579 -127
+north north_027_weathered_monument 0x136B 2827 4458 2580 -127
+north north_027_weathered_monument 0x4C2A 2826 4460 2578 -127
+north north_027_weathered_monument 0x624B 0 4459 2579 -127
+north north_027_weathered_monument 0x0CA9 2977 4460 2581 -127
+
+# north_028_weathered_monument
+north north_028_weathered_monument 0x45B5 2748 4319 2520 -127
+north north_028_weathered_monument 0x136D 2827 4318 2521 -127
+north north_028_weathered_monument 0x136B 2827 4320 2522 -127
+north north_028_weathered_monument 0x4C2A 2826 4322 2520 -127
+north north_028_weathered_monument 0x624B 0 4321 2521 -127
+north north_028_weathered_monument 0x0CA9 2977 4322 2523 -127
+
+# north_029_fallen_colonnade
+north north_029_fallen_colonnade 0x45B4 2748 4344 2537 -127
+north north_029_fallen_colonnade 0x136B 2827 4345 2539 -127
+north north_029_fallen_colonnade 0x136D 2827 4346 2537 -127
+north north_029_fallen_colonnade 0x6355 0 4348 2537 -127
+north north_029_fallen_colonnade 0x0CA9 2977 4348 2539 -127
+north north_029_fallen_colonnade 0x77B3 0 4346 2539 -127
+north north_029_fallen_colonnade 0x0CB0 2977 4344 2540 -127
+
+# north_030_drowned_relic
+north north_030_drowned_relic 0x4FBF 2826 4354 2552 -127
+north north_030_drowned_relic 0x4C2A 2826 4356 2552 -127
+north north_030_drowned_relic 0x136B 2827 4353 2553 -127
+north north_030_drowned_relic 0x6595 0 4357 2553 -127
+north north_030_drowned_relic 0x0CA9 2977 4355 2554 -127
+north north_030_drowned_relic 0x77B9 0 4357 2555 -127
+
+# north_031_fallen_colonnade
+north north_031_fallen_colonnade 0x45B4 2748 4320 2568 -127
+north north_031_fallen_colonnade 0x136B 2827 4321 2570 -127
+north north_031_fallen_colonnade 0x136D 2827 4322 2568 -127
+north north_031_fallen_colonnade 0x6355 0 4324 2568 -127
+north north_031_fallen_colonnade 0x0CA9 2977 4324 2570 -127
+north north_031_fallen_colonnade 0x77B3 0 4322 2570 -127
+north north_031_fallen_colonnade 0x0CB0 2977 4320 2571 -127
+
+# north_032_crystal_growth
+north north_032_crystal_growth 0x62BD 0 4457 2568 -127
+north north_032_crystal_growth 0x61DD 0 4460 2568 -127
+north north_032_crystal_growth 0x624B 0 4458 2569 -127
+north north_032_crystal_growth 0x0CA9 2977 4461 2569 -127
+north north_032_crystal_growth 0x77B5 0 4459 2570 -127
+north north_032_crystal_growth 0x136B 2827 4457 2571 -127
+
+# north_033_fallen_colonnade
+north north_033_fallen_colonnade 0x45B4 2748 4400 2544 -127
+north north_033_fallen_colonnade 0x136B 2827 4401 2546 -127
+north north_033_fallen_colonnade 0x136D 2827 4402 2544 -127
+north north_033_fallen_colonnade 0x6355 0 4404 2544 -127
+north north_033_fallen_colonnade 0x0CA9 2977 4404 2546 -127
+north north_033_fallen_colonnade 0x77B3 0 4402 2546 -127
+north north_033_fallen_colonnade 0x0CB0 2977 4400 2547 -127
+
+# north_034_drowned_relic
+north north_034_drowned_relic 0x4FBF 2826 4451 2560 -127
+north north_034_drowned_relic 0x4C2A 2826 4453 2560 -127
+north north_034_drowned_relic 0x136B 2827 4450 2561 -127
+north north_034_drowned_relic 0x6595 0 4454 2561 -127
+north north_034_drowned_relic 0x0CA9 2977 4452 2562 -127
+north north_034_drowned_relic 0x77B9 0 4454 2563 -127
+
+# north_035_weathered_monument
+north north_035_weathered_monument 0x45B5 2748 4394 2536 -127
+north north_035_weathered_monument 0x136D 2827 4393 2537 -127
+north north_035_weathered_monument 0x136B 2827 4395 2538 -127
+north north_035_weathered_monument 0x4C2A 2826 4397 2536 -127
+north north_035_weathered_monument 0x624B 0 4396 2537 -127
+north north_035_weathered_monument 0x0CA9 2977 4397 2539 -127
+
+# north_036_crystal_growth
+north north_036_crystal_growth 0x62BD 0 4345 2568 -127
+north north_036_crystal_growth 0x61DD 0 4348 2568 -127
+north north_036_crystal_growth 0x624B 0 4346 2569 -127
+north north_036_crystal_growth 0x0CA9 2977 4349 2569 -127
+north north_036_crystal_growth 0x77B5 0 4347 2570 -127
+north north_036_crystal_growth 0x136B 2827 4345 2571 -127
+
+# north_037_shell_nursery
+north north_037_shell_nursery 0x75C0 0 4370 2576 -127
+north north_037_shell_nursery 0x6595 0 4372 2576 -127
+north north_037_shell_nursery 0x6597 0 4374 2576 -127
+north north_037_shell_nursery 0x77B9 0 4371 2578 -127
+north north_037_shell_nursery 0x77B5 0 4373 2578 -127
+north north_037_shell_nursery 0x0CA9 2977 4374 2579 -127
+north north_037_shell_nursery 0x0CB0 2977 4370 2579 -127
+
+# north_038_drowned_relic
+north north_038_drowned_relic 0x4FBF 2826 4409 2553 -127
+north north_038_drowned_relic 0x4C2A 2826 4411 2553 -127
+north north_038_drowned_relic 0x136B 2827 4408 2554 -127
+north north_038_drowned_relic 0x6595 0 4412 2554 -127
+north north_038_drowned_relic 0x0CA9 2977 4410 2555 -127
+north north_038_drowned_relic 0x77B9 0 4412 2556 -127
+
+# north_039_drowned_relic
+north north_039_drowned_relic 0x4FBF 2826 4346 2560 -127
+north north_039_drowned_relic 0x4C2A 2826 4348 2560 -127
+north north_039_drowned_relic 0x136B 2827 4345 2561 -127
+north north_039_drowned_relic 0x6595 0 4349 2561 -127
+north north_039_drowned_relic 0x0CA9 2977 4347 2562 -127
+north north_039_drowned_relic 0x77B9 0 4349 2563 -127
+
+# north_040_shell_nursery
+north north_040_shell_nursery 0x75C0 0 4338 2552 -127
+north north_040_shell_nursery 0x6595 0 4340 2552 -127
+north north_040_shell_nursery 0x6597 0 4342 2552 -127
+north north_040_shell_nursery 0x77B9 0 4339 2554 -127
+north north_040_shell_nursery 0x77B5 0 4341 2554 -127
+north north_040_shell_nursery 0x0CA9 2977 4342 2555 -127
+north north_040_shell_nursery 0x0CB0 2977 4338 2555 -127
+
+# north_041_weathered_monument
+north north_041_weathered_monument 0x45B5 2748 4403 2576 -127
+north north_041_weathered_monument 0x136D 2827 4402 2577 -127
+north north_041_weathered_monument 0x136B 2827 4404 2578 -127
+north north_041_weathered_monument 0x4C2A 2826 4406 2576 -127
+north north_041_weathered_monument 0x624B 0 4405 2577 -127
+north north_041_weathered_monument 0x0CA9 2977 4406 2579 -127
+
+# north_042_weathered_monument
+north north_042_weathered_monument 0x45B5 2748 4371 2552 -127
+north north_042_weathered_monument 0x136D 2827 4370 2553 -127
+north north_042_weathered_monument 0x136B 2827 4372 2554 -127
+north north_042_weathered_monument 0x4C2A 2826 4374 2552 -127
+north north_042_weathered_monument 0x624B 0 4373 2553 -127
+north north_042_weathered_monument 0x0CA9 2977 4374 2555 -127
+
+# north_043_drowned_relic
+north north_043_drowned_relic 0x4FBF 2826 4323 2576 -127
+north north_043_drowned_relic 0x4C2A 2826 4325 2576 -127
+north north_043_drowned_relic 0x136B 2827 4322 2577 -127
+north north_043_drowned_relic 0x6595 0 4326 2577 -127
+north north_043_drowned_relic 0x0CA9 2977 4324 2578 -127
+north north_043_drowned_relic 0x77B9 0 4326 2579 -127
+
+# north_044_shell_nursery
+north north_044_shell_nursery 0x75C0 0 4417 2536 -127
+north north_044_shell_nursery 0x6595 0 4419 2536 -127
+north north_044_shell_nursery 0x6597 0 4421 2536 -127
+north north_044_shell_nursery 0x77B9 0 4418 2538 -127
+north north_044_shell_nursery 0x77B5 0 4420 2538 -127
+north north_044_shell_nursery 0x0CA9 2977 4421 2539 -127
+north north_044_shell_nursery 0x0CB0 2977 4417 2539 -127
+
+# north_045_weathered_monument
+north north_045_weathered_monument 0x45B5 2748 4436 2536 -127
+north north_045_weathered_monument 0x136D 2827 4435 2537 -127
+north north_045_weathered_monument 0x136B 2827 4437 2538 -127
+north north_045_weathered_monument 0x4C2A 2826 4439 2536 -127
+north north_045_weathered_monument 0x624B 0 4438 2537 -127
+north north_045_weathered_monument 0x0CA9 2977 4439 2539 -127
+
+# north_046_shell_nursery
+north north_046_shell_nursery 0x75C0 0 4434 2568 -127
+north north_046_shell_nursery 0x6595 0 4436 2568 -127
+north north_046_shell_nursery 0x6597 0 4438 2568 -127
+north north_046_shell_nursery 0x77B9 0 4435 2570 -127
+north north_046_shell_nursery 0x77B5 0 4437 2570 -127
+north north_046_shell_nursery 0x0CA9 2977 4438 2571 -127
+north north_046_shell_nursery 0x0CB0 2977 4434 2571 -127
+
+# north_047_drowned_relic
+north north_047_drowned_relic 0x4FBF 2826 4454 2536 -127
+north north_047_drowned_relic 0x4C2A 2826 4456 2536 -127
+north north_047_drowned_relic 0x136B 2827 4453 2537 -127
+north north_047_drowned_relic 0x6595 0 4457 2537 -127
+north north_047_drowned_relic 0x0CA9 2977 4455 2538 -127
+north north_047_drowned_relic 0x77B9 0 4457 2539 -127
+
+# central_001_drowned_relic
+central central_001_drowned_relic 0x4FBF 2826 4339 2584 -127
+central central_001_drowned_relic 0x4C2A 2826 4341 2584 -127
+central central_001_drowned_relic 0x136B 2827 4338 2585 -127
+central central_001_drowned_relic 0x6595 0 4342 2585 -127
+central central_001_drowned_relic 0x0CA9 2977 4340 2586 -127
+central central_001_drowned_relic 0x77B9 0 4342 2587 -127
+
+# central_002_stone_seats
+central central_002_stone_seats 0x1218 2722 4328 2601 -127
+central central_002_stone_seats 0x1219 2722 4331 2601 -127
+central central_002_stone_seats 0x4C2A 2826 4329 2601 -127
+central central_002_stone_seats 0x136D 2827 4330 2603 -127
+central central_002_stone_seats 0x6597 0 4332 2602 -127
+central central_002_stone_seats 0x77B3 0 4328 2604 -127
+central central_002_stone_seats 0x0CA9 2977 4331 2604 -127
+
+# central_003_weathered_monument
+central central_003_weathered_monument 0x45B5 2748 4349 2608 -127
+central central_003_weathered_monument 0x136D 2827 4348 2609 -127
+central central_003_weathered_monument 0x136B 2827 4350 2610 -127
+central central_003_weathered_monument 0x4C2A 2826 4352 2608 -127
+central central_003_weathered_monument 0x624B 0 4351 2609 -127
+central central_003_weathered_monument 0x0CA9 2977 4352 2611 -127
+
+# central_004_drowned_relic
+central central_004_drowned_relic 0x4FBF 2826 4335 2592 -127
+central central_004_drowned_relic 0x4C2A 2826 4337 2592 -127
+central central_004_drowned_relic 0x136B 2827 4334 2593 -127
+central central_004_drowned_relic 0x6595 0 4338 2593 -127
+central central_004_drowned_relic 0x0CA9 2977 4336 2594 -127
+central central_004_drowned_relic 0x77B9 0 4338 2595 -127
+
+# central_005_broken_household
+central central_005_broken_household 0x0C10 2739 4327 2584 -127
+central central_005_broken_household 0x0C11 2739 4329 2585 -127
+central central_005_broken_household 0x1AFE 2767 4330 2584 -127
+central central_005_broken_household 0x0C30 2767 4328 2586 -127
+central central_005_broken_household 0x6596 0 4331 2584 -127
+central central_005_broken_household 0x0CA9 2977 4331 2586 -127
+central central_005_broken_household 0x77B3 0 4327 2587 -127
+
+# central_006_drowned_relic
+central central_006_drowned_relic 0x4FBF 2826 4353 2592 -127
+central central_006_drowned_relic 0x4C2A 2826 4355 2592 -127
+central central_006_drowned_relic 0x136B 2827 4352 2593 -127
+central central_006_drowned_relic 0x6595 0 4356 2593 -127
+central central_006_drowned_relic 0x0CA9 2977 4354 2594 -127
+central central_006_drowned_relic 0x77B9 0 4356 2595 -127
+
+# central_007_stone_seats
+central central_007_stone_seats 0x1218 2722 4360 2609 -127
+central central_007_stone_seats 0x1219 2722 4363 2609 -127
+central central_007_stone_seats 0x4C2A 2826 4361 2609 -127
+central central_007_stone_seats 0x136D 2827 4362 2611 -127
+central central_007_stone_seats 0x6597 0 4364 2610 -127
+central central_007_stone_seats 0x77B3 0 4360 2612 -127
+central central_007_stone_seats 0x0CA9 2977 4363 2612 -127
+
+# central_008_weathered_monument
+central central_008_weathered_monument 0x45B5 2748 4345 2616 -127
+central central_008_weathered_monument 0x136D 2827 4344 2617 -127
+central central_008_weathered_monument 0x136B 2827 4346 2618 -127
+central central_008_weathered_monument 0x4C2A 2826 4348 2616 -127
+central central_008_weathered_monument 0x624B 0 4347 2617 -127
+central central_008_weathered_monument 0x0CA9 2977 4348 2619 -127
+
+# central_009_weathered_monument
+central central_009_weathered_monument 0x45B5 2748 4341 2624 -127
+central central_009_weathered_monument 0x136D 2827 4340 2625 -127
+central central_009_weathered_monument 0x136B 2827 4342 2626 -127
+central central_009_weathered_monument 0x4C2A 2826 4344 2624 -127
+central central_009_weathered_monument 0x624B 0 4343 2625 -127
+central central_009_weathered_monument 0x0CA9 2977 4344 2627 -127
+
+# central_010_broken_household
+central central_010_broken_household 0x0C10 2739 4337 2600 -127
+central central_010_broken_household 0x0C11 2739 4339 2601 -127
+central central_010_broken_household 0x1AFE 2767 4340 2600 -127
+central central_010_broken_household 0x0C30 2767 4338 2602 -127
+central central_010_broken_household 0x6596 0 4341 2600 -127
+central central_010_broken_household 0x0CA9 2977 4341 2602 -127
+central central_010_broken_household 0x77B3 0 4337 2603 -127
+
+# central_011_stone_seats
+central central_011_stone_seats 0x1218 2722 4352 2625 -127
+central central_011_stone_seats 0x1219 2722 4355 2625 -127
+central central_011_stone_seats 0x4C2A 2826 4353 2625 -127
+central central_011_stone_seats 0x136D 2827 4354 2627 -127
+central central_011_stone_seats 0x6597 0 4356 2626 -127
+central central_011_stone_seats 0x77B3 0 4352 2628 -127
+central central_011_stone_seats 0x0CA9 2977 4355 2628 -127
+
+# central_012_weathered_monument
+central central_012_weathered_monument 0x45B5 2748 4349 2584 -127
+central central_012_weathered_monument 0x136D 2827 4348 2585 -127
+central central_012_weathered_monument 0x136B 2827 4350 2586 -127
+central central_012_weathered_monument 0x4C2A 2826 4352 2584 -127
+central central_012_weathered_monument 0x624B 0 4351 2585 -127
+central central_012_weathered_monument 0x0CA9 2977 4352 2587 -127
+
+# central_013_broken_household
+central central_013_broken_household 0x0C10 2739 4369 2584 -127
+central central_013_broken_household 0x0C11 2739 4371 2585 -127
+central central_013_broken_household 0x1AFE 2767 4372 2584 -127
+central central_013_broken_household 0x0C30 2767 4370 2586 -127
+central central_013_broken_household 0x6596 0 4373 2584 -127
+central central_013_broken_household 0x0CA9 2977 4373 2586 -127
+central central_013_broken_household 0x77B3 0 4369 2587 -127
+
+# central_014_stone_seats
+central central_014_stone_seats 0x1218 2722 4343 2592 -127
+central central_014_stone_seats 0x1219 2722 4346 2592 -127
+central central_014_stone_seats 0x4C2A 2826 4344 2592 -127
+central central_014_stone_seats 0x136D 2827 4345 2594 -127
+central central_014_stone_seats 0x6597 0 4347 2593 -127
+central central_014_stone_seats 0x77B3 0 4343 2595 -127
+central central_014_stone_seats 0x0CA9 2977 4346 2595 -127
+
+# central_015_weathered_monument
+central central_015_weathered_monument 0x45B5 2748 4347 2600 -127
+central central_015_weathered_monument 0x136D 2827 4346 2601 -127
+central central_015_weathered_monument 0x136B 2827 4348 2602 -127
+central central_015_weathered_monument 0x4C2A 2826 4350 2600 -127
+central central_015_weathered_monument 0x624B 0 4349 2601 -127
+central central_015_weathered_monument 0x0CA9 2977 4350 2603 -127
+
+# east_001_lost_cargo
+east east_001_lost_cargo 0x4F86 2859 4416 2613 -127
+east east_001_lost_cargo 0x1AFC 2767 4418 2613 -127
+east east_001_lost_cargo 0x1AFE 2767 4419 2613 -127
+east east_001_lost_cargo 0x1DB4 0 4417 2615 -127
+east east_001_lost_cargo 0x1DB5 0 4418 2615 -127
+east east_001_lost_cargo 0x0CA9 2977 4420 2614 -127
+east east_001_lost_cargo 0x77B5 0 4419 2616 -127
+
+# east_002_coral_garden
+east east_002_coral_garden 0x75C1 0 4440 2593 -127
+east east_002_coral_garden 0x624B 0 4441 2594 -127
+east east_002_coral_garden 0x6596 0 4443 2593 -127
+east east_002_coral_garden 0x0CA9 2977 4444 2594 -127
+east east_002_coral_garden 0x77B5 0 4442 2595 -127
+east east_002_coral_garden 0x0CB0 2977 4440 2596 -127
+east east_002_coral_garden 0x136D 2827 4444 2596 -127
+
+# east_003_ruined_bedroom
+east east_003_ruined_bedroom 0x2F2F 2765 4424 2600 -127
+east east_003_ruined_bedroom 0x2F30 2765 4425 2600 -127
+east east_003_ruined_bedroom 0x0C10 2739 4427 2601 -127
+east east_003_ruined_bedroom 0x1AFC 2767 4424 2602 -127
+east east_003_ruined_bedroom 0x6355 0 4428 2600 -127
+east east_003_ruined_bedroom 0x0C2E 2751 4426 2602 -127
+east east_003_ruined_bedroom 0x77B3 0 4425 2603 -127
+
+# east_004_shell_nursery
+east east_004_shell_nursery 0x75C0 0 4417 2592 -127
+east east_004_shell_nursery 0x6595 0 4419 2592 -127
+east east_004_shell_nursery 0x6597 0 4421 2592 -127
+east east_004_shell_nursery 0x77B9 0 4418 2594 -127
+east east_004_shell_nursery 0x77B5 0 4420 2594 -127
+east east_004_shell_nursery 0x0CA9 2977 4421 2595 -127
+east east_004_shell_nursery 0x0CB0 2977 4417 2595 -127
+
+# east_005_shell_nursery
+east east_005_shell_nursery 0x75C0 0 4464 2603 -127
+east east_005_shell_nursery 0x6595 0 4466 2603 -127
+east east_005_shell_nursery 0x6597 0 4468 2603 -127
+east east_005_shell_nursery 0x77B9 0 4465 2605 -127
+east east_005_shell_nursery 0x77B5 0 4467 2605 -127
+east east_005_shell_nursery 0x0CA9 2977 4468 2606 -127
+east east_005_shell_nursery 0x0CB0 2977 4464 2606 -127
+
+# east_006_lost_cargo
+east east_006_lost_cargo 0x4F86 2859 4432 2617 -127
+east east_006_lost_cargo 0x1AFC 2767 4434 2617 -127
+east east_006_lost_cargo 0x1AFE 2767 4435 2617 -127
+east east_006_lost_cargo 0x1DB4 0 4433 2619 -127
+east east_006_lost_cargo 0x1DB5 0 4434 2619 -127
+east east_006_lost_cargo 0x0CA9 2977 4436 2618 -127
+east east_006_lost_cargo 0x77B5 0 4435 2620 -127
+
+# east_007_shell_nursery
+east east_007_shell_nursery 0x75C0 0 4453 2592 -127
+east east_007_shell_nursery 0x6595 0 4455 2592 -127
+east east_007_shell_nursery 0x6597 0 4457 2592 -127
+east east_007_shell_nursery 0x77B9 0 4454 2594 -127
+east east_007_shell_nursery 0x77B5 0 4456 2594 -127
+east east_007_shell_nursery 0x0CA9 2977 4457 2595 -127
+east east_007_shell_nursery 0x0CB0 2977 4453 2595 -127
+
+# east_008_ruined_bedroom
+east east_008_ruined_bedroom 0x2F2F 2765 4402 2608 -127
+east east_008_ruined_bedroom 0x2F30 2765 4403 2608 -127
+east east_008_ruined_bedroom 0x0C10 2739 4405 2609 -127
+east east_008_ruined_bedroom 0x1AFC 2767 4402 2610 -127
+east east_008_ruined_bedroom 0x6355 0 4406 2608 -127
+east east_008_ruined_bedroom 0x0C2E 2751 4404 2610 -127
+east east_008_ruined_bedroom 0x77B3 0 4403 2611 -127
+
+# east_009_stone_seats
+east east_009_stone_seats 0x1218 2722 4464 2614 -127
+east east_009_stone_seats 0x1219 2722 4467 2614 -127
+east east_009_stone_seats 0x4C2A 2826 4465 2614 -127
+east east_009_stone_seats 0x136D 2827 4466 2616 -127
+east east_009_stone_seats 0x6597 0 4468 2615 -127
+east east_009_stone_seats 0x77B3 0 4464 2617 -127
+east east_009_stone_seats 0x0CA9 2977 4467 2617 -127
+
+# east_010_broken_household
+east east_010_broken_household 0x0C10 2739 4412 2632 -127
+east east_010_broken_household 0x0C11 2739 4414 2633 -127
+east east_010_broken_household 0x1AFE 2767 4415 2632 -127
+east east_010_broken_household 0x0C30 2767 4413 2634 -127
+east east_010_broken_household 0x6596 0 4416 2632 -127
+east east_010_broken_household 0x0CA9 2977 4416 2634 -127
+east east_010_broken_household 0x77B3 0 4412 2635 -127
+
+# east_011_shell_nursery
+east east_011_shell_nursery 0x75C0 0 4449 2600 -127
+east east_011_shell_nursery 0x6595 0 4451 2600 -127
+east east_011_shell_nursery 0x6597 0 4453 2600 -127
+east east_011_shell_nursery 0x77B9 0 4450 2602 -127
+east east_011_shell_nursery 0x77B5 0 4452 2602 -127
+east east_011_shell_nursery 0x0CA9 2977 4453 2603 -127
+east east_011_shell_nursery 0x0CB0 2977 4449 2603 -127
+
+# east_012_lost_cargo
+east east_012_lost_cargo 0x4F86 2859 4464 2625 -127
+east east_012_lost_cargo 0x1AFC 2767 4466 2625 -127
+east east_012_lost_cargo 0x1AFE 2767 4467 2625 -127
+east east_012_lost_cargo 0x1DB4 0 4465 2627 -127
+east east_012_lost_cargo 0x1DB5 0 4466 2627 -127
+east east_012_lost_cargo 0x0CA9 2977 4468 2626 -127
+east east_012_lost_cargo 0x77B5 0 4467 2628 -127
+
+# east_013_stone_seats
+east east_013_stone_seats 0x1218 2722 4440 2626 -127
+east east_013_stone_seats 0x1219 2722 4443 2626 -127
+east east_013_stone_seats 0x4C2A 2826 4441 2626 -127
+east east_013_stone_seats 0x136D 2827 4442 2628 -127
+east east_013_stone_seats 0x6597 0 4444 2627 -127
+east east_013_stone_seats 0x77B3 0 4440 2629 -127
+east east_013_stone_seats 0x0CA9 2977 4443 2629 -127
+
+# east_014_coral_garden
+east east_014_coral_garden 0x75C1 0 4455 2632 -127
+east east_014_coral_garden 0x624B 0 4456 2633 -127
+east east_014_coral_garden 0x6596 0 4458 2632 -127
+east east_014_coral_garden 0x0CA9 2977 4459 2633 -127
+east east_014_coral_garden 0x77B5 0 4457 2634 -127
+east east_014_coral_garden 0x0CB0 2977 4455 2635 -127
+east east_014_coral_garden 0x136D 2827 4459 2635 -127
+
+# east_015_lost_cargo
+east east_015_lost_cargo 0x4F86 2859 4409 2600 -127
+east east_015_lost_cargo 0x1AFC 2767 4411 2600 -127
+east east_015_lost_cargo 0x1AFE 2767 4412 2600 -127
+east east_015_lost_cargo 0x1DB4 0 4410 2602 -127
+east east_015_lost_cargo 0x1DB5 0 4411 2602 -127
+east east_015_lost_cargo 0x0CA9 2977 4413 2601 -127
+east east_015_lost_cargo 0x77B5 0 4412 2603 -127
+
+# east_016_coral_garden
+east east_016_coral_garden 0x75C1 0 4424 2625 -127
+east east_016_coral_garden 0x624B 0 4425 2626 -127
+east east_016_coral_garden 0x6596 0 4427 2625 -127
+east east_016_coral_garden 0x0CA9 2977 4428 2626 -127
+east east_016_coral_garden 0x77B5 0 4426 2627 -127
+east east_016_coral_garden 0x0CB0 2977 4424 2628 -127
+east east_016_coral_garden 0x136D 2827 4428 2628 -127
+
+# east_017_stone_seats
+east east_017_stone_seats 0x1218 2722 4408 2624 -127
+east east_017_stone_seats 0x1219 2722 4411 2624 -127
+east east_017_stone_seats 0x4C2A 2826 4409 2624 -127
+east east_017_stone_seats 0x136D 2827 4410 2626 -127
+east east_017_stone_seats 0x6597 0 4412 2625 -127
+east east_017_stone_seats 0x77B3 0 4408 2627 -127
+east east_017_stone_seats 0x0CA9 2977 4411 2627 -127
+
+# east_018_ruined_bedroom
+east east_018_ruined_bedroom 0x2F2F 2765 4402 2584 -127
+east east_018_ruined_bedroom 0x2F30 2765 4403 2584 -127
+east east_018_ruined_bedroom 0x0C10 2739 4405 2585 -127
+east east_018_ruined_bedroom 0x1AFC 2767 4402 2586 -127
+east east_018_ruined_bedroom 0x6355 0 4406 2584 -127
+east east_018_ruined_bedroom 0x0C2E 2751 4404 2586 -127
+east east_018_ruined_bedroom 0x77B3 0 4403 2587 -127
+
+# east_019_coral_garden
+east east_019_coral_garden 0x75C1 0 4432 2585 -127
+east east_019_coral_garden 0x624B 0 4433 2586 -127
+east east_019_coral_garden 0x6596 0 4435 2585 -127
+east east_019_coral_garden 0x0CA9 2977 4436 2586 -127
+east east_019_coral_garden 0x77B5 0 4434 2587 -127
+east east_019_coral_garden 0x0CB0 2977 4432 2588 -127
+east east_019_coral_garden 0x136D 2827 4436 2588 -127
+
+# east_020_lost_cargo
+east east_020_lost_cargo 0x4F86 2859 4384 2587 -127
+east east_020_lost_cargo 0x1AFC 2767 4386 2587 -127
+east east_020_lost_cargo 0x1AFE 2767 4387 2587 -127
+east east_020_lost_cargo 0x1DB4 0 4385 2589 -127
+east east_020_lost_cargo 0x1DB5 0 4386 2589 -127
+east east_020_lost_cargo 0x0CA9 2977 4388 2588 -127
+east east_020_lost_cargo 0x77B5 0 4387 2590 -127
+
+# east_021_ruined_bedroom
+east east_021_ruined_bedroom 0x2F2F 2765 4426 2608 -127
+east east_021_ruined_bedroom 0x2F30 2765 4427 2608 -127
+east east_021_ruined_bedroom 0x0C10 2739 4429 2609 -127
+east east_021_ruined_bedroom 0x1AFC 2767 4426 2610 -127
+east east_021_ruined_bedroom 0x6355 0 4430 2608 -127
+east east_021_ruined_bedroom 0x0C2E 2751 4428 2610 -127
+east east_021_ruined_bedroom 0x77B3 0 4427 2611 -127
+
+# east_022_broken_household
+east east_022_broken_household 0x0C10 2739 4408 2592 -127
+east east_022_broken_household 0x0C11 2739 4410 2593 -127
+east east_022_broken_household 0x1AFE 2767 4411 2592 -127
+east east_022_broken_household 0x0C30 2767 4409 2594 -127
+east east_022_broken_household 0x6596 0 4412 2592 -127
+east east_022_broken_household 0x0CA9 2977 4412 2594 -127
+east east_022_broken_household 0x77B3 0 4408 2595 -127
+
+# east_023_stone_seats
+east east_023_stone_seats 0x1218 2722 4450 2624 -127
+east east_023_stone_seats 0x1219 2722 4453 2624 -127
+east east_023_stone_seats 0x4C2A 2826 4451 2624 -127
+east east_023_stone_seats 0x136D 2827 4452 2626 -127
+east east_023_stone_seats 0x6597 0 4454 2625 -127
+east east_023_stone_seats 0x77B3 0 4450 2627 -127
+east east_023_stone_seats 0x0CA9 2977 4453 2627 -127
+
+# east_024_lost_cargo
+east east_024_lost_cargo 0x4F86 2859 4465 2584 -127
+east east_024_lost_cargo 0x1AFC 2767 4467 2584 -127
+east east_024_lost_cargo 0x1AFE 2767 4468 2584 -127
+east east_024_lost_cargo 0x1DB4 0 4466 2586 -127
+east east_024_lost_cargo 0x1DB5 0 4467 2586 -127
+east east_024_lost_cargo 0x0CA9 2977 4469 2585 -127
+east east_024_lost_cargo 0x77B5 0 4468 2587 -127
+
+# east_025_ruined_bedroom
+east east_025_ruined_bedroom 0x2F2F 2765 4384 2632 -127
+east east_025_ruined_bedroom 0x2F30 2765 4385 2632 -127
+east east_025_ruined_bedroom 0x0C10 2739 4387 2633 -127
+east east_025_ruined_bedroom 0x1AFC 2767 4384 2634 -127
+east east_025_ruined_bedroom 0x6355 0 4388 2632 -127
+east east_025_ruined_bedroom 0x0C2E 2751 4386 2634 -127
+east east_025_ruined_bedroom 0x77B3 0 4385 2635 -127
+
+# south_001_weathered_monument
+south south_001_weathered_monument 0x45B5 2748 4409 2667 -127
+south south_001_weathered_monument 0x136D 2827 4408 2668 -127
+south south_001_weathered_monument 0x136B 2827 4410 2669 -127
+south south_001_weathered_monument 0x4C2A 2826 4412 2667 -127
+south south_001_weathered_monument 0x624B 0 4411 2668 -127
+south south_001_weathered_monument 0x0CA9 2977 4412 2670 -127
+
+# south_002_crystal_growth
+south south_002_crystal_growth 0x62BD 0 4392 2674 -127
+south south_002_crystal_growth 0x61DD 0 4395 2674 -127
+south south_002_crystal_growth 0x624B 0 4393 2675 -127
+south south_002_crystal_growth 0x0CA9 2977 4396 2675 -127
+south south_002_crystal_growth 0x77B5 0 4394 2676 -127
+south south_002_crystal_growth 0x136B 2827 4392 2677 -127
+
+# south_003_weathered_monument
+south south_003_weathered_monument 0x45B5 2748 4465 2663 -127
+south south_003_weathered_monument 0x136D 2827 4464 2664 -127
+south south_003_weathered_monument 0x136B 2827 4466 2665 -127
+south south_003_weathered_monument 0x4C2A 2826 4468 2663 -127
+south south_003_weathered_monument 0x624B 0 4467 2664 -127
+south south_003_weathered_monument 0x0CA9 2977 4468 2666 -127
+
+# south_004_weathered_monument
+south south_004_weathered_monument 0x45B5 2748 4416 2656 -127
+south south_004_weathered_monument 0x136D 2827 4415 2657 -127
+south south_004_weathered_monument 0x136B 2827 4417 2658 -127
+south south_004_weathered_monument 0x4C2A 2826 4419 2656 -127
+south south_004_weathered_monument 0x624B 0 4418 2657 -127
+south south_004_weathered_monument 0x0CA9 2977 4419 2659 -127
+
+# south_005_fisher_store
+south south_005_fisher_store 0x14F7 0 4440 2664 -127
+south south_005_fisher_store 0x14F8 0 4441 2665 -127
+south south_005_fisher_store 0x4F86 2859 4443 2664 -127
+south south_005_fisher_store 0x1DB4 0 4443 2666 -127
+south south_005_fisher_store 0x6247 0 4444 2665 -127
+south south_005_fisher_store 0x77B9 0 4440 2667 -127
+south south_005_fisher_store 0x0CB0 2977 4442 2667 -127
+
+# south_006_weathered_monument
+south south_006_weathered_monument 0x45B5 2748 4425 2671 -127
+south south_006_weathered_monument 0x136D 2827 4424 2672 -127
+south south_006_weathered_monument 0x136B 2827 4426 2673 -127
+south south_006_weathered_monument 0x4C2A 2826 4428 2671 -127
+south south_006_weathered_monument 0x624B 0 4427 2672 -127
+south south_006_weathered_monument 0x0CA9 2977 4428 2674 -127
+
+# south_007_crystal_growth
+south south_007_crystal_growth 0x62BD 0 4408 2648 -127
+south south_007_crystal_growth 0x61DD 0 4411 2648 -127
+south south_007_crystal_growth 0x624B 0 4409 2649 -127
+south south_007_crystal_growth 0x0CA9 2977 4412 2649 -127
+south south_007_crystal_growth 0x77B5 0 4410 2650 -127
+south south_007_crystal_growth 0x136B 2827 4408 2651 -127
+
+# south_008_weathered_monument
+south south_008_weathered_monument 0x45B5 2748 4434 2656 -127
+south south_008_weathered_monument 0x136D 2827 4433 2657 -127
+south south_008_weathered_monument 0x136B 2827 4435 2658 -127
+south south_008_weathered_monument 0x4C2A 2826 4437 2656 -127
+south south_008_weathered_monument 0x624B 0 4436 2657 -127
+south south_008_weathered_monument 0x0CA9 2977 4437 2659 -127
+
+# south_009_broken_household
+south south_009_broken_household 0x0C10 2739 4401 2640 -127
+south south_009_broken_household 0x0C11 2739 4403 2641 -127
+south south_009_broken_household 0x1AFE 2767 4404 2640 -127
+south south_009_broken_household 0x0C30 2767 4402 2642 -127
+south south_009_broken_household 0x6596 0 4405 2640 -127
+south south_009_broken_household 0x0CA9 2977 4405 2642 -127
+south south_009_broken_household 0x77B3 0 4401 2643 -127
+
+# south_010_broken_household
+south south_010_broken_household 0x0C10 2739 4448 2651 -127
+south south_010_broken_household 0x0C11 2739 4450 2652 -127
+south south_010_broken_household 0x1AFE 2767 4451 2651 -127
+south south_010_broken_household 0x0C30 2767 4449 2653 -127
+south south_010_broken_household 0x6596 0 4452 2651 -127
+south south_010_broken_household 0x0CA9 2977 4452 2653 -127
+south south_010_broken_household 0x77B3 0 4448 2654 -127
+
+# south_011_weathered_monument
+south south_011_weathered_monument 0x45B5 2748 4385 2649 -127
+south south_011_weathered_monument 0x136D 2827 4384 2650 -127
+south south_011_weathered_monument 0x136B 2827 4386 2651 -127
+south south_011_weathered_monument 0x4C2A 2826 4388 2649 -127
+south south_011_weathered_monument 0x624B 0 4387 2650 -127
+south south_011_weathered_monument 0x0CA9 2977 4388 2652 -127
+
+# south_012_weathered_monument
+south south_012_weathered_monument 0x45B5 2748 4441 2675 -127
+south south_012_weathered_monument 0x136D 2827 4440 2676 -127
+south south_012_weathered_monument 0x136B 2827 4442 2677 -127
+south south_012_weathered_monument 0x4C2A 2826 4444 2675 -127
+south south_012_weathered_monument 0x624B 0 4443 2676 -127
+south south_012_weathered_monument 0x0CA9 2977 4444 2678 -127
+
+# south_013_broken_household
+south south_013_broken_household 0x0C10 2739 4433 2648 -127
+south south_013_broken_household 0x0C11 2739 4435 2649 -127
+south south_013_broken_household 0x1AFE 2767 4436 2648 -127
+south south_013_broken_household 0x0C30 2767 4434 2650 -127
+south south_013_broken_household 0x6596 0 4437 2648 -127
+south south_013_broken_household 0x0CA9 2977 4437 2650 -127
+south south_013_broken_household 0x77B3 0 4433 2651 -127
+
+# south_014_fisher_store
+south south_014_fisher_store 0x14F7 0 4450 2680 -127
+south south_014_fisher_store 0x14F8 0 4451 2681 -127
+south south_014_fisher_store 0x4F86 2859 4453 2680 -127
+south south_014_fisher_store 0x1DB4 0 4453 2682 -127
+south south_014_fisher_store 0x6247 0 4454 2681 -127
+south south_014_fisher_store 0x77B9 0 4450 2683 -127
+south south_014_fisher_store 0x0CB0 2977 4452 2683 -127
+
+# south_015_shell_nursery
+south south_015_shell_nursery 0x75C0 0 4462 2640 -127
+south south_015_shell_nursery 0x6595 0 4464 2640 -127
+south south_015_shell_nursery 0x6597 0 4466 2640 -127
+south south_015_shell_nursery 0x77B9 0 4463 2642 -127
+south south_015_shell_nursery 0x77B5 0 4465 2642 -127
+south south_015_shell_nursery 0x0CA9 2977 4466 2643 -127
+south south_015_shell_nursery 0x0CB0 2977 4462 2643 -127
+
+# south_016_broken_household
+south south_016_broken_household 0x0C10 2739 4456 2671 -127
+south south_016_broken_household 0x0C11 2739 4458 2672 -127
+south south_016_broken_household 0x1AFE 2767 4459 2671 -127
+south south_016_broken_household 0x0C30 2767 4457 2673 -127
+south south_016_broken_household 0x6596 0 4460 2671 -127
+south south_016_broken_household 0x0CA9 2977 4460 2673 -127
+south south_016_broken_household 0x77B3 0 4456 2674 -127
+
+# south_017_lost_cargo
+south south_017_lost_cargo 0x4F86 2859 4384 2663 -127
+south south_017_lost_cargo 0x1AFC 2767 4386 2663 -127
+south south_017_lost_cargo 0x1AFE 2767 4387 2663 -127
+south south_017_lost_cargo 0x1DB4 0 4385 2665 -127
+south south_017_lost_cargo 0x1DB5 0 4386 2665 -127
+south south_017_lost_cargo 0x0CA9 2977 4388 2664 -127
+south south_017_lost_cargo 0x77B5 0 4387 2666 -127
+
+# south_018_shell_nursery
+south south_018_shell_nursery 0x75C0 0 4424 2680 -127
+south south_018_shell_nursery 0x6595 0 4426 2680 -127
+south south_018_shell_nursery 0x6597 0 4428 2680 -127
+south south_018_shell_nursery 0x77B9 0 4425 2682 -127
+south south_018_shell_nursery 0x77B5 0 4427 2682 -127
+south south_018_shell_nursery 0x0CA9 2977 4428 2683 -127
+south south_018_shell_nursery 0x0CB0 2977 4424 2683 -127
+
+# south_019_lost_cargo
+south south_019_lost_cargo 0x4F86 2859 4385 2640 -127
+south south_019_lost_cargo 0x1AFC 2767 4387 2640 -127
+south south_019_lost_cargo 0x1AFE 2767 4388 2640 -127
+south south_019_lost_cargo 0x1DB4 0 4386 2642 -127
+south south_019_lost_cargo 0x1DB5 0 4387 2642 -127
+south south_019_lost_cargo 0x0CA9 2977 4389 2641 -127
+south south_019_lost_cargo 0x77B5 0 4388 2643 -127
+
+# south_020_shell_nursery
+south south_020_shell_nursery 0x75C0 0 4424 2656 -127
+south south_020_shell_nursery 0x6595 0 4426 2656 -127
+south south_020_shell_nursery 0x6597 0 4428 2656 -127
+south south_020_shell_nursery 0x77B9 0 4425 2658 -127
+south south_020_shell_nursery 0x77B5 0 4427 2658 -127
+south south_020_shell_nursery 0x0CA9 2977 4428 2659 -127
+south south_020_shell_nursery 0x0CB0 2977 4424 2659 -127
+
+# south_021_lost_cargo
+south south_021_lost_cargo 0x4F86 2859 4383 2680 -127
+south south_021_lost_cargo 0x1AFC 2767 4385 2680 -127
+south south_021_lost_cargo 0x1AFE 2767 4386 2680 -127
+south south_021_lost_cargo 0x1DB4 0 4384 2682 -127
+south south_021_lost_cargo 0x1DB5 0 4385 2682 -127
+south south_021_lost_cargo 0x0CA9 2977 4387 2681 -127
+south south_021_lost_cargo 0x77B5 0 4386 2683 -127

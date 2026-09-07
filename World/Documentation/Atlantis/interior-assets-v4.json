@@ -1,0 +1,9834 @@
+{
+ "map": "Atlantis, logical 6 / file 1",
+ "revision": 4,
+ "rooms": {
+  "north_v2_tidal_archive": 144,
+  "north_v2_city_watch_armory": 114,
+  "north_v2_navigators_chartroom": 80,
+  "north_v2_officers_refectory": 157,
+  "north_v2_watch_barracks": 124,
+  "north_v2_bath_house": 276,
+  "north_v2_hall_of_the_leviathan_west": 87,
+  "north_v2_hall_of_the_leviathan_east": 89,
+  "north_v2_harbour_storehouse": 123,
+  "north_v2_refectory_kitchen": 66,
+  "central_v2_scriptorium": 69,
+  "central_v2_council_of_tides": 287,
+  "central_v2_shrine_of_the_deep": 150,
+  "central_v2_gatehouse_watch": 36,
+  "central_v2_fishmongers_arcade": 103,
+  "east_v2_keepers_library": 110,
+  "east_v2_curators_treasury": 79,
+  "east_v2_sculpture_gallery": 88,
+  "east_v2_residential_music_room": 80,
+  "east_v2_atrium": 68,
+  "east_v2_noble_bedchamber": 81,
+  "east_v2_agora_north": 270,
+  "east_v2_agora_south": 220,
+  "south_v2_mariners_mess": 250,
+  "south_v2_sunken_household": 68,
+  "south_v2_crypt_of_the_tide_lords": 146,
+  "south_v2_chapel_annex": 57,
+  "south_v2_shipwrights_dock": 280,
+  "south_v2_infirmary": 114,
+  "south_v2_tide_mages_laboratory": 80,
+  "south_v2_colonnade_of_the_drowned": 128,
+  "north_v2_weavers_workshop": 45,
+  "north_v2_chandlery": 57,
+  "north_v2_granary": 56,
+  "north_v2_brewery": 59,
+  "north_v2_trophy_hall": 84,
+  "north_v2_counting_house": 48,
+  "north_v2_collapsed_passage": 34,
+  "north_v2_rope_walk": 56,
+  "north_v2_avenue_of_lanterns_west": 50,
+  "north_v2_avenue_of_lanterns_east": 51,
+  "north_v2_drain_channel_west": 61,
+  "north_v2_drain_channel_east": 57,
+  "north_v2_gallery_of_busts": 64,
+  "north_v2_armorial_hall": 70,
+  "central_v2_votive_path": 47,
+  "central_v2_poolside_garden": 49,
+  "central_v2_forecourt_of_the_tide_bell": 53,
+  "central_v2_pottery": 52,
+  "central_v2_wash_house": 44,
+  "central_v2_lecture_hall": 72,
+  "east_v2_mosaic_gallery_west": 68,
+  "east_v2_mosaic_gallery_east": 57,
+  "east_v2_stables": 63,
+  "east_v2_memorial_wall": 51,
+  "east_v2_nursery": 54,
+  "east_v2_private_bath": 51,
+  "east_v2_priests_cell": 28,
+  "east_v2_rubble_fall": 31,
+  "east_v2_antechamber": 53,
+  "east_v2_cartwrights_yard": 44,
+  "south_v2_embalmers_workshop": 51,
+  "south_v2_ossuary": 84,
+  "south_v2_net_menders": 45,
+  "south_v2_salt_store": 21,
+  "south_v2_reagent_store": 49,
+  "north_v2_minstrels_gallery": 29,
+  "north_v2_pantry_passage": 35,
+  "north_v2_vestry": 28,
+  "north_v2_root_cellar": 26,
+  "north_v2_smokehouse": 23,
+  "north_v2_cooperage": 21,
+  "north_v2_pitch_store": 19,
+  "north_v2_sentry_corridor": 29,
+  "north_v2_bath_vestibule": 18,
+  "north_v2_oubliette": 20,
+  "north_v2_stair_niche": 16,
+  "north_v2_east_gate_niche": 13,
+  "central_v2_timekeepers_alcove": 25,
+  "central_v2_scroll_store": 31,
+  "central_v2_well_of_tides": 20,
+  "central_v2_lantern_corner": 15,
+  "east_v2_bindery": 38,
+  "east_v2_illuminators_studio": 20,
+  "east_v2_vault_niche": 16,
+  "east_v2_lamp_niche": 13,
+  "east_v2_shrine_niche": 17,
+  "east_v2_linen_store": 24,
+  "east_v2_servants_quarters": 18,
+  "south_v2_well_court": 22,
+  "south_v2_harbour_steps": 21,
+  "south_v2_wreck_scatter": 23,
+  "south_v2_chapel_porch": 23,
+  "east_v2_tack_room": 26,
+  "south_v2_market_stalls": 45,
+  "south_v2_ossuary_nook": 12
+ },
+ "distinct_art_hue_pairs": 956,
+ "from_existing_atlantis": 281,
+ "artwork": [
+  {
+   "art": "0x56C5",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 213,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0918",
+   "hue": 2722,
+   "name": "stone step",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 168,
+   "existing_atlantis_example": [
+    4312,
+    2641,
+    -122
+   ]
+  },
+  {
+   "art": "0x0917",
+   "hue": 2722,
+   "name": "stone step",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 164,
+   "existing_atlantis_example": [
+    4306,
+    2634,
+    -122
+   ]
+  },
+  {
+   "art": "0x0AFA",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 161,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x04AB",
+   "hue": 2747,
+   "name": "wooden boards",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 115,
+   "existing_atlantis_example": [
+    4454,
+    2519,
+    -105
+   ]
+  },
+  {
+   "art": "0x0750",
+   "hue": 2747,
+   "name": "stone",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 96,
+   "existing_atlantis_example": [
+    4274,
+    2600,
+    -127
+   ]
+  },
+  {
+   "art": "0x5D1F",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 94,
+   "existing_atlantis_example": [
+    4208,
+    2606,
+    -127
+   ]
+  },
+  {
+   "art": "0x0AFA",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 85,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AC8",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 81,
+   "existing_atlantis_example": [
+    4252,
+    2609,
+    -127
+   ]
+  },
+  {
+   "art": "0x5D29",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 66,
+   "existing_atlantis_example": [
+    4208,
+    2607,
+    -127
+   ]
+  },
+  {
+   "art": "0x1DD0",
+   "hue": 2826,
+   "name": "marble bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 60,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0542",
+   "hue": 2746,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 58,
+   "existing_atlantis_example": [
+    4286,
+    2592,
+    -127
+   ]
+  },
+  {
+   "art": "0x0543",
+   "hue": 2746,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 58,
+   "existing_atlantis_example": [
+    4289,
+    2593,
+    -127
+   ]
+  },
+  {
+   "art": "0x054D",
+   "hue": 2746,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 58,
+   "existing_atlantis_example": [
+    4286,
+    2594,
+    -127
+   ]
+  },
+  {
+   "art": "0x054F",
+   "hue": 2746,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 58,
+   "existing_atlantis_example": [
+    4289,
+    2595,
+    -127
+   ]
+  },
+  {
+   "art": "0x6389",
+   "hue": 2319,
+   "name": "sconce",
+   "height": 15,
+   "impassable": false,
+   "preview_count": 56,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x011B",
+   "hue": 2748,
+   "name": "marble column",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 44,
+   "existing_atlantis_example": [
+    4288,
+    2561,
+    -127
+   ]
+  },
+  {
+   "art": "0x56C5",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 43,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x6380",
+   "hue": 2319,
+   "name": "glowing crystal",
+   "height": 15,
+   "impassable": false,
+   "preview_count": 42,
+   "existing_atlantis_example": [
+    4280,
+    2587,
+    -110
+   ]
+  },
+  {
+   "art": "0x0AF3",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 40,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF5",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 40,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CD",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 38,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CF",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 38,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x123F",
+   "hue": 2765,
+   "name": "skeleton",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 36,
+   "existing_atlantis_example": [
+    4352,
+    2693,
+    -127
+   ]
+  },
+  {
+   "art": "0x6385",
+   "hue": 2319,
+   "name": "glowing crystal",
+   "height": 15,
+   "impassable": false,
+   "preview_count": 35,
+   "existing_atlantis_example": [
+    4253,
+    2606,
+    -110
+   ]
+  },
+  {
+   "art": "0x0D13",
+   "hue": 2977,
+   "name": "mushrooms",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 34,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0D14",
+   "hue": 2977,
+   "name": "mushrooms",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 34,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0D16",
+   "hue": 2977,
+   "name": "mushroom",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 34,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0CB0",
+   "hue": 2977,
+   "name": "grasses",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 34,
+   "existing_atlantis_example": [
+    4240,
+    2545,
+    -127
+   ]
+  },
+  {
+   "art": "0x0CAD",
+   "hue": 2977,
+   "name": "grasses",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 34,
+   "existing_atlantis_example": [
+    4231,
+    2658,
+    -127
+   ]
+  },
+  {
+   "art": "0x0CEE",
+   "hue": 2977,
+   "name": "vines",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 34,
+   "existing_atlantis_example": [
+    4228,
+    2568,
+    -127
+   ]
+  },
+  {
+   "art": "0x0CAC",
+   "hue": 2977,
+   "name": "grasses",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 34,
+   "existing_atlantis_example": [
+    4224,
+    2614,
+    -127
+   ]
+  },
+  {
+   "art": "0x44D1",
+   "hue": 0,
+   "name": "crab",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 32,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AFA",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 32,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x30EA",
+   "hue": 0,
+   "name": "sinkhole",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 31,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x6593",
+   "hue": 2977,
+   "name": "seaweed",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 31,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3CC1",
+   "hue": 2764,
+   "name": "shelf",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 31,
+   "existing_atlantis_example": [
+    4304,
+    2627,
+    -127
+   ]
+  },
+  {
+   "art": "0x79A7",
+   "hue": 0,
+   "name": "bubbles",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 30,
+   "existing_atlantis_example": [
+    4230,
+    2558,
+    -117
+   ]
+  },
+  {
+   "art": "0x6764",
+   "hue": 2319,
+   "name": "glowing crystal",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 29,
+   "existing_atlantis_example": [
+    4253,
+    2614,
+    -110
+   ]
+  },
+  {
+   "art": "0x11DE",
+   "hue": 2739,
+   "name": "log table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 28,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x531F",
+   "hue": 0,
+   "name": "crab",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 28,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1DD1",
+   "hue": 2826,
+   "name": "marble bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 28,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1DC6",
+   "hue": 2826,
+   "name": "marble table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 27,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CC",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 27,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CE",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 27,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x052D",
+   "hue": 2767,
+   "name": "candelabra",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 27,
+   "existing_atlantis_example": [
+    4312,
+    2664,
+    -127
+   ]
+  },
+  {
+   "art": "0x1AFE",
+   "hue": 2767,
+   "name": "clay urn",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 27,
+   "existing_atlantis_example": [
+    4312,
+    2699,
+    -127
+   ]
+  },
+  {
+   "art": "0x19AA",
+   "hue": 2319,
+   "name": "brazier",
+   "height": 17,
+   "impassable": true,
+   "preview_count": 27,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x5C80",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 27,
+   "existing_atlantis_example": [
+    4207,
+    2616,
+    -127
+   ]
+  },
+  {
+   "art": "0x0880",
+   "hue": 2747,
+   "name": "wooden rail",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 27,
+   "existing_atlantis_example": [
+    4460,
+    2525,
+    -91
+   ]
+  },
+  {
+   "art": "0x071E",
+   "hue": 2748,
+   "name": "stone",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 27,
+   "existing_atlantis_example": [
+    4245,
+    2609,
+    -127
+   ]
+  },
+  {
+   "art": "0x052E",
+   "hue": 2767,
+   "name": "candelabra",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 26,
+   "existing_atlantis_example": [
+    4312,
+    2676,
+    -127
+   ]
+  },
+  {
+   "art": "0x0542",
+   "hue": 2005,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 25,
+   "existing_atlantis_example": [
+    4327,
+    2656,
+    -122
+   ]
+  },
+  {
+   "art": "0x0543",
+   "hue": 2005,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 25,
+   "existing_atlantis_example": [
+    4328,
+    2656,
+    -122
+   ]
+  },
+  {
+   "art": "0x054D",
+   "hue": 2005,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 25,
+   "existing_atlantis_example": [
+    4327,
+    2655,
+    -122
+   ]
+  },
+  {
+   "art": "0x054F",
+   "hue": 2005,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 25,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B04",
+   "hue": 0,
+   "name": "floor cracks",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 25,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A2A",
+   "hue": 2739,
+   "name": "stool",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 25,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF3",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 25,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF5",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 25,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x5C82",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 24,
+   "existing_atlantis_example": [
+    4282,
+    2613,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C80",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 24,
+   "existing_atlantis_example": [
+    4221,
+    2619,
+    -127
+   ]
+  },
+  {
+   "art": "0x45B5",
+   "hue": 2748,
+   "name": "break pillar",
+   "height": 25,
+   "impassable": true,
+   "preview_count": 23,
+   "existing_atlantis_example": [
+    4253,
+    2615,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B20",
+   "hue": 2767,
+   "name": "lamp post",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 23,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B7A",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 23,
+   "existing_atlantis_example": [
+    4282,
+    2609,
+    -127
+   ]
+  },
+  {
+   "art": "0x1AD9",
+   "hue": 2765,
+   "name": "pile of skulls",
+   "height": 1,
+   "impassable": true,
+   "preview_count": 22,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1236",
+   "hue": 2765,
+   "name": "skeleton",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 21,
+   "existing_atlantis_example": [
+    4312,
+    2605,
+    -127
+   ]
+  },
+  {
+   "art": "0x03A4",
+   "hue": 2859,
+   "name": "metal grate",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 21,
+   "existing_atlantis_example": [
+    4312,
+    2693,
+    -122
+   ]
+  },
+  {
+   "art": "0x0AF2",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 20,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AFA",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 20,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF4",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 20,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x160E",
+   "hue": 2767,
+   "name": "curtain",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 20,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AFC",
+   "hue": 2767,
+   "name": "clay urn",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 19,
+   "existing_atlantis_example": [
+    4312,
+    2691,
+    -127
+   ]
+  },
+  {
+   "art": "0x6384",
+   "hue": 2319,
+   "name": "sconce",
+   "height": 15,
+   "impassable": false,
+   "preview_count": 19,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E31",
+   "hue": 2319,
+   "name": "brazier",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 19,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x65E0",
+   "hue": 2767,
+   "name": "lamp post",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 19,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0980",
+   "hue": 2767,
+   "name": "curtains",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 19,
+   "existing_atlantis_example": [
+    4289,
+    2559,
+    -118
+   ]
+  },
+  {
+   "art": "0x0ACE",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 19,
+   "existing_atlantis_example": [
+    4252,
+    2608,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C5E",
+   "hue": 2977,
+   "name": "vines",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4318,
+    2694,
+    -115
+   ]
+  },
+  {
+   "art": "0x0DBA",
+   "hue": 2977,
+   "name": "seaweed",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1097",
+   "hue": 2767,
+   "name": "barrel",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4465,
+    2512,
+    -125
+   ]
+  },
+  {
+   "art": "0x0A15",
+   "hue": 0,
+   "name": "lantern",
+   "height": 2,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x11C9",
+   "hue": 2977,
+   "name": "potted tree",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 18,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x5C81",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4207,
+    2604,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C49",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4210,
+    2601,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C82",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4216,
+    2601,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C16",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4208,
+    2605,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C17",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4209,
+    2603,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C7E",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4208,
+    2616,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C47",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4217,
+    2603,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C83",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4220,
+    2614,
+    -127
+   ]
+  },
+  {
+   "art": "0x61E1",
+   "hue": 0,
+   "name": "salt crystal",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4222,
+    2614,
+    -127
+   ]
+  },
+  {
+   "art": "0x0AD0",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": [
+    4252,
+    2612,
+    -127
+   ]
+  },
+  {
+   "art": "0x1430",
+   "hue": 2767,
+   "name": "candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CC",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CE",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 18,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A99",
+   "hue": 2764,
+   "name": "bookcase",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 17,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x11DD",
+   "hue": 2739,
+   "name": "log table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 17,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x11DC",
+   "hue": 2739,
+   "name": "log table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 17,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x45B4",
+   "hue": 2748,
+   "name": "break pillar",
+   "height": 25,
+   "impassable": true,
+   "preview_count": 17,
+   "existing_atlantis_example": [
+    4253,
+    2605,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B2C",
+   "hue": 2739,
+   "name": "wooden bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 17,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x154D",
+   "hue": 2767,
+   "name": "water barrel",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 17,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x11FD",
+   "hue": 2765,
+   "name": "cot",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 17,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x11FE",
+   "hue": 2765,
+   "name": "cot",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 17,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x61DA",
+   "hue": 0,
+   "name": "salt crystal",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 17,
+   "existing_atlantis_example": [
+    4226,
+    2573,
+    -127
+   ]
+  },
+  {
+   "art": "0x1DC5",
+   "hue": 2826,
+   "name": "marble table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 16,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1DC4",
+   "hue": 2826,
+   "name": "marble table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 16,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x121A",
+   "hue": 2001,
+   "name": "stone chair",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 16,
+   "existing_atlantis_example": [
+    4327,
+    2657,
+    -127
+   ]
+  },
+  {
+   "art": "0x77B5",
+   "hue": 0,
+   "name": "sea shell",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 16,
+   "existing_atlantis_example": [
+    4208,
+    2615,
+    -127
+   ]
+  },
+  {
+   "art": "0x77B7",
+   "hue": 0,
+   "name": "star fish",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 16,
+   "existing_atlantis_example": [
+    4229,
+    2625,
+    -127
+   ]
+  },
+  {
+   "art": "0x136D",
+   "hue": 2827,
+   "name": "rocks",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 16,
+   "existing_atlantis_example": [
+    4367,
+    2592,
+    -127
+   ]
+  },
+  {
+   "art": "0x136B",
+   "hue": 2827,
+   "name": "rock",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 16,
+   "existing_atlantis_example": [
+    4364,
+    2599,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C81",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 16,
+   "existing_atlantis_example": [
+    4223,
+    2570,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C7C",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 16,
+   "existing_atlantis_example": [
+    4282,
+    2614,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C7E",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 16,
+   "existing_atlantis_example": [
+    4223,
+    2619,
+    -127
+   ]
+  },
+  {
+   "art": "0x1B02",
+   "hue": 0,
+   "name": "floor cracks",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 16,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1178",
+   "hue": 2748,
+   "name": "gravestone",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 16,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B01",
+   "hue": 0,
+   "name": "floor cracks",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 15,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x22A9",
+   "hue": 0,
+   "name": "crab",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 15,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DD8",
+   "hue": 0,
+   "name": "small fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 15,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0093",
+   "hue": 2747,
+   "name": "log post",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 15,
+   "existing_atlantis_example": [
+    4466,
+    2522,
+    -105
+   ]
+  },
+  {
+   "art": "0x1B03",
+   "hue": 0,
+   "name": "floor cracks",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 14,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x30F2",
+   "hue": 0,
+   "name": "sinkhole",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 14,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C39",
+   "hue": 2767,
+   "name": "peg board",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 14,
+   "existing_atlantis_example": [
+    4291,
+    2648,
+    -127
+   ]
+  },
+  {
+   "art": "0x0278",
+   "hue": 2827,
+   "name": "ruined wall",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 13,
+   "existing_atlantis_example": [
+    4369,
+    2596,
+    -127
+   ]
+  },
+  {
+   "art": "0x30EE",
+   "hue": 0,
+   "name": "sinkhole",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 13,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14F8",
+   "hue": 0,
+   "name": "rope",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 13,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E21",
+   "hue": 2767,
+   "name": "books",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 12,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x6596",
+   "hue": 0,
+   "name": "coral",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 12,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FAE",
+   "hue": 2767,
+   "name": "barrel",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 12,
+   "existing_atlantis_example": [
+    4464,
+    2512,
+    -125
+   ]
+  },
+  {
+   "art": "0x0B80",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 12,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AFD",
+   "hue": 2767,
+   "name": "clay urn",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 12,
+   "existing_atlantis_example": [
+    4312,
+    2690,
+    -127
+   ]
+  },
+  {
+   "art": "0x24D7",
+   "hue": 2767,
+   "name": "basket",
+   "height": 1,
+   "impassable": true,
+   "preview_count": 12,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1037",
+   "hue": 1881,
+   "name": "hay",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 12,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x25F5",
+   "hue": 0,
+   "name": "turtle",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 12,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3D8F",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 15,
+   "impassable": false,
+   "preview_count": 12,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1A08",
+   "hue": 2765,
+   "name": "chains",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 12,
+   "existing_atlantis_example": [
+    4349,
+    2664,
+    -127
+   ]
+  },
+  {
+   "art": "0x1218",
+   "hue": 2001,
+   "name": "stone chair",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 11,
+   "existing_atlantis_example": [
+    4326,
+    2654,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B5B",
+   "hue": 2739,
+   "name": "chair",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 11,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ACF",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 11,
+   "existing_atlantis_example": [
+    4272,
+    2610,
+    -127
+   ]
+  },
+  {
+   "art": "0x56CD",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 11,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CF",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 11,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF2",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 11,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF4",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 11,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C15",
+   "hue": 2764,
+   "name": "dusty bookcase",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 10,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1587",
+   "hue": 2722,
+   "name": "banner",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1206",
+   "hue": 2722,
+   "name": "stone table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 10,
+   "existing_atlantis_example": [
+    4299,
+    2632,
+    -127
+   ]
+  },
+  {
+   "art": "0x13A4",
+   "hue": 2767,
+   "name": "pillow",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": [
+    4312,
+    2673,
+    -122
+   ]
+  },
+  {
+   "art": "0x0E7D",
+   "hue": 2764,
+   "name": "wooden box",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 10,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x65C0",
+   "hue": 0,
+   "name": "crab",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1008",
+   "hue": 2767,
+   "name": "wash basin",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ECF",
+   "hue": 2765,
+   "name": "bones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": [
+    4321,
+    2681,
+    -127
+   ]
+  },
+  {
+   "art": "0x0A1F",
+   "hue": 2767,
+   "name": "lantern post",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 10,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ACD",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": [
+    4251,
+    2609,
+    -127
+   ]
+  },
+  {
+   "art": "0x0736",
+   "hue": 2748,
+   "name": "stone stairs",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": [
+    4359,
+    2657,
+    -92
+   ]
+  },
+  {
+   "art": "0x1036",
+   "hue": 1881,
+   "name": "hay",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F35",
+   "hue": 1881,
+   "name": "hay",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 10,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E20",
+   "hue": 2767,
+   "name": "book",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x5C48",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4213,
+    2601,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C7F",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4208,
+    2604,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C7C",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4216,
+    2602,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C4C",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4207,
+    2605,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C46",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4219,
+    2615,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C4D",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4207,
+    2606,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C7D",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4219,
+    2614,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C4B",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4211,
+    2618,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C4A",
+   "hue": 2879,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4209,
+    2617,
+    -127
+   ]
+  },
+  {
+   "art": "0x6595",
+   "hue": 0,
+   "name": "coral",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 9,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x6597",
+   "hue": 0,
+   "name": "coral",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 9,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FD7",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1039",
+   "hue": 2767,
+   "name": "sack of flour",
+   "height": 2,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x24D9",
+   "hue": 2767,
+   "name": "basket",
+   "height": 1,
+   "impassable": true,
+   "preview_count": 9,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E44",
+   "hue": 2767,
+   "name": "empty jars",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4881",
+   "hue": 2319,
+   "name": "rune",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": [
+    4246,
+    2610,
+    -116
+   ]
+  },
+  {
+   "art": "0x56C5",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 9,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF2",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF4",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1205",
+   "hue": 2722,
+   "name": "stone table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4290,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x1204",
+   "hue": 2722,
+   "name": "stone table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4291,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B4C",
+   "hue": 2739,
+   "name": "writing table",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AD7",
+   "hue": 2767,
+   "name": "keg",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B7F",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B7E",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B34",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1EB5",
+   "hue": 2767,
+   "name": "unfinished barrel",
+   "height": 0,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B45",
+   "hue": 0,
+   "name": "treasure",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09BF",
+   "hue": 2766,
+   "name": "goblet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4283,
+    2612,
+    -121
+   ]
+  },
+  {
+   "art": "0x0B2D",
+   "hue": 2739,
+   "name": "wooden bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1DB4",
+   "hue": 2767,
+   "name": "broken barrel",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x5C49",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4229,
+    2552,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C7F",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4223,
+    2581,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C4C",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4223,
+    2574,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C47",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4283,
+    2616,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C4B",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4226,
+    2643,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C46",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4283,
+    2615,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C4A",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4222,
+    2619,
+    -127
+   ]
+  },
+  {
+   "art": "0x5C83",
+   "hue": 0,
+   "name": "ground",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": [
+    4282,
+    2618,
+    -127
+   ]
+  },
+  {
+   "art": "0x56CD",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CF",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 8,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3B59",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": [
+    4313,
+    2645,
+    -122
+   ]
+  },
+  {
+   "art": "0x56C9",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CB",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CA",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56C8",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3031",
+   "hue": 2767,
+   "name": "candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": [
+    4288,
+    2640,
+    -121
+   ]
+  },
+  {
+   "art": "0x0ECE",
+   "hue": 2765,
+   "name": "bones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": [
+    4305,
+    2569,
+    -127
+   ]
+  },
+  {
+   "art": "0x0E7B",
+   "hue": 2767,
+   "name": "water tub",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F8B",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09C9",
+   "hue": 2767,
+   "name": "ham",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AD6",
+   "hue": 2767,
+   "name": "keg",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B5A",
+   "hue": 2739,
+   "name": "chair",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": [
+    4281,
+    2611,
+    -127
+   ]
+  },
+  {
+   "art": "0x11F3",
+   "hue": 2739,
+   "name": "hammock",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x11F2",
+   "hue": 2739,
+   "name": "hammock",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x10EE",
+   "hue": 2767,
+   "name": "garbage",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x13A5",
+   "hue": 2767,
+   "name": "pillow",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": [
+    4351,
+    2640,
+    -121
+   ]
+  },
+  {
+   "art": "0x0D0B",
+   "hue": 0,
+   "name": "lilypads",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1046",
+   "hue": 2767,
+   "name": "open sack of flour",
+   "height": 2,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14FA",
+   "hue": 0,
+   "name": "rope",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0975",
+   "hue": 2831,
+   "name": "cauldron",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ECB",
+   "hue": 2765,
+   "name": "bones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x11CA",
+   "hue": 2977,
+   "name": "flowerpot",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AE1",
+   "hue": 2765,
+   "name": "skull",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ECD",
+   "hue": 2765,
+   "name": "bones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FD5",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 7,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3CC4",
+   "hue": 2764,
+   "name": "shelf",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 7,
+   "existing_atlantis_example": [
+    4304,
+    2653,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C16",
+   "hue": 2767,
+   "name": "damaged books",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F8D",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FC0",
+   "hue": 2767,
+   "name": "pen and ink",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E77",
+   "hue": 2767,
+   "name": "barrel",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4578",
+   "hue": 2826,
+   "name": "sea horse statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12DB",
+   "hue": 2767,
+   "name": "curtain",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F8F",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F02",
+   "hue": 2767,
+   "name": "bottle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": [
+    4328,
+    2695,
+    -121
+   ]
+  },
+  {
+   "art": "0x0ECC",
+   "hue": 2765,
+   "name": "bones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x540D",
+   "hue": 2966,
+   "name": "fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": [
+    4226,
+    2597,
+    -110
+   ]
+  },
+  {
+   "art": "0x540D",
+   "hue": 2817,
+   "name": "fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": [
+    4238,
+    2604,
+    -110
+   ]
+  },
+  {
+   "art": "0x0DD6",
+   "hue": 0,
+   "name": "small fish",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0D09",
+   "hue": 0,
+   "name": "lilypad",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B41",
+   "hue": 2767,
+   "name": "water trough",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B42",
+   "hue": 2767,
+   "name": "water trough",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1588",
+   "hue": 2722,
+   "name": "banner",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x65BB",
+   "hue": 2767,
+   "name": "basket",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1851",
+   "hue": 2767,
+   "name": "scales",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F92",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1038",
+   "hue": 1881,
+   "name": "wood curls",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x10F2",
+   "hue": 2767,
+   "name": "pile of garbage",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C17",
+   "hue": 2826,
+   "name": "covered chair",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14E0",
+   "hue": 0,
+   "name": "bucket",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 6,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2D74",
+   "hue": 2764,
+   "name": "wall map",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A27",
+   "hue": 2766,
+   "name": "candelabra",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": [
+    4283,
+    2611,
+    -121
+   ]
+  },
+  {
+   "art": "0x1810",
+   "hue": 2767,
+   "name": "hourglass",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": [
+    4298,
+    2632,
+    -121
+   ]
+  },
+  {
+   "art": "0x0E35",
+   "hue": 2767,
+   "name": "scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1047",
+   "hue": 2767,
+   "name": "globe",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F8A",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1564",
+   "hue": 2831,
+   "name": "decorative weapons",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": [
+    4301,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x09A7",
+   "hue": 2767,
+   "name": "glass pitcher",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1571",
+   "hue": 2831,
+   "name": "decorative shield",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0974",
+   "hue": 2831,
+   "name": "cauldron",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FA7",
+   "hue": 2767,
+   "name": "dice and cup",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B58",
+   "hue": 2739,
+   "name": "chair",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": [
+    4291,
+    2611,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C3A",
+   "hue": 2767,
+   "name": "peg board",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": [
+    4288,
+    2651,
+    -127
+   ]
+  },
+  {
+   "art": "0x2D0B",
+   "hue": 2826,
+   "name": "wash basin",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x158A",
+   "hue": 2722,
+   "name": "banner",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1589",
+   "hue": 2722,
+   "name": "banner",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ED0",
+   "hue": 2765,
+   "name": "bones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": [
+    4329,
+    2692,
+    -127
+   ]
+  },
+  {
+   "art": "0x096D",
+   "hue": 2767,
+   "name": "cargo",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x46FD",
+   "hue": 0,
+   "name": "ship wheel",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x44CB",
+   "hue": 0,
+   "name": "buoy",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3EDD",
+   "hue": 0,
+   "name": "mast",
+   "height": 1,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x52C9",
+   "hue": 0,
+   "name": "octopus",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E4C",
+   "hue": 2767,
+   "name": "jars",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B4A",
+   "hue": 0,
+   "name": "treasure",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x484A",
+   "hue": 2319,
+   "name": "rune",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": [
+    4247,
+    2609,
+    -116
+   ]
+  },
+  {
+   "art": "0x0D08",
+   "hue": 0,
+   "name": "lilypad",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2019",
+   "hue": 2859,
+   "name": "cage",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": [
+    4346,
+    2664,
+    -127
+   ]
+  },
+  {
+   "art": "0x0AEF",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF1",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF0",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AEE",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B48",
+   "hue": 2826,
+   "name": "vase",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FDB",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1CAD",
+   "hue": 2748,
+   "name": "sarcophagus lid",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1CAE",
+   "hue": 2748,
+   "name": "sarcophagus lid",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1CAF",
+   "hue": 2748,
+   "name": "sarcophagus lid",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1853",
+   "hue": 2767,
+   "name": "skull with candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FA1",
+   "hue": 2767,
+   "name": "spool of thread",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1760",
+   "hue": 2767,
+   "name": "folded cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F36",
+   "hue": 1881,
+   "name": "sheaf of hay",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09D0",
+   "hue": 2767,
+   "name": "apple",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 5,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3CC2",
+   "hue": 2764,
+   "name": "shelf",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4289,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x65D4",
+   "hue": 2767,
+   "name": "ancient tome",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AEF",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF1",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF0",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AEE",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x121A",
+   "hue": 2722,
+   "name": "stone chair",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4299,
+    2633,
+    -127
+   ]
+  },
+  {
+   "art": "0x3B5A",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4312,
+    2617,
+    -121
+   ]
+  },
+  {
+   "art": "0x4F87",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4FBF",
+   "hue": 2826,
+   "name": "dolphin statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4300,
+    2592,
+    -127
+   ]
+  },
+  {
+   "art": "0x1DC8",
+   "hue": 2748,
+   "name": "sandstone bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4293,
+    2561,
+    -127
+   ]
+  },
+  {
+   "art": "0x1DC9",
+   "hue": 2748,
+   "name": "sandstone bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4293,
+    2562,
+    -127
+   ]
+  },
+  {
+   "art": "0x1DC7",
+   "hue": 2748,
+   "name": "sandstone bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4293,
+    2563,
+    -127
+   ]
+  },
+  {
+   "art": "0x0E34",
+   "hue": 2767,
+   "name": "blank scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0156",
+   "hue": 2748,
+   "name": "window",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4454,
+    2518,
+    -105
+   ]
+  },
+  {
+   "art": "0x0E48",
+   "hue": 2767,
+   "name": "full jars",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B59",
+   "hue": 2739,
+   "name": "chair",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0998",
+   "hue": 2767,
+   "name": "mug",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E42",
+   "hue": 2967,
+   "name": "wooden chest",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4478,
+    2516,
+    -125
+   ]
+  },
+  {
+   "art": "0x0E43",
+   "hue": 2967,
+   "name": "wooden chest",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4449,
+    2527,
+    -125
+   ]
+  },
+  {
+   "art": "0x4F90",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x045B",
+   "hue": 2748,
+   "name": "stone bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4305,
+    2656,
+    -127
+   ]
+  },
+  {
+   "art": "0x1DB5",
+   "hue": 2767,
+   "name": "broken barrel",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0CF2",
+   "hue": 2977,
+   "name": "vines",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4226,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x4579",
+   "hue": 2826,
+   "name": "sea horse statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x42B2",
+   "hue": 2826,
+   "name": "large vase",
+   "height": 9,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4312,
+    2623,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B47",
+   "hue": 2826,
+   "name": "large vase",
+   "height": 7,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AEE",
+   "hue": 2765,
+   "name": "dragon skull",
+   "height": 1,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DBC",
+   "hue": 2765,
+   "name": "bones",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DC0",
+   "hue": 2765,
+   "name": "bones",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DC4",
+   "hue": 2765,
+   "name": "bones",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x61DD",
+   "hue": 0,
+   "name": "salt crystal",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4228,
+    2560,
+    -127
+   ]
+  },
+  {
+   "art": "0x46B6",
+   "hue": 0,
+   "name": "buoy",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x7B9C",
+   "hue": 0,
+   "name": "ship planks",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4235,
+    2663,
+    -127
+   ]
+  },
+  {
+   "art": "0x4F94",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x52E1",
+   "hue": 0,
+   "name": "squid",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x103B",
+   "hue": 2767,
+   "name": "bread loaf",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09CC",
+   "hue": 2764,
+   "name": "fish",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EF4",
+   "hue": 2767,
+   "name": "scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EAA",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4883",
+   "hue": 2319,
+   "name": "rune",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4247,
+    2611,
+    -116
+   ]
+  },
+  {
+   "art": "0x0EEE",
+   "hue": 0,
+   "name": "gold coins",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2FEF",
+   "hue": 2764,
+   "name": "canopic jar",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4327,
+    2688,
+    -121
+   ]
+  },
+  {
+   "art": "0x2FF0",
+   "hue": 2764,
+   "name": "canopic jar",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4312,
+    2694,
+    -122
+   ]
+  },
+  {
+   "art": "0x0D07",
+   "hue": 0,
+   "name": "lilypad",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0CB6",
+   "hue": 2977,
+   "name": "grasses",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4292,
+    2604,
+    -127
+   ]
+  },
+  {
+   "art": "0x0EEB",
+   "hue": 0,
+   "name": "copper coins",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CC",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CE",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B6D",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x241C",
+   "hue": 2826,
+   "name": "urn ",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x139D",
+   "hue": 2826,
+   "name": "statue",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4305,
+    2600,
+    -120
+   ]
+  },
+  {
+   "art": "0x0E9B",
+   "hue": 2767,
+   "name": "mortar and pestle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x26F5",
+   "hue": 2767,
+   "name": "alchemy stand",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x175D",
+   "hue": 2767,
+   "name": "folded cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1762",
+   "hue": 2767,
+   "name": "folded cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1764",
+   "hue": 2767,
+   "name": "folded cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1431",
+   "hue": 2767,
+   "name": "candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1434",
+   "hue": 2767,
+   "name": "Candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C3C",
+   "hue": 2767,
+   "name": "dried flowers",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C3B",
+   "hue": 2767,
+   "name": "dried flowers",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3BEB",
+   "hue": 2748,
+   "name": "altar",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 4,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1373",
+   "hue": 2767,
+   "name": "brush",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 4,
+   "existing_atlantis_example": [
+    4312,
+    2681,
+    -122
+   ]
+  },
+  {
+   "art": "0x14EB",
+   "hue": 2767,
+   "name": "map",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14EC",
+   "hue": 2767,
+   "name": "map",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2051",
+   "hue": 2767,
+   "name": "quill and ink",
+   "height": 2,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4FF5",
+   "hue": 0,
+   "name": "sea chest",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4312,
+    2600,
+    -127
+   ]
+  },
+  {
+   "art": "0x42BC",
+   "hue": 2826,
+   "name": "bust",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4320,
+    2668,
+    -120
+   ]
+  },
+  {
+   "art": "0x156C",
+   "hue": 2831,
+   "name": "decorative shield",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4308,
+    2568,
+    -127
+   ]
+  },
+  {
+   "art": "0x1577",
+   "hue": 2831,
+   "name": "decorative shield",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AEF",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF3",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF1",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF0",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF5",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AEE",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F38",
+   "hue": 2831,
+   "name": "saddle",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4309,
+    2580,
+    -127
+   ]
+  },
+  {
+   "art": "0x4BD0",
+   "hue": 2767,
+   "name": "cargo",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09AE",
+   "hue": 2767,
+   "name": "dirty plate",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4FA7",
+   "hue": 2826,
+   "name": "knight statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4280,
+    2633,
+    -127
+   ]
+  },
+  {
+   "art": "0x14ED",
+   "hue": 2767,
+   "name": "rolled map",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14F3",
+   "hue": 2767,
+   "name": "ship model",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14F1",
+   "hue": 2767,
+   "name": "ship plans",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3321",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4296,
+    2635,
+    -127
+   ]
+  },
+  {
+   "art": "0x09D7",
+   "hue": 2766,
+   "name": "plate",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4285,
+    2612,
+    -121
+   ]
+  },
+  {
+   "art": "0x1DC3",
+   "hue": 2826,
+   "name": "marble table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09F3",
+   "hue": 2767,
+   "name": "pan",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4331,
+    2694,
+    -122
+   ]
+  },
+  {
+   "art": "0x457B",
+   "hue": 2826,
+   "name": "mermaid statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C11",
+   "hue": 2739,
+   "name": "broken chair",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4286,
+    2613,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C10",
+   "hue": 2739,
+   "name": "broken chair",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4284,
+    2607,
+    -127
+   ]
+  },
+  {
+   "art": "0x3DBD",
+   "hue": 2765,
+   "name": "bones",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DBE",
+   "hue": 2765,
+   "name": "bones",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x31CB",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4371,
+    2648,
+    -121
+   ]
+  },
+  {
+   "art": "0x31D0",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4352,
+    2668,
+    -121
+   ]
+  },
+  {
+   "art": "0x4F88",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AA6",
+   "hue": 2767,
+   "name": "cargo",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x5082",
+   "hue": 2767,
+   "name": "cargo",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1248",
+   "hue": 2767,
+   "name": "giant sack",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C10",
+   "hue": 2767,
+   "name": "large sack",
+   "height": 3,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3D8E",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 15,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x7B9E",
+   "hue": 0,
+   "name": "ship planks",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4233,
+    2554,
+    -127
+   ]
+  },
+  {
+   "art": "0x0DCA",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DC9",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09CE",
+   "hue": 2764,
+   "name": "fish",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3B54",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4337,
+    2685,
+    -121
+   ]
+  },
+  {
+   "art": "0x65D8",
+   "hue": 2767,
+   "name": "ancient tome",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x31D1",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4308,
+    2600,
+    -127
+   ]
+  },
+  {
+   "art": "0x158F",
+   "hue": 2722,
+   "name": "banner hanger",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x540D",
+   "hue": 2814,
+   "name": "fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4245,
+    2562,
+    -110
+   ]
+  },
+  {
+   "art": "0x56C9",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CB",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CA",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56C8",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3196",
+   "hue": 0,
+   "name": "pearl",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3319",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4312,
+    2620,
+    -127
+   ]
+  },
+  {
+   "art": "0x09CD",
+   "hue": 2764,
+   "name": "fish",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1297",
+   "hue": 2764,
+   "name": "sign",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DBF",
+   "hue": 0,
+   "name": "fishing pole",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C13",
+   "hue": 2764,
+   "name": "broken armoire",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12CB",
+   "hue": 2826,
+   "name": "bust",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4338,
+    2648,
+    -119
+   ]
+  },
+  {
+   "art": "0x56C9",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CB",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56D0",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CA",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56C8",
+   "hue": 2879,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2821",
+   "hue": 2826,
+   "name": "ornate chest",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4352,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x2823",
+   "hue": 2826,
+   "name": "ornate chest",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4344,
+    2650,
+    -127
+   ]
+  },
+  {
+   "art": "0x52E2",
+   "hue": 0,
+   "name": "rusty chest",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4351,
+    2679,
+    -127
+   ]
+  },
+  {
+   "art": "0x4FD6",
+   "hue": 2767,
+   "name": "crystal ball",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4304,
+    2625,
+    -121
+   ]
+  },
+  {
+   "art": "0x4043",
+   "hue": 2826,
+   "name": "vase",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x176C",
+   "hue": 0,
+   "name": "vein of gems",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1226",
+   "hue": 2826,
+   "name": "statue",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EB1",
+   "hue": 2767,
+   "name": "standing harp",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A30",
+   "hue": 2764,
+   "name": "chest of drawers",
+   "height": 9,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x540D",
+   "hue": 2929,
+   "name": "fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4241,
+    2636,
+    -110
+   ]
+  },
+  {
+   "art": "0x0B77",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4282,
+    2612,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B7B",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4283,
+    2612,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B78",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4284,
+    2612,
+    -127
+   ]
+  },
+  {
+   "art": "0x1940",
+   "hue": 2767,
+   "name": "keg",
+   "height": 0,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x7B9D",
+   "hue": 0,
+   "name": "ship planks",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4229,
+    2570,
+    -127
+   ]
+  },
+  {
+   "art": "0x7B9F",
+   "hue": 0,
+   "name": "ship planks",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4224,
+    2608,
+    -127
+   ]
+  },
+  {
+   "art": "0x241D",
+   "hue": 2826,
+   "name": "urn ",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FDD",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x19F1",
+   "hue": 2739,
+   "name": "woodworker's bench",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F96",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1F26",
+   "hue": 2767,
+   "name": "bedroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F9F",
+   "hue": 2767,
+   "name": "scissors",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FD9",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A9D",
+   "hue": 2764,
+   "name": "wooden shelf",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A0F",
+   "hue": 2767,
+   "name": "candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09D1",
+   "hue": 2767,
+   "name": "grapes",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FEF",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1363",
+   "hue": 2827,
+   "name": "rock",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FA0",
+   "hue": 2767,
+   "name": "spool of thread",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1034",
+   "hue": 2767,
+   "name": "saw",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x102A",
+   "hue": 2767,
+   "name": "hammer",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ECA",
+   "hue": 2765,
+   "name": "bones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C3D",
+   "hue": 2767,
+   "name": "dried flowers",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B46",
+   "hue": 2826,
+   "name": "vase",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": [
+    4306,
+    2634,
+    -122
+   ]
+  },
+  {
+   "art": "0x2004",
+   "hue": 0,
+   "name": "water bucket",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AE0",
+   "hue": 2765,
+   "name": "skull",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1ADC",
+   "hue": 2765,
+   "name": "pile of skulls",
+   "height": 1,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1ADF",
+   "hue": 2765,
+   "name": "pile of skulls",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AE2",
+   "hue": 2765,
+   "name": "skull",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x55EF",
+   "hue": 0,
+   "name": "sea salt crate",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x18E3",
+   "hue": 2767,
+   "name": "garlic bulb",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 3,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2A5D",
+   "hue": 2764,
+   "name": "painting",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4306,
+    2624,
+    -127
+   ]
+  },
+  {
+   "art": "0x089B",
+   "hue": 2739,
+   "name": "wooden ladder",
+   "height": 10,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1565",
+   "hue": 2831,
+   "name": "decorative weapons",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4302,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x151A",
+   "hue": 2831,
+   "name": "decorative armor",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x151B",
+   "hue": 2831,
+   "name": "decorative armor",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3D87",
+   "hue": 2831,
+   "name": "armor display",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4288,
+    2577,
+    -127
+   ]
+  },
+  {
+   "art": "0x1376",
+   "hue": 2831,
+   "name": "horse barding",
+   "height": 0,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4291,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x1579",
+   "hue": 2831,
+   "name": "decorative shield",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1071",
+   "hue": 2831,
+   "name": "training dummy",
+   "height": 18,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4300,
+    2581,
+    -127
+   ]
+  },
+  {
+   "art": "0x1070",
+   "hue": 2831,
+   "name": "training dummy",
+   "height": 18,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4304,
+    2581,
+    -127
+   ]
+  },
+  {
+   "art": "0x3DA9",
+   "hue": 2831,
+   "name": "armor display",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4288,
+    2579,
+    -127
+   ]
+  },
+  {
+   "art": "0x1377",
+   "hue": 2831,
+   "name": "horse barding",
+   "height": 0,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4292,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x1BE5",
+   "hue": 2831,
+   "name": "copper ingots",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4315,
+    2572,
+    -127
+   ]
+  },
+  {
+   "art": "0x1B76",
+   "hue": 2897,
+   "name": "heater shield",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4240,
+    2560,
+    -127
+   ]
+  },
+  {
+   "art": "0x0F3E",
+   "hue": 0,
+   "name": "arrow",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4305,
+    2593,
+    -127
+   ]
+  },
+  {
+   "art": "0x0995",
+   "hue": 2767,
+   "name": "ceramic mug",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x331E",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4344,
+    2651,
+    -127
+   ]
+  },
+  {
+   "art": "0x0546",
+   "hue": 2005,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0548",
+   "hue": 2005,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4329,
+    2655,
+    -122
+   ]
+  },
+  {
+   "art": "0x52C5",
+   "hue": 0,
+   "name": "mounted sea creature",
+   "height": 10,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1DC2",
+   "hue": 2826,
+   "name": "marble table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1DC1",
+   "hue": 2826,
+   "name": "marble table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0999",
+   "hue": 2767,
+   "name": "mug",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E12",
+   "hue": 2767,
+   "name": "chessmen",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A22",
+   "hue": 0,
+   "name": "lantern",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56D0",
+   "hue": 2722,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x045C",
+   "hue": 2748,
+   "name": "stone bench",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4245,
+    2604,
+    -127
+   ]
+  },
+  {
+   "art": "0x090D",
+   "hue": 2748,
+   "name": "fountain",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x090E",
+   "hue": 2748,
+   "name": "fountain",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x090F",
+   "hue": 2748,
+   "name": "fountain",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0910",
+   "hue": 2748,
+   "name": "fountain",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x457A",
+   "hue": 2826,
+   "name": "mermaid statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x30DF",
+   "hue": 2826,
+   "name": "wash basin",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x31C8",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4352,
+    2665,
+    -121
+   ]
+  },
+  {
+   "art": "0x31CD",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4356,
+    2648,
+    -121
+   ]
+  },
+  {
+   "art": "0x4D0A",
+   "hue": 2897,
+   "name": "sea serpent statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4290,
+    2568,
+    -120
+   ]
+  },
+  {
+   "art": "0x1AEF",
+   "hue": 2765,
+   "name": "dragon skull",
+   "height": 1,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DC8",
+   "hue": 2765,
+   "name": "bones",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0427",
+   "hue": 2722,
+   "name": "tattered banner",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14F7",
+   "hue": 0,
+   "name": "anchor",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DD2",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x229A",
+   "hue": 0,
+   "name": "boat",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09E0",
+   "hue": 2767,
+   "name": "pot",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4316,
+    2688,
+    -121
+   ]
+  },
+  {
+   "art": "0x0E7E",
+   "hue": 2764,
+   "name": "crate",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E1B",
+   "hue": 0,
+   "name": "fish heads",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ACA",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4251,
+    2608,
+    -127
+   ]
+  },
+  {
+   "art": "0x0E36",
+   "hue": 2767,
+   "name": "scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F66",
+   "hue": 2739,
+   "name": "easel with canvas",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x65D5",
+   "hue": 2767,
+   "name": "ancient tome",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E37",
+   "hue": 2767,
+   "name": "scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x120E",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x120F",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1210",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1215",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1216",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1211",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1214",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1213",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1212",
+   "hue": 2748,
+   "name": "altar",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x31D4",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4352,
+    2652,
+    -121
+   ]
+  },
+  {
+   "art": "0x6395",
+   "hue": 2826,
+   "name": "Neptune trident",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EF1",
+   "hue": 0,
+   "name": "jewels",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E98",
+   "hue": 0,
+   "name": "gemstones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B4F",
+   "hue": 0,
+   "name": "treasure",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x398B",
+   "hue": 0,
+   "name": "stone urn",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4288,
+    2563,
+    -127
+   ]
+  },
+  {
+   "art": "0x39A2",
+   "hue": 0,
+   "name": "stone urn",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4288,
+    2562,
+    -127
+   ]
+  },
+  {
+   "art": "0x1298",
+   "hue": 2764,
+   "name": "sign",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x22AD",
+   "hue": 0,
+   "name": "shark",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DD0",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DD3",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0426",
+   "hue": 2764,
+   "name": "tattered banner",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x042A",
+   "hue": 2764,
+   "name": "tattered banner",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3381",
+   "hue": 0,
+   "name": "mounted sea drake",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DC0",
+   "hue": 0,
+   "name": "fishing pole",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DCC",
+   "hue": 0,
+   "name": "fishing weight",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x540D",
+   "hue": 0,
+   "name": "fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4225,
+    2624,
+    -110
+   ]
+  },
+  {
+   "art": "0x0ACC",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4307,
+    2606,
+    -127
+   ]
+  },
+  {
+   "art": "0x0ACB",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4251,
+    2612,
+    -127
+   ]
+  },
+  {
+   "art": "0x1218",
+   "hue": 2722,
+   "name": "stone chair",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4293,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x3DF4",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4354,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x5080",
+   "hue": 2826,
+   "name": "royal vault",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4042",
+   "hue": 2826,
+   "name": "vase",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4325,
+    2648,
+    -122
+   ]
+  },
+  {
+   "art": "0x178A",
+   "hue": 0,
+   "name": "vein of gems",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x63C2",
+   "hue": 2826,
+   "name": "lion",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12A2",
+   "hue": 2826,
+   "name": "statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1225",
+   "hue": 2826,
+   "name": "statue",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EAC",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DEF",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4322,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x3DEC",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4339,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x0EB3",
+   "hue": 2767,
+   "name": "lute",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E9A",
+   "hue": 2767,
+   "name": "drum",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x194B",
+   "hue": 2767,
+   "name": "flute",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C1F",
+   "hue": 2767,
+   "name": "broken clock",
+   "height": 2,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EBD",
+   "hue": 2767,
+   "name": "sheet music",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DBB",
+   "hue": 2977,
+   "name": "seaweed",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x655C",
+   "hue": 0,
+   "name": "mounted sea serpent",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0553",
+   "hue": 2746,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4253,
+    2609,
+    -127
+   ]
+  },
+  {
+   "art": "0x0552",
+   "hue": 2746,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4254,
+    2609,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B6C",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B6B",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DCB",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x105F",
+   "hue": 2739,
+   "name": "upright loom",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1060",
+   "hue": 2739,
+   "name": "upright loom",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1015",
+   "hue": 2739,
+   "name": "spinning wheel",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C28",
+   "hue": 2765,
+   "name": "ruined bed",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C27",
+   "hue": 2765,
+   "name": "ruined bed",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C26",
+   "hue": 2765,
+   "name": "ruined bed",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12AE",
+   "hue": 2826,
+   "name": "statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x5074",
+   "hue": 2826,
+   "name": "tomb statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C62",
+   "hue": 2748,
+   "name": "sarcophagus",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C61",
+   "hue": 2748,
+   "name": "sarcophagus",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C60",
+   "hue": 2748,
+   "name": "sarcophagus",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3E57",
+   "hue": 0,
+   "name": "mast",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x13E4",
+   "hue": 2767,
+   "name": "smith's hammer",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E22",
+   "hue": 2767,
+   "name": "bloody bandage",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1847",
+   "hue": 2859,
+   "name": "flask",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4332,
+    2688,
+    -121
+   ]
+  },
+  {
+   "art": "0x0F06",
+   "hue": 2767,
+   "name": "nightsight potion",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4FB5",
+   "hue": 2767,
+   "name": "magic mirror",
+   "height": 10,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4312,
+    2681,
+    -114
+   ]
+  },
+  {
+   "art": "0x0F07",
+   "hue": 2767,
+   "name": "cure potion",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F0A",
+   "hue": 2767,
+   "name": "poison potion",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F0C",
+   "hue": 2767,
+   "name": "heal potion",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12A3",
+   "hue": 2826,
+   "name": "statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F95",
+   "hue": 2767,
+   "name": "bolt of cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E1D",
+   "hue": 2767,
+   "name": "ball of yarn",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E1F",
+   "hue": 2767,
+   "name": "ball of yarn",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F9D",
+   "hue": 2767,
+   "name": "sewing kit",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1766",
+   "hue": 2767,
+   "name": "cut cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A26",
+   "hue": 2767,
+   "name": "candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A28",
+   "hue": 2767,
+   "name": "candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x100C",
+   "hue": 1881,
+   "name": "hay sheave",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x100D",
+   "hue": 1881,
+   "name": "hay sheave",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1045",
+   "hue": 2767,
+   "name": "sack of flour",
+   "height": 2,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E88",
+   "hue": 2767,
+   "name": "pitchfork",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x50AF",
+   "hue": 0,
+   "name": "grape tub",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09C7",
+   "hue": 2767,
+   "name": "bottle of wine",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F62",
+   "hue": 2767,
+   "name": "spear",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1772",
+   "hue": 2827,
+   "name": "rock",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0279",
+   "hue": 2827,
+   "name": "ruined wall",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4362,
+    2597,
+    -127
+   ]
+  },
+  {
+   "art": "0x144B",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B7D",
+   "hue": 2765,
+   "name": "skeleton",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4336,
+    2674,
+    -127
+   ]
+  },
+  {
+   "art": "0x52E3",
+   "hue": 0,
+   "name": "rusty chest",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4340,
+    2672,
+    -127
+   ]
+  },
+  {
+   "art": "0x157B",
+   "hue": 2831,
+   "name": "decorative shield",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4245,
+    2605,
+    -127
+   ]
+  },
+  {
+   "art": "0x3BED",
+   "hue": 2748,
+   "name": "altar",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FBD",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF3",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AFA",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF5",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1374",
+   "hue": 2831,
+   "name": "bridle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09EB",
+   "hue": 2767,
+   "name": "muffins",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BD8",
+   "hue": 2767,
+   "name": "boards",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BD7",
+   "hue": 2767,
+   "name": "boards",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E21",
+   "hue": 2767,
+   "name": "clean bandage",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1AE3",
+   "hue": 2765,
+   "name": "skull",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2FE9",
+   "hue": 0,
+   "name": "sea salt",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x61DE",
+   "hue": 0,
+   "name": "salt crystal",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4225,
+    2638,
+    -127
+   ]
+  },
+  {
+   "art": "0x097E",
+   "hue": 2767,
+   "name": "wheel of cheese",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09C0",
+   "hue": 2767,
+   "name": "sausage",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09D2",
+   "hue": 2767,
+   "name": "peach",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12A0",
+   "hue": 2826,
+   "name": "statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x570F",
+   "hue": 2859,
+   "name": "cage",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": [
+    4336,
+    2676,
+    -127
+   ]
+  },
+  {
+   "art": "0x12D6",
+   "hue": 2826,
+   "name": "statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x65CE",
+   "hue": 2748,
+   "name": "well",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 2,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3CB1",
+   "hue": 2764,
+   "name": "shelf",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4288,
+    2644,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C30",
+   "hue": 2767,
+   "name": "debris",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4288,
+    2644,
+    -115
+   ]
+  },
+  {
+   "art": "0x3E11",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FF1",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3B51",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4299,
+    2632,
+    -121
+   ]
+  },
+  {
+   "art": "0x09AB",
+   "hue": 2831,
+   "name": "metal chest",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A9D",
+   "hue": 2831,
+   "name": "wooden shelf",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4297,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x3C00",
+   "hue": 2831,
+   "name": "shelf",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4298,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x3CF0",
+   "hue": 2831,
+   "name": "shelf",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4299,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x1568",
+   "hue": 2831,
+   "name": "decorative weapons",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4294,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x1569",
+   "hue": 2831,
+   "name": "decorative weapons",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4295,
+    2576,
+    -127
+   ]
+  },
+  {
+   "art": "0x155E",
+   "hue": 2831,
+   "name": "decorative weapons",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4296,
+    2584,
+    -127
+   ]
+  },
+  {
+   "art": "0x5010",
+   "hue": 2831,
+   "name": "armor shelf",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4296,
+    2585,
+    -127
+   ]
+  },
+  {
+   "art": "0x506A",
+   "hue": 2831,
+   "name": "shoe shelf",
+   "height": 7,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4296,
+    2587,
+    -127
+   ]
+  },
+  {
+   "art": "0x155F",
+   "hue": 2831,
+   "name": "decorative weapons",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4296,
+    2589,
+    -127
+   ]
+  },
+  {
+   "art": "0x64F0",
+   "hue": 2831,
+   "name": "anvil",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4313,
+    2572,
+    -127
+   ]
+  },
+  {
+   "art": "0x0FB1",
+   "hue": 2831,
+   "name": "forge",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BF0",
+   "hue": 2831,
+   "name": "iron ingots",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4311,
+    2592,
+    -127
+   ]
+  },
+  {
+   "art": "0x1412",
+   "hue": 2897,
+   "name": "plate helm",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4239,
+    2559,
+    -127
+   ]
+  },
+  {
+   "art": "0x0FB4",
+   "hue": 2831,
+   "name": "sledge hammer",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4312,
+    2594,
+    -127
+   ]
+  },
+  {
+   "art": "0x1ED6",
+   "hue": 0,
+   "name": "target",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4305,
+    2594,
+    -128
+   ]
+  },
+  {
+   "art": "0x0F3F",
+   "hue": 0,
+   "name": "arrow",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4305,
+    2596,
+    -127
+   ]
+  },
+  {
+   "art": "0x1415",
+   "hue": 2897,
+   "name": "platemail",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4239,
+    2560,
+    -127
+   ]
+  },
+  {
+   "art": "0x0CA9",
+   "hue": 2977,
+   "name": "snake plant",
+   "height": 3,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4226,
+    2597,
+    -127
+   ]
+  },
+  {
+   "art": "0x624B",
+   "hue": 0,
+   "name": "rocks",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4207,
+    2605,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C2E",
+   "hue": 2767,
+   "name": "debris",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4304,
+    2629,
+    -121
+   ]
+  },
+  {
+   "art": "0x3BB6",
+   "hue": 2764,
+   "name": "wall map",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14EE",
+   "hue": 2767,
+   "name": "rolled map",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1057",
+   "hue": 2767,
+   "name": "sextant",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14F5",
+   "hue": 2767,
+   "name": "spyglass",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1459",
+   "hue": 2767,
+   "name": "telescope",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x03E7",
+   "hue": 2767,
+   "name": "ruined painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4296,
+    2638,
+    -127
+   ]
+  },
+  {
+   "art": "0x09B7",
+   "hue": 2767,
+   "name": "cooked bird",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2D4F",
+   "hue": 2767,
+   "name": "fruit bowl",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09E3",
+   "hue": 2767,
+   "name": "pot",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4329,
+    2695,
+    -121
+   ]
+  },
+  {
+   "art": "0x1566",
+   "hue": 2831,
+   "name": "decorative weapons",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4280,
+    2593,
+    -127
+   ]
+  },
+  {
+   "art": "0x1570",
+   "hue": 2831,
+   "name": "decorative shield",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1412",
+   "hue": 2767,
+   "name": "plate helm",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1A93",
+   "hue": 0,
+   "name": "hay",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F45",
+   "hue": 2897,
+   "name": "great axe",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4238,
+    2560,
+    -127
+   ]
+  },
+  {
+   "art": "0x6213",
+   "hue": 0,
+   "name": "jellyfish",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4253,
+    2680,
+    -127
+   ]
+  },
+  {
+   "art": "0x6215",
+   "hue": 0,
+   "name": "jellyfish",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4234,
+    2623,
+    -127
+   ]
+  },
+  {
+   "art": "0x4F86",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4318,
+    2693,
+    -127
+   ]
+  },
+  {
+   "art": "0x0F7C",
+   "hue": 2767,
+   "name": "Bloodspawn",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E94",
+   "hue": 2767,
+   "name": "chicken on a spit",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x097B",
+   "hue": 2767,
+   "name": "fish steak",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09EC",
+   "hue": 2747,
+   "name": "jar of honey",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4301,
+    2639,
+    -127
+   ]
+  },
+  {
+   "art": "0x1E1D",
+   "hue": 2767,
+   "name": "cooked fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E17",
+   "hue": 0,
+   "name": "raw fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E1A",
+   "hue": 0,
+   "name": "fish head",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09B9",
+   "hue": 2767,
+   "name": "raw bird",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1443",
+   "hue": 2767,
+   "name": "two handed axe",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AC9",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4272,
+    2612,
+    -127
+   ]
+  },
+  {
+   "art": "0x19EE",
+   "hue": 2826,
+   "name": "golden throne",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x19ED",
+   "hue": 2826,
+   "name": "golden throne",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3182",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4363,
+    2662,
+    -122
+   ]
+  },
+  {
+   "art": "0x40BC",
+   "hue": 2826,
+   "name": "statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4349,
+    2656,
+    -122
+   ]
+  },
+  {
+   "art": "0x1586",
+   "hue": 2722,
+   "name": "banner",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x6212",
+   "hue": 0,
+   "name": "jellyfish",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4237,
+    2656,
+    -127
+   ]
+  },
+  {
+   "art": "0x4FC2",
+   "hue": 0,
+   "name": "neptune altar",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4FB1",
+   "hue": 2826,
+   "name": "neptune statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E15",
+   "hue": 0,
+   "name": "raw fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E16",
+   "hue": 0,
+   "name": "raw fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09CF",
+   "hue": 2764,
+   "name": "fish",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E19",
+   "hue": 0,
+   "name": "fish head",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x52C7",
+   "hue": 0,
+   "name": "mounted sea creature",
+   "height": 10,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09CC",
+   "hue": 2767,
+   "name": "fish",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FF0",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x234F",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DF7",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4330,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x234E",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2A61",
+   "hue": 2764,
+   "name": "painting",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0879",
+   "hue": 0,
+   "name": "treasure pile",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x08AD",
+   "hue": 0,
+   "name": "treasure pile",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EEF",
+   "hue": 0,
+   "name": "gold coins",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x64D1",
+   "hue": 0,
+   "name": "crown",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x573E",
+   "hue": 0,
+   "name": "orb",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x39BD",
+   "hue": 2826,
+   "name": "gargoyle statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x14FB",
+   "hue": 0,
+   "name": "lockpick",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x40BD",
+   "hue": 2826,
+   "name": "horse statue",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x42C5",
+   "hue": 2826,
+   "name": "gargoyle statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0499",
+   "hue": 2826,
+   "name": "cat statue",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3145",
+   "hue": 2748,
+   "name": "lion face",
+   "height": 6,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3146",
+   "hue": 2748,
+   "name": "lion face",
+   "height": 6,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EAD",
+   "hue": 2764,
+   "name": "tapestry",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E1C",
+   "hue": 2767,
+   "name": "backgammon board",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A4D",
+   "hue": 2764,
+   "name": "armoire",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x6211",
+   "hue": 0,
+   "name": "jellyfish",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4268,
+    2548,
+    -127
+   ]
+  },
+  {
+   "art": "0x1899",
+   "hue": 2765,
+   "name": "ruined bed",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1898",
+   "hue": 2765,
+   "name": "ruined bed",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x189B",
+   "hue": 2765,
+   "name": "ruined bed",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x189A",
+   "hue": 2765,
+   "name": "ruined bed",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A3C",
+   "hue": 2764,
+   "name": "dresser",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DF8",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4349,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x2F2F",
+   "hue": 2765,
+   "name": "broken bed",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4312,
+    2601,
+    -127
+   ]
+  },
+  {
+   "art": "0x2F30",
+   "hue": 2765,
+   "name": "broken bed",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4313,
+    2601,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C22",
+   "hue": 2764,
+   "name": "broken dresser",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A35",
+   "hue": 2764,
+   "name": "drawer",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C1A",
+   "hue": 2739,
+   "name": "broken chair",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09A7",
+   "hue": 2764,
+   "name": "glass pitcher",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4313,
+    2642,
+    -122
+   ]
+  },
+  {
+   "art": "0x4D0B",
+   "hue": 2897,
+   "name": "sea serpent statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4023",
+   "hue": 2722,
+   "name": "throne",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x46FC",
+   "hue": 0,
+   "name": "ship wheel",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0551",
+   "hue": 2746,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4253,
+    2609,
+    -127
+   ]
+  },
+  {
+   "art": "0x056A",
+   "hue": 2746,
+   "name": "cave floor",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4254,
+    2610,
+    -127
+   ]
+  },
+  {
+   "art": "0x0B79",
+   "hue": 2739,
+   "name": "table",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4290,
+    2609,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C2E",
+   "hue": 2751,
+   "name": "debris",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4284,
+    2610,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C2F",
+   "hue": 2751,
+   "name": "debris",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4285,
+    2610,
+    -127
+   ]
+  },
+  {
+   "art": "0x0C30",
+   "hue": 2751,
+   "name": "debris",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4289,
+    2611,
+    -127
+   ]
+  },
+  {
+   "art": "0x09F9",
+   "hue": 2766,
+   "name": "spoon",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4283,
+    2610,
+    -121
+   ]
+  },
+  {
+   "art": "0x0991",
+   "hue": 2766,
+   "name": "tray",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4287,
+    2610,
+    -121
+   ]
+  },
+  {
+   "art": "0x09F4",
+   "hue": 2766,
+   "name": "fork",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4287,
+    2610,
+    -121
+   ]
+  },
+  {
+   "art": "0x0FFB",
+   "hue": 2766,
+   "name": "skull mug",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E1C",
+   "hue": 2766,
+   "name": "cooked fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FFD",
+   "hue": 2767,
+   "name": "skull mug",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4288,
+    2643,
+    -121
+   ]
+  },
+  {
+   "art": "0x0F01",
+   "hue": 2767,
+   "name": "bottle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4325,
+    2680,
+    -121
+   ]
+  },
+  {
+   "art": "0x0F03",
+   "hue": 2767,
+   "name": "bottle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4328,
+    2695,
+    -121
+   ]
+  },
+  {
+   "art": "0x0EA8",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09ED",
+   "hue": 2767,
+   "name": "kettle",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x15F8",
+   "hue": 2767,
+   "name": "wooden bowl",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4315,
+    2664,
+    -122
+   ]
+  },
+  {
+   "art": "0x1E1D",
+   "hue": 0,
+   "name": "cooked fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x139F",
+   "hue": 2826,
+   "name": "statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2FF9",
+   "hue": 2748,
+   "name": "stone coffin",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2FFA",
+   "hue": 2748,
+   "name": "stone coffin",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x6210",
+   "hue": 0,
+   "name": "jellyfish",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4214,
+    2615,
+    -127
+   ]
+  },
+  {
+   "art": "0x14F9",
+   "hue": 0,
+   "name": "anchor",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4FB3",
+   "hue": 0,
+   "name": "anchor",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DC8",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DD4",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3383",
+   "hue": 0,
+   "name": "mounted sea giant",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F98",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E2A",
+   "hue": 2767,
+   "name": "bottle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F85",
+   "hue": 2767,
+   "name": "Ginseng",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A34",
+   "hue": 2764,
+   "name": "chest of drawers",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F08",
+   "hue": 2767,
+   "name": "agility potion",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E20",
+   "hue": 2767,
+   "name": "bloody bandage",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x063F",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4302,
+    2638,
+    -127
+   ]
+  },
+  {
+   "art": "0x0640",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4303,
+    2638,
+    -127
+   ]
+  },
+  {
+   "art": "0x0641",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4304,
+    2638,
+    -127
+   ]
+  },
+  {
+   "art": "0x0642",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4304,
+    2639,
+    -127
+   ]
+  },
+  {
+   "art": "0x0643",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4304,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x0644",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4303,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x0645",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4302,
+    2640,
+    -127
+   ]
+  },
+  {
+   "art": "0x0646",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4302,
+    2639,
+    -127
+   ]
+  },
+  {
+   "art": "0x0647",
+   "hue": 2944,
+   "name": "pentagram",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4303,
+    2639,
+    -127
+   ]
+  },
+  {
+   "art": "0x2DD3",
+   "hue": 2739,
+   "name": "alchemy table",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3DB8",
+   "hue": 2831,
+   "name": "distillery",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F09",
+   "hue": 2767,
+   "name": "strength potion",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x139E",
+   "hue": 2826,
+   "name": "statue",
+   "height": 26,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1019",
+   "hue": 2739,
+   "name": "spinning wheel",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FAB",
+   "hue": 2767,
+   "name": "dyeing tub",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FA9",
+   "hue": 2767,
+   "name": "dyes",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F98",
+   "hue": 2767,
+   "name": "bolt of cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F9B",
+   "hue": 2767,
+   "name": "bolt of cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E1E",
+   "hue": 2767,
+   "name": "ball of yarn",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DF8",
+   "hue": 2767,
+   "name": "pile of wool",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C18",
+   "hue": 2767,
+   "name": "oil flask",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x142C",
+   "hue": 2767,
+   "name": "Candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C19",
+   "hue": 2767,
+   "name": "oil flask",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C1B",
+   "hue": 2767,
+   "name": "oil flask",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3543",
+   "hue": 2767,
+   "name": "oil can",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C1D",
+   "hue": 2767,
+   "name": "oil flask",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x142A",
+   "hue": 2767,
+   "name": "Pot of Wax",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x142B",
+   "hue": 2767,
+   "name": "wax pot",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1422",
+   "hue": 2767,
+   "name": "Beeswax",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1425",
+   "hue": 2767,
+   "name": "Beeswax",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3BB8",
+   "hue": 2767,
+   "name": "wax pot",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A1A",
+   "hue": 0,
+   "name": "lantern",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A1C",
+   "hue": 0,
+   "name": "lantern",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A1B",
+   "hue": 0,
+   "name": "lantern",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A24",
+   "hue": 0,
+   "name": "lantern",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F8C",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1433",
+   "hue": 2767,
+   "name": "Candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4290,
+    2640,
+    -121
+   ]
+  },
+  {
+   "art": "0x103A",
+   "hue": 2767,
+   "name": "open sack of flour",
+   "height": 2,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x187E",
+   "hue": 2767,
+   "name": "spilled flour",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1880",
+   "hue": 2767,
+   "name": "spilled flour",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F43",
+   "hue": 2767,
+   "name": "hatchet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09C5",
+   "hue": 2767,
+   "name": "bottles of wine",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1523",
+   "hue": 2767,
+   "name": "grapes",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09C4",
+   "hue": 2767,
+   "name": "bottles of wine",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1F8D",
+   "hue": 2767,
+   "name": "glass of wine",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09C6",
+   "hue": 2767,
+   "name": "bottles of wine",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1F9B",
+   "hue": 2767,
+   "name": "pitcher of wine",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1F8F",
+   "hue": 2767,
+   "name": "glass of wine",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x337D",
+   "hue": 0,
+   "name": "mounted sea daemon",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x46BA",
+   "hue": 0,
+   "name": "mounted crab",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x52D6",
+   "hue": 0,
+   "name": "mounted sea creature",
+   "height": 10,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x52B1",
+   "hue": 2767,
+   "name": "harpoon rope",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x77B3",
+   "hue": 0,
+   "name": "sea shell",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4237,
+    2548,
+    -127
+   ]
+  },
+  {
+   "art": "0x77B9",
+   "hue": 0,
+   "name": "sea shell",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4215,
+    2602,
+    -127
+   ]
+  },
+  {
+   "art": "0x2936",
+   "hue": 2767,
+   "name": "abacus",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BF7",
+   "hue": 2831,
+   "name": "silver ingots",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BEB",
+   "hue": 0,
+   "name": "gold ingots",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E80",
+   "hue": 2764,
+   "name": "strong box",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09A8",
+   "hue": 2831,
+   "name": "metal box",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E40",
+   "hue": 2831,
+   "name": "metal chest",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E41",
+   "hue": 2831,
+   "name": "metal chest",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EEA",
+   "hue": 0,
+   "name": "copper coin",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EEC",
+   "hue": 0,
+   "name": "copper coins",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1224",
+   "hue": 2826,
+   "name": "statue",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F71",
+   "hue": 2767,
+   "name": "rack of canvases",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F73",
+   "hue": 2767,
+   "name": "rack of canvases",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F75",
+   "hue": 2767,
+   "name": "rack of canvases",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0898",
+   "hue": 0,
+   "name": "anchor",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12AF",
+   "hue": 2826,
+   "name": "statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x13A0",
+   "hue": 2826,
+   "name": "statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x144C",
+   "hue": 2826,
+   "name": "statue",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12CA",
+   "hue": 2826,
+   "name": "bust",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x42BB",
+   "hue": 2826,
+   "name": "statue",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4320,
+    2653,
+    -120
+   ]
+  },
+  {
+   "art": "0x139A",
+   "hue": 2826,
+   "name": "statue",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4297,
+    2592,
+    -119
+   ]
+  },
+  {
+   "art": "0x156D",
+   "hue": 2831,
+   "name": "decorative shield",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4280,
+    2590,
+    -127
+   ]
+  },
+  {
+   "art": "0x1575",
+   "hue": 2831,
+   "name": "decorative shield",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4245,
+    2618,
+    -127
+   ]
+  },
+  {
+   "art": "0x0DC6",
+   "hue": 2831,
+   "name": "sword in a stone",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2842",
+   "hue": 2831,
+   "name": "sword display",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2851",
+   "hue": 2831,
+   "name": "sword display",
+   "height": 4,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E97",
+   "hue": 0,
+   "name": "gemstone",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0A10",
+   "hue": 2767,
+   "name": "candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x142D",
+   "hue": 2767,
+   "name": "Candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x142E",
+   "hue": 2767,
+   "name": "Candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x142F",
+   "hue": 2767,
+   "name": "Candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4307,
+    2634,
+    -122
+   ]
+  },
+  {
+   "art": "0x1956",
+   "hue": 2767,
+   "name": "bell",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x092F",
+   "hue": 2827,
+   "name": "oven",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4B59",
+   "hue": 2826,
+   "name": "stone urn",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B45",
+   "hue": 2826,
+   "name": "large vase",
+   "height": 9,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4274,
+    2600,
+    -122
+   ]
+  },
+  {
+   "art": "0x0E4A",
+   "hue": 2767,
+   "name": "full jars",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F89",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E45",
+   "hue": 2767,
+   "name": "empty jars",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C2D",
+   "hue": 2767,
+   "name": "debris",
+   "height": 1,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4289,
+    2644,
+    -127
+   ]
+  },
+  {
+   "art": "0x0FBE",
+   "hue": 2767,
+   "name": "book",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56D0",
+   "hue": 2944,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56C9",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CD",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CB",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CC",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56C5",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CE",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CA",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56CF",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x56C8",
+   "hue": 2001,
+   "name": "carpet",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x3F3D",
+   "hue": 2826,
+   "name": "statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4320,
+    2650,
+    -122
+   ]
+  },
+  {
+   "art": "0x0AEF",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF1",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF2",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF4",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AF0",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0AEE",
+   "hue": 2746,
+   "name": "carpet",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B43",
+   "hue": 2767,
+   "name": "water trough",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0B44",
+   "hue": 2767,
+   "name": "water trough",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0427",
+   "hue": 2764,
+   "name": "tattered banner",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C3E",
+   "hue": 2767,
+   "name": "dried flowers",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EA4",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EC8",
+   "hue": 2764,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4214",
+   "hue": 2764,
+   "name": "rocking horse",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2AF9",
+   "hue": 2767,
+   "name": "music box",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2D81",
+   "hue": 0,
+   "name": "trinket doll",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1397",
+   "hue": 2767,
+   "name": "pillow",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x09E9",
+   "hue": 2767,
+   "name": "cake",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x36AC",
+   "hue": 2826,
+   "name": "tub",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x30E7",
+   "hue": 0,
+   "name": "sinkhole",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1227",
+   "hue": 2826,
+   "name": "statue",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12D8",
+   "hue": 2826,
+   "name": "statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12D9",
+   "hue": 2826,
+   "name": "statue",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BD9",
+   "hue": 2767,
+   "name": "boards",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BDE",
+   "hue": 2767,
+   "name": "logs",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BDF",
+   "hue": 2767,
+   "name": "logs",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BDD",
+   "hue": 2767,
+   "name": "logs",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1BE0",
+   "hue": 2767,
+   "name": "logs",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x506E",
+   "hue": 0,
+   "name": "wagon wheel",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x506F",
+   "hue": 0,
+   "name": "wagon wheel",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4C18",
+   "hue": 2767,
+   "name": "wagon wheel",
+   "height": 20,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x19F5",
+   "hue": 2739,
+   "name": "woodworker's bench",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1028",
+   "hue": 2767,
+   "name": "dovetail saw",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2FEE",
+   "hue": 2764,
+   "name": "canopic jar",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x2FF1",
+   "hue": 2764,
+   "name": "canopic jar",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EE9",
+   "hue": 2767,
+   "name": "clean bandage",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0ED2",
+   "hue": 2765,
+   "name": "bones",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B17",
+   "hue": 2765,
+   "name": "rib cage",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C3C",
+   "hue": 2748,
+   "name": "coffin",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1C3E",
+   "hue": 2748,
+   "name": "coffin",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B09",
+   "hue": 2765,
+   "name": "bone pile",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1B0E",
+   "hue": 2765,
+   "name": "bone pile",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4318,
+    2695,
+    -127
+   ]
+  },
+  {
+   "art": "0x1B1B",
+   "hue": 2765,
+   "name": "spine",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1857",
+   "hue": 2767,
+   "name": "skull with candle",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x241C",
+   "hue": 2767,
+   "name": "urn ",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DD1",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DD5",
+   "hue": 0,
+   "name": "fishing net",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0DCE",
+   "hue": 0,
+   "name": "fishing weight",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C41",
+   "hue": 2767,
+   "name": "dried herbs",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C42",
+   "hue": 2767,
+   "name": "dried herbs",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x18E5",
+   "hue": 2767,
+   "name": "nightshade",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x18DD",
+   "hue": 2767,
+   "name": "mandrake root",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x18EB",
+   "hue": 2767,
+   "name": "ginseng root",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F7B",
+   "hue": 2767,
+   "name": "Blood Moss",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x222E",
+   "hue": 2977,
+   "name": "mushroom",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x222F",
+   "hue": 2977,
+   "name": "mushroom",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0D17",
+   "hue": 2977,
+   "name": "mushroom",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0D19",
+   "hue": 2977,
+   "name": "mushroom",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1847",
+   "hue": 2767,
+   "name": "flask",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EB5",
+   "hue": 2739,
+   "name": "music stand",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EB6",
+   "hue": 2739,
+   "name": "music stand",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EBE",
+   "hue": 2767,
+   "name": "sheet music",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EB7",
+   "hue": 2739,
+   "name": "music stand",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EBF",
+   "hue": 2767,
+   "name": "sheet music",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EB8",
+   "hue": 2739,
+   "name": "music stand",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EC0",
+   "hue": 2767,
+   "name": "sheet music",
+   "height": 5,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x097C",
+   "hue": 2767,
+   "name": "wedge of cheese",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x4F8E",
+   "hue": 2859,
+   "name": "crate",
+   "height": 6,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x280B",
+   "hue": 2826,
+   "name": "chest",
+   "height": 8,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0C61",
+   "hue": 2767,
+   "name": "turnip",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1E1C",
+   "hue": 0,
+   "name": "cooked fish",
+   "height": 0,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1812",
+   "hue": 2767,
+   "name": "hourglass",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1814",
+   "hue": 2767,
+   "name": "hourglass",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1816",
+   "hue": 2767,
+   "name": "hourglass",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x44D5",
+   "hue": 2764,
+   "name": "grandfather clock",
+   "height": 5,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1811",
+   "hue": 2767,
+   "name": "hourglass",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1F2D",
+   "hue": 2767,
+   "name": "scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EF6",
+   "hue": 2767,
+   "name": "scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x089A",
+   "hue": 2739,
+   "name": "wooden ladder",
+   "height": 6,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E38",
+   "hue": 2767,
+   "name": "scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EF3",
+   "hue": 2767,
+   "name": "blank scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EF7",
+   "hue": 2767,
+   "name": "scroll",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x12A1",
+   "hue": 2826,
+   "name": "statue",
+   "height": 10,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EA0",
+   "hue": 0,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EA4",
+   "hue": 0,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0EC8",
+   "hue": 0,
+   "name": "painting",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F65",
+   "hue": 2739,
+   "name": "easel",
+   "height": 12,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FC1",
+   "hue": 2767,
+   "name": "paints and brush",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1372",
+   "hue": 2767,
+   "name": "brush",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1370",
+   "hue": 2767,
+   "name": "brush",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1371",
+   "hue": 2767,
+   "name": "brush",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0E6E",
+   "hue": 2767,
+   "name": "cannon",
+   "height": 15,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4458,
+    2523,
+    -120
+   ]
+  },
+  {
+   "art": "0x0F37",
+   "hue": 2831,
+   "name": "saddle",
+   "height": 3,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x1378",
+   "hue": 2831,
+   "name": "horse barding",
+   "height": 0,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4311,
+    2580,
+    -127
+   ]
+  },
+  {
+   "art": "0x1379",
+   "hue": 2831,
+   "name": "horse barding",
+   "height": 0,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": [
+    4311,
+    2579,
+    -127
+   ]
+  },
+  {
+   "art": "0x166E",
+   "hue": 2767,
+   "name": "whip",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0FB6",
+   "hue": 2831,
+   "name": "horse shoes",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x0F9A",
+   "hue": 2767,
+   "name": "bolt of cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x175E",
+   "hue": 2767,
+   "name": "folded cloth",
+   "height": 1,
+   "impassable": false,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  },
+  {
+   "art": "0x241D",
+   "hue": 2767,
+   "name": "urn ",
+   "height": 2,
+   "impassable": true,
+   "preview_count": 1,
+   "existing_atlantis_example": null
+  }
+ ]
+}

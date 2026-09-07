@@ -1,0 +1,18 @@
+Poseidon: center=(5768,1699,0), land-average-Z=0
+height=16: anchor-fits=True; sample-floor-fit=1158/1681; largest-four-neighbor-component=1149
+height=20: anchor-fits=True; sample-floor-fit=1158/1681; largest-four-neighbor-component=1149
+height=25: anchor-fits=True; sample-floor-fit=1158/1681; largest-four-neighbor-component=1149
+Anchor land: ID=0x3DE9, flags=None
+Anchor static: ID=0x1798, z=0, height=0, flags=Background, Impassable, Wet, Unknown2, name=water
+DragonsMaw: center=(4348,4002,0), land-average-Z=0
+height=16: anchor-fits=True; sample-floor-fit=1322/1681; largest-four-neighbor-component=1322
+height=20: anchor-fits=True; sample-floor-fit=1322/1681; largest-four-neighbor-component=1322
+height=25: anchor-fits=True; sample-floor-fit=1322/1681; largest-four-neighbor-component=1322
+Anchor land: ID=0x22C, flags=Impassable
+Anchor static: ID=0x53D, z=0, height=0, flags=Background, Surface, NoShoot, Unknown2, name=cave floor
+UnderBoat: center=(3275,3470,-20), land-average-Z=-20
+height=16: anchor-fits=True; sample-floor-fit=1412/1681; largest-four-neighbor-component=1412
+height=20: anchor-fits=True; sample-floor-fit=899/1681; largest-four-neighbor-component=818
+height=25: anchor-fits=False; sample-floor-fit=0/1681; largest-four-neighbor-component=0
+Anchor land: ID=0x17, flags=None
+Anchor static: ID=0x3531, z=0, height=0, flags=Background, Translucent, Impassable, Wet, Unknown2, name=water

@@ -50,3 +50,9 @@ World/Scripts/Obsolete
 World.exe
 World.exe.config
 src/World.exe - Shortcut
+World/Data/Files/
+.claude/
+World/Saves/
+World/Packets.log
+World/throttle.log
+World/Data/Data.ref
