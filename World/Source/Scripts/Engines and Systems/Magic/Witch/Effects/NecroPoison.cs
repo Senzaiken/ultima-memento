@@ -6,12 +6,27 @@ namespace Server.Spells.Undead
 {
 	public class NecroPoisonSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 20.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 141,
+					IconGraphic = 11458,
+					Name = "Disease Draught",
+					PowerWords = "",
+					Description = "Causes one to suffer from a poisonous disease.",
+					ManaCost = 0,
+					MinSkill = 20,
+					TargetType = TargetFlags.Harmful
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public NecroPoisonSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public NecroPoisonSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 		

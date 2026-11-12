@@ -10,12 +10,27 @@ namespace Server.Spells.Undead
 {
 	public class HellsBrandSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 75.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 134,
+					IconGraphic = 11463,
+					Name = "Hellish Branding Ooze",
+					PowerWords = "",
+					Description = "Marks a rune location with symbols of evil, so you can use recalling magic on it to return to that location.",
+					ManaCost = 0,
+					MinSkill = 75,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 		
-		public HellsBrandSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public HellsBrandSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 		

@@ -7,13 +7,28 @@ namespace Server.Spells.Undead
 {
 	public class UndeadEyesSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 10.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 137,
+					IconGraphic = 11460,
+					Name = "Eyes of the Dead Mixture",
+					PowerWords = "",
+					Description = "Gives one the same sight of the undead, where they are able to see in the dark.",
+					ManaCost = 0,
+					MinSkill = 10,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
 		
-		public UndeadEyesSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public UndeadEyesSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 		

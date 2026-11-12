@@ -8,6 +8,8 @@ using Server.Network;
 using Server.Items;
 using Server.Gumps;
 using Server.Mobiles;
+using Server.Spells;
+using Server.Spells.Undead;
 
 namespace Server.Items
 {
@@ -78,86 +80,86 @@ namespace Server.Items
 
 				int b1 = 3609; if ( bag.UndeadEyes > 0 ){ b1 = 4017; }
 				AddButton(18, 338, b1, b1, 1, GumpButtonType.Reply, 0);
-				AddImage(57, 328, 0x2CC4);
+				AddImage(57, 328, PotionIcon( 1 ));
 				AddHtml( 113, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Eyes of the Dead</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b2 = 3609; if ( bag.NecroUnlock > 0 ){ b2 = 4017; }
 				AddButton(18, 393, b2, b2, 2, GumpButtonType.Reply, 0);
-				AddImage(57, 383, 0x2CCC);
+				AddImage(57, 383, PotionIcon( 2 ));
 				AddHtml( 113, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Tomb Raiding</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b3 = 3609; if ( bag.NecroPoison > 0 ){ b3 = 4017; }
 				AddButton(18, 448, b3, b3, 3, GumpButtonType.Reply, 0);
-				AddImage(57, 438, 0x2CC2);
+				AddImage(57, 438, PotionIcon( 3 ));
 				AddHtml( 113, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Disease</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b4 = 3609; if ( bag.Phantasm > 0 ){ b4 = 4017; }
 				AddButton(18, 503, b4, b4, 4, GumpButtonType.Reply, 0);
-				AddImage(57, 493, 0x2CC9);
+				AddImage(57, 493, PotionIcon( 4 ));
 				AddHtml( 113, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Phantasm</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b5 = 3609; if ( bag.RetchedAir > 0 ){ b5 = 4017; }
 				AddButton(18, 558, b5, b5, 5, GumpButtonType.Reply, 0);
-				AddImage(57, 548, 0x2CCA);
+				AddImage(57, 548, PotionIcon( 5 ));
 				AddHtml( 113, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Retched Air</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
 				int b6 = 3609; if ( bag.ManaLeech > 0 ){ b6 = 4017; }
 				AddButton(322, 283, b6, b6, 6, GumpButtonType.Reply, 0);
-				AddImage(361, 273, 0x2CC8);
+				AddImage(361, 273, PotionIcon( 6 ));
 				AddHtml( 417, 283, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Lich Leech</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b7 = 3609; if ( bag.WallOfSpikes > 0 ){ b7 = 4017; }
 				AddButton(322, 338, b7, b7, 7, GumpButtonType.Reply, 0);
-				AddImage(361, 328, 0x2CCE);
+				AddImage(361, 328, PotionIcon( 7 ));
 				AddHtml( 417, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Wall of Spikes</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b8 = 3609; if ( bag.NecroCurePoison > 0 ){ b8 = 4017; }
 				AddButton(322, 393, b8, b8, 8, GumpButtonType.Reply, 0);
-				AddImage(361, 383, 0x2CC3);
+				AddImage(361, 383, PotionIcon( 8 ));
 				AddHtml( 417, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Disease Curing</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b9 = 3609; if ( bag.BloodPact > 0 ){ b9 = 4017; }
 				AddButton(322, 448, b9, b9, 9, GumpButtonType.Reply, 0);
-				AddImage(361, 438, 0x2CC0);
+				AddImage(361, 438, PotionIcon( 9 ));
 				AddHtml( 417, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Blood Pact</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b10 = 3609; if ( bag.SpectreShadow > 0 ){ b10 = 4017; }
 				AddButton(322, 503, b10, b10, 10, GumpButtonType.Reply, 0);
-				AddImage(361, 493, 0x2CCB);
+				AddImage(361, 493, PotionIcon( 10 ));
 				AddHtml( 417, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Spectre Shadow</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b11 = 3609; if ( bag.GhostPhase > 0 ){ b11 = 4017; }
 				AddButton(322, 558, b11, b11, 11, GumpButtonType.Reply, 0);
-				AddImage(361, 548, 0x2CC5);
+				AddImage(361, 548, PotionIcon( 11 ));
 				AddHtml( 417, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Ghost Phase</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
 				int b12 = 3609; if ( bag.HellsGate > 0 ){ b12 = 4017; }
 				AddButton(631, 338, b12, b12, 12, GumpButtonType.Reply, 0);
-				AddImage(670, 328, 0x2CC1);
+				AddImage(670, 328, PotionIcon( 12 ));
 				AddHtml( 726, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Demonic Fire</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b13 = 3609; if ( bag.GhostlyImages > 0 ){ b13 = 4017; }
 				AddButton(631, 393, b13, b13, 13, GumpButtonType.Reply, 0);
-				AddImage(670, 383, 0x2CC6);
+				AddImage(670, 383, PotionIcon( 13 ));
 				AddHtml( 726, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Ghostly Images</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b14 = 3609; if ( bag.HellsBrand > 0 ){ b14 = 4017; }
 				AddButton(631, 448, b14, b14, 14, GumpButtonType.Reply, 0);
-				AddImage(670, 438, 0x2CC7);
+				AddImage(670, 438, PotionIcon( 14 ));
 				AddHtml( 726, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Hellish Branding</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b15 = 3609; if ( bag.GraveyardGateway > 0 ){ b15 = 4017; }
 				AddButton(631, 503, b15, b15, 15, GumpButtonType.Reply, 0);
-				AddImage(670, 493, 0x2CBF);
+				AddImage(670, 493, PotionIcon( 15 ));
 				AddHtml( 726, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Black Gate</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b16 = 3609; if ( bag.VampireGift > 0 ){ b16 = 4017; }
 				AddButton(631, 558, b16, b16, 16, GumpButtonType.Reply, 0);
-				AddImage(670, 548, 0x2CCD);
+				AddImage(670, 548, PotionIcon( 16 ));
 				AddHtml( 726, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Vampire Blood</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
@@ -267,22 +269,22 @@ namespace Server.Items
 					int txt = 17;
 
 					AddImage(15, 4, 11471);
-					if ( bag.UndeadEyes > 0 ){ val = val + 50; AddButton(15, val, 0x2CC4, 0x2CC4, 1, GumpButtonType.Reply, 0); }
-					if ( bag.NecroUnlock > 0 ){ val = val + 50; AddButton(15, val, 0x2CCC, 0x2CCC, 2, GumpButtonType.Reply, 0); }
-					if ( bag.NecroPoison > 0 ){ val = val + 50; AddButton(15, val, 0x2CC2, 0x2CC2, 3, GumpButtonType.Reply, 0); }
-					if ( bag.Phantasm > 0 ){ val = val + 50; AddButton(15, val, 0x2CC9, 0x2CC9, 4, GumpButtonType.Reply, 0); }
-					if ( bag.RetchedAir > 0 ){ val = val + 50; AddButton(15, val, 0x2CCA, 0x2CCA, 5, GumpButtonType.Reply, 0); }
-					if ( bag.ManaLeech > 0 ){ val = val + 50; AddButton(15, val, 0x2CC8, 0x2CC8, 6, GumpButtonType.Reply, 0); }
-					if ( bag.WallOfSpikes > 0 ){ val = val + 50; AddButton(15, val, 0x2CCE, 0x2CCE, 7, GumpButtonType.Reply, 0); }
-					if ( bag.NecroCurePoison > 0 ){ val = val + 50; AddButton(15, val, 0x2CC3, 0x2CC3, 8, GumpButtonType.Reply, 0); }
-					if ( bag.BloodPact > 0 ){ val = val + 50; AddButton(15, val, 0x2CC0, 0x2CC0, 9, GumpButtonType.Reply, 0); }
-					if ( bag.SpectreShadow > 0 ){ val = val + 50; AddButton(15, val, 0x2CCB, 0x2CCB, 10, GumpButtonType.Reply, 0); }
-					if ( bag.GhostPhase > 0 ){ val = val + 50; AddButton(15, val, 0x2CC5, 0x2CC5, 11, GumpButtonType.Reply, 0); }
-					if ( bag.HellsGate > 0 ){ val = val + 50; AddButton(15, val, 0x2CC1, 0x2CC1, 12, GumpButtonType.Reply, 0); }
-					if ( bag.GhostlyImages > 0 ){ val = val + 50; AddButton(15, val, 0x2CC6, 0x2CC6, 13, GumpButtonType.Reply, 0); }
-					if ( bag.HellsBrand > 0 ){ val = val + 50; AddButton(15, val, 0x2CC7, 0x2CC7, 14, GumpButtonType.Reply, 0); }
-					if ( bag.GraveyardGateway > 0 ){ val = val + 50; AddButton(15, val, 0x2CBF, 0x2CBF, 15, GumpButtonType.Reply, 0); }
-					if ( bag.VampireGift > 0 ){ val = val + 50; AddButton(15, val, 0x2CCD, 0x2CCD, 16, GumpButtonType.Reply, 0); }
+					if ( bag.UndeadEyes > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 1 ), PotionIcon( 1 ), 1, GumpButtonType.Reply, 0); }
+					if ( bag.NecroUnlock > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 2 ), PotionIcon( 2 ), 2, GumpButtonType.Reply, 0); }
+					if ( bag.NecroPoison > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 3 ), PotionIcon( 3 ), 3, GumpButtonType.Reply, 0); }
+					if ( bag.Phantasm > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 4 ), PotionIcon( 4 ), 4, GumpButtonType.Reply, 0); }
+					if ( bag.RetchedAir > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 5 ), PotionIcon( 5 ), 5, GumpButtonType.Reply, 0); }
+					if ( bag.ManaLeech > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 6 ), PotionIcon( 6 ), 6, GumpButtonType.Reply, 0); }
+					if ( bag.WallOfSpikes > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 7 ), PotionIcon( 7 ), 7, GumpButtonType.Reply, 0); }
+					if ( bag.NecroCurePoison > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 8 ), PotionIcon( 8 ), 8, GumpButtonType.Reply, 0); }
+					if ( bag.BloodPact > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 9 ), PotionIcon( 9 ), 9, GumpButtonType.Reply, 0); }
+					if ( bag.SpectreShadow > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 10 ), PotionIcon( 10 ), 10, GumpButtonType.Reply, 0); }
+					if ( bag.GhostPhase > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 11 ), PotionIcon( 11 ), 11, GumpButtonType.Reply, 0); }
+					if ( bag.HellsGate > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 12 ), PotionIcon( 12 ), 12, GumpButtonType.Reply, 0); }
+					if ( bag.GhostlyImages > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 13 ), PotionIcon( 13 ), 13, GumpButtonType.Reply, 0); }
+					if ( bag.HellsBrand > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 14 ), PotionIcon( 14 ), 14, GumpButtonType.Reply, 0); }
+					if ( bag.GraveyardGateway > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 15 ), PotionIcon( 15 ), 15, GumpButtonType.Reply, 0); }
+					if ( bag.VampireGift > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 16 ), PotionIcon( 16 ), 16, GumpButtonType.Reply, 0); }
 
 					if ( bag.Titles > 0 )
 					{
@@ -309,22 +311,22 @@ namespace Server.Items
 					int val = 27;
 
 					AddImage(32, 0, 11471);
-					if ( bag.UndeadEyes > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC4, 0x2CC4, 1, GumpButtonType.Reply, 0); }
-					if ( bag.NecroUnlock > 0 ){ val = val + 50; AddButton(val, 0, 0x2CCC, 0x2CCC, 2, GumpButtonType.Reply, 0); }
-					if ( bag.NecroPoison > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC2, 0x2CC2, 3, GumpButtonType.Reply, 0); }
-					if ( bag.Phantasm > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC9, 0x2CC9, 4, GumpButtonType.Reply, 0); }
-					if ( bag.RetchedAir > 0 ){ val = val + 50; AddButton(val, 0, 0x2CCA, 0x2CCA, 5, GumpButtonType.Reply, 0); }
-					if ( bag.ManaLeech > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC8, 0x2CC8, 6, GumpButtonType.Reply, 0); }
-					if ( bag.WallOfSpikes > 0 ){ val = val + 50; AddButton(val, 0, 0x2CCE, 0x2CCE, 7, GumpButtonType.Reply, 0); }
-					if ( bag.NecroCurePoison > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC3, 0x2CC3, 8, GumpButtonType.Reply, 0); }
-					if ( bag.BloodPact > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC0, 0x2CC0, 9, GumpButtonType.Reply, 0); }
-					if ( bag.SpectreShadow > 0 ){ val = val + 50; AddButton(val, 0, 0x2CCB, 0x2CCB, 10, GumpButtonType.Reply, 0); }
-					if ( bag.GhostPhase > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC5, 0x2CC5, 11, GumpButtonType.Reply, 0); }
-					if ( bag.HellsGate > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC1, 0x2CC1, 12, GumpButtonType.Reply, 0); }
-					if ( bag.GhostlyImages > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC6, 0x2CC6, 13, GumpButtonType.Reply, 0); }
-					if ( bag.HellsBrand > 0 ){ val = val + 50; AddButton(val, 0, 0x2CC7, 0x2CC7, 14, GumpButtonType.Reply, 0); }
-					if ( bag.GraveyardGateway > 0 ){ val = val + 50; AddButton(val, 0, 0x2CBF, 0x2CBF, 15, GumpButtonType.Reply, 0); }
-					if ( bag.VampireGift > 0 ){ val = val + 50; AddButton(val, 0, 0x2CCD, 0x2CCD, 16, GumpButtonType.Reply, 0); }
+					if ( bag.UndeadEyes > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 1 ), PotionIcon( 1 ), 1, GumpButtonType.Reply, 0); }
+					if ( bag.NecroUnlock > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 2 ), PotionIcon( 2 ), 2, GumpButtonType.Reply, 0); }
+					if ( bag.NecroPoison > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 3 ), PotionIcon( 3 ), 3, GumpButtonType.Reply, 0); }
+					if ( bag.Phantasm > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 4 ), PotionIcon( 4 ), 4, GumpButtonType.Reply, 0); }
+					if ( bag.RetchedAir > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 5 ), PotionIcon( 5 ), 5, GumpButtonType.Reply, 0); }
+					if ( bag.ManaLeech > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 6 ), PotionIcon( 6 ), 6, GumpButtonType.Reply, 0); }
+					if ( bag.WallOfSpikes > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 7 ), PotionIcon( 7 ), 7, GumpButtonType.Reply, 0); }
+					if ( bag.NecroCurePoison > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 8 ), PotionIcon( 8 ), 8, GumpButtonType.Reply, 0); }
+					if ( bag.BloodPact > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 9 ), PotionIcon( 9 ), 9, GumpButtonType.Reply, 0); }
+					if ( bag.SpectreShadow > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 10 ), PotionIcon( 10 ), 10, GumpButtonType.Reply, 0); }
+					if ( bag.GhostPhase > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 11 ), PotionIcon( 11 ), 11, GumpButtonType.Reply, 0); }
+					if ( bag.HellsGate > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 12 ), PotionIcon( 12 ), 12, GumpButtonType.Reply, 0); }
+					if ( bag.GhostlyImages > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 13 ), PotionIcon( 13 ), 13, GumpButtonType.Reply, 0); }
+					if ( bag.HellsBrand > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 14 ), PotionIcon( 14 ), 14, GumpButtonType.Reply, 0); }
+					if ( bag.GraveyardGateway > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 15 ), PotionIcon( 15 ), 15, GumpButtonType.Reply, 0); }
+					if ( bag.VampireGift > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 16 ), PotionIcon( 16 ), 16, GumpButtonType.Reply, 0); }
 				}
 			}
 
@@ -339,6 +341,32 @@ namespace Server.Items
 					from.SendGump( new WitchBar( from, m_Pouch, vertical ) );
 				}
 			}
+		}
+
+		private static readonly SpellDefinition[] m_PotionDefinitions = new SpellDefinition[]
+		{
+			null,
+			UndeadEyesSpell.SpellInfo.SpellDefinition,
+			NecroUnlockSpell.SpellInfo.SpellDefinition,
+			NecroPoisonSpell.SpellInfo.SpellDefinition,
+			PhantasmSpell.SpellInfo.SpellDefinition,
+			RetchedAirSpell.SpellInfo.SpellDefinition,
+			ManaLeechSpell.SpellInfo.SpellDefinition,
+			UndeadWallOfSpikesSpell.SpellInfo.SpellDefinition,
+			UndeadCurePoisonSpell.SpellInfo.SpellDefinition,
+			UnBloodlessSpecPactSpell.SpellInfo.SpellDefinition,
+			SpectreShadowSpell.SpellInfo.SpellDefinition,
+			GhostPhaseSpell.SpellInfo.SpellDefinition,
+			HellsGateSpell.SpellInfo.SpellDefinition,
+			GhostlyImagesSpell.SpellInfo.SpellDefinition,
+			HellsBrandSpell.SpellInfo.SpellDefinition,
+			UndeadGraveyardGatewaySpell.SpellInfo.SpellDefinition,
+			VampireGiftSpell.SpellInfo.SpellDefinition,
+		};
+
+		public static int PotionIcon( int potion )
+		{
+			return m_PotionDefinitions[potion].IconGraphic;
 		}
 
 		public static void castSpell( int potion, Mobile from )

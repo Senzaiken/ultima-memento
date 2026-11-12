@@ -13,12 +13,27 @@ namespace Server.Spells.Undead
 {
 	public class GhostlyImagesSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 70.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 143,
+					IconGraphic = 11462,
+					Name = "Ghostly Images Draught",
+					PowerWords = "",
+					Description = "Creates an illusionary image of you, distracting your foes.",
+					ManaCost = 0,
+					MinSkill = 70,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public GhostlyImagesSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public GhostlyImagesSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

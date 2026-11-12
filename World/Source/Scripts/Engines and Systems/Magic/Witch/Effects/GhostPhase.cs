@@ -9,12 +9,27 @@ namespace Server.Spells.Undead
 {
 	public class GhostPhaseSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 60.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 144,
+					IconGraphic = 11461,
+					Name = "Ghost Phase Concoction",
+					PowerWords = "",
+					Description = "Turns your body into ghostly matter that reappears in a nearby location.",
+					ManaCost = 0,
+					MinSkill = 60,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public GhostPhaseSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public GhostPhaseSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

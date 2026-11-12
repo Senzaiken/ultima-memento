@@ -6,12 +6,27 @@ namespace Server.Spells.Undead
 {
 	public class UndeadCurePoisonSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 45.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 133,
+					IconGraphic = 11459,
+					Name = "Disease Curing Concoction",
+					PowerWords = "",
+					Description = "Cures one of poisonous diseases.",
+					ManaCost = 0,
+					MinSkill = 45,
+					TargetType = TargetFlags.Beneficial
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public UndeadCurePoisonSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public UndeadCurePoisonSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 		

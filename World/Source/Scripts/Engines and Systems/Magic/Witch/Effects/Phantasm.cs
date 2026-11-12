@@ -7,12 +7,27 @@ namespace Server.Spells.Undead
 {
 	public class PhantasmSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 25.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 146,
+					IconGraphic = 11465,
+					Name = "Phantasm Elixir",
+					PowerWords = "",
+					Description = "Summons a spirit to disable a trap.",
+					ManaCost = 0,
+					MinSkill = 25,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public PhantasmSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public PhantasmSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

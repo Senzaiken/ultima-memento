@@ -10,9 +10,24 @@ namespace Server.Spells.Undead
 {
 	public class UndeadGraveyardGatewaySpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 80.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 135,
+					IconGraphic = 11455,
+					Name = "Black Gate Draught",
+					PowerWords = "",
+					Description = "Uses a magic rune to create a horrific black gate. Those that enter will appear at the runic location.",
+					ManaCost = 0,
+					MinSkill = 80,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
 		private RunebookEntry m_Entry;
@@ -21,7 +36,7 @@ namespace Server.Spells.Undead
 		{
 		}
 
-		public UndeadGraveyardGatewaySpell( Mobile caster, Item scroll, RunebookEntry entry ) : base( caster, scroll, m_Info )
+		public UndeadGraveyardGatewaySpell( Mobile caster, Item scroll, RunebookEntry entry ) : base( caster, scroll, SpellInfo )
 		{
 			m_Entry = entry;
 		}

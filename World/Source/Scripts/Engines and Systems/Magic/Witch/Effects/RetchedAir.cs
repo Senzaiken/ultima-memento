@@ -10,13 +10,28 @@ namespace Server.Spells.Undead
 {
 	public class RetchedAirSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 30.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 136,
+					IconGraphic = 11466,
+					Name = "Retched Air Elixir",
+					PowerWords = "",
+					Description = "Creates a burst of harmful gas.",
+					ManaCost = 0,
+					MinSkill = 30,
+					TargetType = TargetFlags.Harmful
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
 		
-		public RetchedAirSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public RetchedAirSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

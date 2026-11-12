@@ -8,12 +8,27 @@ namespace Server.Spells.Undead
 {
 	public class SpectreShadowSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 55.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 131,
+					IconGraphic = 11467,
+					Name = "Spectre Shadow Elixir",
+					PowerWords = "",
+					Description = "Turns the body into an invisible ghostly form that cannot be seen.",
+					ManaCost = 0,
+					MinSkill = 55,
+					TargetType = TargetFlags.Beneficial
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public SpectreShadowSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public SpectreShadowSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Server.Spells;
 using Server.Spells.Elementalism;
+using Server.Spells.Undead;
 using Server.ContextMenus;
 using Server.Engines.Craft;
 using System;
@@ -142,7 +143,7 @@ namespace Server.Items
 				case SpellbookType.Archmage:
 				case SpellbookType.Invalid:
 				default:
-					if ( spellID >= 131 && spellID <= 146 )
+					if ( spellID >= WitchSpellProvider.FirstSpellId && spellID <= WitchSpellProvider.LastSpellId )
 						scroll.InfoText1 = "Witches Brew";
 					else if ( spellID >= 147 && spellID <= 162 )
 						scroll.InfoText1 = "Druidic Herbs";
@@ -165,7 +166,7 @@ namespace Server.Items
 		{
 			base.GetContextMenuEntries( from, list );
 
-			if ( !IsEphemeralSpellScroll && from.Alive && this.Movable && !( m_SpellID >= 130 && m_SpellID <= 162 ) )
+			if ( !IsEphemeralSpellScroll && from.Alive && this.Movable && !( m_SpellID >= WitchSpellProvider.FirstSpellId && m_SpellID <= WitchSpellProvider.LastSpellId ) && !( m_SpellID >= 147 && m_SpellID <= 162 ) )
 				list.Add( new ContextMenus.AddToSpellbookEntry() );
 		}
 

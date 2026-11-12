@@ -7,6 +7,8 @@ using Server.Gumps;
 using Server.Network;
 using Server.Commands;
 using Server.Misc;
+using Server.Spells;
+using Server.Spells.Undead;
 
 namespace Server.Items
 {
@@ -138,42 +140,43 @@ namespace Server.Items
 
 			public static string potionInfo( int page, int val )
 			{
-				string txtName = "";
-				string txtIcon = "";
-				string txtInfo = "";
+				int spellID = 0;
 				string txtSklA = "";
-				string txtSklB = "";
 				string txtIngA = "";
 				string txtIngB = "";
 				string txtIngC = "";
 
-				if ( page == 2 ){ txtName = "Eyes of the Dead Mixture"; txtIcon = "11460"; txtInfo = "Gives one the same sight of the undead, where they are able to see in the dark."; txtSklA = "10"; txtSklB = "5"; txtIngA = "Mummy Wrap"; txtIngB = "Eye of Toad"; txtIngC = ""; }
-				else if ( page == 3 ){ txtName = "Tomb Raiding Concoction"; txtIcon = "11468"; txtInfo = "Summons the spirits to unlock something for you."; txtSklA = "15"; txtSklB = "10"; txtIngA = "Maggot"; txtIngB = "Beetle Shell"; txtIngC = ""; }
-				else if ( page == 4 ){ txtName = "Disease Draught"; txtIcon = "11458"; txtInfo = "Causes one to suffer from a poisonous disease."; txtSklA = "20"; txtSklB = "15"; txtIngA = "Violet Fungus"; txtIngB = "Nox Crystal"; txtIngC = ""; }
-				else if ( page == 5 ){ txtName = "Phantasm Elixir"; txtIcon = "11465"; txtInfo = "Summons a spirit to disable a trap."; txtSklA = "25"; txtSklB = "20"; txtIngA = "Dried Toad"; txtIngB = "Gargoyle Ear"; txtIngC = ""; }
-				else if ( page == 6 ){ txtName = "Retched Air Elixir"; txtIcon = "11466"; txtInfo = "Creates a burst of harmful gas."; txtSklA = "30"; txtSklB = "25"; txtIngA = "Black Sand"; txtIngB = "Grave Dust"; txtIngC = ""; }
-				else if ( page == 7 ){ txtName = "Lich Leech Mixture"; txtIcon = "11464"; txtInfo = "Absorbs mana from the target, giving it to you in return."; txtSklA = "35"; txtSklB = "30"; txtIngA = "Dried Toad"; txtIngB = "Red Lotus"; txtIngC = ""; }
-				else if ( page == 8 ){ txtName = "Wall of Spike Draught"; txtIcon = "11470"; txtInfo = "Creates a protective wall of spikes."; txtSklA = "40"; txtSklB = "35"; txtIngA = "Bitter Root"; txtIngB = "Pig Iron"; txtIngC = ""; }
-				else if ( page == 9 ){ txtName = "Disease Curing Concoction"; txtIcon = "11459"; txtInfo = "Cures one of poisonous diseases."; txtSklA = "45"; txtSklB = "40"; txtIngA = "Wolfsbane"; txtIngB = "Swamp Berries"; txtIngC = ""; }
-				else if ( page == 10 ){ txtName = "Blood Pact Elixir"; txtIcon = "11456"; txtInfo = "Takes some of your life and bestows it upon another."; txtSklA = "50"; txtSklB = "45"; txtIngA = "Blood Rose"; txtIngB = "Daemon Blood"; txtIngC = ""; }
-				else if ( page == 11 ){ txtName = "Spectre Shadow Elixir"; txtIcon = "11467"; txtInfo = "Turns the body into an invisible ghostly form that cannot be seen."; txtSklA = "55"; txtSklB = "50"; txtIngA = "Violet Fungus"; txtIngB = "Silver Widow"; txtIngC = ""; }
-				else if ( page == 12 ){ txtName = "Ghost Phase Concoction"; txtIcon = "11461"; txtInfo = "Turns your body into ghostly matter that reappears in a nearby location."; txtSklA = "60"; txtSklB = "55"; txtIngA = "Bitter Root"; txtIngB = "Moon Crystal"; txtIngC = ""; }
-				else if ( page == 13 ){ txtName = "Demonic Fire Ooze"; txtIcon = "11457"; txtInfo = "Ignites a marked rune with power to transport one to that location."; txtSklA = "65"; txtSklB = "60"; txtIngA = "Maggot"; txtIngB = "Black Pearl"; txtIngC = ""; }
-				else if ( page == 14 ){ txtName = "Ghostly Images Draught"; txtIcon = "11462"; txtInfo = "Creates an illusionary image of you, distracting your foes."; txtSklA = "70"; txtSklB = "65"; txtIngA = "Mummy Wrap"; txtIngB = "Bloodmoss"; txtIngC = ""; }
-				else if ( page == 15 ){ txtName = "Hellish Branding Ooze"; txtIcon = "11463"; txtInfo = "Marks a rune location with symbols of evil, so you can use recalling magic on it to return to that location."; txtSklA = "75"; txtSklB = "70"; txtIngA = "Werewolf Claw"; txtIngB = "Brimstone"; txtIngC = ""; }
-				else if ( page == 16 ){ txtName = "Black Gate Draught"; txtIcon = "11455"; txtInfo = "Uses a magic rune to create a horrific black gate. Those that enter will appear at the runic location."; txtSklA = "80"; txtSklB = "75"; txtIngA = "Black Sand"; txtIngB = "Wolfsbane"; txtIngC = "Pixie Skull"; }
-				else if ( page == 17 ){ txtName = "Vampire Blood Draught"; txtIcon = "11469"; txtInfo = "Dumps vampire blood in your pack, that will resurrect you a few moments after losing your life. You can also directly resurrect others."; txtSklA = "85"; txtSklB = "80"; txtIngA = "Werewolf Claw"; txtIngB = "Bat Wing"; txtIngC = "Blood Rose"; }
+				if ( page == 2 ){ spellID = UndeadEyesSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "10"; txtIngA = "Mummy Wrap"; txtIngB = "Eye of Toad"; txtIngC = ""; }
+				else if ( page == 3 ){ spellID = NecroUnlockSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "15"; txtIngA = "Maggot"; txtIngB = "Beetle Shell"; txtIngC = ""; }
+				else if ( page == 4 ){ spellID = NecroPoisonSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "20"; txtIngA = "Violet Fungus"; txtIngB = "Nox Crystal"; txtIngC = ""; }
+				else if ( page == 5 ){ spellID = PhantasmSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "25"; txtIngA = "Dried Toad"; txtIngB = "Gargoyle Ear"; txtIngC = ""; }
+				else if ( page == 6 ){ spellID = RetchedAirSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "30"; txtIngA = "Black Sand"; txtIngB = "Grave Dust"; txtIngC = ""; }
+				else if ( page == 7 ){ spellID = ManaLeechSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "35"; txtIngA = "Dried Toad"; txtIngB = "Red Lotus"; txtIngC = ""; }
+				else if ( page == 8 ){ spellID = UndeadWallOfSpikesSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "40"; txtIngA = "Bitter Root"; txtIngB = "Pig Iron"; txtIngC = ""; }
+				else if ( page == 9 ){ spellID = UndeadCurePoisonSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "45"; txtIngA = "Wolfsbane"; txtIngB = "Swamp Berries"; txtIngC = ""; }
+				else if ( page == 10 ){ spellID = UnBloodlessSpecPactSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "50"; txtIngA = "Blood Rose"; txtIngB = "Daemon Blood"; txtIngC = ""; }
+				else if ( page == 11 ){ spellID = SpectreShadowSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "55"; txtIngA = "Violet Fungus"; txtIngB = "Silver Widow"; txtIngC = ""; }
+				else if ( page == 12 ){ spellID = GhostPhaseSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "60"; txtIngA = "Bitter Root"; txtIngB = "Moon Crystal"; txtIngC = ""; }
+				else if ( page == 13 ){ spellID = HellsGateSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "65"; txtIngA = "Maggot"; txtIngB = "Black Pearl"; txtIngC = ""; }
+				else if ( page == 14 ){ spellID = GhostlyImagesSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "70"; txtIngA = "Mummy Wrap"; txtIngB = "Bloodmoss"; txtIngC = ""; }
+				else if ( page == 15 ){ spellID = HellsBrandSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "75"; txtIngA = "Werewolf Claw"; txtIngB = "Brimstone"; txtIngC = ""; }
+				else if ( page == 16 ){ spellID = UndeadGraveyardGatewaySpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "80"; txtIngA = "Black Sand"; txtIngB = "Wolfsbane"; txtIngC = "Pixie Skull"; }
+				else if ( page == 17 ){ spellID = VampireGiftSpell.SpellInfo.SpellDefinition.SpellID; txtSklA = "85"; txtIngA = "Werewolf Claw"; txtIngB = "Bat Wing"; txtIngC = "Blood Rose"; }
+
+				SpellDefinition definition = WitchSpellProvider.GetDefinition( spellID );
+				if ( definition == null )
+					return "";
 
 				if ( val == 1 )
-					return txtName;
+					return definition.Name.String;
 				else if ( val == 2 )
-					return txtIcon;
+					return definition.IconGraphic.ToString();
 				else if ( val == 3 )
-					return txtInfo;
+					return definition.Description.String;
 				else if ( val == 4 )
 					return txtSklA;
 				else if ( val == 5 )
-					return txtSklB;
+					return definition.MinSkill.ToString();
 				else if ( val == 6 )
 					return txtIngA;
 				else if ( val == 7 )

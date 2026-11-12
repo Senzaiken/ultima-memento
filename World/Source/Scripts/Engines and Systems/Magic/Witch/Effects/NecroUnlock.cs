@@ -7,12 +7,27 @@ namespace Server.Spells.Undead
 {
 	public class NecroUnlockSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 15.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 145,
+					IconGraphic = 11468,
+					Name = "Tomb Raiding Concoction",
+					PowerWords = "",
+					Description = "Summons the spirits to unlock something for you.",
+					ManaCost = 0,
+					MinSkill = 15,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public NecroUnlockSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public NecroUnlockSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

@@ -8,13 +8,28 @@ namespace Server.Spells.Undead
 {
 	public class UnBloodlessSpecPactSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 50.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 140,
+					IconGraphic = 11456,
+					Name = "Blood Pact Elixir",
+					PowerWords = "",
+					Description = "Takes some of your life and bestows it upon another.",
+					ManaCost = 0,
+					MinSkill = 50,
+					TargetType = TargetFlags.Beneficial
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
 		
-		public UnBloodlessSpecPactSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public UnBloodlessSpecPactSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 		

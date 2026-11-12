@@ -11,12 +11,27 @@ namespace Server.Spells.Undead
 {
 	public class VampireGiftSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 85.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 139,
+					IconGraphic = 11469,
+					Name = "Vampire Blood Draught",
+					PowerWords = "",
+					Description = "Dumps vampire blood in your pack, that will resurrect you a few moments after losing your life. You can also directly resurrect others.",
+					ManaCost = 0,
+					MinSkill = 85,
+					TargetType = TargetFlags.Beneficial
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-        public VampireGiftSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+        public VampireGiftSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
         {
         }
  

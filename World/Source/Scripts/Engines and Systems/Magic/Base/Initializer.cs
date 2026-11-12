@@ -106,24 +106,6 @@ namespace Server.Spells
 			Register( 115, typeof( Necromancy.WraithFormSpell ) );
 			Register( 116, typeof( Necromancy.ExorcismSpell ) );
 
-			// Witch brews
-			Register( 131, typeof( Undead.SpectreShadowSpell ) );
-			Register( 132, typeof( Undead.ManaLeechSpell ) );
-			Register( 133, typeof( Undead.UndeadCurePoisonSpell ) );
-			Register( 134, typeof( Undead.HellsBrandSpell ) );
-			Register( 135, typeof( Undead.UndeadGraveyardGatewaySpell ) );
-			Register( 136, typeof( Undead.RetchedAirSpell ) );
-			Register( 137, typeof( Undead.UndeadEyesSpell ) );
-			Register( 138, typeof( Undead.UndeadWallOfSpikesSpell ) );
-			Register( 139, typeof( Undead.VampireGiftSpell ) );
-			Register( 140, typeof( Undead.UnBloodlessSpecPactSpell ) );
-			Register( 141, typeof( Undead.NecroPoisonSpell ) );
-			Register( 142, typeof( Undead.HellsGateSpell ) );
-			Register( 143, typeof( Undead.GhostlyImagesSpell ) );
-			Register( 144, typeof( Undead.GhostPhaseSpell ) );
-			Register( 145, typeof( Undead.NecroUnlockSpell ) );
-			Register( 146, typeof( Undead.PhantasmSpell ) );
-
 			// Druid mixtures
 			Register( 147, typeof( Herbalist.ShieldOfEarthSpell ) );
 			Register( 148, typeof( Herbalist.WoodlandProtectionSpell ) );
@@ -187,6 +169,7 @@ namespace Server.Spells
 			SpellProviderRegistry.Register( Song.BardSongProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Research.ResearchSpellProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Chivalry.ChivalrySpellProvider.SpellDefinitions );
+			SpellProviderRegistry.Register( Undead.WitchSpellProvider.SpellDefinitions );
 
 			// Samurai abilities
 			Register( 400, typeof( Bushido.HonorableExecution ) );

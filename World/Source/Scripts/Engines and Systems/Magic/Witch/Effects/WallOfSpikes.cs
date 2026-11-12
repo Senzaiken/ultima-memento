@@ -8,12 +8,27 @@ namespace Server.Spells.Undead
 {
 	public class UndeadWallOfSpikesSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 40.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 138,
+					IconGraphic = 11470,
+					Name = "Wall of Spike Draught",
+					PowerWords = "",
+					Description = "Creates a protective wall of spikes.",
+					ManaCost = 0,
+					MinSkill = 40,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public UndeadWallOfSpikesSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public UndeadWallOfSpikesSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 		

@@ -6,12 +6,27 @@ namespace Server.Spells.Undead
 {
 	public class ManaLeechSpell : UndeadSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
-		public override double RequiredSkill{ get{ return 35.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 132,
+					IconGraphic = 11464,
+					Name = "Lich Leech Mixture",
+					PowerWords = "",
+					Description = "Absorbs mana from the target, giving it to you in return.",
+					ManaCost = 0,
+					MinSkill = 35,
+					TargetType = TargetFlags.Harmful
+				},
+				239,
+				9021
+			);
+
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public ManaLeechSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public ManaLeechSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 
