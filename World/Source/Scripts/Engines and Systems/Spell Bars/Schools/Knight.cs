@@ -1,5 +1,5 @@
-using Server.Items;
 using Server.Mobiles;
+using Server.Spells.Chivalry;
 
 namespace Server.SpellBars
 {
@@ -7,14 +7,8 @@ namespace Server.SpellBars
 	{
 		public static readonly KnightSpellSchool Instance = new KnightSpellSchool();
 
-		private static readonly string[] SpellNames =
-		{
-			"Cleanse by Fire", "Close Wounds", "Consecrate Weapon", "Dispel Evil", "Divine Fury",
-			"Enemy of One", "Holy Light", "Noble Sacrifice", "Remove Curse", "Sacred Journey"
-		};
-
 		public int MaxSlots
-		{ get { return 10; } }
+		{ get { return ChivalrySpellProvider.SpellCount; } }
 
 		public SpellBarSchool School
 		{ get { return SpellBarSchool.Knight; } }
@@ -23,23 +17,22 @@ namespace Server.SpellBars
 		{ return 11167; }
 
 		public int GetIcon(PlayerMobile from, int slotIndex)
-		{ return 20736 - 1 + slotIndex; }
+		{ return ChivalrySpellProvider.SpellDefinitions[slotIndex - 1].IconGraphic; }
 
 		public string GetName(int slotIndex)
 		{
-			if (slotIndex < 1 || slotIndex > SpellNames.Length)
+			if (slotIndex < 1 || slotIndex > ChivalrySpellProvider.SpellCount)
 				return string.Empty;
 
-			return SpellNames[slotIndex - 1];
+			return ChivalrySpellProvider.SpellDefinitions[slotIndex - 1].Name.String;
 		}
 
 		public int GetRegistrySpellId(int slotIndex)
-		{ return 200 - 1 + slotIndex; }
+		{ return ChivalrySpellProvider.SpellDefinitions[slotIndex - 1].SpellID; }
 
 		public bool HasSpell(PlayerMobile from, int registrySpellId)
 		{
-			Spellbook book = Spellbook.Find(from, registrySpellId);
-			return book != null && book.HasSpell(registrySpellId);
+			return ChivalrySpellProvider.HasSpell(from, registrySpellId);
 		}
 	}
 

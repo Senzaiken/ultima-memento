@@ -176,18 +176,6 @@ namespace Server.Spells
 			Register( 330, typeof( Elementalism.Elemental_Soul_Spell ) );
 			Register( 331, typeof( Elementalism.Elemental_Spirit_Spell ) );
 
-			// Paladin abilities
-			Register( Chivalry.CleanseByFireSpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.CleanseByFireSpell ) );
-			Register( Chivalry.CloseWoundsSpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.CloseWoundsSpell ) );
-			Register( Chivalry.ConsecrateWeaponSpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.ConsecrateWeaponSpell ) );
-			Register( Chivalry.DispelEvilSpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.DispelEvilSpell ) );
-			Register( Chivalry.DivineFurySpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.DivineFurySpell ) );
-			Register( Chivalry.EnemyOfOneSpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.EnemyOfOneSpell ) );
-			Register( Chivalry.HolyLightSpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.HolyLightSpell ) );
-			Register( Chivalry.NobleSacrificeSpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.NobleSacrificeSpell ) );
-			Register( Chivalry.RemoveCurseSpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.RemoveCurseSpell ) );
-			Register( Chivalry.SacredJourneySpell.SpellInfo.SpellDefinition.SpellID, typeof( Chivalry.SacredJourneySpell ) );
-
 			// Spell providers
 			SpellProviderRegistry.Register( Mystic.MysticSpellProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Jester.JesterSpellProvider.SpellDefinitions );
@@ -198,6 +186,7 @@ namespace Server.Spells
 			SpellProviderRegistry.Register( HolyMan.HolyManSpellProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Song.BardSongProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Research.ResearchSpellProvider.SpellDefinitions );
+			SpellProviderRegistry.Register( Chivalry.ChivalrySpellProvider.SpellDefinitions );
 
 			// Samurai abilities
 			Register( 400, typeof( Bushido.HonorableExecution ) );

@@ -14,6 +14,7 @@ using Server.Spells.Mystic;
 using Server.Spells.Jedi;
 using Server.Spells.Syth;
 using Server.Spells.Research;
+using Server.Spells.Chivalry;
 
 namespace Server.Items
 {
@@ -249,7 +250,7 @@ namespace Server.Items
 				return SpellbookType.Regular;
 			else if ( spellID >= 100 && spellID < 117 )
 				return SpellbookType.Necromancer;
-			else if ( spellID >= 200 && spellID < 210 )
+			else if ( spellID >= ChivalrySpellProvider.FirstSpellId && spellID <= ChivalrySpellProvider.LastSpellId )
 				return SpellbookType.Paladin;
 			else if( spellID >= 400 && spellID < 406 )
 				return SpellbookType.Samurai;

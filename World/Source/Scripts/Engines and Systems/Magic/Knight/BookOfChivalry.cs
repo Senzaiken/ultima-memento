@@ -1,6 +1,7 @@
 using System;
 using Server.Network;
 using Server.Spells;
+using Server.Spells.Chivalry;
 
 namespace Server.Items
 {
@@ -9,8 +10,8 @@ namespace Server.Items
 		public override string DefaultDescription{ get{ return "This book is used by knights, in order for them to use various abilities to spread harmony and peace throughout the land. Some books have enhanced properties, that are only effective when the book is held."; } }
 
 		public override SpellbookType SpellbookType{ get{ return SpellbookType.Paladin; } }
-		public override int BookOffset{ get{ return 200; } }
-		public override int BookCount{ get{ return 10; } }
+		public override int BookOffset{ get{ return ChivalrySpellProvider.FirstSpellId; } }
+		public override int BookCount{ get{ return ChivalrySpellProvider.SpellCount; } }
 
 		[Constructable]
 		public BookOfChivalry() : this( (ulong)0x3FF )
