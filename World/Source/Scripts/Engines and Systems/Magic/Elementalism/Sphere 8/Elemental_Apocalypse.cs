@@ -9,8 +9,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Apocalypse_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Apocalypse", "Moarte",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 328,
+					IconGraphic = 0x2CF1,
+					Name = "Elemental Apocalypse",
+					PowerWords = "Moarte",
+					Description = "Sends shards from a nearby star crashing down onto nearby enemies, causing some physical but mostly energy damage.",
+					ManaCost = 50,
+					MinSkill = 80,
+					TargetType = TargetFlags.None
+				},
 				233,
 				9012,
 				false
@@ -18,7 +28,7 @@ namespace Server.Spells.Elementalism
 
 		public override SpellCircle Circle { get { return SpellCircle.Eighth; } }
 
-		public Elemental_Apocalypse_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Apocalypse_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

@@ -10,8 +10,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Devastation_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Devastation", "Devasta",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 324,
+					IconGraphic = 0x2CED,
+					Name = "Elemental Devastation",
+					PowerWords = "Devasta",
+					Description = "Brings forth powerful lightning storms, damaging nearby enemies with energy damage.",
+					ManaCost = 40,
+					MinSkill = 66,
+					TargetType = TargetFlags.None
+				},
 				209,
 				9022,
 				false
@@ -19,7 +29,7 @@ namespace Server.Spells.Elementalism
 
 		public override SpellCircle Circle { get { return SpellCircle.Seventh; } }
 
-		public Elemental_Devastation_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Devastation_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

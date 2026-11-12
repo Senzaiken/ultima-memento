@@ -8,8 +8,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Lord_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Lord", "Dumnezeu",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 329,
+					IconGraphic = 0x2CF2,
+					Name = "Elemental Lord",
+					PowerWords = "Dumnezeu",
+					Description = "A Lord of the Skies is called upon to assist the caster.",
+					ManaCost = 50,
+					MinSkill = 80,
+					TargetType = TargetFlags.None
+				},
 				269,
 				9010,
 				false
@@ -18,7 +28,7 @@ namespace Server.Spells.Elementalism
 		public override SpellCircle Circle { get { return SpellCircle.Eighth; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 3.25 ); } }
 
-		public Elemental_Lord_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Lord_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

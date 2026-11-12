@@ -7,17 +7,27 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Blast_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Blast", "Deteriora",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 316,
+					IconGraphic = 0x2CE5,
+					Name = "Elemental Blast",
+					PowerWords = "Deteriora",
+					Description = "Makes an electrical blast hit your target with energy damage, dependent on your elementalism and intelligence. Has a short delay.",
+					ManaCost = 19,
+					MinSkill = 38,
+					TargetType = TargetFlags.Harmful
+				},
 				218,
 				9002
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Fifth; } }
 
-		public Elemental_Blast_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Blast_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
-			m_Info.LeftHandEffect = m_Info.RightHandEffect = 9002;
+			SpellInfo.LeftHandEffect = SpellInfo.RightHandEffect = 9002;
 		}
 
 		public override void OnCast()

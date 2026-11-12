@@ -256,7 +256,7 @@ namespace Server.Items
 				return SpellbookType.Samurai;
 			else if( spellID >= 500 && spellID < 508 )
 				return SpellbookType.Ninja;
-			else if ( spellID >= 300 && spellID < 332 )
+			else if ( spellID >= ElementalSpellProvider.FirstSpellId && spellID <= ElementalSpellProvider.LastSpellId )
 				return SpellbookType.Elementalism;
 			else if ( spellID >= BardSongProvider.FirstSpellId && spellID <= BardSongProvider.LastSpellId )
 				return SpellbookType.Song;

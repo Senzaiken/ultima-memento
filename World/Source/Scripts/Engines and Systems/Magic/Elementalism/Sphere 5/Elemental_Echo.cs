@@ -9,15 +9,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Echo_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Echo", "Oglinda",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 317,
+					IconGraphic = 0x2CE6,
+					Name = "Elemental Echo",
+					PowerWords = "Oglinda",
+					Description = "Harmful wizard spells cast at you will be reflected back toward the caster based on your elementalism. You will need an amethyst to make this spell work.",
+					ManaCost = 19,
+					MinSkill = 38,
+					TargetType = TargetFlags.None
+				},
 				242,
 				9012
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Fifth; } }
 
-		public Elemental_Echo_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Echo_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

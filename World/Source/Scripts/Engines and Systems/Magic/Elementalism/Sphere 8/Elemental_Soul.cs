@@ -11,15 +11,25 @@ namespace Server.Spells.Elementalism
 {
     public class Elemental_Soul_Spell : ElementalSpell
     {
-        private static SpellInfo m_Info = new SpellInfo(
-                "Elemental Soul", "Viata",
+        public static readonly SpellInfo SpellInfo = new SpellInfo(
+                new SpellDefinition
+                {
+                    SpellID = 330,
+                    IconGraphic = 0x2CF3,
+                    Name = "Elemental Soul",
+                    PowerWords = "Viata",
+                    Description = "Resurrects another or summons a magical item to resurrect yourself at a later time.",
+                    ManaCost = 50,
+                    MinSkill = 80,
+                    TargetType = TargetFlags.Beneficial
+                },
                 245,
                 9062
             );
  
         public override SpellCircle Circle { get { return SpellCircle.Eighth; } }
  
-        public Elemental_Soul_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+        public Elemental_Soul_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
         {
         }
  

@@ -10,8 +10,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Wall_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Wall", "Perete",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 310,
+					IconGraphic = 0x2CDF,
+					Name = "Elemental Wall",
+					PowerWords = "Perete",
+					Description = "Creates a temporary wall of air that blocks movement.",
+					ManaCost = 10,
+					MinSkill = 9,
+					TargetType = TargetFlags.None
+				},
 				227,
 				9011,
 				false
@@ -19,7 +29,7 @@ namespace Server.Spells.Elementalism
 
 		public override SpellCircle Circle { get { return SpellCircle.Third; } }
 
-		public Elemental_Wall_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Wall_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

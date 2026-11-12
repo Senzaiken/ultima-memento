@@ -9,15 +9,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Warp_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Warp", "Urzeala",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 311,
+					IconGraphic = 0x2CE0,
+					Name = "Elemental Warp",
+					PowerWords = "Urzeala",
+					Description = "Caster is transported to the target location.",
+					ManaCost = 10,
+					MinSkill = 9,
+					TargetType = TargetFlags.None
+				},
 				215,
 				9031
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Third; } }
 
-		public Elemental_Warp_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Warp_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

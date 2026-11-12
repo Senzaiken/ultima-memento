@@ -253,7 +253,7 @@ namespace Server.Engines.Craft
 				case 7: minSkill = 75.0; maxSkill = 125.0; break;
 			}
 
-			int index = AddCraftRecipe(recipeNumber, type, "Elemental Spells", ElementalSpell.CommonInfo( (300 + m_Elly++), 1 ), minSkill, maxSkill, typeof(DaemonBlood), 1023965, blood, 1042081);
+			int index = AddCraftRecipe(recipeNumber, type, "Elemental Spells", ElementalSpell.CommonInfo( (ElementalSpellProvider.FirstSpellId + m_Elly++), 1 ), minSkill, maxSkill, typeof(DaemonBlood), 1023965, blood, 1042081);
 
 			if ( requireArcaneScroll )
 				AddRes( index, typeof( ArcaneScroll ), "Arcane Scroll", 1, 1053098 );

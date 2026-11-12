@@ -7,15 +7,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Storm_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Storm", "Furtuna",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 322,
+					IconGraphic = 0x2CEB,
+					Name = "Elemental Storm",
+					PowerWords = "Furtuna",
+					Description = "Creates a swirling storms of wind around the target, causing physical and energy damage.",
+					ManaCost = 24,
+					MinSkill = 52,
+					TargetType = TargetFlags.Harmful
+				},
 				230,
 				9041
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Sixth; } }
 
-		public Elemental_Storm_Spell( Mobile caster, Item scroll ): base( caster, scroll, m_Info )
+		public Elemental_Storm_Spell( Mobile caster, Item scroll ): base( caster, scroll, SpellInfo )
 		{
 		}
 

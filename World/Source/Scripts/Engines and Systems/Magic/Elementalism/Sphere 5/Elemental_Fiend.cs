@@ -7,8 +7,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Fiend_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Fiend", "Diavol", 
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 318,
+					IconGraphic = 0x2CE7,
+					Name = "Elemental Fiend",
+					PowerWords = "Diavol",
+					Description = "Conjures a starlight creature that attacks a target based off its combat strength and proximity. It disappears after a set amount of time and requires 2 control slots.",
+					ManaCost = 19,
+					MinSkill = 38,
+					TargetType = TargetFlags.None
+				},
 				266,
 				9040,
 				false
@@ -16,7 +26,7 @@ namespace Server.Spells.Elementalism
 
 		public override SpellCircle Circle { get { return SpellCircle.Fifth; } }
 
-		public Elemental_Fiend_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Fiend_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

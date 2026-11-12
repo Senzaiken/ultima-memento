@@ -12,8 +12,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Void_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Void", "Mutare",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 315,
+					IconGraphic = 0x2CE4,
+					Name = "Elemental Void",
+					PowerWords = "Mutare",
+					Description = "Caster is transported to the location marked on a rune, along with their followers. If a ship key is targeted, the caster is transported to the boat the key opens.",
+					ManaCost = 14,
+					MinSkill = 23,
+					TargetType = TargetFlags.None
+				},
 				239,
 				9031
 			);
@@ -27,7 +37,7 @@ namespace Server.Spells.Elementalism
 		{
 		}
 
-		public Elemental_Void_Spell( Mobile caster, Item scroll, RunebookEntry entry, Runebook book ) : base( caster, scroll, m_Info )
+		public Elemental_Void_Spell( Mobile caster, Item scroll, RunebookEntry entry, Runebook book ) : base( caster, scroll, SpellInfo )
 		{
 			m_Entry = entry;
 			m_Book = book;

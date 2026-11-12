@@ -7,15 +7,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Bolt_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Bolt", "Sulita",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 301,
+					IconGraphic = 0x2CD6,
+					Name = "Elemental Bolt",
+					PowerWords = "Sulita",
+					Description = "Shoots a magical bolt at a target, which deals energy and physical damage.",
+					ManaCost = 5,
+					MinSkill = 0,
+					TargetType = TargetFlags.Harmful
+				},
 				212,
 				9041
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.First; } }
 
-		public Elemental_Bolt_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Bolt_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

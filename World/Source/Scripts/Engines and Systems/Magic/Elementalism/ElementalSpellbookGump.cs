@@ -6,13 +6,25 @@ using Server.Misc;
 using Server.Network; 
 using Server.Spells; 
 using Server.Spells.Elementalism; 
-using Server.Prompts; 
+using Server.Prompts;
+using Server.Scripts.Commands;
 
 namespace Server.Gumps 
 { 
-	public class ElementalSpellbookGump : Gump 
+	public class ElementalSpellbookGump : Gump
 	{
-		private ElementalSpellbook m_Book; 
+		private const int FIRST_LIST_PAGE = 2;
+		private const int SPELLS_PER_LIST_PAGE = 2 * ElementalSpellProvider.SpellsPerCircle;
+
+		private static readonly string[] SphereNumerals = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII" };
+
+		private static int FIRST_SPELL_PAGE
+		{ get { return FIRST_LIST_PAGE + ( ElementalSpellProvider.SpellCount + SPELLS_PER_LIST_PAGE - 1 ) / SPELLS_PER_LIST_PAGE; } }
+
+		private static int LAST_PAGE
+		{ get { return FIRST_SPELL_PAGE + ElementalSpellProvider.SpellCount - 1; } }
+
+		private ElementalSpellbook m_Book;
 
 		public bool HasSpell(Mobile from, int spellID)
 		{
@@ -24,7 +36,9 @@ namespace Server.Gumps
 
 		public ElementalSpellbookGump( Mobile from, ElementalSpellbook book, int page ) : base( 100, 100 ) 
 		{
-			m_Book = book; 
+			if ( page < 1 || page > LAST_PAGE ){ page = 1; }
+
+			m_Book = book;
 			m_Book.EllyPage = page;
 
             this.Closable=true;
@@ -58,9 +72,9 @@ namespace Server.Gumps
 			AddImage(0, 0, 11147);
 
 			int PriorPage = page - 1;
-				if ( PriorPage < 1 ){ PriorPage = 37; }
+				if ( PriorPage < 1 ){ PriorPage = LAST_PAGE; }
 			int NextPage = page + 1;
-				if ( NextPage > 37 ){ NextPage = 1; }
+				if ( NextPage > LAST_PAGE ){ NextPage = 1; }
 
 			AddButton(24, 8, 11159, 11159, PriorPage, GumpButtonType.Reply, 0); 	// PAGE LEFT
 			AddButton(295, 8, 11160, 11160, NextPage, GumpButtonType.Reply, 0); 	// PAGE RIGHT
@@ -74,93 +88,50 @@ namespace Server.Gumps
 				AddHtml( 34, 35, 133, 160, @"<BODY><BASEFONT Color=" + fnt + ">Known elemental spells can be cast by selecting the button next to each listed spell. A known spell will also have a red bookmark on its detail page you can click on to cast as well.</BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 188, 35, 133, 160, @"<BODY><BASEFONT Color=" + fnt + ">Each spell has the power needed to cast, which is the amount of mana and stamina the caster needs. The bookmark below can be selected to view the information on how this magic works.</BASEFONT></BODY>", (bool)false, (bool)false);
 			}
-			else if ( page > 1 && page < 6 ) // SPELL LISTS
+			else if ( page >= FIRST_LIST_PAGE && page < FIRST_SPELL_PAGE ) // SPELL LISTS
 			{
-				int id = 299;
-				string seca = "I";
-				string secb = "II";
+				int firstSpell = ( page - FIRST_LIST_PAGE ) * SPELLS_PER_LIST_PAGE;
+				int firstSphere = firstSpell / ElementalSpellProvider.SpellsPerCircle;
 
-				if ( page == 2 ){ 		id = 299; 	seca = "I";		secb = "II";	}
-				else if ( page == 3 ){ 	id = 307; 	seca = "III";	secb = "IV";	}
-				else if ( page == 4 ){ 	id = 315; 	seca = "V";		secb = "VI";	}
-				else if ( page == 5 ){ 	id = 323; 	seca = "VII";	secb = "VIII";	}
+				AddHtml( 59, 14, 100, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>Sphere " + SphereNumerals[firstSphere] + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 207, 14, 100, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>Sphere " + SphereNumerals[firstSphere + 1] + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 
-				AddHtml( 59, 14, 100, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>Sphere " + seca + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 207, 14, 100, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>Sphere " + secb + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
+				for ( int i = 0; i < SPELLS_PER_LIST_PAGE && firstSpell + i < ElementalSpellProvider.SpellCount; ++i )
+				{
+					SpellDefinition definition = ElementalSpellProvider.SpellDefinitions[firstSpell + i];
+					int id = definition.SpellID;
 
-				id++;
-				if ( HasSpell(from, id) ){ AddButton(35, 55, 2224, 2224, id, GumpButtonType.Reply, 0); }
-				AddHtml( 60, 50, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpell.CommonInfo( id, 1 ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(155, 55, 2104, 2104, (id-300+6), GumpButtonType.Reply, 0);
+					// Left page holds the first sphere, right page holds the second
+					int x = i < ElementalSpellProvider.SpellsPerCircle ? 0 : 155;
+					int y = 40 * ( i % ElementalSpellProvider.SpellsPerCircle );
 
-				id++;
-				if ( HasSpell(from, id) ){ AddButton(35, 95, 2224, 2224, id, GumpButtonType.Reply, 0); }
-				AddHtml( 60, 90, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpell.CommonInfo( id, 1 ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(155, 95, 2104, 2104, (id-300+6), GumpButtonType.Reply, 0);
-
-				id++;
-				if ( HasSpell(from, id) ){ AddButton(35, 135, 2224, 2224, id, GumpButtonType.Reply, 0); }
-				AddHtml( 60, 130, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpell.CommonInfo( id, 1 ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(155, 135, 2104, 2104, (id-300+6), GumpButtonType.Reply, 0);
-
-				id++;
-				if ( HasSpell(from, id) ){ AddButton(35, 175, 2224, 2224, id, GumpButtonType.Reply, 0); }
-				AddHtml( 60, 170, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpell.CommonInfo( id, 1 ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(155, 175, 2104, 2104, (id-300+6), GumpButtonType.Reply, 0);
-
-				id++;
-				if ( HasSpell(from, id) ){ AddButton(190, 55, 2224, 2224, id, GumpButtonType.Reply, 0); }
-				AddHtml( 215, 50, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpell.CommonInfo( id, 1 ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(310, 55, 2104, 2104, (id-300+6), GumpButtonType.Reply, 0);
-
-				id++;
-				if ( HasSpell(from, id) ){ AddButton(190, 95, 2224, 2224, id, GumpButtonType.Reply, 0); }
-				AddHtml( 215, 90, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpell.CommonInfo( id, 1 ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(310, 95, 2104, 2104, (id-300+6), GumpButtonType.Reply, 0);
-
-				id++;
-				if ( HasSpell(from, id) ){ AddButton(190, 135, 2224, 2224, id, GumpButtonType.Reply, 0); }
-				AddHtml( 215, 130, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpell.CommonInfo( id, 1 ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(310, 135, 2104, 2104, (id-300+6), GumpButtonType.Reply, 0);
-
-				id++;
-				if ( HasSpell(from, id) ){ AddButton(190, 175, 2224, 2224, id, GumpButtonType.Reply, 0); }
-				AddHtml( 215, 170, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpell.CommonInfo( id, 1 ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(310, 175, 2104, 2104, (id-300+6), GumpButtonType.Reply, 0);
+					if ( HasSpell(from, id) ){ AddButton(35 + x, 55 + y, 2224, 2224, id, GumpButtonType.Reply, 0); }
+					AddHtml( 60 + x, 50 + y, 102, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + ElementalSpellProvider.GetShortName( definition ) + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
+					AddButton(155 + x, 55 + y, 2104, 2104, FIRST_SPELL_PAGE + firstSpell + i, GumpButtonType.Reply, 0);
+				}
 			}
 			else // SPELL DESCRIPTIONS
 			{
-				int spell = 294 + page;
-				string sphere = "I";
-				int circle = 0;
-				int skill = 0;
-				int sect = 2;
+				int spellIndex = page - FIRST_SPELL_PAGE;
+				SpellDefinition definition = ElementalSpellProvider.SpellDefinitions[spellIndex];
+				int spell = definition.SpellID;
+				string sphere = SphereNumerals[ElementalSpellProvider.GetCircle( definition )];
+				int sect = FIRST_LIST_PAGE + spellIndex / SPELLS_PER_LIST_PAGE;
 
-				if ( spell >= 300 && spell <= 303 ){ 		sphere = "I"; 		circle = 1;		skill = 0;		sect = 2;	}
-				else if ( spell >= 304 && spell <= 307 ){ 	sphere = "II"; 		circle = 2;		skill = 0;		sect = 2;	}
-				else if ( spell >= 308 && spell <= 311 ){ 	sphere = "III"; 	circle = 3;		skill = 9;		sect = 3;	}
-				else if ( spell >= 312 && spell <= 315 ){ 	sphere = "IV"; 		circle = 4;		skill = 23;		sect = 3;	}
-				else if ( spell >= 316 && spell <= 319 ){ 	sphere = "V"; 		circle = 5;		skill = 38;		sect = 4;	}
-				else if ( spell >= 320 && spell <= 323 ){ 	sphere = "VI"; 		circle = 6;		skill = 52;		sect = 4;	}
-				else if ( spell >= 324 && spell <= 327 ){ 	sphere = "VII"; 	circle = 7;		skill = 66;		sect = 5;	}
-				else if ( spell >= 328 && spell <= 331 ){ 	sphere = "VIII"; 	circle = 8;		skill = 80;		sect = 5;	}
-
-				string power = (ElementalSpell.GetPower( circle-1 )).ToString();
-				
 				int spellIcon = ElementalSpell.SpellIcon( book.ItemID, spell );
 				if ( HasSpell(from, spell) ){ AddButton(74, 86, spellIcon, spellIcon, spell, GumpButtonType.Reply, 0); }
 				else AddImage( 74, 86, spellIcon );
 
-				var spellName = ElementalSpell.CommonInfo( spell, 1 );
+				var spellName = ElementalSpellProvider.GetShortName( definition );
 
 				AddHtml( 34, 13, 133, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG><CENTER>Elemental</CENTER></BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 34, 29, 133, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG><CENTER>" + spellName + "</CENTER></BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 26, 130, 144, 20, @"<BODY><BASEFONT Color=" + fnt + "><CENTER>[E" + spellName + "</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 26, 130, 144, 20, @"<BODY><BASEFONT Color=" + fnt + "><CENTER>[" + ElementalCommands.GetLegacyCommand( definition ) + "</CENTER></BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 34, 166, 100, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>Power:</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 139, 166, 38, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + power + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 139, 166, 38, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + definition.ManaCost + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddHtml( 34, 184, 100, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>Elementalism:</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 139, 184, 38, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + skill + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
+				AddHtml( 139, 184, 38, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>" + definition.MinSkill + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 
 				AddHtml( 190, 14, 100, 20, @"<BODY><BASEFONT Color=" + fnt + "><BIG>Sphere " + sphere + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);
 				AddHtml( 189, 38, 134, 159, @"<BODY><BASEFONT Color=" + fnt + ">" + ElementalSpell.DescriptionInfo( spell, m_Book.ItemID ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
@@ -177,8 +148,8 @@ namespace Server.Gumps
 			if ( info.ButtonID < 200 && info.ButtonID > 0 )
 			{
 				int page = info.ButtonID;
-				if ( page < 1 ){ page = 37; }
-				if ( page > 37 ){ page = 1; }
+				if ( page < 1 ){ page = LAST_PAGE; }
+				if ( page > LAST_PAGE ){ page = 1; }
 				from.SendGump( new ElementalSpellbookGump( from, m_Book, page ) );
 			}
 			else if ( info.ButtonID >= 500 )
@@ -186,40 +157,9 @@ namespace Server.Gumps
 				from.SendGump( new ElementalSpellbookGump( from, m_Book, (info.ButtonID-500) ) );
 				from.SendGump( new ElementalSpellHelp( from, m_Book, 1 ) );
 			}
-			else if ( info.ButtonID > 200 && HasSpell(from, info.ButtonID) )
+			else if ( ElementalSpellProvider.GetDefinition( info.ButtonID ) != null && HasSpell(from, info.ButtonID) )
 			{
-				if ( info.ButtonID == 300 ){ new Elemental_Armor_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 301 ){ new Elemental_Bolt_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 302 ){ new Elemental_Mend_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 303 ){ new Elemental_Sanctuary_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 304 ){ new Elemental_Pain_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 305 ){ new Elemental_Protection_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 306 ){ new Elemental_Purge_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 307 ){ new Elemental_Steed_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 308 ){ new Elemental_Call_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 309 ){ new Elemental_Force_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 310 ){ new Elemental_Wall_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 311 ){ new Elemental_Warp_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 312 ){ new Elemental_Field_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 313 ){ new Elemental_Restoration_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 314 ){ new Elemental_Strike_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 315 ){ new Elemental_Void_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 316 ){ new Elemental_Blast_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 317 ){ new Elemental_Echo_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 318 ){ new Elemental_Fiend_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 319 ){ new Elemental_Hold_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 320 ){ new Elemental_Barrage_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 321 ){ new Elemental_Rune_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 322 ){ new Elemental_Storm_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 323 ){ new Elemental_Summon_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 324 ){ new Elemental_Devastation_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 325 ){ new Elemental_Fall_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 326 ){ new Elemental_Gate_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 327 ){ new Elemental_Havoc_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 328 ){ new Elemental_Apocalypse_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 329 ){ new Elemental_Lord_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 330 ){ new Elemental_Soul_Spell( from, null ).Cast(); }
-				else if ( info.ButtonID == 331 ){ new Elemental_Spirit_Spell( from, null ).Cast(); }
+				ElementalSpellProvider.Cast( from, info.ButtonID );
 
 				from.SendGump( new ElementalSpellbookGump( from, m_Book, m_Book.EllyPage ) );
 			}
@@ -287,7 +227,12 @@ namespace Server.Gumps
 			if ( page == 2 )
 			{
 				AddImage(14, 326, pic);
-				AddHtml( 181, 118, 451, 360, @"<BODY><BASEFONT Color=" + fnt + ">[EArmor<BR>    Cast Elemental Armor<BR><BR>[EBolt<BR>    Cast Elemental Bolt<BR><BR>[EMend<BR>    Cast Elemental Mend<BR><BR>[ESanctuary<BR>    Cast Elemental Sanctuary<BR><BR>[EPain<BR>    Cast Elemental Pain<BR><BR>[EProtection<BR>    Cast Elemental Protection<BR><BR>[EPurge<BR>    Cast Elemental Purge<BR><BR>[ESteed<BR>    Cast Elemental Steed<BR><BR>[ECall<BR>    Cast Elemental Call<BR><BR>[EForce<BR>    Cast Elemental Force<BR><BR>[EWall<BR>    Cast Elemental Wall<BR><BR>[EWarp<BR>    Cast Elemental Warp<BR><BR>[EField<BR>    Cast Elemental Field<BR><BR>[ERestoration<BR>    Cast Elemental Restoration<BR><BR>[EStrike<BR>    Cast Elemental Strike<BR><BR>[EVoid<BR>    Cast Elemental Void<BR><BR>[EBlast<BR>    Cast Elemental Blast<BR><BR>[EEcho<BR>    Cast Elemental Echo<BR><BR>[EFiend<BR>    Cast Elemental Fiend<BR><BR>[EHold<BR>    Cast Elemental Hold<BR><BR>[EBarrage<BR>    Cast Elemental Barrage<BR><BR>[ERune<BR>    Cast Elemental Rune<BR><BR>[EStorm<BR>    Cast Elemental Storm<BR><BR>[ESummon<BR>    Cast Elemental Summon<BR><BR>[EDevastation<BR>    Cast Elemental Devastation<BR><BR>[EFall<BR>    Cast Elemental Fall<BR><BR>[EGate<BR>    Cast Elemental Gate<BR><BR>[EHavoc<BR>    Cast Elemental Havoc<BR><BR>[EApocalypse<BR>    Cast Elemental Apocalypse<BR><BR>[ELord<BR>    Cast Elemental Lord<BR><BR>[ESoul<BR>    Cast Elemental Soul<BR><BR>[ESpirit<BR>    Cast Elemental Spirit<BR><BR><BR><BR></BASEFONT></BODY>", (bool)false, (bool)true);
+				string commands = "";
+				foreach ( SpellDefinition definition in ElementalSpellProvider.SpellDefinitions )
+					commands += "[" + ElementalCommands.GetLegacyCommand( definition ) + "<BR>    Cast " + definition.Name.String + "<BR><BR>";
+				commands += "You can also type [Spells_Elementalism to see these commands.<BR><BR>";
+
+				AddHtml( 181, 118, 451, 360, @"<BODY><BASEFONT Color=" + fnt + ">" + commands + "<BR><BR></BASEFONT></BODY>", (bool)false, (bool)true);
 				AddHtml( 12, 44, 623, 60, @"<BODY><BASEFONT Color=" + fnt + ">Below are the [ commands you can either type to quickly cast a particular spell, or set a hot key to issue this command and cast the spell.</BASEFONT></BODY>", (bool)false, (bool)false);
 			}
 			else

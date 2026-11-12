@@ -7,8 +7,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Summon_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Summon", "Convoca",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 323,
+					IconGraphic = 0x2CEC,
+					Name = "Elemental Summon",
+					PowerWords = "Convoca",
+					Description = "A lightning elemental is summoned to serve the caster.",
+					ManaCost = 24,
+					MinSkill = 52,
+					TargetType = TargetFlags.None
+				},
 				269,
 				9020,
 				false
@@ -17,7 +27,7 @@ namespace Server.Spells.Elementalism
 		public override SpellCircle Circle { get { return SpellCircle.Sixth; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 3.25 ); } }
 
-		public Elemental_Summon_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Summon_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

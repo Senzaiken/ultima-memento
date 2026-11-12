@@ -11,8 +11,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Gate_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Gate", "Poarta",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 326,
+					IconGraphic = 0x2CEF,
+					Name = "Elemental Gate",
+					PowerWords = "Poarta",
+					Description = "Targeting a marked rune opens a temporary portal to the rune’s marked location. The gateway can be used by anyone to travel to that location.",
+					ManaCost = 40,
+					MinSkill = 66,
+					TargetType = TargetFlags.None
+				},
 				263,
 				9032
 			);
@@ -25,7 +35,7 @@ namespace Server.Spells.Elementalism
 		{
 		}
 
-		public Elemental_Gate_Spell( Mobile caster, Item scroll, RunebookEntry entry ) : base( caster, scroll, m_Info )
+		public Elemental_Gate_Spell( Mobile caster, Item scroll, RunebookEntry entry ) : base( caster, scroll, SpellInfo )
 		{
 			m_Entry = entry;
 		}

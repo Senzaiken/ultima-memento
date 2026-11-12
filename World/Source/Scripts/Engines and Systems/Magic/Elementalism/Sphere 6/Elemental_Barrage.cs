@@ -7,15 +7,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Barrage_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Barrage", "Baraj",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 320,
+					IconGraphic = 0x2CE9,
+					Name = "Elemental Barrage",
+					PowerWords = "Baraj",
+					Description = "Launches a wave of magical electricity at the target, dealing significant energy damage.",
+					ManaCost = 24,
+					MinSkill = 52,
+					TargetType = TargetFlags.Harmful
+				},
 				230,
 				9022
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Sixth; } }
 
-		public Elemental_Barrage_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Barrage_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

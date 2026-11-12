@@ -7,15 +7,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Strike_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Strike", "Lovitura",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 314,
+					IconGraphic = 0x2CE3,
+					Name = "Elemental Strike",
+					PowerWords = "Lovitura",
+					Description = "Strikes the target with comets from the sky, which deals physical and energy damage.",
+					ManaCost = 14,
+					MinSkill = 23,
+					TargetType = TargetFlags.Harmful
+				},
 				239,
 				9021
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Fourth; } }
 
-		public Elemental_Strike_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Strike_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

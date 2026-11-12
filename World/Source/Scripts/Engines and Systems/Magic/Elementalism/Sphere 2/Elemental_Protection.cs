@@ -10,15 +10,25 @@ namespace Server.Spells.Elementalism
 		private static Hashtable m_Registry = new Hashtable();
 		public static Hashtable Registry { get { return m_Registry; } }
 
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Protection", "Proteja",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 305,
+					IconGraphic = 0x2CDA,
+					Name = "Elemental Protection",
+					PowerWords = "Proteja",
+					Description = "Prevents the caster from having their spells disrupted, but lowers their physical resistance and magic resistance. Active until the spell is deactivated by re-casting it.",
+					ManaCost = 7,
+					MinSkill = 0,
+					TargetType = TargetFlags.None
+				},
 				236,
 				9011
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Second; } }
 
-		public Elemental_Protection_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Protection_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

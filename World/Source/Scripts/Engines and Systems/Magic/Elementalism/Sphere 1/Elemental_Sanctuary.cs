@@ -4,13 +4,24 @@ using Server.Mobiles;
 using Server.Network;
 using Server.Regions;
 using Server.Misc;
+using Server.Targeting;
 
 namespace Server.Spells.Elementalism
 {
 	public class Elemental_Sanctuary_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Sanctuary", "Invata",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 303,
+					IconGraphic = 0x2CD8,
+					Name = "Elemental Sanctuary",
+					PowerWords = "Invata",
+					Description = "Transports the elementalist to the saftey of the Lyceum. Can cast in dungeons at higher levels.",
+					ManaCost = 5,
+					MinSkill = 0,
+					TargetType = TargetFlags.None
+				},
 				239,
 				9031
 			);
@@ -19,7 +30,7 @@ namespace Server.Spells.Elementalism
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.25 ); } }
 
-		public Elemental_Sanctuary_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Sanctuary_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

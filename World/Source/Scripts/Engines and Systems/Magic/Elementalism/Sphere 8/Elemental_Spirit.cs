@@ -7,8 +7,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Spirit_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Spirit", "Fantoma",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 331,
+					IconGraphic = 0x2CF4,
+					Name = "Elemental Spirit",
+					PowerWords = "Fantoma",
+					Description = "Summons a cloud spirit that attacks a target based off its intelligence and proximity. It disappears after a set amount of time and requires 2 control slots.",
+					ManaCost = 50,
+					MinSkill = 80,
+					TargetType = TargetFlags.None
+				},
 				260,
 				9032,
 				false
@@ -16,7 +26,7 @@ namespace Server.Spells.Elementalism
 
 		public override SpellCircle Circle { get { return SpellCircle.Eighth; } }
 
-		public Elemental_Spirit_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Spirit_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

@@ -7,15 +7,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Armor_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Armor", "Armura",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 300,
+					IconGraphic = 0x2CD5,
+					Name = "Elemental Armor",
+					PowerWords = "Armura",
+					Description = "Increases your energy resistance while reducing your other resistances. Active until spell is deactivated by re-casting it.",
+					ManaCost = 5,
+					MinSkill = 0,
+					TargetType = TargetFlags.None
+				},
 				236,
 				9011
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.First; } }
 
-		public Elemental_Armor_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Armor_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

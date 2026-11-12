@@ -9,15 +9,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Rune_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Rune", "Marca",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 321,
+					IconGraphic = 0x2CEA,
+					Name = "Elemental Rune",
+					PowerWords = "Marca",
+					Description = "Marks a rune to the elementalist’s current location. There are magic spells and abilities that can be used on the rune to teleport one to the location it is marked with.",
+					ManaCost = 24,
+					MinSkill = 52,
+					TargetType = TargetFlags.None
+				},
 				218,
 				9002
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Sixth; } }
 
-		public Elemental_Rune_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Rune_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

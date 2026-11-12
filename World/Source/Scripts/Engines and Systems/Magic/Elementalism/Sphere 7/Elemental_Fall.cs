@@ -9,8 +9,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Fall_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Fall", "Toamna",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 325,
+					IconGraphic = 0x2CEE,
+					Name = "Elemental Fall",
+					PowerWords = "Toamna",
+					Description = "Calls down stars that go nova and affects all targets within a radius around the target location. The total physical and energy damage dealt is split amongst all targets.",
+					ManaCost = 40,
+					MinSkill = 66,
+					TargetType = TargetFlags.None
+				},
 				233,
 				9042,
 				false
@@ -18,7 +28,7 @@ namespace Server.Spells.Elementalism
 
 		public override SpellCircle Circle { get { return SpellCircle.Seventh; } }
 
-		public Elemental_Fall_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Fall_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

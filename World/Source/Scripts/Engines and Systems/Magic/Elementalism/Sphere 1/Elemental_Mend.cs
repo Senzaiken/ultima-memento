@@ -8,15 +8,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Mend_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Mend", "Vindeca",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 302,
+					IconGraphic = 0x2CD7,
+					Name = "Elemental Mend",
+					PowerWords = "Vindeca",
+					Description = "Restores the target of a small amount of lost hit points.",
+					ManaCost = 5,
+					MinSkill = 0,
+					TargetType = TargetFlags.Beneficial
+				},
 				224,
 				9061
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.First; } }
 
-		public Elemental_Mend_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Mend_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

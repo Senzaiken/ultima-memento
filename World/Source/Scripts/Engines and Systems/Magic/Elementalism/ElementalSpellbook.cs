@@ -20,8 +20,8 @@ namespace Server.Items
 		public int Elly_Page { get{ return EllyPage; } set{ EllyPage = value; } }
 
 		public override SpellbookType SpellbookType{ get{ return SpellbookType.Elementalism; } }
-		public override int BookOffset{ get{ return 300; } }
-		public override int BookCount{ get{ return 32; } }
+		public override int BookOffset{ get{ return ElementalSpellProvider.FirstSpellId; } }
+		public override int BookCount{ get{ return ElementalSpellProvider.SpellCount; } }
 
 		[Constructable]
 		public ElementalSpellbook() : this( (ulong)0 )

@@ -6,15 +6,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Purge_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Purge", "Purifica",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 306,
+					IconGraphic = 0x2CDB,
+					Name = "Elemental Purge",
+					PowerWords = "Purifica",
+					Description = "Attempts to blow away poisons affecting the target.",
+					ManaCost = 7,
+					MinSkill = 0,
+					TargetType = TargetFlags.Beneficial
+				},
 				212,
 				9061
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Second; } }
 
-		public Elemental_Purge_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Purge_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

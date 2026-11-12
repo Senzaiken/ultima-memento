@@ -7,8 +7,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Call_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Call", "Striga",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 308,
+					IconGraphic = 0x2CDD,
+					Name = "Elemental Call",
+					PowerWords = "Striga",
+					Description = "A lesser air elemental is summoned to serve the caster. The elemental disappears after a set amount of time and requires a control slot.",
+					ManaCost = 10,
+					MinSkill = 9,
+					TargetType = TargetFlags.None
+				},
 				269,
 				9020,
 				false
@@ -17,7 +27,7 @@ namespace Server.Spells.Elementalism
 		public override SpellCircle Circle { get { return SpellCircle.Third; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 3.25 ); } }
 
-		public Elemental_Call_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Call_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

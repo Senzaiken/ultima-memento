@@ -7,10 +7,10 @@ namespace Server.Items
 {
 	public class Elemental_Armor_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 300 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Armor_Scroll() : this( 300 )
+		public Elemental_Armor_Scroll() : this( (int)Elemental_Armor_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -39,10 +39,10 @@ namespace Server.Items
 	}
 	public class Elemental_Bolt_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 301 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Bolt_Scroll() : this( 301 )
+		public Elemental_Bolt_Scroll() : this( (int)Elemental_Bolt_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -71,10 +71,10 @@ namespace Server.Items
 	}
 	public class Elemental_Mend_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 302 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Mend_Scroll() : this( 302 )
+		public Elemental_Mend_Scroll() : this( (int)Elemental_Mend_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -103,10 +103,10 @@ namespace Server.Items
 	}
 	public class Elemental_Sanctuary_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 303 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Sanctuary_Scroll() : this( 303 )
+		public Elemental_Sanctuary_Scroll() : this( (int)Elemental_Sanctuary_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -135,10 +135,10 @@ namespace Server.Items
 	}
 	public class Elemental_Pain_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 304 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Pain_Scroll() : this( 304 )
+		public Elemental_Pain_Scroll() : this( (int)Elemental_Pain_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -167,10 +167,10 @@ namespace Server.Items
 	}
 	public class Elemental_Protection_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 305 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Protection_Scroll() : this( 305 )
+		public Elemental_Protection_Scroll() : this( (int)Elemental_Protection_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -199,10 +199,10 @@ namespace Server.Items
 	}
 	public class Elemental_Purge_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 306 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Purge_Scroll() : this( 306 )
+		public Elemental_Purge_Scroll() : this( (int)Elemental_Purge_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -231,10 +231,10 @@ namespace Server.Items
 	}
 	public class Elemental_Steed_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 307 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Steed_Scroll() : this( 307 )
+		public Elemental_Steed_Scroll() : this( (int)Elemental_Steed_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -263,10 +263,10 @@ namespace Server.Items
 	}
 	public class Elemental_Call_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 308 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Call_Scroll() : this( 308 )
+		public Elemental_Call_Scroll() : this( (int)Elemental_Call_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -295,10 +295,10 @@ namespace Server.Items
 	}
 	public class Elemental_Force_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 309 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Force_Scroll() : this( 309 )
+		public Elemental_Force_Scroll() : this( (int)Elemental_Force_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -327,10 +327,10 @@ namespace Server.Items
 	}
 	public class Elemental_Wall_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 310 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Wall_Scroll() : this( 310 )
+		public Elemental_Wall_Scroll() : this( (int)Elemental_Wall_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -359,10 +359,10 @@ namespace Server.Items
 	}
 	public class Elemental_Warp_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 311 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Warp_Scroll() : this( 311 )
+		public Elemental_Warp_Scroll() : this( (int)Elemental_Warp_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -391,10 +391,10 @@ namespace Server.Items
 	}
 	public class Elemental_Field_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 312 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Field_Scroll() : this( 312 )
+		public Elemental_Field_Scroll() : this( (int)Elemental_Field_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -423,10 +423,10 @@ namespace Server.Items
 	}
 	public class Elemental_Restoration_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 313 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Restoration_Scroll() : this( 313 )
+		public Elemental_Restoration_Scroll() : this( (int)Elemental_Restoration_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -455,10 +455,10 @@ namespace Server.Items
 	}
 	public class Elemental_Strike_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 314 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Strike_Scroll() : this( 314 )
+		public Elemental_Strike_Scroll() : this( (int)Elemental_Strike_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -487,10 +487,10 @@ namespace Server.Items
 	}
 	public class Elemental_Void_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 315 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Void_Scroll() : this( 315 )
+		public Elemental_Void_Scroll() : this( (int)Elemental_Void_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -519,10 +519,10 @@ namespace Server.Items
 	}
 	public class Elemental_Blast_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 316 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Blast_Scroll() : this( 316 )
+		public Elemental_Blast_Scroll() : this( (int)Elemental_Blast_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -551,10 +551,10 @@ namespace Server.Items
 	}
 	public class Elemental_Echo_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 317 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Echo_Scroll() : this( 317 )
+		public Elemental_Echo_Scroll() : this( (int)Elemental_Echo_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -583,10 +583,10 @@ namespace Server.Items
 	}
 	public class Elemental_Fiend_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 318 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Fiend_Scroll() : this( 318 )
+		public Elemental_Fiend_Scroll() : this( (int)Elemental_Fiend_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -615,10 +615,10 @@ namespace Server.Items
 	}
 	public class Elemental_Hold_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 319 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Hold_Scroll() : this( 319 )
+		public Elemental_Hold_Scroll() : this( (int)Elemental_Hold_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -647,10 +647,10 @@ namespace Server.Items
 	}
 	public class Elemental_Barrage_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 320 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Barrage_Scroll() : this( 320 )
+		public Elemental_Barrage_Scroll() : this( (int)Elemental_Barrage_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -679,10 +679,10 @@ namespace Server.Items
 	}
 	public class Elemental_Rune_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 321 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Rune_Scroll() : this( 321 )
+		public Elemental_Rune_Scroll() : this( (int)Elemental_Rune_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -711,10 +711,10 @@ namespace Server.Items
 	}
 	public class Elemental_Storm_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 322 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Storm_Scroll() : this( 322 )
+		public Elemental_Storm_Scroll() : this( (int)Elemental_Storm_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -743,10 +743,10 @@ namespace Server.Items
 	}
 	public class Elemental_Summon_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 323 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Summon_Scroll() : this( 323 )
+		public Elemental_Summon_Scroll() : this( (int)Elemental_Summon_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -775,10 +775,10 @@ namespace Server.Items
 	}
 	public class Elemental_Devastation_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 324 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Devastation_Scroll() : this( 324 )
+		public Elemental_Devastation_Scroll() : this( (int)Elemental_Devastation_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -807,10 +807,10 @@ namespace Server.Items
 	}
 	public class Elemental_Fall_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 325 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Fall_Scroll() : this( 325 )
+		public Elemental_Fall_Scroll() : this( (int)Elemental_Fall_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -839,10 +839,10 @@ namespace Server.Items
 	}
 	public class Elemental_Gate_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 326 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Gate_Scroll() : this( 326 )
+		public Elemental_Gate_Scroll() : this( (int)Elemental_Gate_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -871,10 +871,10 @@ namespace Server.Items
 	}
 	public class Elemental_Havoc_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 327 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Havoc_Scroll() : this( 327 )
+		public Elemental_Havoc_Scroll() : this( (int)Elemental_Havoc_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -903,10 +903,10 @@ namespace Server.Items
 	}
 	public class Elemental_Apocalypse_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 328 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Apocalypse_Scroll() : this( 328 )
+		public Elemental_Apocalypse_Scroll() : this( (int)Elemental_Apocalypse_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -935,10 +935,10 @@ namespace Server.Items
 	}
 	public class Elemental_Lord_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 329 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Lord_Scroll() : this( 329 )
+		public Elemental_Lord_Scroll() : this( (int)Elemental_Lord_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -967,10 +967,10 @@ namespace Server.Items
 	}
 	public class Elemental_Soul_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 330 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Soul_Scroll() : this( 330 )
+		public Elemental_Soul_Scroll() : this( (int)Elemental_Soul_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 
@@ -999,10 +999,10 @@ namespace Server.Items
 	}
 	public class Elemental_Spirit_Scroll : SpellScroll
 	{
-		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( 331 ); } }
+		public override string DefaultDescription{ get{ return ElementalSpell.SpellDescription( SpellID ); } }
 
 		[Constructable]
-		public Elemental_Spirit_Scroll() : this( 331 )
+		public Elemental_Spirit_Scroll() : this( (int)Elemental_Spirit_Spell.SpellInfo.SpellDefinition.SpellID )
 		{
 		}
 

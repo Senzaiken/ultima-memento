@@ -106,40 +106,6 @@ namespace Server.Spells
 			Register( 115, typeof( Necromancy.WraithFormSpell ) );
 			Register( 116, typeof( Necromancy.ExorcismSpell ) );
 
-			// Elemental Spells
-			Register( 300, typeof( Elementalism.Elemental_Armor_Spell ) );
-			Register( 301, typeof( Elementalism.Elemental_Bolt_Spell ) );
-			Register( 302, typeof( Elementalism.Elemental_Mend_Spell ) );
-			Register( 303, typeof( Elementalism.Elemental_Sanctuary_Spell ) );
-			Register( 304, typeof( Elementalism.Elemental_Pain_Spell ) );
-			Register( 305, typeof( Elementalism.Elemental_Protection_Spell ) );
-			Register( 306, typeof( Elementalism.Elemental_Purge_Spell ) );
-			Register( 307, typeof( Elementalism.Elemental_Steed_Spell ) );
-			Register( 308, typeof( Elementalism.Elemental_Call_Spell ) );
-			Register( 309, typeof( Elementalism.Elemental_Force_Spell ) );
-			Register( 310, typeof( Elementalism.Elemental_Wall_Spell ) );
-			Register( 311, typeof( Elementalism.Elemental_Warp_Spell ) );
-			Register( 312, typeof( Elementalism.Elemental_Field_Spell ) );
-			Register( 313, typeof( Elementalism.Elemental_Restoration_Spell ) );
-			Register( 314, typeof( Elementalism.Elemental_Strike_Spell ) );
-			Register( 315, typeof( Elementalism.Elemental_Void_Spell ) );
-			Register( 316, typeof( Elementalism.Elemental_Blast_Spell ) );
-			Register( 317, typeof( Elementalism.Elemental_Echo_Spell ) );
-			Register( 318, typeof( Elementalism.Elemental_Fiend_Spell ) );
-			Register( 319, typeof( Elementalism.Elemental_Hold_Spell ) );
-			Register( 320, typeof( Elementalism.Elemental_Barrage_Spell ) );
-			Register( 321, typeof( Elementalism.Elemental_Rune_Spell ) );
-			Register( 322, typeof( Elementalism.Elemental_Storm_Spell ) );
-			Register( 323, typeof( Elementalism.Elemental_Summon_Spell ) );
-			Register( 324, typeof( Elementalism.Elemental_Devastation_Spell ) );
-			Register( 325, typeof( Elementalism.Elemental_Fall_Spell ) );
-			Register( 326, typeof( Elementalism.Elemental_Gate_Spell ) );
-			Register( 327, typeof( Elementalism.Elemental_Havoc_Spell ) );
-			Register( 328, typeof( Elementalism.Elemental_Apocalypse_Spell ) );
-			Register( 329, typeof( Elementalism.Elemental_Lord_Spell ) );
-			Register( 330, typeof( Elementalism.Elemental_Soul_Spell ) );
-			Register( 331, typeof( Elementalism.Elemental_Spirit_Spell ) );
-
 			// Spell providers
 			SpellProviderRegistry.Register( Mystic.MysticSpellProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Jester.JesterSpellProvider.SpellDefinitions );
@@ -153,6 +119,7 @@ namespace Server.Spells
 			SpellProviderRegistry.Register( Chivalry.ChivalrySpellProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Undead.WitchSpellProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Herbalist.DruidSpellProvider.SpellDefinitions );
+			SpellProviderRegistry.Register( Elementalism.ElementalSpellProvider.SpellDefinitions );
 
 			// Samurai abilities
 			Register( 400, typeof( Bushido.HonorableExecution ) );

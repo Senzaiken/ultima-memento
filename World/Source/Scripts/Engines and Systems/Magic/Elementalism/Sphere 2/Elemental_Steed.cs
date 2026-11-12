@@ -9,8 +9,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Steed_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Steed", "Faptura",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 307,
+					IconGraphic = 0x2CDC,
+					Name = "Elemental Steed",
+					PowerWords = "Faptura",
+					Description = "Summons an air dragon that does not fight but you can ride throughout the land. The creature disappears after a set amount of time and requires a control slot.",
+					ManaCost = 7,
+					MinSkill = 0,
+					TargetType = TargetFlags.None
+				},
 				269,
 				9050
 			);
@@ -18,7 +28,7 @@ namespace Server.Spells.Elementalism
 		public override SpellCircle Circle { get { return SpellCircle.Second; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 3.25 ); } }
 
-		public Elemental_Steed_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Steed_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

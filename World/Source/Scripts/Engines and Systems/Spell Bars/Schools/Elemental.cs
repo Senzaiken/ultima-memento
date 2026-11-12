@@ -1,4 +1,3 @@
-using Server.Items;
 using Server.Mobiles;
 using Server.Spells.Elementalism;
 
@@ -9,7 +8,7 @@ namespace Server.SpellBars
 		public static readonly ElementalSpellSchool Instance = new ElementalSpellSchool();
 
 		public int MaxSlots
-		{ get { return 32; } }
+		{ get { return ElementalSpellProvider.SpellCount; } }
 
 		public SpellBarSchool School
 		{ get { return SpellBarSchool.Elemental; } }
@@ -51,19 +50,18 @@ namespace Server.SpellBars
 
 		public string GetName(int slotIndex)
 		{
-			int registryId = GetRegistrySpellId(slotIndex);
-			return ElementalSpell.CommonInfo(registryId, 1);
+			if (slotIndex < 1 || slotIndex > ElementalSpellProvider.SpellCount)
+				return string.Empty;
+
+			return ElementalSpellProvider.GetShortName(ElementalSpellProvider.SpellDefinitions[slotIndex - 1]);
 		}
 
 		public int GetRegistrySpellId(int slotIndex)
-		{
-			return 300 - 1 + slotIndex;
-		}
+		{ return ElementalSpellProvider.SpellDefinitions[slotIndex - 1].SpellID; }
 
 		public bool HasSpell(PlayerMobile from, int registrySpellId)
 		{
-			Spellbook book = Spellbook.Find(from, registrySpellId);
-			return book != null && book.HasSpell(registrySpellId);
+			return ElementalSpellProvider.HasSpell(from, registrySpellId);
 		}
 	}
 

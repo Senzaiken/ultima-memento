@@ -7,15 +7,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Pain_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Pain", "Durere",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 304,
+					IconGraphic = 0x2CD9,
+					Name = "Elemental Pain",
+					PowerWords = "Durere",
+					Description = "Affects the target with a swirling wind, dealing physical and energy damage. The closer the target is to the caster, the more damage is dealt.",
+					ManaCost = 7,
+					MinSkill = 0,
+					TargetType = TargetFlags.Harmful
+				},
 				212,
 				9041
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Second; } }
 
-		public Elemental_Pain_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Pain_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

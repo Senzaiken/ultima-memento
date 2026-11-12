@@ -9,15 +9,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Hold_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Hold", "Temnita",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 319,
+					IconGraphic = 0x2CE8,
+					Name = "Elemental Hold",
+					PowerWords = "Temnita",
+					Description = "Stars appear to immobilize the target for a brief amount of time. The target's magic resistance skill affects the duration of the immobilization.",
+					ManaCost = 19,
+					MinSkill = 38,
+					TargetType = TargetFlags.Harmful
+				},
 				218,
 				9012
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Fifth; } }
 
-		public Elemental_Hold_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Hold_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

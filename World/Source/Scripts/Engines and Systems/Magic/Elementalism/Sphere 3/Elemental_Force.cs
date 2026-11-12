@@ -8,15 +8,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Force_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Force", "Forta",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 309,
+					IconGraphic = 0x2CDE,
+					Name = "Elemental Force",
+					PowerWords = "Forta",
+					Description = "Shoots a bolt of lighting at a target, dealing some physical damage but mostly energy damage.",
+					ManaCost = 10,
+					MinSkill = 9,
+					TargetType = TargetFlags.Harmful
+				},
 				203,
 				9041
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Third; } }
 
-		public Elemental_Force_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Force_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

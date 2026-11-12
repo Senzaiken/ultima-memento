@@ -7,15 +7,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Havoc_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Havoc", "Haotic",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 327,
+					IconGraphic = 0x2CF0,
+					Name = "Elemental Havoc",
+					PowerWords = "Haotic",
+					Description = "Conjures hurricane force winds around the target, causing a massive amount of physical and energy damage.",
+					ManaCost = 40,
+					MinSkill = 66,
+					TargetType = TargetFlags.Harmful
+				},
 				245,
 				9042
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Seventh; } }
 
-		public Elemental_Havoc_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Havoc_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

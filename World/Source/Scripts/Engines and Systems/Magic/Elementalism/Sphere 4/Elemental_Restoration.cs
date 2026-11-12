@@ -8,15 +8,25 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Restoration_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Restoration", "Restabili",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 313,
+					IconGraphic = 0x2CE2,
+					Name = "Elemental Restoration",
+					PowerWords = "Restabili",
+					Description = "Restores the target of a medium amount of lost hit points.",
+					ManaCost = 14,
+					MinSkill = 23,
+					TargetType = TargetFlags.Beneficial
+				},
 				204,
 				9061
 			);
 
 		public override SpellCircle Circle { get { return SpellCircle.Fourth; } }
 
-		public Elemental_Restoration_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Restoration_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

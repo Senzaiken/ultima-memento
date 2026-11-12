@@ -11,8 +11,18 @@ namespace Server.Spells.Elementalism
 {
 	public class Elemental_Field_Spell : ElementalSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo(
-				"Elemental Field", "Limite",
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 312,
+					IconGraphic = 0x2CE1,
+					Name = "Elemental Field",
+					PowerWords = "Limite",
+					Description = "Creates a wall of electricity that deals energy damage to all who walk through it.",
+					ManaCost = 14,
+					MinSkill = 23,
+					TargetType = TargetFlags.None
+				},
 				215,
 				9041,
 				false
@@ -20,7 +30,7 @@ namespace Server.Spells.Elementalism
 
 		public override SpellCircle Circle { get { return SpellCircle.Fourth; } }
 
-		public Elemental_Field_Spell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public Elemental_Field_Spell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 
