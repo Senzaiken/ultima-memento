@@ -212,6 +212,10 @@ namespace Server.Items
 			if ( !Multis.DesignContext.Check( from ) )
 				return; // They are customizing
 
+			// Spells from native TazUO books arrive with client-side ids and are cast through their school's rules.
+			if ( Server.Spells.Dynamic.DynamicSpellbookManager.TryCast( from, e.SpellID ) )
+				return;
+
 			Spellbook book = e.Spellbook as Spellbook;
 			int spellID = e.SpellID;
 

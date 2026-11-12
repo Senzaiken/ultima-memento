@@ -67,8 +67,11 @@ namespace Server.Items
 			else if ( Parent == from || ( pack != null && Parent == pack ) )
 			{
 				from.SendSound( 0x55 );
-				from.CloseGump( typeof( DeathKnightSpellbookGump ) );
-				from.SendGump( new DeathKnightSpellbookGump( from, this, 1 ) );
+				if ( !Server.Spells.Dynamic.DynamicSpellbookManager.TryDisplay( from, this ) )
+				{
+					from.CloseGump( typeof( DeathKnightSpellbookGump ) );
+					from.SendGump( new DeathKnightSpellbookGump( from, this, 1 ) );
+				}
 			}
 			else from.SendLocalizedMessage(500207); // The spellbook must be in your backpack (and not in a container within) to open.
 		}

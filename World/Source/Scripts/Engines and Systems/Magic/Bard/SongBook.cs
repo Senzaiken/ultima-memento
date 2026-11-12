@@ -28,8 +28,11 @@ namespace Server.Items
 		{
 			if ( from.InRange( GetWorldLocation(), 1 ) )
 			{
-				from.CloseGump( typeof( SongBookGump ) );
-				from.SendGump( new SongBookGump( from, this, 1 ) );
+				if ( !Server.Spells.Dynamic.DynamicSpellbookManager.TryDisplay( from, this ) )
+				{
+					from.CloseGump( typeof( SongBookGump ) );
+					from.SendGump( new SongBookGump( from, this, 1 ) );
+				}
 			}
 		}
 

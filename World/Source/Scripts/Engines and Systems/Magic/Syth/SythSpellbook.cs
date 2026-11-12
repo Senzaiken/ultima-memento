@@ -62,8 +62,11 @@ namespace Server.Items
 			else if ( Parent == from || ( pack != null && Parent == pack ) )
 			{
 				from.SendSound( 0x54D );
-				from.CloseGump( typeof( SythSpellbookGump ) );
-				from.SendGump( new SythSpellbookGump( from, this, 1 ) );
+				if ( !Server.Spells.Dynamic.DynamicSpellbookManager.TryDisplay( from, this ) )
+				{
+					from.CloseGump( typeof( SythSpellbookGump ) );
+					from.SendGump( new SythSpellbookGump( from, this, 1 ) );
+				}
 			}
 			else
 			{
