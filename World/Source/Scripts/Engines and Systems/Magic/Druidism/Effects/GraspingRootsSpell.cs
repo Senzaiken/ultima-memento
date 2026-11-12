@@ -8,14 +8,29 @@ namespace Server.Spells.Herbalist
 {
 	public class GraspingRootsSpell : HerbalistSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 151,
+					IconGraphic = 11443,
+					Name = "Grasping Roots Mixture",
+					PowerWords = "",
+					Description = "Releases roots from the ground to entangle a foe.",
+					ManaCost = 0,
+					MinSkill = 35,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 4; } }
 		public override double CastDelay{ get{ return 1.5; } }
-		public override double RequiredSkill{ get{ return 35.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 
-		public GraspingRootsSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public GraspingRootsSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

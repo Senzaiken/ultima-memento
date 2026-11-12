@@ -12,14 +12,29 @@ namespace Server.Spells.Herbalist
 {
 	public class RestorativeSoilSpell : HerbalistSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 161,
+					IconGraphic = 11447,
+					Name = "Jar of Magical Mud",
+					PowerWords = "",
+					Description = "Dumps mystical mud in your pack, that will resurrect you a few moments after losing your life. You can also directly resurrect others.",
+					ManaCost = 0,
+					MinSkill = 85,
+					TargetType = TargetFlags.Beneficial
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 4; } }
 		public override double CastDelay{ get{ return 2.0; } }
-		public override double RequiredSkill{ get{ return 85.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }
 
-		public RestorativeSoilSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public RestorativeSoilSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

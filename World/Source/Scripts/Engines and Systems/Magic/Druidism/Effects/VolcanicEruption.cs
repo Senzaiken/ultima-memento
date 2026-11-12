@@ -9,14 +9,29 @@ namespace Server.Spells.Herbalist
 {
 	public class VolcanicEruptionSpell : HerbalistSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 154,
+					IconGraphic = 11453,
+					Name = "Volcanic Fluid",
+					PowerWords = "",
+					Description = "Causes molten lava to burst from the ground, hitting every foe nearby.",
+					ManaCost = 0,
+					MinSkill = 80,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 8; } }
 		public override double CastDelay{ get{ return 2.0; } }
-		public override double RequiredSkill{ get{ return 80.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 
-		public VolcanicEruptionSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public VolcanicEruptionSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

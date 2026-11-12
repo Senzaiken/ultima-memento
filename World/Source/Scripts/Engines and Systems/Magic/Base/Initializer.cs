@@ -106,24 +106,6 @@ namespace Server.Spells
 			Register( 115, typeof( Necromancy.WraithFormSpell ) );
 			Register( 116, typeof( Necromancy.ExorcismSpell ) );
 
-			// Druid mixtures
-			Register( 147, typeof( Herbalist.ShieldOfEarthSpell ) );
-			Register( 148, typeof( Herbalist.WoodlandProtectionSpell ) );
-			Register( 149, typeof( Herbalist.ProtectiveFairySpell ) );
-			Register( 150, typeof( Herbalist.HerbalHealingSpell ) );
-			Register( 151, typeof( Herbalist.GraspingRootsSpell ) );
-			Register( 152, typeof( Herbalist.BlendWithForestSpell ) );
-			Register( 153, typeof( Herbalist.SwarmOfInsectsSpell ) );
-			Register( 154, typeof( Herbalist.VolcanicEruptionSpell ) );
-			Register( 155, typeof( Herbalist.TreefellowSpell ) );
-			Register( 156, typeof( Herbalist.StoneCircleSpell ) );
-			Register( 157, typeof( Herbalist.DruidicRuneSpell ) );
-			Register( 158, typeof( Herbalist.LureStoneSpell ) );
-			Register( 159, typeof( Herbalist.NaturesPassageSpell ) );
-			Register( 160, typeof( Herbalist.MushroomGatewaySpell ) );
-			Register( 161, typeof( Herbalist.RestorativeSoilSpell ) );
-			Register( 162, typeof( Herbalist.FireflySpell ) );
-
 			// Elemental Spells
 			Register( 300, typeof( Elementalism.Elemental_Armor_Spell ) );
 			Register( 301, typeof( Elementalism.Elemental_Bolt_Spell ) );
@@ -170,6 +152,7 @@ namespace Server.Spells
 			SpellProviderRegistry.Register( Research.ResearchSpellProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Chivalry.ChivalrySpellProvider.SpellDefinitions );
 			SpellProviderRegistry.Register( Undead.WitchSpellProvider.SpellDefinitions );
+			SpellProviderRegistry.Register( Herbalist.DruidSpellProvider.SpellDefinitions );
 
 			// Samurai abilities
 			Register( 400, typeof( Bushido.HonorableExecution ) );

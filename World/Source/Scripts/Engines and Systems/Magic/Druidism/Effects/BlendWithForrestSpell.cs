@@ -7,16 +7,31 @@ namespace Server.Spells.Herbalist
 { 
 	public class BlendWithForestSpell : HerbalistSpell 
 	{ 
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 152,
+					IconGraphic = 11442,
+					Name = "Forest Blending Oil",
+					PowerWords = "",
+					Description = "Allows one to blend seamlessly with the forest, causing foes to lose sight of them.",
+					ManaCost = 0,
+					MinSkill = 50,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 4; } }
 		public override double CastDelay{ get{ return 1.0; } } 
-		public override double RequiredSkill{ get{ return 50.0; } } 
-		public override int RequiredMana{ get{ return 0; } } 
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } } 
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } } 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 
 		private static readonly Hashtable m_Table = new Hashtable();
 
-		public BlendWithForestSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public BlendWithForestSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

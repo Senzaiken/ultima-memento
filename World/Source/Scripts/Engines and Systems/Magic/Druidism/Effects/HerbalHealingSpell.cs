@@ -10,14 +10,29 @@ namespace Server.Spells.Herbalist
 {
 	public class HerbalHealingSpell : HerbalistSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 150,
+					IconGraphic = 11444,
+					Name = "Herbal Healing Elixir",
+					PowerWords = "",
+					Description = "Heals the target of all ailments.",
+					ManaCost = 0,
+					MinSkill = 45,
+					TargetType = TargetFlags.Beneficial
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 4; } }
 		public override double CastDelay{ get{ return 0.5; } }
-		public override double RequiredSkill{ get{ return 45.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 
-		public HerbalHealingSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public HerbalHealingSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

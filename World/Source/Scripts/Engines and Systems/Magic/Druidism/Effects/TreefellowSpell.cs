@@ -10,14 +10,29 @@ namespace Server.Spells.Herbalist
 {
 	public class TreefellowSpell : HerbalistSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 155,
+					IconGraphic = 11452,
+					Name = "Treant Fertilizer",
+					PowerWords = "",
+					Description = "Causes a living tree to grow and wander along with the you.",
+					ManaCost = 0,
+					MinSkill = 75,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 4; } }
 		public override double CastDelay{ get{ return 5.0; } }
-      	public override double RequiredSkill{ get{ return 75.0; } }
-      	public override int RequiredMana{ get{ return 0; } }
+      	public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+      	public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 		
-		public TreefellowSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public TreefellowSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

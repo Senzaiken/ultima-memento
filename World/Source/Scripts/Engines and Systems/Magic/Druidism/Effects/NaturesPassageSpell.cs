@@ -11,11 +11,26 @@ namespace Server.Spells.Herbalist
 {
 	public class NaturesPassageSpell : HerbalistSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 159,
+					IconGraphic = 11449,
+					Name = "Nature Passage Mixture",
+					PowerWords = "",
+					Description = "Turns one into flower petals and carries them on the wind to a magic rune location.",
+					ManaCost = 0,
+					MinSkill = 15,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 4; } }
 		public override double CastDelay{ get{ return 0.5; } }
-		public override double RequiredSkill{ get{ return 15.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 		private RunebookEntry m_Entry;
 		private Runebook m_Book;
@@ -24,7 +39,7 @@ namespace Server.Spells.Herbalist
 		{
 		}
 
-		public NaturesPassageSpell( Mobile caster, Item scroll, RunebookEntry entry, Runebook book ) : base( caster, scroll, m_Info )
+		public NaturesPassageSpell( Mobile caster, Item scroll, RunebookEntry entry, Runebook book ) : base( caster, scroll, SpellInfo )
 		{
 			m_Entry = entry;
 			m_Book = book;

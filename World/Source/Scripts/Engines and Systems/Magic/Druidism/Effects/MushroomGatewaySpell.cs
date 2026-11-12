@@ -10,11 +10,26 @@ namespace Server.Spells.Herbalist
 {
 	public class MushroomGatewaySpell : HerbalistSpell
 	{
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 160,
+					IconGraphic = 11448,
+					Name = "Mushroom Gateway Growth",
+					PowerWords = "",
+					Description = "using a magical rune, this liquid causes magical mushrooms to grow a portal to the runic location.",
+					ManaCost = 0,
+					MinSkill = 60,
+					TargetType = TargetFlags.None
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 4; } }
 		public override double CastDelay{ get{ return 3.0; } }
-		public override double RequiredSkill{ get{ return 60.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 
 		private RunebookEntry m_Entry;
@@ -23,7 +38,7 @@ namespace Server.Spells.Herbalist
 		{
 		}
 
-		public MushroomGatewaySpell( Mobile caster, Item scroll, RunebookEntry entry ) : base( caster, scroll, m_Info )
+		public MushroomGatewaySpell( Mobile caster, Item scroll, RunebookEntry entry ) : base( caster, scroll, SpellInfo )
 		{
 			m_Entry = entry;
 		}

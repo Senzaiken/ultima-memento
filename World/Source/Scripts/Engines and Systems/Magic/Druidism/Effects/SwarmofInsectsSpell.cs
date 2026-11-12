@@ -8,14 +8,29 @@ namespace Server.Spells.Herbalist
 {
    public class SwarmOfInsectsSpell : HerbalistSpell
    {
-		private static SpellInfo m_Info = new SpellInfo( "", "", 239, 9021 );
+		public static readonly SpellInfo SpellInfo = new SpellInfo(
+				new SpellDefinition
+				{
+					SpellID = 153,
+					IconGraphic = 11441,
+					Name = "Jar of Insects",
+					PowerWords = "",
+					Description = "Releases a swarm of insects from the jar that bite and sting nearby foes.",
+					ManaCost = 0,
+					MinSkill = 65,
+					TargetType = TargetFlags.Harmful
+				},
+				239,
+				9021
+			);
+
 		public override int HerbalistSpellCircle{ get{ return 4; } }
 		public override double CastDelay{ get{ return 2.0; } }
-		public override double RequiredSkill{ get{ return 65.0; } }
-		public override int RequiredMana{ get{ return 0; } }
+		public override double RequiredSkill{ get{ return SpellInfo.SpellDefinition.MinSkill; } }
+		public override int RequiredMana{ get{ return SpellInfo.SpellDefinition.ManaCost; } }
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 
-		public SwarmOfInsectsSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
+		public SwarmOfInsectsSpell( Mobile caster, Item scroll ) : base( caster, scroll, SpellInfo )
 		{
 		}
 

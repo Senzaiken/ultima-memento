@@ -8,6 +8,8 @@ using Server.Network;
 using Server.Items;
 using Server.Gumps;
 using Server.Mobiles;
+using Server.Spells;
+using Server.Spells.Herbalist;
 
 namespace Server.Items
 {
@@ -78,86 +80,86 @@ namespace Server.Items
 
 				int b1 = 3609; if ( bag.LureStone > 0 ){ b1 = 4017; }
 				AddButton(18, 338, b1, b1, 1, GumpButtonType.Reply, 0);
-				AddImage(57, 328, 11446);
+				AddImage(57, 328, PotionIcon( 1 ));
 				AddHtml( 113, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Stone in a Jar</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b2 = 3609; if ( bag.NaturesPassage > 0 ){ b2 = 4017; }
 				AddButton(18, 393, b2, b2, 2, GumpButtonType.Reply, 0);
-				AddImage(57, 383, 11449);
+				AddImage(57, 383, PotionIcon( 2 ));
 				AddHtml( 113, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Nature Passage</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b3 = 3609; if ( bag.ShieldOfEarth > 0 ){ b3 = 4017; }
 				AddButton(18, 448, b3, b3, 3, GumpButtonType.Reply, 0);
-				AddImage(57, 438, 11450);
+				AddImage(57, 438, PotionIcon( 3 ));
 				AddHtml( 113, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Shield of Earth</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b4 = 3609; if ( bag.WoodlandProtection > 0 ){ b4 = 4017; }
 				AddButton(18, 503, b4, b4, 4, GumpButtonType.Reply, 0);
-				AddImage(57, 493, 11454);
+				AddImage(57, 493, PotionIcon( 4 ));
 				AddHtml( 113, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Woodland Protection</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b5 = 3609; if ( bag.StoneCircle > 0 ){ b5 = 4017; }
 				AddButton(18, 558, b5, b5, 5, GumpButtonType.Reply, 0);
-				AddImage(57, 548, 11451);
+				AddImage(57, 548, PotionIcon( 5 ));
 				AddHtml( 113, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Stone Rising</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
 				int b6 = 3609; if ( bag.GraspingRoots > 0 ){ b6 = 4017; }
 				AddButton(322, 283, b6, b6, 6, GumpButtonType.Reply, 0);
-				AddImage(361, 273, 11443);
+				AddImage(361, 273, PotionIcon( 6 ));
 				AddHtml( 417, 283, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Grasping Roots</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b7 = 3609; if ( bag.DruidicRune > 0 ){ b7 = 4017; }
 				AddButton(322, 338, b7, b7, 7, GumpButtonType.Reply, 0);
-				AddImage(361, 328, 11439);
+				AddImage(361, 328, PotionIcon( 7 ));
 				AddHtml( 417, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Druidic Marking</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b8 = 3609; if ( bag.HerbalHealing > 0 ){ b8 = 4017; }
 				AddButton(322, 393, b8, b8, 8, GumpButtonType.Reply, 0);
-				AddImage(361, 383, 11444);
+				AddImage(361, 383, PotionIcon( 8 ));
 				AddHtml( 417, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Herbal Healing</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b9 = 3609; if ( bag.BlendWithForest > 0 ){ b9 = 4017; }
 				AddButton(322, 448, b9, b9, 9, GumpButtonType.Reply, 0);
-				AddImage(361, 438, 11442);
+				AddImage(361, 438, PotionIcon( 9 ));
 				AddHtml( 417, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Forest Blending</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b10 = 3609; if ( bag.Firefly > 0 ){ b10 = 4017; }
 				AddButton(322, 503, b10, b10, 10, GumpButtonType.Reply, 0);
-				AddImage(361, 493, 11445);
+				AddImage(361, 493, PotionIcon( 10 ));
 				AddHtml( 417, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Jar of Fireflies</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b11 = 3609; if ( bag.MushroomGateway > 0 ){ b11 = 4017; }
 				AddButton(322, 558, b11, b11, 11, GumpButtonType.Reply, 0);
-				AddImage(361, 548, 11448);
+				AddImage(361, 548, PotionIcon( 11 ));
 				AddHtml( 417, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Mushroom Gateway</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
 
 				int b12 = 3609; if ( bag.SwarmOfInsects > 0 ){ b12 = 4017; }
 				AddButton(631, 338, b12, b12, 12, GumpButtonType.Reply, 0);
-				AddImage(670, 328, 11441);
+				AddImage(670, 328, PotionIcon( 12 ));
 				AddHtml( 726, 338, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Jar of Insects</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b13 = 3609; if ( bag.ProtectiveFairy > 0 ){ b13 = 4017; }
 				AddButton(631, 393, b13, b13, 13, GumpButtonType.Reply, 0);
-				AddImage(670, 383, 11440);
+				AddImage(670, 383, PotionIcon( 13 ));
 				AddHtml( 726, 393, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Fairy in a Jar</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b14 = 3609; if ( bag.Treefellow > 0 ){ b14 = 4017; }
 				AddButton(631, 448, b14, b14, 14, GumpButtonType.Reply, 0);
-				AddImage(670, 438, 11452);
+				AddImage(670, 438, PotionIcon( 14 ));
 				AddHtml( 726, 448, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Treant Fertilizer</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b15 = 3609; if ( bag.VolcanicEruption > 0 ){ b15 = 4017; }
 				AddButton(631, 503, b15, b15, 15, GumpButtonType.Reply, 0);
-				AddImage(670, 493, 11453);
+				AddImage(670, 493, PotionIcon( 15 ));
 				AddHtml( 726, 503, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Volcanic Fluid</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				int b16 = 3609; if ( bag.RestorativeSoil > 0 ){ b16 = 4017; }
 				AddButton(631, 558, b16, b16, 16, GumpButtonType.Reply, 0);
-				AddImage(670, 548, 11447);
+				AddImage(670, 548, PotionIcon( 16 ));
 				AddHtml( 726, 558, 144, 20, @"<BODY><BASEFONT Color=" + color + ">Magical Mud</BASEFONT></BODY>", (bool)false, (bool)false);
 
 				// ------------------------------------------------------------------------
@@ -267,22 +269,22 @@ namespace Server.Items
 					int txt = 17;
 
 					AddImage(15, 4, 11436);
-					if ( bag.LureStone > 0 ){ val = val + 50; AddButton(15, val, 11446, 11446, 1, GumpButtonType.Reply, 0); }
-					if ( bag.NaturesPassage > 0 ){ val = val + 50; AddButton(15, val, 11449, 11449, 2, GumpButtonType.Reply, 0); }
-					if ( bag.ShieldOfEarth > 0 ){ val = val + 50; AddButton(15, val, 11450, 11450, 3, GumpButtonType.Reply, 0); }
-					if ( bag.WoodlandProtection > 0 ){ val = val + 50; AddButton(15, val, 11454, 11454, 4, GumpButtonType.Reply, 0); }
-					if ( bag.StoneCircle > 0 ){ val = val + 50; AddButton(15, val, 11451, 11451, 5, GumpButtonType.Reply, 0); }
-					if ( bag.GraspingRoots > 0 ){ val = val + 50; AddButton(15, val, 11443, 11443, 6, GumpButtonType.Reply, 0); }
-					if ( bag.DruidicRune > 0 ){ val = val + 50; AddButton(15, val, 11439, 11439, 7, GumpButtonType.Reply, 0); }
-					if ( bag.HerbalHealing > 0 ){ val = val + 50; AddButton(15, val, 11444, 11444, 8, GumpButtonType.Reply, 0); }
-					if ( bag.BlendWithForest > 0 ){ val = val + 50; AddButton(15, val, 11442, 11442, 9, GumpButtonType.Reply, 0); }
-					if ( bag.Firefly > 0 ){ val = val + 50; AddButton(15, val, 11445, 11445, 10, GumpButtonType.Reply, 0); }
-					if ( bag.MushroomGateway > 0 ){ val = val + 50; AddButton(15, val, 11448, 11448, 11, GumpButtonType.Reply, 0); }
-					if ( bag.SwarmOfInsects > 0 ){ val = val + 50; AddButton(15, val, 11441, 11441, 12, GumpButtonType.Reply, 0); }
-					if ( bag.ProtectiveFairy > 0 ){ val = val + 50; AddButton(15, val, 11440, 11440, 13, GumpButtonType.Reply, 0); }
-					if ( bag.Treefellow > 0 ){ val = val + 50; AddButton(15, val, 11452, 11452, 14, GumpButtonType.Reply, 0); }
-					if ( bag.VolcanicEruption > 0 ){ val = val + 50; AddButton(15, val, 11453, 11453, 15, GumpButtonType.Reply, 0); }
-					if ( bag.RestorativeSoil > 0 ){ val = val + 50; AddButton(15, val, 11447, 11447, 16, GumpButtonType.Reply, 0); }
+					if ( bag.LureStone > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 1 ), PotionIcon( 1 ), 1, GumpButtonType.Reply, 0); }
+					if ( bag.NaturesPassage > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 2 ), PotionIcon( 2 ), 2, GumpButtonType.Reply, 0); }
+					if ( bag.ShieldOfEarth > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 3 ), PotionIcon( 3 ), 3, GumpButtonType.Reply, 0); }
+					if ( bag.WoodlandProtection > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 4 ), PotionIcon( 4 ), 4, GumpButtonType.Reply, 0); }
+					if ( bag.StoneCircle > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 5 ), PotionIcon( 5 ), 5, GumpButtonType.Reply, 0); }
+					if ( bag.GraspingRoots > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 6 ), PotionIcon( 6 ), 6, GumpButtonType.Reply, 0); }
+					if ( bag.DruidicRune > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 7 ), PotionIcon( 7 ), 7, GumpButtonType.Reply, 0); }
+					if ( bag.HerbalHealing > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 8 ), PotionIcon( 8 ), 8, GumpButtonType.Reply, 0); }
+					if ( bag.BlendWithForest > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 9 ), PotionIcon( 9 ), 9, GumpButtonType.Reply, 0); }
+					if ( bag.Firefly > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 10 ), PotionIcon( 10 ), 10, GumpButtonType.Reply, 0); }
+					if ( bag.MushroomGateway > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 11 ), PotionIcon( 11 ), 11, GumpButtonType.Reply, 0); }
+					if ( bag.SwarmOfInsects > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 12 ), PotionIcon( 12 ), 12, GumpButtonType.Reply, 0); }
+					if ( bag.ProtectiveFairy > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 13 ), PotionIcon( 13 ), 13, GumpButtonType.Reply, 0); }
+					if ( bag.Treefellow > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 14 ), PotionIcon( 14 ), 14, GumpButtonType.Reply, 0); }
+					if ( bag.VolcanicEruption > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 15 ), PotionIcon( 15 ), 15, GumpButtonType.Reply, 0); }
+					if ( bag.RestorativeSoil > 0 ){ val = val + 50; AddButton(15, val, PotionIcon( 16 ), PotionIcon( 16 ), 16, GumpButtonType.Reply, 0); }
 
 					if ( bag.Titles > 0 )
 					{
@@ -309,22 +311,22 @@ namespace Server.Items
 					int val = 27;
 
 					AddImage(32, 0, 11436);
-					if ( bag.LureStone > 0 ){ val = val + 50; AddButton(val, 0, 11446, 11446, 1, GumpButtonType.Reply, 0); }
-					if ( bag.NaturesPassage > 0 ){ val = val + 50; AddButton(val, 0, 11449, 11449, 2, GumpButtonType.Reply, 0); }
-					if ( bag.ShieldOfEarth > 0 ){ val = val + 50; AddButton(val, 0, 11450, 11450, 3, GumpButtonType.Reply, 0); }
-					if ( bag.WoodlandProtection > 0 ){ val = val + 50; AddButton(val, 0, 11454, 11454, 4, GumpButtonType.Reply, 0); }
-					if ( bag.StoneCircle > 0 ){ val = val + 50; AddButton(val, 0, 11451, 11451, 5, GumpButtonType.Reply, 0); }
-					if ( bag.GraspingRoots > 0 ){ val = val + 50; AddButton(val, 0, 11443, 11443, 6, GumpButtonType.Reply, 0); }
-					if ( bag.DruidicRune > 0 ){ val = val + 50; AddButton(val, 0, 11439, 11439, 7, GumpButtonType.Reply, 0); }
-					if ( bag.HerbalHealing > 0 ){ val = val + 50; AddButton(val, 0, 11444, 11444, 8, GumpButtonType.Reply, 0); }
-					if ( bag.BlendWithForest > 0 ){ val = val + 50; AddButton(val, 0, 11442, 11442, 9, GumpButtonType.Reply, 0); }
-					if ( bag.Firefly > 0 ){ val = val + 50; AddButton(val, 0, 11445, 11445, 10, GumpButtonType.Reply, 0); }
-					if ( bag.MushroomGateway > 0 ){ val = val + 50; AddButton(val, 0, 11448, 11448, 11, GumpButtonType.Reply, 0); }
-					if ( bag.SwarmOfInsects > 0 ){ val = val + 50; AddButton(val, 0, 11441, 11441, 12, GumpButtonType.Reply, 0); }
-					if ( bag.ProtectiveFairy > 0 ){ val = val + 50; AddButton(val, 0, 11440, 11440, 13, GumpButtonType.Reply, 0); }
-					if ( bag.Treefellow > 0 ){ val = val + 50; AddButton(val, 0, 11452, 11452, 14, GumpButtonType.Reply, 0); }
-					if ( bag.VolcanicEruption > 0 ){ val = val + 50; AddButton(val, 0, 11453, 11453, 15, GumpButtonType.Reply, 0); }
-					if ( bag.RestorativeSoil > 0 ){ val = val + 50; AddButton(val, 0, 11447, 11447, 16, GumpButtonType.Reply, 0); }
+					if ( bag.LureStone > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 1 ), PotionIcon( 1 ), 1, GumpButtonType.Reply, 0); }
+					if ( bag.NaturesPassage > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 2 ), PotionIcon( 2 ), 2, GumpButtonType.Reply, 0); }
+					if ( bag.ShieldOfEarth > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 3 ), PotionIcon( 3 ), 3, GumpButtonType.Reply, 0); }
+					if ( bag.WoodlandProtection > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 4 ), PotionIcon( 4 ), 4, GumpButtonType.Reply, 0); }
+					if ( bag.StoneCircle > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 5 ), PotionIcon( 5 ), 5, GumpButtonType.Reply, 0); }
+					if ( bag.GraspingRoots > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 6 ), PotionIcon( 6 ), 6, GumpButtonType.Reply, 0); }
+					if ( bag.DruidicRune > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 7 ), PotionIcon( 7 ), 7, GumpButtonType.Reply, 0); }
+					if ( bag.HerbalHealing > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 8 ), PotionIcon( 8 ), 8, GumpButtonType.Reply, 0); }
+					if ( bag.BlendWithForest > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 9 ), PotionIcon( 9 ), 9, GumpButtonType.Reply, 0); }
+					if ( bag.Firefly > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 10 ), PotionIcon( 10 ), 10, GumpButtonType.Reply, 0); }
+					if ( bag.MushroomGateway > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 11 ), PotionIcon( 11 ), 11, GumpButtonType.Reply, 0); }
+					if ( bag.SwarmOfInsects > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 12 ), PotionIcon( 12 ), 12, GumpButtonType.Reply, 0); }
+					if ( bag.ProtectiveFairy > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 13 ), PotionIcon( 13 ), 13, GumpButtonType.Reply, 0); }
+					if ( bag.Treefellow > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 14 ), PotionIcon( 14 ), 14, GumpButtonType.Reply, 0); }
+					if ( bag.VolcanicEruption > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 15 ), PotionIcon( 15 ), 15, GumpButtonType.Reply, 0); }
+					if ( bag.RestorativeSoil > 0 ){ val = val + 50; AddButton(val, 0, PotionIcon( 16 ), PotionIcon( 16 ), 16, GumpButtonType.Reply, 0); }
 				}
 			}
 
@@ -339,6 +341,32 @@ namespace Server.Items
 					from.SendGump( new DruidBar( from, m_Pouch, vertical ) );
 				}
 			}
+		}
+
+		private static readonly SpellDefinition[] m_PotionDefinitions = new SpellDefinition[]
+		{
+			null,
+			LureStoneSpell.SpellInfo.SpellDefinition,
+			NaturesPassageSpell.SpellInfo.SpellDefinition,
+			ShieldOfEarthSpell.SpellInfo.SpellDefinition,
+			WoodlandProtectionSpell.SpellInfo.SpellDefinition,
+			StoneCircleSpell.SpellInfo.SpellDefinition,
+			GraspingRootsSpell.SpellInfo.SpellDefinition,
+			DruidicRuneSpell.SpellInfo.SpellDefinition,
+			HerbalHealingSpell.SpellInfo.SpellDefinition,
+			BlendWithForestSpell.SpellInfo.SpellDefinition,
+			FireflySpell.SpellInfo.SpellDefinition,
+			MushroomGatewaySpell.SpellInfo.SpellDefinition,
+			SwarmOfInsectsSpell.SpellInfo.SpellDefinition,
+			ProtectiveFairySpell.SpellInfo.SpellDefinition,
+			TreefellowSpell.SpellInfo.SpellDefinition,
+			VolcanicEruptionSpell.SpellInfo.SpellDefinition,
+			RestorativeSoilSpell.SpellInfo.SpellDefinition,
+		};
+
+		public static int PotionIcon( int potion )
+		{
+			return m_PotionDefinitions[potion].IconGraphic;
 		}
 
 		public static void castSpell( int potion, Mobile from )

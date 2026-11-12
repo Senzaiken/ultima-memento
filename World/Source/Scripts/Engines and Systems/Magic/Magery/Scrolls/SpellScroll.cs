@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Server.Spells;
 using Server.Spells.Elementalism;
+using Server.Spells.Herbalist;
 using Server.Spells.Undead;
 using Server.ContextMenus;
 using Server.Engines.Craft;
@@ -145,7 +146,7 @@ namespace Server.Items
 				default:
 					if ( spellID >= WitchSpellProvider.FirstSpellId && spellID <= WitchSpellProvider.LastSpellId )
 						scroll.InfoText1 = "Witches Brew";
-					else if ( spellID >= 147 && spellID <= 162 )
+					else if ( spellID >= DruidSpellProvider.FirstSpellId && spellID <= DruidSpellProvider.LastSpellId )
 						scroll.InfoText1 = "Druidic Herbs";
 					break;
 			}
@@ -166,7 +167,7 @@ namespace Server.Items
 		{
 			base.GetContextMenuEntries( from, list );
 
-			if ( !IsEphemeralSpellScroll && from.Alive && this.Movable && !( m_SpellID >= WitchSpellProvider.FirstSpellId && m_SpellID <= WitchSpellProvider.LastSpellId ) && !( m_SpellID >= 147 && m_SpellID <= 162 ) )
+			if ( !IsEphemeralSpellScroll && from.Alive && this.Movable && !( m_SpellID >= WitchSpellProvider.FirstSpellId && m_SpellID <= WitchSpellProvider.LastSpellId ) && !( m_SpellID >= DruidSpellProvider.FirstSpellId && m_SpellID <= DruidSpellProvider.LastSpellId ) )
 				list.Add( new ContextMenus.AddToSpellbookEntry() );
 		}
 

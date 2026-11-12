@@ -7,6 +7,8 @@ using Server.Gumps;
 using Server.Network;
 using Server.Commands;
 using Server.Misc;
+using Server.Spells;
+using Server.Spells.Herbalist;
 
 namespace Server.Items
 {
@@ -138,40 +140,41 @@ namespace Server.Items
 
 			public static string potionInfo( int page, int val )
 			{
-				string txtName = "";
-				string txtIcon = "";
-				string txtInfo = "";
-				string txtSklA = "";
+				int spellID = 0;
 				string txtSklB = "";
 				string txtIngA = "";
 				string txtIngB = "";
 				string txtIngC = "";
 
-				if ( page == 2 ){ txtName = "Stone in a Jar"; txtIcon = "11446"; txtInfo = "Dumps out a magical stone that draws all nearby animals to it."; txtSklA = "10"; txtSklB = "5"; txtIngA = "Moon Crystal"; txtIngB = "Silver Widow"; txtIngC = ""; }
-				else if ( page == 3 ){ txtName = "Nature Passage Mixture"; txtIcon = "11449"; txtInfo = "Turns one into flower petals and carries them on the wind to a magic rune location."; txtSklA = "15"; txtSklB = "10"; txtIngA = "Sea Salt"; txtIngB = "Fairy Egg"; txtIngC = ""; }
-				else if ( page == 4 ){ txtName = "Shield of Earth Liquid"; txtIcon = "11450"; txtInfo = "Causes a wall of foliage to grow, blocking the way of others."; txtSklA = "20"; txtSklB = "15"; txtIngA = "Ginseng"; txtIngB = "Black Pearl"; txtIngC = ""; }
-				else if ( page == 5 ){ txtName = "Woodland Protection Oil"; txtIcon = "11454"; txtInfo = "Increases your protection by making your skin like bark from an ancient tree."; txtSklA = "25"; txtSklB = "20"; txtIngA = "Garlic"; txtIngB = "Swamp Berries"; txtIngC = ""; }
-				else if ( page == 6 ){ txtName = "Stone Rising Concoction"; txtIcon = "11451"; txtInfo = "Causes stones to push up from the ground, trapping your foes."; txtSklA = "30"; txtSklB = "25"; txtIngA = "Beetle Shell"; txtIngB = "Sea Salt"; txtIngC = ""; }
-				else if ( page == 7 ){ txtName = "Grasping Roots Mixture"; txtIcon = "11443"; txtInfo = "Releases roots from the ground to entangle a foe."; txtSklA = "35"; txtSklB = "30"; txtIngA = "Mandrake Root"; txtIngB = "Ginseng"; txtIngC = ""; }
-				else if ( page == 8 ){ txtName = "Druidic Marking Oil"; txtIcon = "11439"; txtInfo = "Marks a magic rune with your location, that you can use recalling magics to transport to later."; txtSklA = "40"; txtSklB = "35"; txtIngA = "Black Pearl"; txtIngB = "Eye of Toad"; txtIngC = ""; }
-				else if ( page == 9 ){ txtName = "Herbal Healing Elixir"; txtIcon = "11444"; txtInfo = "Heals the target of all ailments."; txtSklA = "45"; txtSklB = "40"; txtIngA = "Red Lotus"; txtIngB = "Garlic"; txtIngC = ""; }
-				else if ( page == 10 ){ txtName = "Forest Blending Oil"; txtIcon = "11442"; txtInfo = "Allows one to blend seamlessly with the forest, causing foes to lose sight of them."; txtSklA = "50"; txtSklB = "45"; txtIngA = "Silver Widow"; txtIngB = "Nightshade"; txtIngC = ""; }
-				else if ( page == 11 ){ txtName = "Jar of Fireflies"; txtIcon = "11445"; txtInfo = "Releases fireflies to distract a foe from battle."; txtSklA = "55"; txtSklB = "50"; txtIngA = "Spider Silk"; txtIngB = "Butterfly Wings"; txtIngC = ""; }
-				else if ( page == 12 ){ txtName = "Mushroom Gateway Growth"; txtIcon = "11448"; txtInfo = "using a magical rune, this liquid causes magical mushrooms to grow a portal to the runic location."; txtSklA = "60"; txtSklB = "55"; txtIngA = "Bloodmoss"; txtIngB = "Eye of Toad"; txtIngC = ""; }
-				else if ( page == 13 ){ txtName = "Jar of Insects"; txtIcon = "11441"; txtInfo = "Releases a swarm of insects from the jar that bite and sting nearby foes."; txtSklA = "65"; txtSklB = "60"; txtIngA = "Butterfly Wings"; txtIngB = "Beetle Shell"; txtIngC = ""; }
-				else if ( page == 14 ){ txtName = "Fairy in a Jar"; txtIcon = "11440"; txtInfo = "Releases a fairy from the jar to a help the adventurer on their journey."; txtSklA = "70"; txtSklB = "65"; txtIngA = "Fairy Egg"; txtIngB = "Moon Crystal"; txtIngC = ""; }
-				else if ( page == 15 ){ txtName = "Treant Fertilizer"; txtIcon = "11452"; txtInfo = "Causes a living tree to grow and wander along with the you."; txtSklA = "75"; txtSklB = "70"; txtIngA = "Swamp Berries"; txtIngB = "Mandrake Root"; txtIngC = ""; }
-				else if ( page == 16 ){ txtName = "Volcanic Fluid"; txtIcon = "11453"; txtInfo = "Causes molten lava to burst from the ground, hitting every foe nearby."; txtSklA = "80"; txtSklB = "75"; txtIngA = "Brimstone"; txtIngB = "Sulfurous Ash"; txtIngC = ""; }
-				else if ( page == 17 ){ txtName = "Jar of Magical Mud"; txtIcon = "11447"; txtInfo = "Dumps mystical mud in your pack, that will resurrect you a few moments after losing your life. You can also directly resurrect others."; txtSklA = "85"; txtSklB = "80"; txtIngA = "Nightshade"; txtIngB = "Red Lotus"; txtIngC = ""; }
+				if ( page == 2 ){ spellID = LureStoneSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "5"; txtIngA = "Moon Crystal"; txtIngB = "Silver Widow"; txtIngC = ""; }
+				else if ( page == 3 ){ spellID = NaturesPassageSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "10"; txtIngA = "Sea Salt"; txtIngB = "Fairy Egg"; txtIngC = ""; }
+				else if ( page == 4 ){ spellID = ShieldOfEarthSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "15"; txtIngA = "Ginseng"; txtIngB = "Black Pearl"; txtIngC = ""; }
+				else if ( page == 5 ){ spellID = WoodlandProtectionSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "20"; txtIngA = "Garlic"; txtIngB = "Swamp Berries"; txtIngC = ""; }
+				else if ( page == 6 ){ spellID = StoneCircleSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "25"; txtIngA = "Beetle Shell"; txtIngB = "Sea Salt"; txtIngC = ""; }
+				else if ( page == 7 ){ spellID = GraspingRootsSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "30"; txtIngA = "Mandrake Root"; txtIngB = "Ginseng"; txtIngC = ""; }
+				else if ( page == 8 ){ spellID = DruidicRuneSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "35"; txtIngA = "Black Pearl"; txtIngB = "Eye of Toad"; txtIngC = ""; }
+				else if ( page == 9 ){ spellID = HerbalHealingSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "40"; txtIngA = "Red Lotus"; txtIngB = "Garlic"; txtIngC = ""; }
+				else if ( page == 10 ){ spellID = BlendWithForestSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "45"; txtIngA = "Silver Widow"; txtIngB = "Nightshade"; txtIngC = ""; }
+				else if ( page == 11 ){ spellID = FireflySpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "50"; txtIngA = "Spider Silk"; txtIngB = "Butterfly Wings"; txtIngC = ""; }
+				else if ( page == 12 ){ spellID = MushroomGatewaySpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "55"; txtIngA = "Bloodmoss"; txtIngB = "Eye of Toad"; txtIngC = ""; }
+				else if ( page == 13 ){ spellID = SwarmOfInsectsSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "60"; txtIngA = "Butterfly Wings"; txtIngB = "Beetle Shell"; txtIngC = ""; }
+				else if ( page == 14 ){ spellID = ProtectiveFairySpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "65"; txtIngA = "Fairy Egg"; txtIngB = "Moon Crystal"; txtIngC = ""; }
+				else if ( page == 15 ){ spellID = TreefellowSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "70"; txtIngA = "Swamp Berries"; txtIngB = "Mandrake Root"; txtIngC = ""; }
+				else if ( page == 16 ){ spellID = VolcanicEruptionSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "75"; txtIngA = "Brimstone"; txtIngB = "Sulfurous Ash"; txtIngC = ""; }
+				else if ( page == 17 ){ spellID = RestorativeSoilSpell.SpellInfo.SpellDefinition.SpellID; txtSklB = "80"; txtIngA = "Nightshade"; txtIngB = "Red Lotus"; txtIngC = ""; }
+
+				SpellDefinition definition = DruidSpellProvider.GetDefinition( spellID );
+				if ( definition == null )
+					return "";
 
 				if ( val == 1 )
-					return txtName;
+					return definition.Name.String;
 				else if ( val == 2 )
-					return txtIcon;
+					return definition.IconGraphic.ToString();
 				else if ( val == 3 )
-					return txtInfo;
+					return definition.Description.String;
 				else if ( val == 4 )
-					return txtSklA;
+					return definition.MinSkill.ToString();
 				else if ( val == 5 )
 					return txtSklB;
 				else if ( val == 6 )
