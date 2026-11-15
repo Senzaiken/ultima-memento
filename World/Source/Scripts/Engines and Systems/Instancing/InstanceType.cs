@@ -341,7 +341,7 @@ namespace Server.Engines.Instancing
 			Instance victim = null;
 			foreach ( Instance live in _liveMapToInstance.Values )
 			{
-				if ( HasPlayersInside( live ) )
+				if ( IsInUse( live ) )
 					continue;
 				if ( victim == null || live.LastTouched < victim.LastTouched )
 					victim = live;
@@ -358,6 +358,18 @@ namespace Server.Engines.Instancing
 		protected bool IsMapIndexLive( int mapIndex )
 		{
 			return _liveMapToInstance.ContainsKey( mapIndex );
+		}
+
+		// Puts an instance restored from a save back on the pool map its contents were saved on.
+		protected bool RestoreLive( Instance inst, int mapIndex )
+		{
+			if ( inst == null || inst.IsLive || mapIndex < 0 || mapIndex >= Map.Maps.Length || !IsPoolMap( Map.Maps[mapIndex] ) || IsMapIndexLive( mapIndex ) )
+				return false;
+
+			inst.LiveMapIndex = mapIndex;
+			inst.Built = true;
+			_liveMapToInstance[mapIndex] = inst;
+			return true;
 		}
 
 		protected Instance GetLiveInstance( Map map )
@@ -492,7 +504,7 @@ namespace Server.Engines.Instancing
 
 			foreach ( Instance inst in _liveMapToInstance.Values )
 			{
-				if ( HasPlayersInside( inst ) )
+				if ( IsInUse( inst ) )
 				{
 					inst.Touch();
 					continue;
@@ -517,6 +529,12 @@ namespace Server.Engines.Instancing
 
 		protected virtual void OnSweep()
 		{
+		}
+
+		// A live instance that is in use is never swept or evicted.
+		protected virtual bool IsInUse( Instance inst )
+		{
+			return HasPlayersInside( inst );
 		}
 
 		protected bool HasPlayersInside( Instance inst )
@@ -620,6 +638,11 @@ namespace Server.Engines.Instancing
 
 		// The step is refused; types where walking out is the way out send the player out here.
 		public virtual void OnWalkIntoVoid( Mobile m, Map map )
+		{
+		}
+
+		// A creature died on one of this type's pool maps, before it is deleted; the corpse may be null.
+		public virtual void OnCreatureDeath( BaseCreature bc, Container corpse )
 		{
 		}
 

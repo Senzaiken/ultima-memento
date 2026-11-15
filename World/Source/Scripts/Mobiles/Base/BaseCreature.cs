@@ -3814,6 +3814,8 @@ namespace Server.Mobiles
 
 			NameColor();
 			ProcessClothing();
+
+			Server.Engines.Instancing.DemonRiftPortal.OnCreatureSpawned( this );
 		}
 
 		public override ApplyPoisonResult ApplyPoison( Mobile from, Poison poison )
@@ -8861,6 +8863,9 @@ namespace Server.Mobiles
 						}
 					}
 				}
+
+				Server.Engines.Instancing.InstanceManager.OnCreatureDeath( this, c );
+				Server.Engines.Instancing.DemonRiftPortal.OnCreatureDeath( this );
 
 				base.OnDeath( c );
 

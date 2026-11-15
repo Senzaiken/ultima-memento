@@ -41,7 +41,7 @@ namespace Server.Engines.Instancing
 
 				if ( e.Arguments.Length == 0 )
 				{
-					from.SendMessage( "[dungeoninstance subcommands: status | list [filter] | audit [index|filter] | placeentrance | spawnall | clearall" );
+					from.SendMessage( "[dungeoninstance subcommands: status | list [filter] | audit [index|filter] | placeentrance | spawnall | clearall | boss" );
 					return;
 				}
 
@@ -113,8 +113,14 @@ namespace Server.Engines.Instancing
 							from.SendMessage( "Cleared {0} dungeon instance(s).", count );
 							break;
 						}
+					case "boss":
+						{
+							if ( !Dungeon.SummonBoss( from ) )
+								from.SendMessage( "Stand in a dungeon instance whose boss has not woken yet." );
+							break;
+						}
 					default:
-						from.SendMessage( "Unknown subcommand. Try: status, list, audit, placeentrance, spawnall, clearall" );
+						from.SendMessage( "Unknown subcommand. Try: status, list, audit, placeentrance, spawnall, clearall, boss" );
 						break;
 				}
 		}

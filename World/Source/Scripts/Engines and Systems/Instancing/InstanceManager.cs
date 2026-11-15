@@ -70,6 +70,23 @@ namespace Server.Engines.Instancing
 			return false;
 		}
 
+		public static void OnCreatureDeath( Server.Mobiles.BaseCreature bc, Server.Items.Container corpse )
+		{
+			if ( bc == null || bc.Map == null )
+				return;
+
+			EnsureRegistered();
+
+			foreach ( InstanceType type in _types )
+			{
+				if ( type.IsPoolMap( bc.Map ) )
+				{
+					type.OnCreatureDeath( bc, corpse );
+					return;
+				}
+			}
+		}
+
 		// The known instance systems. Constructed here (rather than relying on each
 		// type's own Configure() running first) so pool-map registration is safe
 		// regardless of Configure() ordering.
@@ -82,6 +99,7 @@ namespace Server.Engines.Instancing
 
 			Register( SkyDwellingInstanceType.Instance );
 			Register( DungeonInstanceType.Instance );
+			Register( DungeonLobbyInstanceType.Instance );
 
 			ValidateRanges();
 		}

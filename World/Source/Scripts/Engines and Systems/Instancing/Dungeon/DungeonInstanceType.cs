@@ -9,6 +9,7 @@ using Server.Network;
 using Server.Misc;
 using Server.Engines.PartySystem;
 using Server.Regions;
+using Server.Timers;
 
 namespace Server.Engines.Instancing
 {
@@ -32,6 +33,10 @@ namespace Server.Engines.Instancing
 		private const int FunctionalItemMargin = 8;
 		private const int DungeonListingScanLimit = 85;
 			private const string ReturnSavePath = "Saves/Instancing/DungeonReturns.bin";
+		private const string InstanceSavePath = "Saves/Instancing/DungeonInstances.bin";
+
+		// How long after boot a restored instance waits for its players to log back in.
+		private static readonly TimeSpan RestartGrace = TimeSpan.FromMinutes( 15 );
 
 			private static readonly Dictionary<int, List<DecorationTeleporterSource>> m_DecorationTeleportersByMap = new Dictionary<int, List<DecorationTeleporterSource>>();
 		private static readonly string[] ExcludedListedDungeonNames = new string[]
@@ -91,13 +96,176 @@ namespace Server.Engines.Instancing
 			m_DecorationTeleportersByMap.Clear();
 			LoadReturnRecords();
 
-			// Instances aren't saved, but what stood on their maps was.
-			ClearPoolMap( null, null );
+			// Saved instances come back on the maps they were saved on; anything else left on a pool map is cleared.
+			HashSet<int> restored = LoadInstances();
+			ClearPoolMaps( null, null, restored );
 		}
 
 		private void OnWorldSave( WorldSaveEventArgs e )
 		{
 			SaveReturnRecords();
+			SaveInstances();
+		}
+
+		private void SaveInstances()
+		{
+			List<Instance> live = new List<Instance>();
+			foreach ( Instance inst in LiveInstances )
+			{
+				DungeonInstanceSettings settings;
+				if ( m_SettingsByOwner.TryGetValue( inst.OwnerSerial, out settings ) && settings != null && settings.Definition != null && m_Runtimes.ContainsKey( inst.OwnerSerial ) )
+					live.Add( inst );
+			}
+
+			Persistence.Serialize(
+				InstanceSavePath,
+				delegate( GenericWriter writer )
+				{
+					writer.Write( (int) 2 ); // version
+
+					writer.Write( (int) live.Count );
+					for ( int i = 0; i < live.Count; i++ )
+					{
+						Instance inst = live[i];
+						DungeonInstanceSettings settings = m_SettingsByOwner[inst.OwnerSerial];
+
+						writer.Write( (int) inst.OwnerSerial );
+						writer.Write( (int) inst.OwnerKind );
+						writer.Write( (int) inst.LiveMapIndex );
+						writer.Write( (string) settings.Definition.DisplayName );
+						writer.Write( (int) settings.Difficulty );
+						writer.Write( (Map) settings.ReturnMap );
+						writer.Write( (Point3D) settings.ReturnPoint );
+						writer.Write( (TimeSpan) settings.TimeLimit );
+
+						writer.Write( (int) inst.Members.Count );
+						for ( int j = 0; j < inst.Members.Count; j++ )
+							writer.Write( (int) inst.Members[j] );
+
+						writer.Write( (int) inst.Items.Count );
+						for ( int j = 0; j < inst.Items.Count; j++ )
+						{
+							writer.Write( (Item) inst.Items[j].Item );
+							writer.Write( (Point3D) inst.Items[j].Loc );
+						}
+
+						m_Runtimes[inst.OwnerSerial].Serialize( writer );
+					}
+				} );
+		}
+
+		// Returns the pool map indexes now held by restored instances.
+		private HashSet<int> LoadInstances()
+		{
+			HashSet<int> restored = new HashSet<int>();
+			List<SavedDungeonInstance> saved = new List<SavedDungeonInstance>();
+
+			try
+			{
+				Persistence.Deserialize(
+					InstanceSavePath,
+					delegate( GenericReader reader )
+					{
+						if ( reader.End() )
+							return;
+
+						int version = reader.ReadInt();
+						int count = reader.ReadInt();
+
+						for ( int i = 0; i < count; i++ )
+							saved.Add( SavedDungeonInstance.Read( reader, version ) );
+					} );
+			}
+			catch ( Exception e )
+			{
+				Console.WriteLine( "[Instancing] Dungeon instances could not be loaded and will be cleared: {0}", e.Message );
+				saved.Clear();
+			}
+
+			if ( saved.Count == 0 )
+				return restored;
+
+			Dictionary<int, List<Mobile>> creaturesByMap = new Dictionary<int, List<Mobile>>();
+			foreach ( Mobile m in World.Mobiles.Values )
+			{
+				if ( m == null || m.Deleted || m.Player || !IsPoolMap( m.Map ) )
+					continue;
+
+				List<Mobile> list;
+				if ( !creaturesByMap.TryGetValue( m.Map.MapIndex, out list ) )
+					creaturesByMap[m.Map.MapIndex] = list = new List<Mobile>();
+
+				list.Add( m );
+			}
+
+			for ( int i = 0; i < saved.Count; i++ )
+			{
+				if ( RestoreInstance( saved[i], creaturesByMap ) )
+					restored.Add( saved[i].MapIndex );
+			}
+
+			Console.WriteLine( "[Instancing] Restored {0} of {1} saved dungeon instance(s).", restored.Count, saved.Count );
+			return restored;
+		}
+
+		private bool RestoreInstance( SavedDungeonInstance saved, Dictionary<int, List<Mobile>> creaturesByMap )
+		{
+			DungeonInstanceDefinition definition = FindDefinitionByDisplayName( saved.DefinitionName );
+			Map map = saved.MapIndex >= 0 && saved.MapIndex < Map.Maps.Length ? Map.Maps[saved.MapIndex] : null;
+
+			if ( definition == null || !IsPoolMap( map ) || !IsCloneOf( map, definition.Map ) || IsMapIndexLive( saved.MapIndex ) || GetByKey( saved.Key ) != null )
+				return false;
+
+			Instance inst = GetOrCreateByKey( saved.Key, saved.OwnerKind );
+			inst.Members.AddRange( saved.Members );
+			inst.Items.AddRange( saved.Items );
+			inst.LastTouched = DateTime.Now + RestartGrace - UnloadAfter;
+			RestoreLive( inst, saved.MapIndex );
+
+			DungeonInstanceSettings settings = new DungeonInstanceSettings( definition, saved.Difficulty, saved.ReturnMap, saved.ReturnPoint, saved.TimeLimit );
+			m_SettingsByOwner[inst.OwnerSerial] = settings;
+			m_SettingsByLiveMap[saved.MapIndex] = settings;
+
+			List<BaseRegion> regions = new List<BaseRegion>();
+			for ( int i = 0; i < definition.ConnectedRegions.Length; i++ )
+			{
+				BaseRegion copy = CopyRegion( definition.ConnectedRegions[i], map, definition.GetRegionArea( i ) );
+				if ( copy == null )
+					continue;
+
+				copy.Register();
+				regions.Add( copy );
+			}
+
+			RuntimeDungeonState state = new RuntimeDungeonState( settings, regions, map, definition.Area );
+
+			// The saved creatures were scaled before the save.
+			List<Mobile> creatures;
+			if ( creaturesByMap.TryGetValue( saved.MapIndex, out creatures ) )
+			{
+				for ( int i = 0; i < creatures.Count; i++ )
+					state.MarkScaled( creatures[i] );
+			}
+
+			state.RestoreProgress( saved.KilledPoints, saved.Cleared, saved.Monsters );
+			state.RestoreBoss( saved.BossTypeName, saved.BossPhase, saved.Boss );
+			state.RestoreClock( saved.TimeRemaining );
+			m_Runtimes[inst.OwnerSerial] = state;
+			state.StartScaler();
+			return true;
+		}
+
+		private DungeonInstanceDefinition FindDefinitionByDisplayName( string displayName )
+		{
+			List<DungeonInstanceDefinition> defs = GetDefinitions();
+
+			for ( int i = 0; i < defs.Count; i++ )
+			{
+				if ( String.Equals( defs[i].DisplayName, displayName, StringComparison.OrdinalIgnoreCase ) )
+					return defs[i];
+			}
+
+			return null;
 		}
 
 		private void LoadReturnRecords()
@@ -228,6 +396,34 @@ namespace Server.Engines.Instancing
 			} );
 		}
 
+		// Monsters leave no corpse or loot here; their points go to the dungeon's total. Pets keep theirs.
+		public override void OnCreatureDeath( BaseCreature bc, Container corpse )
+		{
+			if ( bc.Controlled || bc.ControlMaster != null || bc.IsBonded )
+				return;
+
+			RuntimeDungeonState state = GetRuntime( bc.Map );
+			if ( state != null )
+				state.CreditKill( bc );
+
+			// Deferred: overrides still add loot to the corpse after this.
+			if ( corpse != null )
+			{
+				Timer.DelayCall( TimeSpan.Zero, delegate
+				{
+					if ( !corpse.Deleted )
+						corpse.Delete();
+				} );
+			}
+		}
+
+		private RuntimeDungeonState GetRuntime( Map map )
+		{
+			Instance inst = GetLiveInstance( map );
+			RuntimeDungeonState state;
+			return inst != null && m_Runtimes.TryGetValue( inst.OwnerSerial, out state ) ? state : null;
+		}
+
 		public override bool TryGetRandomPlayablePoint( Map map, out Point3D p )
 		{
 			DungeonInstanceSettings settings = GetSettingsForMap( map );
@@ -350,7 +546,7 @@ namespace Server.Engines.Instancing
 			foreach ( Region region in Region.Regions )
 			{
 				BaseRegion br = region as BaseRegion;
-				if ( br == null || br.Map == null || br.Map == Map.Internal || br.Area == null || br.Area.Length == 0 )
+				if ( br == null || br.Map == null || br.Map == Map.Internal || br.Area == null || br.Area.Length == 0 || IsPoolMap( br.Map ) )
 					continue;
 
 				if ( !IsDungeonCatalogRegion( br ) || !IsListedDungeonDefinition( br, listedDungeonNames ) )
@@ -628,6 +824,11 @@ namespace Server.Engines.Instancing
 
 		public bool SendToConfiguredInstance( Mobile from, Serial instanceKey, DungeonInstanceDefinition definition, Difficulty difficulty, Map returnMap, Point3D returnPoint, InstanceOwnerKind ownerKind )
 		{
+			return SendToConfiguredInstance( from, instanceKey, definition, difficulty, returnMap, returnPoint, ownerKind, TimeSpan.Zero );
+		}
+
+		public bool SendToConfiguredInstance( Mobile from, Serial instanceKey, DungeonInstanceDefinition definition, Difficulty difficulty, Map returnMap, Point3D returnPoint, InstanceOwnerKind ownerKind, TimeSpan timeLimit )
+		{
 			if ( from == null )
 				return false;
 
@@ -645,7 +846,7 @@ namespace Server.Engines.Instancing
 
 			difficulty = ClampDifficulty( difficulty );
 
-			DungeonInstanceSettings requested = new DungeonInstanceSettings( definition, difficulty, NormalizeExternalMap( returnMap ), returnPoint );
+			DungeonInstanceSettings requested = new DungeonInstanceSettings( definition, difficulty, NormalizeExternalMap( returnMap ), returnPoint, timeLimit );
 			Instance existing = GetByKey( instanceKey );
 			if ( existing != null )
 				existing.OwnerKind = ownerKind;
@@ -698,7 +899,50 @@ namespace Server.Engines.Instancing
 				return false;
 
 			RegisterReturn( from, inst, settings );
+
+			RuntimeDungeonState state;
+			if ( m_Runtimes.TryGetValue( inst.OwnerSerial, out state ) )
+				state.SendTimeRemaining( from );
+
 			return true;
+		}
+
+		public bool HasInstance( Serial instanceKey )
+		{
+			return GetByKey( instanceKey ) != null;
+		}
+
+		// Any dungeon that can be instanced, for gates that roll their destination.
+		public DungeonInstanceDefinition GetRandomDefinition()
+		{
+			List<DungeonInstanceDefinition> defs = GetDefinitions();
+			List<DungeonInstanceDefinition> pool = new List<DungeonInstanceDefinition>();
+
+			for ( int i = 0; i < defs.Count; i++ )
+			{
+				if ( defs[i].CanSpawnInstance && defs[i].SpawnCount > 0 )
+					pool.Add( defs[i] );
+			}
+
+			return pool.Count > 0 ? pool[Utility.Random( pool.Count )] : null;
+		}
+
+		// Staff testing: wakes the boss of the instance this mobile stands in, next to them.
+		public bool SummonBoss( Mobile near )
+		{
+			RuntimeDungeonState state = near != null ? GetRuntime( near.Map ) : null;
+			return state != null && state.ForceBoss( near.Location );
+		}
+
+		// The run on this map ran out of time: everyone goes home and the copy is dissolved.
+		private void ExpireInstance( Map map )
+		{
+			Instance inst = GetLiveInstance( map );
+			if ( inst == null )
+				return;
+
+			EjectPlayers( inst );
+			FreeInstance( inst );
 		}
 
 		// For staff audits: builds an instance without sending anyone in, ignoring availability.
@@ -848,6 +1092,10 @@ namespace Server.Engines.Instancing
 			DungeonInstanceSettings settings = GetSettings( inst );
 			string dungeon = settings != null && settings.Definition != null ? settings.Definition.Name : "Unknown";
 
+			RuntimeDungeonState state;
+			if ( inst.IsLive && m_Runtimes.TryGetValue( inst.OwnerSerial, out state ) )
+				return String.Format( "Live: {0} on map {1}, {2}/{3} points, {4}, {5}", dungeon, inst.LiveMapIndex, state.KilledPoints, state.TotalPoints, state.BossLabel, state.ClockLabel );
+
 			if ( inst.IsLive )
 				return String.Format( "Live: {0} on map {1}", dungeon, inst.LiveMapIndex );
 
@@ -876,15 +1124,17 @@ namespace Server.Engines.Instancing
 				return;
 
 			DungeonReturnInfo info = GetReturnInfo( m );
+
+			// Still standing in the instance they entered; parties don't survive a restart, so this is by record.
+			Instance entered = info != null ? GetByKey( info.InstanceKey ) : null;
+			if ( entered != null && Object.ReferenceEquals( entered.LiveMap, m.Map ) )
+			{
+				entered.Touch();
+				return;
+			}
+
 			if ( info != null && info.OwnerKind == InstanceOwnerKind.PublicGateway )
 			{
-				Instance publicInst = GetByKey( info.InstanceKey );
-				if ( publicInst != null && publicInst.IsPublicInstance && Object.ReferenceEquals( publicInst.LiveMap, m.Map ) )
-				{
-					publicInst.Touch();
-					return;
-				}
-
 				BounceToReturn( m, info );
 				ClearReturn( m );
 				return;
@@ -1107,15 +1357,41 @@ namespace Server.Engines.Instancing
 				regions.Add( copy );
 			}
 
+			// Everything spawns once, up front, and nothing respawns.
 			for ( int i = 0; i < entries.Count; i++ )
 				entries[i].Respawn();
 
+			DetachRegionSpawns( regions );
 			CloneWorldContent( inst, map, definition );
 
-			RuntimeDungeonState state = new RuntimeDungeonState( settings, regions, entries.ToArray(), map, definition.Area );
+			RuntimeDungeonState state = new RuntimeDungeonState( settings, regions, map, definition.Area );
 			m_Runtimes[inst.OwnerSerial] = state;
 			state.ApplyDifficulty();
+			state.TrackMonsters();
+			state.StartClock();
 			state.StartScaler();
+		}
+
+		// Frees what the region entries spawned from them, then drops the entries.
+		private static void DetachRegionSpawns( List<BaseRegion> regions )
+		{
+			for ( int i = 0; i < regions.Count; i++ )
+			{
+				SpawnEntry[] spawns = regions[i].Spawns;
+				if ( spawns == null )
+					continue;
+
+				for ( int j = 0; j < spawns.Length; j++ )
+				{
+					List<ISpawnable> spawned = spawns[j].SpawnedObjects;
+					for ( int k = 0; k < spawned.Count; k++ )
+						spawned[k].Spawner = null;
+
+					spawned.Clear();
+				}
+
+				regions[i].Spawns = null;
+			}
 		}
 
 		// Same type, name and settings as the real region, so light, music and region checks match.
@@ -1163,7 +1439,7 @@ namespace Server.Engines.Instancing
 			for ( int i = 0; i < src.Length; i++ )
 			{
 				SpawnEntry e = src[i];
-				if ( e == null || e.Definition == null || e.Max <= 0 )
+				if ( e == null || e.Definition == null || e.Max <= 0 || SpawnsTreasure( e.Definition ) )
 					continue;
 
 				SpawnEntry entry = new SpawnEntry( NextRuntimeSpawnId(), copy, e.HomeLocation, e.HomeRange, e.Direction,
@@ -1209,7 +1485,7 @@ namespace Server.Engines.Instancing
 
 				clone.MoveToWorld( source.Location, map );
 				inst.Items.Add( new InstanceItem( clone, source.Location ) );
-				StartClonedSpawner( source, clone );
+				SpawnOnce( clone );
 			}
 
 			CloneDecoratedTeleporters( inst, map, definition );
@@ -1223,8 +1499,29 @@ namespace Server.Engines.Instancing
 			"RaceTeleporter", "BasementDoor", "ElementalExit"
 		};
 
+		// Instances hold no chests, trap-door stashes or treasure hoards: any container, the hidden chests
+		// that turn into trap doors, the dungeon chest respawner, and the markers hoards appear on.
+		private static bool IsTreasureType( Type type )
+		{
+			return type != null && ( typeof( Container ).IsAssignableFrom( type ) || typeof( HiddenChest ).IsAssignableFrom( type )
+				|| typeof( DungeonChestSpawner ).IsAssignableFrom( type ) || typeof( HoardTile ).IsAssignableFrom( type )
+				|| typeof( HoardPiles ).IsAssignableFrom( type ) );
+		}
+
+		private static bool SpawnsTreasure( SpawnDefinition definition )
+		{
+			SpawnType single = definition as SpawnType;
+			if ( single != null )
+				return IsTreasureType( single.Type );
+
+			return definition.CanSpawn( typeof( HiddenChest ), typeof( DungeonChest ), typeof( DungeonChestSpawner ), typeof( HoardTile ), typeof( HoardPiles ) );
+		}
+
 		private static bool ShouldCloneWorldItem( Item item, DungeonInstanceDefinition definition )
 		{
+			if ( IsTreasureType( item.GetType() ) )
+				return false;
+
 			if ( item is Spawner || item is PremiumSpawner )
 				return definition.Contains( item.Location );
 
@@ -1919,22 +2216,19 @@ namespace Server.Engines.Instancing
 			return source != null ? new List<string>( source ) : new List<string>();
 		}
 
-		private static void StartClonedSpawner( Item source, Item clone )
+		// The copy stays stopped, so it never respawns.
+		private static void SpawnOnce( Item clone )
 		{
-			PremiumSpawner clonePremium = clone as PremiumSpawner;
-			if ( clonePremium != null )
+			PremiumSpawner premium = clone as PremiumSpawner;
+			if ( premium != null )
 			{
-				clonePremium.Running = true;
-				clonePremium.Respawn();
+				premium.Respawn();
 				return;
 			}
 
-			Spawner cloneClassic = clone as Spawner;
-			if ( cloneClassic != null )
-			{
-				cloneClassic.Running = true;
-				cloneClassic.Respawn();
-			}
+			Spawner classic = clone as Spawner;
+			if ( classic != null )
+				classic.Respawn();
 		}
 
 		private int NextRuntimeSpawnId()
@@ -1969,20 +2263,25 @@ namespace Server.Engines.Instancing
 			}
 		}
 
-		// Clears a pool map (null: all of them); player corpses and tamed pets go to their owner's return point.
 		private void ClearPoolMap( Map map, Instance inst )
+		{
+			ClearPoolMaps( map, inst, null );
+		}
+
+		// Clears a pool map (null: every pool map not in keep); player corpses and tamed pets go to their owner's return point.
+		private void ClearPoolMaps( Map map, Instance inst, HashSet<int> keep )
 		{
 			List<Item> items = new List<Item>();
 			foreach ( Item item in World.Items.Values )
 			{
-				if ( item != null && !item.Deleted && item.Parent == null && IsClearTarget( item.Map, map ) )
+				if ( item != null && !item.Deleted && item.Parent == null && IsClearTarget( item.Map, map, keep ) )
 					items.Add( item );
 			}
 
 			List<Mobile> mobiles = new List<Mobile>();
 			foreach ( Mobile m in World.Mobiles.Values )
 			{
-				if ( m != null && !m.Deleted && !m.Player && IsClearTarget( m.Map, map ) )
+				if ( m != null && !m.Deleted && !m.Player && IsClearTarget( m.Map, map, keep ) )
 					mobiles.Add( m );
 			}
 
@@ -2027,12 +2326,15 @@ namespace Server.Engines.Instancing
 			}
 		}
 
-		private bool IsClearTarget( Map itemMap, Map map )
+		private bool IsClearTarget( Map itemMap, Map map, HashSet<int> keep )
 		{
 			if ( itemMap == null )
 				return false;
 
-			return map != null ? Object.ReferenceEquals( itemMap, map ) : IsPoolMap( itemMap );
+			if ( map != null )
+				return Object.ReferenceEquals( itemMap, map );
+
+			return IsPoolMap( itemMap ) && ( keep == null || !keep.Contains( itemMap.MapIndex ) );
 		}
 
 		internal sealed class TeleportLink
@@ -2953,22 +3255,33 @@ namespace Server.Engines.Instancing
 			public readonly Map ReturnMap;
 			public readonly Point3D ReturnPoint;
 
+			// Zero for an untimed run.
+			public readonly TimeSpan TimeLimit;
+
 			public DungeonInstanceSettings( DungeonInstanceDefinition definition, Difficulty difficulty )
 				: this( definition, difficulty, null, Point3D.Zero )
 			{
 			}
 
 			public DungeonInstanceSettings( DungeonInstanceDefinition definition, Difficulty difficulty, Map returnMap, Point3D returnPoint )
+				: this( definition, difficulty, returnMap, returnPoint, TimeSpan.Zero )
+			{
+			}
+
+			public DungeonInstanceSettings( DungeonInstanceDefinition definition, Difficulty difficulty, Map returnMap, Point3D returnPoint, TimeSpan timeLimit )
 			{
 				Definition = definition;
 				Difficulty = ClampDifficulty( difficulty );
 				ReturnMap = NormalizeExternalMap( returnMap );
 				ReturnPoint = returnPoint;
+				TimeLimit = timeLimit > TimeSpan.Zero ? timeLimit : TimeSpan.Zero;
 			}
+
+			public bool Timed { get { return TimeLimit > TimeSpan.Zero; } }
 
 			public bool Matches( DungeonInstanceSettings other )
 			{
-				return other != null && Object.ReferenceEquals( Definition, other.Definition ) && Difficulty == other.Difficulty;
+				return other != null && Object.ReferenceEquals( Definition, other.Definition ) && Difficulty == other.Difficulty && TimeLimit == other.TimeLimit;
 			}
 		}
 
@@ -2990,24 +3303,669 @@ namespace Server.Engines.Instancing
 			}
 		}
 
+		// Read in full before anything is restored, so one bad record can't misalign the rest.
+		private sealed class SavedDungeonInstance
+		{
+			public Serial Key;
+			public InstanceOwnerKind OwnerKind;
+			public int MapIndex;
+			public string DefinitionName;
+			public Difficulty Difficulty;
+			public Map ReturnMap;
+			public Point3D ReturnPoint;
+			public TimeSpan TimeLimit;
+			public readonly List<Serial> Members = new List<Serial>();
+			public readonly List<InstanceItem> Items = new List<InstanceItem>();
+			public int KilledPoints;
+			public bool Cleared;
+			public readonly Dictionary<Mobile, int> Monsters = new Dictionary<Mobile, int>();
+			public TimeSpan TimeRemaining;
+			public string BossTypeName;
+			public int BossPhase;
+			public Mobile Boss;
+
+			public static SavedDungeonInstance Read( GenericReader reader, int version )
+			{
+				SavedDungeonInstance s = new SavedDungeonInstance();
+
+				s.Key = (Serial)reader.ReadInt();
+				s.OwnerKind = (InstanceOwnerKind)reader.ReadInt();
+				s.MapIndex = reader.ReadInt();
+				s.DefinitionName = reader.ReadString();
+				s.Difficulty = (Difficulty)reader.ReadInt();
+				s.ReturnMap = NormalizeExternalMap( reader.ReadMap() );
+				s.ReturnPoint = reader.ReadPoint3D();
+
+				if ( version >= 1 )
+					s.TimeLimit = reader.ReadTimeSpan();
+
+				int members = reader.ReadInt();
+				for ( int i = 0; i < members; i++ )
+					s.Members.Add( (Serial)reader.ReadInt() );
+
+				int items = reader.ReadInt();
+				for ( int i = 0; i < items; i++ )
+				{
+					Item item = reader.ReadItem();
+					Point3D loc = reader.ReadPoint3D();
+					if ( item != null && !item.Deleted )
+						s.Items.Add( new InstanceItem( item, loc ) );
+				}
+
+				s.KilledPoints = reader.ReadInt();
+				s.Cleared = reader.ReadBool();
+
+				int monsters = reader.ReadInt();
+				for ( int i = 0; i < monsters; i++ )
+				{
+					Mobile m = reader.ReadMobile();
+					int points = reader.ReadInt();
+					if ( m != null && !m.Deleted )
+						s.Monsters[m] = points;
+				}
+
+				if ( version >= 1 )
+					s.TimeRemaining = reader.ReadTimeSpan();
+
+				if ( version >= 2 )
+				{
+					s.BossTypeName = reader.ReadString();
+					s.BossPhase = reader.ReadInt();
+					s.Boss = reader.ReadMobile();
+				}
+
+				return s;
+			}
+		}
+
 		private sealed class RuntimeDungeonState
 		{
 			private readonly DungeonInstanceSettings m_Settings;
 			private readonly List<BaseRegion> m_Regions;
-			private readonly SpawnEntry[] m_Entries;
 			private readonly Map m_Map;
 			private readonly Rectangle3D[] m_Area;
 			private readonly HashSet<Serial> m_Scaled = new HashSet<Serial>();
 			private readonly List<Mobile> m_Mobiles = new List<Mobile>();
-			private Timer m_Timer;
 
-			public RuntimeDungeonState( DungeonInstanceSettings settings, List<BaseRegion> regions, SpawnEntry[] entries, Map map, Rectangle3D[] area )
+			// Every monster spawned with the instance and its point value. A kill moves its points to
+			// m_KilledPoints; a monster gone any other way (tamed, deleted, left the map) leaves the total.
+			private readonly Dictionary<Mobile, int> m_Monsters = new Dictionary<Mobile, int>();
+			private int m_KilledPoints;
+			private int m_RemainingPoints;
+			private bool m_Cleared;
+			private Timer m_Timer;
+			private bool m_Deleted;
+
+			// Killing this share of the points wakes the boss; killing the boss clears the run.
+			private const int BossThresholdPercent = 70;
+
+			private enum BossPhase { Dormant, Awake, Slain }
+
+			private BossPhase m_BossPhase;
+			private BaseCreature m_Boss;
+			private Type m_BossType;
+			private bool m_BossPending;
+
+			private static readonly TimeSpan[] ClockWarnings = new TimeSpan[] { TimeSpan.FromMinutes( 10 ), TimeSpan.FromMinutes( 5 ), TimeSpan.FromMinutes( 1 ) };
+			private static readonly TimeSpan MinimumRestoredTime = TimeSpan.FromMinutes( 2 );
+
+			// A timed run counts down to m_Deadline; clearing the dungeon stops the clock at m_StoppedAt.
+			private DateTime m_Deadline;
+			private TimeSpan m_StoppedAt;
+			private int m_NextWarning;
+			private bool m_Expired;
+
+			public int KilledPoints { get { return m_KilledPoints; } }
+			public int TotalPoints { get { return m_KilledPoints + m_RemainingPoints; } }
+			public bool Cleared { get { return m_Cleared; } }
+
+			public int ProgressPercent
+			{
+				get
+				{
+					int total = TotalPoints;
+					return total > 0 ? (int)( m_KilledPoints * 100L / total ) : 0;
+				}
+			}
+
+			public string BossLabel
+			{
+				get
+				{
+					switch ( m_BossPhase )
+					{
+						case BossPhase.Awake: return m_Boss != null && !m_Boss.Deleted ? String.Format( "boss {0} up ({1}/{2} hits)", m_Boss.Name, m_Boss.Hits, m_Boss.HitsMax ) : "boss waking";
+						case BossPhase.Slain: return "boss slain";
+						default: return String.Format( "boss at {0}% ({1})", BossThresholdPercent, m_BossType != null ? m_BossType.Name : "none" );
+					}
+				}
+			}
+
+			public RuntimeDungeonState( DungeonInstanceSettings settings, List<BaseRegion> regions, Map map, Rectangle3D[] area )
 			{
 				m_Settings = settings;
 				m_Regions = regions;
-				m_Entries = entries;
 				m_Map = map;
 				m_Area = area;
+			}
+
+			// A creature's difficulty, its 1-125 level after instance scaling, is its point value.
+			private static int GetMonsterPoints( BaseCreature bc )
+			{
+				return Math.Max( 1, IntelligentAction.GetCreatureLevel( bc ) );
+			}
+
+			private static bool IsCountedMonster( BaseCreature bc )
+			{
+				return bc != null && !bc.Deleted && !bc.Blessed && !bc.Controlled && !bc.Summoned && bc.ControlMaster == null
+					&& bc.SummonMaster == null && !( bc is BaseVendor ) && bc.AI != AIType.AI_Citizen;
+			}
+
+			// After the initial spawn and scaling.
+			public void TrackMonsters()
+			{
+				foreach ( Mobile m in World.Mobiles.Values )
+				{
+					BaseCreature bc = m as BaseCreature;
+					if ( bc == null || !Object.ReferenceEquals( bc.Map, m_Map ) )
+						continue;
+
+					// A premium spawner restarts itself when its creature dies.
+					bc.SpawnerID = 0;
+
+					if ( !IsCountedMonster( bc ) || m_Monsters.ContainsKey( bc ) )
+						continue;
+
+					int points = GetMonsterPoints( bc );
+					m_Monsters[bc] = points;
+					m_RemainingPoints += points;
+				}
+
+				ChooseBossType();
+			}
+
+			// The boss is a stronger copy of the toughest creature the dungeon spawned.
+			private void ChooseBossType()
+			{
+				int best = -1;
+
+				foreach ( KeyValuePair<Mobile, int> kvp in m_Monsters )
+				{
+					BaseCreature bc = kvp.Key as BaseCreature;
+					if ( bc == null || bc.NoWalker || kvp.Value <= best || bc.GetType().GetConstructor( Type.EmptyTypes ) == null )
+						continue;
+
+					best = kvp.Value;
+					m_BossType = bc.GetType();
+				}
+			}
+
+			public void RestoreBoss( string typeName, int phase, Mobile boss )
+			{
+				m_BossPhase = Enum.IsDefined( typeof( BossPhase ), phase ) ? (BossPhase)phase : BossPhase.Dormant;
+				m_Boss = boss as BaseCreature;
+
+				if ( m_Boss != null && ( m_Boss.Deleted || !Object.ReferenceEquals( m_Boss.Map, m_Map ) ) )
+					m_Boss = null;
+
+				if ( !String.IsNullOrEmpty( typeName ) )
+					m_BossType = ScriptCompiler.FindTypeByName( typeName );
+
+				if ( m_BossType == null )
+					ChooseBossType();
+
+				// Runs saved before bosses existed counted "cleared" as every creature slain.
+				if ( m_Cleared )
+					m_BossPhase = BossPhase.Slain;
+			}
+
+			public void RestoreProgress( int killedPoints, bool cleared, Dictionary<Mobile, int> monsters )
+			{
+				m_KilledPoints = killedPoints;
+				m_Cleared = cleared;
+
+				foreach ( KeyValuePair<Mobile, int> kvp in monsters )
+				{
+					BaseCreature bc = kvp.Key as BaseCreature;
+					if ( IsCountedMonster( bc ) && Object.ReferenceEquals( bc.Map, m_Map ) )
+					{
+						m_Monsters[bc] = kvp.Value;
+						m_RemainingPoints += kvp.Value;
+					}
+				}
+			}
+
+			public bool CreditKill( BaseCreature bc )
+			{
+				if ( bc != null && Object.ReferenceEquals( bc, m_Boss ) )
+				{
+					OnBossSlain( bc );
+					return true;
+				}
+
+				int points;
+				if ( bc == null || !m_Monsters.TryGetValue( bc, out points ) )
+					return false;
+
+				m_Monsters.Remove( bc );
+				m_RemainingPoints -= points;
+				m_KilledPoints += points;
+
+				if ( m_BossPhase == BossPhase.Dormant && !m_Expired )
+				{
+					Broadcast( 0x3B2, String.Format( "Slain: {0}/{1} points ({2}%). The master of this place awakens at {3}%.", m_KilledPoints, TotalPoints, ProgressPercent, BossThresholdPercent ) );
+					CheckBoss( bc.Location, true );
+				}
+
+				return true;
+			}
+
+			private void PruneMonsters()
+			{
+				List<Mobile> gone = null;
+
+				foreach ( KeyValuePair<Mobile, int> kvp in m_Monsters )
+				{
+					if ( !IsCountedMonster( kvp.Key as BaseCreature ) || !Object.ReferenceEquals( kvp.Key.Map, m_Map ) )
+					{
+						if ( gone == null )
+							gone = new List<Mobile>();
+
+						gone.Add( kvp.Key );
+					}
+				}
+
+				if ( gone == null )
+					return;
+
+				for ( int i = 0; i < gone.Count; i++ )
+				{
+					m_RemainingPoints -= m_Monsters[gone[i]];
+					m_Monsters.Remove( gone[i] );
+				}
+			}
+
+			// ----- Boss -----
+
+			private bool BossThresholdReached
+			{
+				get
+				{
+					int total = TotalPoints;
+					return total > 0 && m_KilledPoints * 100L >= (long)total * BossThresholdPercent;
+				}
+			}
+
+			private void CheckBoss( Point3D near, bool hasNear )
+			{
+				if ( m_Deleted || m_Expired || m_BossPending )
+					return;
+
+				if ( m_BossPhase == BossPhase.Dormant )
+				{
+					if ( !BossThresholdReached )
+						return;
+
+					m_BossPhase = BossPhase.Awake;
+					Broadcast( 0x22, "The ground trembles. The master of this place has been roused!" );
+
+					if ( hasNear )
+						Effects.PlaySound( near, m_Map, 0x2F3 );
+
+					ScheduleBoss( near, hasNear, TimeSpan.FromSeconds( 3.0 ) );
+				}
+				else if ( m_BossPhase == BossPhase.Awake && ( m_Boss == null || m_Boss.Deleted ) )
+				{
+					// Lost to a restart or a staff delete: bring it back.
+					ScheduleBoss( near, hasNear, TimeSpan.Zero );
+				}
+			}
+
+			public bool ForceBoss( Point3D near )
+			{
+				if ( m_Deleted || m_Expired || m_BossPending || m_BossPhase != BossPhase.Dormant )
+					return false;
+
+				m_BossPhase = BossPhase.Awake;
+				Broadcast( 0x22, "The ground trembles. The master of this place has been roused!" );
+				Effects.PlaySound( near, m_Map, 0x2F3 );
+				ScheduleBoss( near, true, TimeSpan.FromSeconds( 3.0 ) );
+				return true;
+			}
+
+			private void ScheduleBoss( Point3D near, bool hasNear, TimeSpan delay )
+			{
+				m_BossPending = true;
+
+				Timer.DelayCall( delay, delegate
+				{
+					m_BossPending = false;
+
+					if ( m_Deleted || m_Expired || m_BossPhase != BossPhase.Awake || ( m_Boss != null && !m_Boss.Deleted ) )
+						return;
+
+					SpawnBoss( hasNear ? near : PickBossOrigin() );
+				} );
+			}
+
+			// Near a player in the dungeon, or anywhere standable when nobody is there.
+			private Point3D PickBossOrigin()
+			{
+				foreach ( NetState ns in NetState.Instances )
+				{
+					Mobile m = ns.Mobile;
+					if ( m != null && m.Alive && Object.ReferenceEquals( m.Map, m_Map ) && m.AccessLevel == AccessLevel.Player )
+						return m.Location;
+				}
+
+				Point3D p;
+				if ( m_Settings.Definition != null && m_Settings.Definition.TryGetRandomStandable( m_Map, out p ) )
+					return p;
+
+				return m_Settings.Definition != null ? m_Settings.Definition.Landing : Point3D.Zero;
+			}
+
+			private bool InArea( int x, int y )
+			{
+				if ( m_Area == null )
+					return true;
+
+				for ( int i = 0; i < m_Area.Length; i++ )
+				{
+					Rectangle3D r = m_Area[i];
+					if ( x >= r.Start.X && y >= r.Start.Y && x < r.End.X && y < r.End.Y )
+						return true;
+				}
+
+				return false;
+			}
+
+			// A free spot a few steps away that can be seen from where the threshold kill happened.
+			private Point3D FindBossSpot( Point3D near )
+			{
+				for ( int i = 0; i < 30; i++ )
+				{
+					int x = near.X + Utility.RandomMinMax( -4, 4 );
+					int y = near.Y + Utility.RandomMinMax( -4, 4 );
+
+					if ( ( x == near.X && y == near.Y ) || !InArea( x, y ) )
+						continue;
+
+					int z = near.Z;
+					if ( !m_Map.CanFit( x, y, z, 16, false, false ) )
+					{
+						z = m_Map.GetAverageZ( x, y );
+						if ( Math.Abs( z - near.Z ) > 8 || !m_Map.CanFit( x, y, z, 16, false, false ) )
+							continue;
+					}
+
+					Point3D p = new Point3D( x, y, z );
+					if ( m_Map.LineOfSight( new Point3D( near.X, near.Y, near.Z + 10 ), new Point3D( x, y, z + 10 ) ) )
+						return p;
+				}
+
+				return near;
+			}
+
+			private BaseCreature CreateBoss()
+			{
+				BaseCreature bc = null;
+
+				if ( m_BossType != null )
+				{
+					try { bc = Activator.CreateInstance( m_BossType ) as BaseCreature; }
+					catch { bc = null; }
+				}
+
+				return bc ?? new Daemon();
+			}
+
+			private void Empower( BaseCreature boss )
+			{
+				int d = Math.Max( 0, Math.Min( (int)Difficulty.Epic, (int)m_Settings.Difficulty ) );
+
+				string name = NameList.RandomName( "demonic" );
+				if ( !String.IsNullOrEmpty( name ) )
+					boss.Name = name;
+
+				boss.Title = RandomThings.RandomEvilTitle();
+				boss.NameHue = 0x22;
+				boss.Tamable = false;
+
+				int statFloor = 150 + 50 * d;
+				boss.RawStr = Math.Max( (int)( boss.RawStr * 1.5 ), statFloor );
+				boss.RawDex = Math.Max( (int)( boss.RawDex * 1.5 ), statFloor );
+				boss.RawInt = Math.Max( (int)( boss.RawInt * 1.5 ), statFloor );
+
+				boss.HitsMaxSeed = Math.Min( 15000, Math.Max( boss.HitsMax * 3, 300 + 150 * d ) );
+
+				double skillFloor = Math.Min( 120.0, 75.0 + 9.0 * d );
+				for ( int i = 0; i < boss.Skills.Length; i++ )
+				{
+					Skill skill = boss.Skills[i];
+					if ( skill.Base > 0.0 && skill.Base < skillFloor )
+						skill.Base = skillFloor;
+				}
+
+				boss.DamageMin = Math.Max( boss.DamageMin, 8 + 3 * d );
+				boss.DamageMax = Math.Max( boss.DamageMax, boss.DamageMin + 8 );
+				boss.VirtualArmor = Math.Max( boss.VirtualArmor, 30 + 5 * d );
+
+				boss.Hits = boss.HitsMax;
+				boss.Stam = boss.StamMax;
+				boss.Mana = boss.ManaMax;
+			}
+
+			private void SpawnBoss( Point3D near )
+			{
+				Point3D p = FindBossSpot( near );
+				BaseCreature boss = CreateBoss();
+
+				BaseCreature.BeefUp( boss, m_Settings.Difficulty, false );
+				Empower( boss );
+				boss.Home = p;
+				boss.RangeHome = 10;
+				boss.MoveToWorld( p, m_Map );
+				MarkScaled( boss );
+				m_Boss = boss;
+
+				Effects.SendLocationParticles( EffectItem.Create( p, m_Map, EffectItem.DefaultDuration ), 0x3728, 10, 10, 2023 );
+				Effects.SendLocationParticles( EffectItem.Create( p, m_Map, EffectItem.DefaultDuration ), 0x3709, 10, 30, 5052 );
+				Effects.PlaySound( p, m_Map, 0x1FE );
+
+				Mobile target = null;
+				IPooledEnumerable eable = m_Map.GetMobilesInRange( p, 12 );
+				try
+				{
+					foreach ( Mobile m in eable )
+					{
+						if ( m.Player && m.Alive && m.AccessLevel == AccessLevel.Player && ( target == null || m.GetDistanceToSqrt( p ) < target.GetDistanceToSqrt( p ) ) )
+							target = m;
+					}
+				}
+				finally
+				{
+					eable.Free();
+				}
+
+				if ( target != null )
+					boss.Combatant = target;
+
+				Broadcast( 0x22, String.Format( "{0} {1} has risen to defend this place!", boss.Name, boss.Title ) );
+			}
+
+			private void OnBossSlain( BaseCreature boss )
+			{
+				m_Boss = null;
+				m_BossPhase = BossPhase.Slain;
+
+				TimeSpan left = TimeRemaining( DateTime.Now );
+				m_Cleared = true;
+				if ( m_Settings.Timed )
+					m_StoppedAt = left;
+
+				Point3D loc = boss.Location;
+				int d = Math.Max( 0, Math.Min( (int)Difficulty.Epic, (int)m_Settings.Difficulty ) );
+
+				DungeonBossChest chest = new DungeonBossChest( Math.Min( 10, 4 + d ) );
+				chest.SetOwner( boss );
+				chest.MoveToWorld( loc, m_Map );
+
+				Effects.SendLocationParticles( EffectItem.Create( loc, m_Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 5008 );
+				Effects.PlaySound( loc, m_Map, 0x1F7 );
+
+				ScatterGoodies( loc, 7 + d );
+
+				if ( m_Settings.Timed )
+					Broadcast( 0x3B2, String.Format( "{0} {1} has fallen with {2} to spare! Its treasure is yours.", boss.Name, boss.Title, FormatTime( m_StoppedAt ) ) );
+				else
+					Broadcast( 0x3B2, String.Format( "{0} {1} has fallen! Its treasure is yours.", boss.Name, boss.Title ) );
+			}
+
+			// The quest villain's shower of coins and gems, kept inside the dungeon.
+			private void ScatterGoodies( Point3D center, int radius )
+			{
+				for ( int x = -radius; x <= radius; x++ )
+				{
+					for ( int y = -radius; y <= radius; y++ )
+					{
+						if ( Math.Sqrt( x * x + y * y ) <= radius && InArea( center.X + x, center.Y + y ) )
+							new GoodiesTimer( m_Map, center.X + x, center.Y + y ).Start();
+					}
+				}
+			}
+
+			private void Broadcast( int hue, string text )
+			{
+				foreach ( NetState ns in NetState.Instances )
+				{
+					Mobile m = ns.Mobile;
+					if ( m != null && Object.ReferenceEquals( m.Map, m_Map ) )
+						m.SendMessage( hue, text );
+				}
+			}
+
+			// ----- Time limit -----
+
+			public void StartClock()
+			{
+				if ( m_Settings.Timed )
+					SetDeadline( m_Settings.TimeLimit );
+			}
+
+			public void RestoreClock( TimeSpan remaining )
+			{
+				if ( !m_Settings.Timed )
+					return;
+
+				if ( m_Cleared )
+				{
+					m_StoppedAt = remaining;
+					return;
+				}
+
+				// The clock stood still while the server was down; give everyone time to log back in.
+				SetDeadline( remaining > MinimumRestoredTime ? remaining : MinimumRestoredTime );
+			}
+
+			private void SetDeadline( TimeSpan remaining )
+			{
+				m_Deadline = DateTime.Now + remaining;
+				m_NextWarning = 0;
+
+				while ( m_NextWarning < ClockWarnings.Length && ClockWarnings[m_NextWarning] >= remaining )
+					m_NextWarning++;
+			}
+
+			private TimeSpan TimeRemaining( DateTime now )
+			{
+				if ( !m_Settings.Timed )
+					return TimeSpan.Zero;
+
+				if ( m_Cleared )
+					return m_StoppedAt;
+
+				TimeSpan left = m_Deadline - now;
+				return left > TimeSpan.Zero ? left : TimeSpan.Zero;
+			}
+
+			public string ClockLabel
+			{
+				get
+				{
+					if ( !m_Settings.Timed )
+						return "untimed";
+
+					string left = FormatTime( TimeRemaining( DateTime.Now ) );
+					return m_Cleared ? String.Format( "won with {0} left", left ) : String.Format( "{0} left", left );
+				}
+			}
+
+			public void SendTimeRemaining( Mobile m )
+			{
+				if ( m == null || !m_Settings.Timed || m_Cleared || m_Expired )
+					return;
+
+				m.SendMessage( 0x22, "You have {0} to defeat the master of this place.", FormatTime( TimeRemaining( DateTime.Now ) ) );
+			}
+
+			private static string FormatTime( TimeSpan time )
+			{
+				int minutes = (int)time.TotalMinutes;
+				int seconds = time.Seconds;
+
+				if ( minutes > 0 && seconds == 0 )
+					return String.Format( "{0} minute{1}", minutes, minutes == 1 ? "" : "s" );
+
+				if ( minutes > 0 )
+					return String.Format( "{0}:{1:00}", minutes, seconds );
+
+				return String.Format( "{0} second{1}", seconds, seconds == 1 ? "" : "s" );
+			}
+
+			private void CheckClock()
+			{
+				if ( !m_Settings.Timed || m_Cleared || m_Expired )
+					return;
+
+				TimeSpan left = TimeRemaining( DateTime.Now );
+
+				if ( left <= TimeSpan.Zero )
+				{
+					m_Expired = true;
+					Broadcast( 0x22, "Time has run out! The dungeon crumbles away around you." );
+
+					Map map = m_Map;
+					Timer.DelayCall( TimeSpan.Zero, delegate { DungeonInstanceType.Instance.ExpireInstance( map ); } );
+					return;
+				}
+
+				if ( m_NextWarning < ClockWarnings.Length && left <= ClockWarnings[m_NextWarning] )
+				{
+					Broadcast( 0x22, String.Format( "{0} remain before this place crumbles away.", FormatTime( ClockWarnings[m_NextWarning] ) ) );
+
+					while ( m_NextWarning < ClockWarnings.Length && left <= ClockWarnings[m_NextWarning] )
+						m_NextWarning++;
+				}
+			}
+
+			public void Serialize( GenericWriter writer )
+			{
+				writer.Write( (int) m_KilledPoints );
+				writer.Write( (bool) m_Cleared );
+
+				writer.Write( (int) m_Monsters.Count );
+				foreach ( KeyValuePair<Mobile, int> kvp in m_Monsters )
+				{
+					writer.Write( (Mobile) kvp.Key );
+					writer.Write( (int) kvp.Value );
+				}
+
+				writer.Write( (TimeSpan) TimeRemaining( DateTime.Now ) );
+
+				writer.Write( (string) ( m_BossType != null ? m_BossType.Name : "" ) );
+				writer.Write( (int) m_BossPhase );
+				writer.Write( (Mobile) ( m_Boss != null && !m_Boss.Deleted ? m_Boss : null ) );
 			}
 
 			public void StartScaler()
@@ -3015,32 +3973,18 @@ namespace Server.Engines.Instancing
 				if ( m_Timer != null )
 					return;
 
-				m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 5.0 ), TimeSpan.FromSeconds( 5.0 ), new TimerCallback( ApplyDifficulty ) );
+				m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 5.0 ), TimeSpan.FromSeconds( 5.0 ), new TimerCallback( OnTick ) );
+			}
+
+			private void OnTick()
+			{
+				ApplyDifficulty();
+				PruneMonsters();
+				CheckClock();
+				CheckBoss( Point3D.Zero, false );
 			}
 
 			public void ApplyDifficulty()
-			{
-				for ( int i = 0; i < m_Entries.Length; i++ )
-				{
-					SpawnEntry entry = m_Entries[i];
-					if ( entry == null )
-						continue;
-
-					List<ISpawnable> spawned = entry.SpawnedObjects;
-					for ( int j = 0; j < spawned.Count; j++ )
-					{
-						Mobile m = spawned[j] as Mobile;
-						if ( m == null || m.Deleted )
-							continue;
-
-						ScaleMobile( m );
-					}
-				}
-
-				ScaleMobilesInArea();
-			}
-
-			private void ScaleMobilesInArea()
 			{
 				if ( m_Map == null || m_Area == null )
 					return;
@@ -3063,16 +4007,15 @@ namespace Server.Engines.Instancing
 				}
 			}
 
+			private static bool IsScalable( BaseCreature bc )
+			{
+				return bc != null && !bc.Deleted && !bc.Controlled && !bc.Summoned && bc.ControlMaster == null && bc.SummonMaster == null;
+			}
+
 			private void ScaleMobile( Mobile m )
 			{
-				if ( m == null || m.Deleted || m.Player )
-					return;
-
 				BaseCreature bc = m as BaseCreature;
-				if ( bc == null || bc.Controlled || bc.Summoned || bc.ControlMaster != null || bc.SummonMaster != null )
-					return;
-
-				if ( m_Scaled.Contains( bc.Serial ) )
+				if ( !IsScalable( bc ) || m_Scaled.Contains( bc.Serial ) )
 					return;
 
 				m_Mobiles.Add( m );
@@ -3080,8 +4023,19 @@ namespace Server.Engines.Instancing
 				m_Scaled.Add( bc.Serial );
 			}
 
+			// For creatures that come back from a save already scaled.
+			public void MarkScaled( Mobile m )
+			{
+				BaseCreature bc = m as BaseCreature;
+				if ( IsScalable( bc ) && m_Scaled.Add( bc.Serial ) )
+					m_Mobiles.Add( bc );
+			}
+
 			public void Delete()
 			{
+				m_Deleted = true;
+				m_Boss = null;
+
 				if ( m_Timer != null )
 				{
 					m_Timer.Stop();
@@ -3104,6 +4058,7 @@ namespace Server.Engines.Instancing
 
 				m_Mobiles.Clear();
 				m_Scaled.Clear();
+				m_Monsters.Clear();
 			}
 		}
 	}
