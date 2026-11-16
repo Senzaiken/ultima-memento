@@ -8,8 +8,7 @@ using Server.Regions;
 
 namespace Server.Engines.Instancing
 {
-	// Staff tool: builds each dungeon as an instance, flood-fills it from the landing following teleporters, and
-	// reports escapes and exits. DungeonAudit.json lists the tile and step reaching each teleporter and edge.
+	// BUILDS EACH DUNGEON, WALKS IT FROM THE LANDING THROUGH ITS TELEPORTERS AND REPORTS ESCAPES AND EXITS
 	public static class DungeonInstanceAudit
 	{
 		private const int MaxVisited = 400000;
@@ -81,7 +80,7 @@ namespace Server.Engines.Instancing
 
 		private static bool AuditDefinition( Mobile probe, DungeonInstanceType.DungeonInstanceDefinition def, StreamWriter w, StreamWriter json )
 		{
-			w.WriteLine( "=== [{0}] {1} | {2} | spawns {3}", def.Index, def.DisplayName, def.AvailabilityLabel, def.SpawnCount );
+			w.WriteLine( "=== [{0}] {1} | spawns {2}", def.Index, def.DisplayName, def.SpawnCount );
 			w.WriteLine( "  landing {0} in-area={1} standable={2}{3}", def.Landing, def.Contains( def.Landing ), def.Map.CanFit( def.Landing.X, def.Landing.Y, def.Landing.Z, 16, false, false, true ),
 				def.WalkOutExits ? " | exits on foot" : "" );
 			ReportRealExits( def, w );
@@ -275,7 +274,6 @@ namespace Server.Engines.Instancing
 			return links;
 		}
 
-		// Fixed items by type, real vs instance, to show anything the copy misses.
 		private static void ReportCopiedContent( DungeonInstanceType.DungeonInstanceDefinition def, Map map, StreamWriter w )
 		{
 			Dictionary<string, int> real = new Dictionary<string, int>();
@@ -319,7 +317,6 @@ namespace Server.Engines.Instancing
 			counts[key] = count + 1;
 		}
 
-		// Real destinations of the teleporters the instance turns into exits.
 		private static void ReportRealExits( DungeonInstanceType.DungeonInstanceDefinition def, StreamWriter w )
 		{
 			List<string> lines = new List<string>();

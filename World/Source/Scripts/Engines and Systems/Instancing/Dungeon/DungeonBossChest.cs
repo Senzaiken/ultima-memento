@@ -5,7 +5,7 @@ using Server.Misc;
 
 namespace Server.Engines.Instancing
 {
-	// Dropped by a dungeon instance's boss: unlocked, untrapped, and filled the first time it is opened.
+	// A DUNGEON BOSS'S HOARD: UNLOCKED, UNTRAPPED, FILLED WHEN FIRST OPENED
 	public class DungeonBossChest : LockableContainer
 	{
 		private int m_Level;

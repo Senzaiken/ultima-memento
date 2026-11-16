@@ -24,7 +24,6 @@ namespace Server.Regions
 {
 	public class DeadRegion : BaseRegion
 	{
-		// Runtime copies (dungeon instances).
 		public DeadRegion( string name, Map map, int priority, params Rectangle3D[] area ) : base( name, map, priority, area )
 		{
 		}

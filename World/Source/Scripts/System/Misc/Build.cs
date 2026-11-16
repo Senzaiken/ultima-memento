@@ -4591,6 +4591,8 @@ namespace Server.Commands
 		private string[] m_Params;
 		private ArrayList m_Entries;
 
+		public ArrayList Entries { get { return m_Entries; } }
+
 		public DecorationList()
 		{
 		}

@@ -8,19 +8,16 @@ namespace Server.Engines.Instancing
 	public class SkyDwellingPortal : Item
 	{
 		[Constructable]
-		public SkyDwellingPortal() : base( 0x1F14 ) // a recall rune graphic — clearly magical, not vendor-y
+		public SkyDwellingPortal() : base( 0x1F14 )
 		{
 			Name = "sky dwelling portal";
 			Movable = false;
-			Hue = 0x47E; // pale blue, distinguishes from a normal rune
+			Hue = 0x47E;
 			Light = LightType.Circle300;
 		}
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( from == null )
-				return;
-
 			if ( !from.InRange( GetWorldLocation(), 3 ) )
 			{
 				from.SendLocalizedMessage( 500446 ); // That is too far away.

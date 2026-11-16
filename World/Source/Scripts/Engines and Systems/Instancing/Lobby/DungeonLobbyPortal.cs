@@ -1,16 +1,12 @@
 using System;
 using Server;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Engines.Instancing
 {
-	// The portal a Dungeon Master opens on his dais. Its serial keys the dungeon instance, so everyone
-	// who steps through shares one run. When that run is over the portal collapses for good.
-	public class DungeonLobbyPortal : Item
+	// ITS SERIAL KEYS THE DUNGEON INSTANCE, SO EVERYONE WHO STEPS THROUGH SHARES ONE RUN
+	public class DungeonLobbyPortal : InstancePortal
 	{
-		private static readonly TimeSpan CheckInterval = TimeSpan.FromSeconds( 5.0 );
-
 		private DungeonMaster m_Master;
 		private string m_DungeonName;
 		private Difficulty m_Difficulty;
@@ -38,7 +34,6 @@ namespace Server.Engines.Instancing
 			m_TimeLimit = timeLimit;
 
 			Name = "a portal to " + dungeonName;
-			Movable = false;
 			Hue = 0x21;
 			Light = LightType.Circle300;
 
@@ -49,29 +44,7 @@ namespace Server.Engines.Instancing
 		{
 		}
 
-		public override void OnDoubleClick( Mobile from )
-		{
-			if ( from == null )
-				return;
-
-			if ( !from.InRange( GetWorldLocation(), 2 ) )
-			{
-				from.SendLocalizedMessage( 500446 ); // That is too far away.
-				return;
-			}
-
-			Enter( from );
-		}
-
-		public override bool OnMoveOver( Mobile m )
-		{
-			if ( m == null || !m.Player )
-				return true;
-
-			return !Enter( m );
-		}
-
-		private bool Enter( Mobile from )
+		protected override bool Use( Mobile from )
 		{
 			if ( !from.Alive )
 			{
@@ -80,17 +53,13 @@ namespace Server.Engines.Instancing
 			}
 
 			DungeonInstanceType.DungeonInstanceDefinition def = DungeonInstanceType.Instance.FindDefinition( m_DungeonName );
-			if ( def == null )
+			if ( def == null || m_Master == null || m_Master.Deleted )
 			{
 				from.SendMessage( "The portal flickers; whatever lay beyond it is gone." );
 				return false;
 			}
 
-			Map returnMap;
-			Point3D returnPoint;
-			DungeonLobbyInstanceType.Instance.GetReturn( from, out returnMap, out returnPoint );
-
-			if ( !DungeonInstanceType.Instance.SendToConfiguredInstance( from, Serial, def, m_Difficulty, returnMap, returnPoint, InstanceOwnerKind.PublicGateway, m_TimeLimit ) )
+			if ( !DungeonInstanceType.Instance.SendToConfiguredInstance( from, Serial, def, m_Difficulty, m_Master.ReturnMap, m_Master.ReturnPoint, m_TimeLimit ) )
 				return false;
 
 			m_Used = true;
@@ -99,14 +68,13 @@ namespace Server.Engines.Instancing
 
 		private void StartTimer()
 		{
-			if ( m_Timer == null )
-				m_Timer = Timer.DelayCall( CheckInterval, CheckInterval, new TimerCallback( Check ) );
+			m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 5.0 ), TimeSpan.FromSeconds( 5.0 ), new TimerCallback( Check ) );
 		}
 
-		// Once the dungeon behind it has been dissolved (cleared and left, or out of time), the portal goes too.
+		// ONCE THE DUNGEON BEHIND IT IS GONE, THE PORTAL GOES TOO
 		private void Check()
 		{
-			if ( Deleted || !m_Used || DungeonInstanceType.Instance.HasInstance( Serial ) )
+			if ( !m_Used || DungeonInstanceType.Instance.HasInstance( Serial ) )
 				return;
 
 			Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3728, 8, 20, 0x21, 0, 5042, 0 );
@@ -130,10 +98,7 @@ namespace Server.Engines.Instancing
 			base.OnAfterDelete();
 
 			if ( m_Timer != null )
-			{
 				m_Timer.Stop();
-				m_Timer = null;
-			}
 
 			DungeonInstanceType.Instance.CleanupInstance( Serial );
 		}

@@ -1,40 +1,55 @@
 using System;
 using Server;
-using Server.Mobiles;
 using Server.Regions;
 
 namespace Server.Engines.Instancing
 {
-	// Covers a single pool map's instance footprint. It is bound to the map, not to
-	// an owner: the instance occupying a given pool map changes as instances are
-	// parked and recycled, so on enter we just nudge whichever instance currently
-	// lives here (keeping it from being swept out from under its visitors).
 	public class InstanceRegion : BaseRegion
 	{
-		private readonly InstanceType m_Type;
-		private readonly int m_MapIndex;
-
-		public InstanceType Type { get { return m_Type; } }
-		public int MapIndex { get { return m_MapIndex; } }
-
-		public InstanceRegion( InstanceType type, Map map )
-			: base( type.RegionName, map, 50, type.RegionFootprint() )
+		public InstanceRegion( string name, Map map, Rectangle3D area ) : base( name, map, 50, area )
 		{
-			m_Type = type;
-			m_MapIndex = map.MapIndex;
 		}
 
 		public override bool AllowHousing( Mobile from, Point3D p )
 		{
-			return false; // private instances are not for player housing
+			return false;
+		}
+	}
+
+	public class InstanceVoidRegion : BaseRegion
+	{
+		private readonly InstanceType m_Type;
+
+		public InstanceVoidRegion( InstanceType type, Map map ) : base( null, map, 0, new Rectangle3D[0] )
+		{
+			m_Type = type;
+		}
+
+		public override bool YoungProtected { get { return false; } }
+
+		public override bool AllowHousing( Mobile from, Point3D p )
+		{
+			return false;
+		}
+
+		public override bool OnMoveInto( Mobile m, Direction d, Point3D newLocation, Point3D oldLocation )
+		{
+			if ( m.AccessLevel >= AccessLevel.GameMaster )
+				return true;
+
+			m_Type.OnWalkIntoVoid( m, Map );
+			return false;
 		}
 
 		public override void OnEnter( Mobile m )
 		{
 			base.OnEnter( m );
 
-			if ( m is PlayerMobile )
-				m_Type.OnPlayerEnteredMap( m_MapIndex, (PlayerMobile)m );
+			if ( m.AccessLevel >= AccessLevel.GameMaster )
+				return;
+
+			Map map = Map;
+			Timer.DelayCall( TimeSpan.Zero, delegate { m_Type.ReturnFromVoid( m, map ); } );
 		}
 	}
 }

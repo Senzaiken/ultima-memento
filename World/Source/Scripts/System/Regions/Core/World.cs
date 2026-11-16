@@ -231,17 +231,12 @@ namespace Server.Misc
 		{
 			string world = "Sosaria";
 
-			// Never store an instance map: it may be freed or reused before the player returns.
-			if ( map != null && map.BaseMap != null )
-				map = map.BaseMap;
-
-			if ( Object.ReferenceEquals( map, Map.Lodor ) ){ world = "Lodor"; }
-			else if ( Object.ReferenceEquals( map, Map.Underworld ) ){ world = "Underworld"; }
-			else if ( Object.ReferenceEquals( map, Map.SerpentIsland ) ){ world = "SerpentIsland"; }
-			else if ( Object.ReferenceEquals( map, Map.IslesDread ) ){ world = "IslesDread"; }
-			else if ( Object.ReferenceEquals( map, Map.SavagedEmpire ) ){ world = "SavagedEmpire"; }
-			else if ( Object.ReferenceEquals( map, Map.Atlantis ) ){ world = "Atlantis"; }
-			else if ( map != null && map.Name != null && map.Name.Length > 0 ){ world = map.Name; }
+			if ( map == Map.Lodor ){ world = "Lodor"; }
+			else if ( map == Map.Underworld ){ world = "Underworld"; }
+			else if ( map == Map.SerpentIsland ){ world = "SerpentIsland"; }
+			else if ( map == Map.IslesDread ){ world = "IslesDread"; }
+			else if ( map == Map.SavagedEmpire ){ world = "SavagedEmpire"; }
+			else if ( map == Map.Atlantis ){ world = "Atlantis"; }
 
 			return world;
 		}

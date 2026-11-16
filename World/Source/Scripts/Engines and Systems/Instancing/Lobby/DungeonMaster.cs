@@ -2,13 +2,9 @@ using System;
 using Server;
 using Server.Items;
 using Server.Mobiles;
-using Server.Network;
 
 namespace Server.Engines.Instancing
 {
-	// Stands in the middle of a dungeon hall. Talk to him or double-click him to choose a difficulty
-	// and a time limit; he then opens a portal on the dais to a randomly chosen dungeon. Each hall
-	// gets one run: once that dungeon is gone, so is his portal.
 	public class DungeonMaster : BaseCreature
 	{
 		public static readonly TimeSpan[] TimeLimits = new TimeSpan[]
@@ -25,6 +21,10 @@ namespace Server.Engines.Instancing
 		private DungeonLobbyPortal m_Portal;
 		private bool m_Spent;
 		private bool m_Opening;
+
+		public Serial HallKey;
+		public Map ReturnMap;
+		public Point3D ReturnPoint;
 
 		public Item Portal { get { return m_Portal; } }
 
@@ -79,16 +79,14 @@ namespace Server.Engines.Instancing
 		public override bool ClickTitle { get { return true; } }
 		public override bool ShowFameTitle { get { return false; } }
 
-		// ----- Talking -----
-
 		public override bool HandlesOnSpeech( Mobile from )
 		{
-			return from != null && from.Player && from.InRange( this, TalkRange );
+			return from.Player && from.InRange( this, TalkRange );
 		}
 
 		public override void OnSpeech( SpeechEventArgs e )
 		{
-			if ( e.Handled || e.Mobile == null || !e.Mobile.Player || !e.Mobile.InRange( this, TalkRange ) )
+			if ( e.Handled || !e.Mobile.Player || !e.Mobile.InRange( this, TalkRange ) )
 				return;
 
 			e.Handled = true;
@@ -97,16 +95,10 @@ namespace Server.Engines.Instancing
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( from == null )
-				return;
-
-			if ( !from.InRange( this, TalkRange ) || !InLOS( from ) )
-			{
+			if ( from.InRange( this, TalkRange ) && InLOS( from ) )
+				Interact( from );
+			else
 				from.SendMessage( "He is too far away to hear you." );
-				return;
-			}
-
-			Interact( from );
 		}
 
 		private bool PortalIsOpen { get { return m_Portal != null && !m_Portal.Deleted; } }
@@ -135,12 +127,9 @@ namespace Server.Engines.Instancing
 			}
 		}
 
-		// ----- Opening the way -----
-
 		public bool CanOpenFor( Mobile from )
 		{
-			return from != null && !Deleted && !m_Spent && !m_Opening && !PortalIsOpen
-				&& Object.ReferenceEquals( from.Map, Map ) && from.InRange( this, 12 );
+			return !Deleted && !m_Spent && !m_Opening && !PortalIsOpen && Object.ReferenceEquals( from.Map, Map ) && from.InRange( this, 12 );
 		}
 
 		public void OpenPortal( Mobile from, Difficulty difficulty, TimeSpan timeLimit )
@@ -172,17 +161,13 @@ namespace Server.Engines.Instancing
 
 		private void Explode( Map map, Point3D top, int ring )
 		{
-			if ( Deleted || map == null )
+			if ( Deleted )
 				return;
 
 			Animate( 17, 7, 1, true, false, 0 );
 
 			for ( int i = 0; i < 4; i++ )
-			{
-				int x = top.X + ( i % 2 == 0 ? -ring : ring );
-				int y = top.Y + ( i < 2 ? -ring : ring );
-				Effects.SendLocationEffect( new Point3D( x, y, top.Z ), map, 0x36BD, 20, 10, 0, 0 );
-			}
+				Effects.SendLocationEffect( new Point3D( top.X + ( i % 2 == 0 ? -ring : ring ), top.Y + ( i < 2 ? -ring : ring ), top.Z ), map, 0x36BD, 20, 10, 0, 0 );
 
 			Effects.SendLocationParticles( EffectItem.Create( top, map, EffectItem.DefaultDuration ), 0x3709, 10, 30, 0x21, 0, 5052, 0 );
 			Effects.PlaySound( top, map, 0x307 );
@@ -192,7 +177,7 @@ namespace Server.Engines.Instancing
 		{
 			m_Opening = false;
 
-			if ( Deleted || map == null || m_Spent || PortalIsOpen )
+			if ( Deleted || m_Spent || PortalIsOpen )
 				return;
 
 			m_Portal = new DungeonLobbyPortal( this, def.DisplayName, difficulty, timeLimit );
@@ -204,10 +189,9 @@ namespace Server.Engines.Instancing
 
 			Direction = Direction.South;
 			Say( String.Format( "The way is open. {0} awaits you{1}.", def.DisplayName,
-				timeLimit > TimeSpan.Zero ? String.Format( ", and you have {0} minutes to empty it", (int)timeLimit.TotalMinutes ) : "" ) );
+				timeLimit > TimeSpan.Zero ? String.Format( ", and you have {0} minutes to defeat its master", (int)timeLimit.TotalMinutes ) : "" ) );
 		}
 
-		// Called by the portal once the dungeon behind it is gone.
 		public void OnPortalSpent( DungeonLobbyPortal portal )
 		{
 			if ( portal != m_Portal )
@@ -218,13 +202,14 @@ namespace Server.Engines.Instancing
 			Say( "The way has closed. Your trial here is done." );
 		}
 
-		// ----- Persistence -----
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 
+			writer.Write( (int) HallKey );
+			writer.Write( (Map) ReturnMap );
+			writer.Write( (Point3D) ReturnPoint );
 			writer.Write( (Item) m_Portal );
 			writer.Write( (bool) m_Spent );
 		}
@@ -233,6 +218,13 @@ namespace Server.Engines.Instancing
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+
+			if ( version >= 1 )
+			{
+				HallKey = (Serial)reader.ReadInt();
+				ReturnMap = reader.ReadMap();
+				ReturnPoint = reader.ReadPoint3D();
+			}
 
 			m_Portal = reader.ReadItem() as DungeonLobbyPortal;
 			m_Spent = reader.ReadBool();

@@ -11,7 +11,6 @@ namespace Server.Regions
 {
 	public class CaveRegion : BaseRegion
 	{
-		// Runtime copies (dungeon instances).
 		public CaveRegion( string name, Map map, int priority, params Rectangle3D[] area ) : base( name, map, priority, area )
 		{
 		}

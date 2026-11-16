@@ -579,7 +579,6 @@ namespace Server.Spells
 				return false;
 			}
 
-			// A gate cast inside an instance would leave its return half open to anyone at the destination.
 			if( ( type == TravelCheckType.RecallTo || type == TravelCheckType.GateTo || type == TravelCheckType.GateFrom ) && InstanceManager.IsInstanceMap( map ) )
 			{
 				if( caster != null )

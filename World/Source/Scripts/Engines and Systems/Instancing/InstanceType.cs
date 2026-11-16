@@ -7,119 +7,56 @@ using Server.Network;
 
 namespace Server.Engines.Instancing
 {
-	// Base class for every instanced-map system. It owns the generic machinery and
-	// leaves the policy to subclasses:
-	//
-	//   * a bounded pool of real Map instances cloning one base map's terrain, so
-	//     the client renders existing .mul terrain with no extra files (exactly how
-	//     Atlantis reuses Sosaria's files);
-	//   * slot allocation with LRU eviction of idle instances;
-	//   * a live -> park/free lifecycle, materialising and restoring real Items;
-	//   * an idle sweep, login re-homing, and (for persistent types) save/load.
-	//
-	// Subclasses choose the terrain, the pool size/range, what to build inside, who
-	// may enter, and whether instances persist (kept and parked when idle) or are
-	// transient (freed when empty). InstanceManager registers and drives them.
 	public abstract class InstanceType
 	{
-		// ----- Pool / terrain configuration (subclass-supplied) -----
-
-		// Stable identifier; used in console output, region names and the default
-		// save path. Keep it short and file-safe.
 		public abstract string Key { get; }
-
-		// First Map.Maps[] slot owned by this type, and how many. Map.Maps[] has 256
-		// slots; 0-31 and 0x7F/0xFF are reserved for core use. Each type must claim a
-		// range that does not overlap any other type (see InstanceManager).
 		public abstract int PoolBaseIndex { get; }
 		public abstract int PoolSize { get; }
 
-		// The real map whose terrain (and baked statics) every pool map mirrors. Pool
-		// maps reuse its mapID/fileIndex so the client renders it with no new files.
-		public abstract Map BaseMap { get; }
+		public virtual Map BaseMap { get { return Map.SerpentIsland; } }
+		public virtual Point3D Landing { get { return Point3D.Zero; } }
+		public virtual Map ExitMap { get { return Map.Sosaria; } }
+		public virtual Point3D ExitPoint { get { return new Point3D( 3884, 2879, 0 ); } }
 
-		// Dimensions of the cloned terrain. Must match BaseMap's dimensions.
-		public abstract int MapWidth { get; }
-		public abstract int MapHeight { get; }
-
-		// Arrival point inside the instance (instance-local; identical on every pool
-		// map because they share terrain), and where players are sent on leaving.
-		public abstract Point3D Landing { get; }
-		public abstract Map ExitMap { get; }
-		public abstract Point3D ExitPoint { get; }
-
-		// mapID/fileIndex default to the base map's, which is what makes the client
-		// reuse existing terrain. fileIndex defaults to mapID (true for the maps we
-		// clone, e.g. SerpentIsland = 3/3); override if a base map's files differ.
-		public virtual int ClonedMapID { get { return BaseMap.MapID; } }
-		public virtual int ClonedFileIndex { get { return ClonedMapID; } }
-
-		public virtual MapRules Rules { get { return MapRules.LodorRules | MapRules.FreeMovement; } }
 		public virtual string RegionName { get { return Key; } }
-
-		// Despawn (park or free) idle instances after this much inactivity.
 		public virtual TimeSpan UnloadAfter { get { return TimeSpan.FromMinutes( 15 ); } }
 
-		// Persistent types are saved across restarts and parked (kept) when idle;
-		// transient types are not saved and are freed entirely when they empty out.
+		// PERSISTENT TYPES PARK IDLE INSTANCES AND SAVE THEM; THE REST ARE FREED
 		public virtual bool Persistent { get { return false; } }
+		public virtual string SavePath { get { return String.Format( "Saves/Instancing/{0}.bin", Key ); } }
 
-		// A bounded box around the landing footprint rather than the whole map:
-		// region registration force-creates every Sector it covers, so a full-map
-		// region would allocate hundreds of thousands of sectors per pool map. The
-		// instance and its visitors only ever occupy this small area.
-		public virtual int RegionHalfExtent { get { return 64; } }
-
-		// Off for types that register their own regions per instance.
+		// A SMALL BOX, NOT THE WHOLE MAP: REGIONS ALLOCATE EVERY SECTOR THEY COVER
 		public virtual bool UsesFootprintRegion { get { return true; } }
 
 		public virtual Rectangle3D RegionFootprint()
 		{
-			return new Rectangle3D(
-				new Point3D( Landing.X - RegionHalfExtent, Landing.Y - RegionHalfExtent, sbyte.MinValue ),
-				new Point3D( Landing.X + RegionHalfExtent, Landing.Y + RegionHalfExtent, sbyte.MaxValue ) );
+			return new Rectangle3D( new Point3D( Landing.X - 64, Landing.Y - 64, sbyte.MinValue ), new Point3D( Landing.X + 64, Landing.Y + 64, sbyte.MaxValue ) );
 		}
 
-		// Where the save file lives for persistent types. Defaults to a per-key file;
-		// override to preserve a legacy path.
-		public virtual string SavePath { get { return String.Format( "Saves/Instancing/{0}.bin", Key ); } }
+		private readonly Dictionary<Serial, Instance> m_ByOwner = new Dictionary<Serial, Instance>();
+		private readonly Dictionary<int, Instance> m_Live = new Dictionary<int, Instance>();
+		private bool m_RegionsBuilt;
 
-		// ----- Runtime state -----
+		public IEnumerable<Instance> AllInstances { get { return m_ByOwner.Values; } }
+		public IEnumerable<Instance> LiveInstances { get { return m_Live.Values; } }
+		public int OwnerCount { get { return m_ByOwner.Count; } }
+		public int LiveCount { get { return m_Live.Count; } }
 
-		private readonly Dictionary<Serial, Instance> _byOwner = new Dictionary<Serial, Instance>();
-		private readonly Dictionary<int, Instance> _liveMapToInstance = new Dictionary<int, Instance>();
-		private readonly List<InstanceRegion> _regions = new List<InstanceRegion>();
-
-		public IEnumerable<Instance> AllInstances { get { return _byOwner.Values; } }
-		public IEnumerable<Instance> LiveInstances { get { return _liveMapToInstance.Values; } }
-		public int OwnerCount { get { return _byOwner.Count; } }
-		public int LiveCount { get { return _liveMapToInstance.Count; } }
-
-		// ----- Map pool -----
-
-		// Called from MapDefinitions.Configure (via InstanceManager), before
-		// Region.Load() and World.Load(). Items serialize their map by index
-		// (Map.Maps[ReadByte()]), so these indices must exist before any item
-		// deserialization.
-		public virtual void RegisterMaps()
+		protected virtual Map PoolBaseMapFor( int slot )
 		{
-			Map baseMap = BaseMap;
-			if ( baseMap == null )
-				return;
+			return BaseMap;
+		}
 
+		public void RegisterMaps()
+		{
 			for ( int i = 0; i < PoolSize; i++ )
 			{
 				int idx = PoolBaseIndex + i;
-				if ( idx >= Map.Maps.Length || Map.Maps[idx] != null )
+				Map baseMap = PoolBaseMapFor( i );
+				if ( baseMap == null || idx >= Map.Maps.Length || Map.Maps[idx] != null )
 					continue;
 
-				Map map = new Map( ClonedMapID, idx, ClonedFileIndex, MapWidth, MapHeight, 1,
-					String.Format( "{0}{1}", Key, i ), Rules );
-
-				// Record the base map this clone mirrors. Map's == / IEquatable<Map>
-				// reads BaseMap, so land/terrain/difficulty logic that checks
-				// ( map == Map.SerpentIsland ) treats this instance as that map, while
-				// it stays a distinct world for isolation.
+				Map map = new Map( baseMap.MapID, idx, baseMap.MapID, baseMap.Width, baseMap.Height, 1, String.Format( "{0}{1}", Key, i ), MapRules.LodorRules | MapRules.FreeMovement );
 				map.BaseMap = baseMap;
 
 				Map.Maps[idx] = map;
@@ -129,27 +66,21 @@ namespace Server.Engines.Instancing
 
 		public void EnsureRegions()
 		{
-			if ( _regions.Count > 0 )
+			if ( m_RegionsBuilt )
 				return;
+
+			m_RegionsBuilt = true;
 
 			for ( int i = 0; i < PoolSize; i++ )
 			{
-				int idx = PoolBaseIndex + i;
-				if ( idx >= Map.Maps.Length )
-					continue;
-
-				Map map = Map.Maps[idx];
+				Map map = Map.Maps[PoolBaseIndex + i];
 				if ( map == null )
 					continue;
 
 				map.DefaultRegion = new InstanceVoidRegion( this, map );
 
-				if ( !UsesFootprintRegion )
-					continue;
-
-				InstanceRegion region = new InstanceRegion( this, map );
-				region.Register();
-				_regions.Add( region );
+				if ( UsesFootprintRegion )
+					new InstanceRegion( RegionName, map, RegionFootprint() ).Register();
 			}
 		}
 
@@ -158,114 +89,72 @@ namespace Server.Engines.Instancing
 			return map != null && map.MapIndex >= PoolBaseIndex && map.MapIndex < PoolBaseIndex + PoolSize;
 		}
 
-		public virtual Point3D GetLandingPoint( Map map )
+		protected virtual Point3D GetLandingPoint( Instance inst )
 		{
 			return Landing;
 		}
 
-		protected virtual Point3D GetLandingPoint( Instance inst, Map map )
-		{
-			return GetLandingPoint( map );
-		}
-
-		protected virtual Map GetExitMap( Mobile m )
-		{
-			return ExitMap;
-		}
-
-		protected virtual Point3D GetExitPoint( Mobile m )
-		{
-			return ExitPoint;
-		}
-
-		// ----- Identity / lookup -----
-
-		// The key under which a mobile's instance is stored. Owner-keyed by default;
-		// shared (party) types override to a leader serial so members resolve to the
-		// same instance.
-		protected virtual Serial OwnerKey( Mobile m )
+		public virtual Serial OwnerKey( Mobile m )
 		{
 			return m.Serial;
 		}
 
+		// PARTY MEMBERS SHARE THE LEADER'S INSTANCE
+		protected static Serial PartyKey( Mobile m )
+		{
+			Server.Engines.PartySystem.Party p = Server.Engines.PartySystem.Party.Get( m );
+			return p != null && p.Active && p.Leader != null ? p.Leader.Serial : m.Serial;
+		}
+
+		public Instance GetByKey( Serial key )
+		{
+			Instance inst;
+			m_ByOwner.TryGetValue( key, out inst );
+			return inst;
+		}
+
 		public Instance GetByOwner( Mobile owner )
 		{
-			if ( owner == null ) return null;
-			Instance inst;
-			_byOwner.TryGetValue( OwnerKey( owner ), out inst );
-			return inst != null && inst.OwnerKind == InstanceOwnerKind.Mobile ? inst : null;
-		}
-
-		public Instance GetByOwner( Item owner )
-		{
-			if ( owner == null ) return null;
-			Instance inst;
-			_byOwner.TryGetValue( owner.Serial, out inst );
-			return inst != null && inst.OwnerKind == InstanceOwnerKind.PublicGateway ? inst : null;
-		}
-
-		protected Instance GetByKey( Serial key )
-		{
-			Instance inst;
-			_byOwner.TryGetValue( key, out inst );
-			return inst;
+			return owner != null ? GetByKey( OwnerKey( owner ) ) : null;
 		}
 
 		protected Instance GetOrCreateByKey( Serial key )
 		{
-			return GetOrCreateByKey( key, InstanceOwnerKind.Mobile );
-		}
-
-		protected Instance GetOrCreateByKey( Serial key, InstanceOwnerKind ownerKind )
-		{
-			Instance inst;
-			if ( _byOwner.TryGetValue( key, out inst ) )
+			Instance inst = GetByKey( key );
+			if ( inst == null )
 			{
-				inst.OwnerKind = ownerKind;
-				return inst;
+				inst = new Instance();
+				inst.OwnerSerial = key;
+				m_ByOwner[key] = inst;
 			}
 
-			inst = new Instance( this );
-			inst.OwnerSerial = key;
-			inst.OwnerKind = ownerKind;
-			_byOwner[inst.OwnerSerial] = inst;
 			return inst;
 		}
 
 		public Instance GetOrCreate( Mobile owner )
 		{
-			if ( owner == null ) return null;
+			return GetOrCreateByKey( OwnerKey( owner ) );
+		}
 
-			Instance inst = GetByOwner( owner );
-			if ( inst != null ) return inst;
+		protected Instance GetLiveInstance( Map map )
+		{
+			Instance inst = null;
+			if ( map != null )
+				m_Live.TryGetValue( map.MapIndex, out inst );
 
-			inst = new Instance( this );
-			inst.OwnerSerial = OwnerKey( owner );
-			inst.OwnerKind = InstanceOwnerKind.Mobile;
-			_byOwner[inst.OwnerSerial] = inst;
 			return inst;
 		}
 
-		// ----- Membership / access -----
-
 		public bool IsMember( Instance inst, Mobile m )
 		{
-			if ( inst == null || m == null ) return false;
-			if ( inst.OwnerSerial == OwnerKey( m ) ) return true;
-			for ( int i = 0; i < inst.Members.Count; i++ )
-				if ( inst.Members[i] == m.Serial ) return true;
-			return false;
+			return inst != null && m != null && ( inst.OwnerSerial == OwnerKey( m ) || inst.Members.Contains( m.Serial ) );
 		}
 
 		public bool AddMember( Mobile owner, Mobile member )
 		{
-			if ( owner == null || member == null || owner == member ) return false;
-
 			Instance inst = GetByOwner( owner );
-			if ( inst == null ) return false;
-
-			for ( int i = 0; i < inst.Members.Count; i++ )
-				if ( inst.Members[i] == member.Serial ) return false;
+			if ( inst == null || member == null || owner == member || inst.Members.Contains( member.Serial ) )
+				return false;
 
 			inst.Members.Add( member.Serial );
 			return true;
@@ -273,124 +162,77 @@ namespace Server.Engines.Instancing
 
 		public bool RemoveMember( Mobile owner, Mobile member )
 		{
-			if ( owner == null || member == null ) return false;
 			Instance inst = GetByOwner( owner );
-			if ( inst == null ) return false;
-
-			for ( int i = 0; i < inst.Members.Count; i++ )
-			{
-				if ( inst.Members[i] == member.Serial )
-				{
-					inst.Members.RemoveAt( i );
-					return true;
-				}
-			}
-			return false;
+			return inst != null && member != null && inst.Members.Remove( member.Serial );
 		}
 
-		// May this mobile enter the given instance? Owner and members always may;
-		// staff bypass. Subclasses tighten/loosen as needed.
-		public virtual bool CanEnter( Mobile from, Instance inst )
-		{
-			if ( from == null || inst == null ) return false;
-			if ( from.AccessLevel >= AccessLevel.GameMaster ) return true;
-			return IsMember( inst, from );
-		}
-
-		// ----- Materialize / park / free -----
-
-		// Make an instance occupy a pool map, building or restoring its contents.
-		// Returns false only if every pool map is in use by an online player.
 		public bool EnsureLive( Instance inst )
 		{
-			if ( inst == null ) return false;
-			if ( inst.IsLive ) return true;
+			if ( inst.IsLive )
+				return true;
 
 			int idx = AcquireMapIndex( inst );
-			if ( idx < 0 ) return false;
+			if ( idx < 0 )
+				return false;
 
 			inst.LiveMapIndex = idx;
-			_liveMapToInstance[idx] = inst;
+			m_Live[idx] = inst;
 
-			Map map = Map.Maps[idx];
-
-			if ( !inst.Built )
+			if ( inst.Built )
 			{
-				BuildContents( inst, map );
-				inst.Built = true;
+				RestoreContents( inst, inst.LiveMap );
 			}
 			else
 			{
-				RestoreContents( inst, map );
+				BuildContents( inst, inst.LiveMap );
+				inst.Built = true;
 			}
 
 			return true;
 		}
 
-		protected virtual int AcquireMapIndex( Instance instance )
+		protected virtual bool CanHost( Instance inst, Map map )
+		{
+			return true;
+		}
+
+		private int AcquireMapIndex( Instance inst )
 		{
 			for ( int i = 0; i < PoolSize; i++ )
 			{
 				int idx = PoolBaseIndex + i;
-				if ( !_liveMapToInstance.ContainsKey( idx ) )
+				if ( !m_Live.ContainsKey( idx ) && CanHost( inst, Map.Maps[idx] ) )
 					return idx;
 			}
 
-			// Pool exhausted: evict the least-recently-used instance that has no
-			// players inside, freeing its map.
 			Instance victim = null;
-			foreach ( Instance live in _liveMapToInstance.Values )
+			foreach ( Instance live in m_Live.Values )
 			{
-				if ( IsInUse( live ) )
-					continue;
-				if ( victim == null || live.LastTouched < victim.LastTouched )
+				if ( !IsInUse( live ) && CanHost( inst, live.LiveMap ) && ( victim == null || live.LastTouched < victim.LastTouched ) )
 					victim = live;
 			}
 
 			if ( victim == null )
-				return -1; // all pool maps occupied by online players
+				return -1;
 
 			int freed = victim.LiveMapIndex;
 			ReleaseIdle( victim );
 			return freed;
 		}
 
-		protected bool IsMapIndexLive( int mapIndex )
-		{
-			return _liveMapToInstance.ContainsKey( mapIndex );
-		}
-
-		// Puts an instance restored from a save back on the pool map its contents were saved on.
 		protected bool RestoreLive( Instance inst, int mapIndex )
 		{
-			if ( inst == null || inst.IsLive || mapIndex < 0 || mapIndex >= Map.Maps.Length || !IsPoolMap( Map.Maps[mapIndex] ) || IsMapIndexLive( mapIndex ) )
+			if ( inst.IsLive || !IsPoolMap( Map.Maps[mapIndex] ) || m_Live.ContainsKey( mapIndex ) )
 				return false;
 
 			inst.LiveMapIndex = mapIndex;
 			inst.Built = true;
-			_liveMapToInstance[mapIndex] = inst;
+			m_Live[mapIndex] = inst;
 			return true;
 		}
 
-		protected Instance GetLiveInstance( Map map )
-		{
-			if ( map == null )
-				return null;
-
-			Instance inst;
-			_liveMapToInstance.TryGetValue( map.MapIndex, out inst );
-			return inst;
-		}
-
-		// Populate a freshly-built instance: doors and a purchase sign, monster
-		// spawns, whatever the system needs. Everything created should be tracked as
-		// an InstanceItem on the instance so it parks/restores (or is freed) with it.
 		protected abstract void BuildContents( Instance inst, Map map );
 
-		// Restore a previously-parked instance's contents onto a pool map. The
-		// default moves the stored Items back to their saved coordinates, which is
-		// what persistent types want; transient types never park, so they never hit
-		// this.
 		protected virtual void RestoreContents( Instance inst, Map map )
 		{
 			for ( int i = 0; i < inst.Items.Count; i++ )
@@ -401,87 +243,67 @@ namespace Server.Engines.Instancing
 			}
 		}
 
-		// Rebuild an instance's item list from whatever currently sits on its pool
-		// map (top-level items only). Captures anything placed while inside, with
-		// current positions; carried/contained items belong to their holder.
-		protected void CaptureItems( Instance inst, Map map )
-		{
-			if ( map == null )
-				return;
-
-			inst.Items.Clear();
-
-			foreach ( Item it in World.Items.Values )
-			{
-				if ( it == null || it.Deleted )
-					continue;
-				if ( it.Map != map || it.Parent != null )
-					continue;
-
-				inst.Items.Add( new InstanceItem( it, it.Location ) );
-			}
-		}
-
-		// Park (keep) a live instance: capture its items, move them to Internal, and
-		// free the pool map for reuse.
 		public void Park( Instance inst )
 		{
-			if ( inst == null || !inst.IsLive )
+			if ( !inst.IsLive )
 				return;
 
-			CaptureItems( inst, inst.LiveMap );
+			CaptureItems( inst );
+			InternalizeItems( inst );
 
-			for ( int i = 0; i < inst.Items.Count; i++ )
-			{
-				InstanceItem di = inst.Items[i];
-				if ( di.Item != null && !di.Item.Deleted )
-					di.Item.Internalize();
-			}
-
-			_liveMapToInstance.Remove( inst.LiveMapIndex );
+			m_Live.Remove( inst.LiveMapIndex );
 			inst.LiveMapIndex = -1;
 		}
 
-		// Permanently remove an instance and delete its contents.
+		private static void CaptureItems( Instance inst )
+		{
+			Map map = inst.LiveMap;
+			inst.Items.Clear();
+
+			foreach ( Item item in World.Items.Values )
+			{
+				if ( !item.Deleted && item.Parent == null && Object.ReferenceEquals( item.Map, map ) )
+					inst.Items.Add( new InstanceItem( item, item.Location ) );
+			}
+		}
+
+		private static void InternalizeItems( Instance inst )
+		{
+			for ( int i = 0; i < inst.Items.Count; i++ )
+			{
+				Item item = inst.Items[i].Item;
+				if ( item != null && !item.Deleted )
+					item.Internalize();
+			}
+		}
+
 		public void FreeInstance( Instance inst )
 		{
-			if ( inst == null )
-				return;
-
 			Map liveMap = inst.LiveMap;
 
 			if ( inst.IsLive )
 			{
-				_liveMapToInstance.Remove( inst.LiveMapIndex );
+				m_Live.Remove( inst.LiveMapIndex );
 				inst.LiveMapIndex = -1;
 			}
 
-			// Let the type tear down anything not tracked as an InstanceItem (e.g. a
-			// dungeon's spawned creatures) while we still know which map it was on.
 			OnFreeInstance( inst, liveMap );
 
 			for ( int i = 0; i < inst.Items.Count; i++ )
 			{
-				InstanceItem di = inst.Items[i];
-				if ( di.Item != null && !di.Item.Deleted )
-					di.Item.Delete();
+				Item item = inst.Items[i].Item;
+				if ( item != null && !item.Deleted )
+					item.Delete();
 			}
-			inst.Items.Clear();
 
-			_byOwner.Remove( inst.OwnerSerial );
+			inst.Items.Clear();
+			m_ByOwner.Remove( inst.OwnerSerial );
 		}
 
-		// Hook for tearing down per-instance content that is not tracked as an
-		// InstanceItem -- most notably spawned mobiles. Called from FreeInstance with
-		// the map the instance was last live on (null if it was already parked).
-		// Default does nothing; Items are deleted by FreeInstance regardless.
 		protected virtual void OnFreeInstance( Instance inst, Map liveMap )
 		{
 		}
 
-		// Whether an instance should be kept (parked) or freed when it goes idle.
-		// Persistent types keep by default; sky dwellings additionally drop a still
-		// unpurchased (look-around) instance. Transient types always free.
 		protected virtual bool ShouldPersistOnIdle( Instance inst )
 		{
 			return Persistent;
@@ -495,43 +317,24 @@ namespace Server.Engines.Instancing
 				FreeInstance( inst );
 		}
 
-		// ----- Sweep / orphan cleanup -----
-
 		public void SweepUnload()
 		{
-			DateTime now = DateTime.Now;
-			List<Instance> toRelease = null;
+			List<Instance> idle = new List<Instance>();
 
-			foreach ( Instance inst in _liveMapToInstance.Values )
+			foreach ( Instance inst in m_Live.Values )
 			{
 				if ( IsInUse( inst ) )
-				{
 					inst.Touch();
-					continue;
-				}
-
-				if ( ( now - inst.LastTouched ) >= UnloadAfter )
-				{
-					if ( toRelease == null ) toRelease = new List<Instance>();
-					toRelease.Add( inst );
-				}
+				else if ( DateTime.Now - inst.LastTouched >= UnloadAfter )
+					idle.Add( inst );
 			}
 
-			if ( toRelease != null )
-			{
-				foreach ( Instance inst in toRelease )
-					ReleaseIdle( inst );
-			}
+			for ( int i = 0; i < idle.Count; i++ )
+				ReleaseIdle( idle[i] );
 
 			ReleaseDeadOwners();
-			OnSweep();
 		}
 
-		protected virtual void OnSweep()
-		{
-		}
-
-		// A live instance that is in use is never swept or evicted.
 		protected virtual bool IsInUse( Instance inst )
 		{
 			return HasPlayersInside( inst );
@@ -539,68 +342,41 @@ namespace Server.Engines.Instancing
 
 		protected bool HasPlayersInside( Instance inst )
 		{
-			if ( inst == null || !inst.IsLive )
-				return false;
+			return inst.IsLive && PlayersOn( inst.LiveMap ).Count > 0;
+		}
 
-			Map map = inst.LiveMap;
+		public static List<Mobile> PlayersOn( Map map )
+		{
+			List<Mobile> list = new List<Mobile>();
+
 			foreach ( NetState ns in NetState.Instances )
 			{
-				Mobile m = ns.Mobile;
-				if ( m != null && m.Map == map )
-					return true;
+				if ( ns.Mobile != null && Object.ReferenceEquals( ns.Mobile.Map, map ) )
+					list.Add( ns.Mobile );
 			}
-			return false;
+
+			return list;
 		}
 
-		// Free instances whose owner no longer exists. For party/transient types the
-		// owner key may be a leader who logged out -- those are reclaimed by the
-		// idle sweep instead, so only purge when the keyed mobile is truly gone.
 		public int ReleaseDeadOwners()
 		{
-			List<Instance> toRelease = null;
-			foreach ( Instance inst in _byOwner.Values )
+			List<Instance> dead = new List<Instance>();
+
+			foreach ( Instance inst in m_ByOwner.Values )
 			{
-				if ( !OwnerExists( inst ) )
-				{
-					if ( toRelease == null ) toRelease = new List<Instance>();
-					toRelease.Add( inst );
-				}
+				bool exists = inst.OwnerSerial.IsItem ? World.FindItem( inst.OwnerSerial ) != null : World.FindMobile( inst.OwnerSerial ) != null;
+				if ( !exists )
+					dead.Add( inst );
 			}
 
-			if ( toRelease == null ) return 0;
+			for ( int i = 0; i < dead.Count; i++ )
+				FreeInstance( dead[i] );
 
-			foreach ( Instance inst in toRelease )
-			{
-				OnReleaseDeadOwner( inst );
-				FreeInstance( inst );
-			}
-
-			return toRelease.Count;
+			return dead.Count;
 		}
 
-		protected virtual bool OwnerExists( Instance inst )
-		{
-			if ( inst == null )
-				return false;
-
-			if ( inst.OwnerKind == InstanceOwnerKind.PublicGateway )
-				return World.FindItem( inst.OwnerSerial ) != null;
-
-			return World.FindMobile( inst.OwnerSerial ) != null;
-		}
-
-		protected virtual void OnReleaseDeadOwner( Instance inst )
-		{
-		}
-
-		// ----- Entry / exit -----
-
-		// Send a mobile into a specific instance, materialising it on demand.
 		public bool SendToInstance( Mobile from, Instance inst )
 		{
-			if ( from == null || inst == null )
-				return false;
-
 			if ( !EnsureLive( inst ) )
 			{
 				from.SendMessage( "All instances are currently in use; please try again shortly." );
@@ -608,57 +384,73 @@ namespace Server.Engines.Instancing
 			}
 
 			inst.Touch();
-			Map map = inst.LiveMap;
-			Point3D landing = GetLandingPoint( inst, map );
-
-			BaseCreature.TeleportPets( from, landing, map, false );
-			from.MoveToWorld( landing, map );
+			Teleport( from, GetLandingPoint( inst ), inst.LiveMap );
 			return true;
 		}
 
-		// Send a player into their own instance (created on demand).
 		public bool SendOwnerToTheirInstance( Mobile owner )
 		{
-			if ( owner == null ) return false;
 			return SendToInstance( owner, GetOrCreate( owner ) );
 		}
 
-		public virtual bool LeaveInstance( Mobile m )
+		protected static void Teleport( Mobile m, Point3D p, Map map )
+		{
+			BaseCreature.TeleportPets( m, p, map, false );
+			m.MoveToWorld( p, map );
+		}
+
+		protected void GetReturn( Instance inst, out Map map, out Point3D p )
+		{
+			if ( inst != null && inst.ReturnMap != null )
+			{
+				map = inst.ReturnMap;
+				p = inst.ReturnPoint;
+			}
+			else
+			{
+				map = ExitMap;
+				p = ExitPoint;
+			}
+		}
+
+		public bool LeaveInstance( Mobile m )
 		{
 			if ( m == null || !IsPoolMap( m.Map ) )
 				return false;
 
-			Map exitMap = GetExitMap( m );
-			Point3D exitPoint = GetExitPoint( m );
-
-			BaseCreature.TeleportPets( m, exitPoint, exitMap, false );
-			m.MoveToWorld( exitPoint, exitMap );
+			Map map;
+			Point3D p;
+			GetReturn( GetLiveInstance( m.Map ), out map, out p );
+			Teleport( m, p, map );
 			return true;
 		}
 
-		// The step is refused; types where walking out is the way out send the player out here.
+		public virtual void OnLogin( Mobile m )
+		{
+			Instance inst = GetLiveInstance( m.Map );
+			if ( inst != null )
+				inst.Touch();
+			else
+				LeaveInstance( m );
+		}
+
 		public virtual void OnWalkIntoVoid( Mobile m, Map map )
 		{
 		}
 
-		// A creature died on one of this type's pool maps, before it is deleted; the corpse may be null.
 		public virtual void OnCreatureDeath( BaseCreature bc, Container corpse )
 		{
 		}
 
-		// A random standable point in the instance live on this map, for effects that would
-		// otherwise send a player somewhere outside it.
 		public virtual bool TryGetRandomPlayablePoint( Map map, out Point3D p )
 		{
 			p = Point3D.Zero;
 			return false;
 		}
 
-		// A mobile reached the void other than by walking: players go back to the landing (or out), pets to their
-		// master.
-		public virtual void ReturnFromVoid( Mobile m, Map map )
+		public void ReturnFromVoid( Mobile m, Map map )
 		{
-			if ( m == null || m.Deleted || !Object.ReferenceEquals( m.Map, map ) || !( m.Region is InstanceVoidRegion ) )
+			if ( m.Deleted || !Object.ReferenceEquals( m.Map, map ) || !( m.Region is InstanceVoidRegion ) )
 				return;
 
 			Instance inst = GetLiveInstance( map );
@@ -666,15 +458,9 @@ namespace Server.Engines.Instancing
 			if ( m.Player )
 			{
 				if ( inst != null )
-				{
-					Point3D landing = GetLandingPoint( inst, map );
-					BaseCreature.TeleportPets( m, landing, map, false );
-					m.MoveToWorld( landing, map );
-				}
+					Teleport( m, GetLandingPoint( inst ), map );
 				else
-				{
 					LeaveInstance( m );
-				}
 
 				m.SendMessage( "You cannot go there." );
 				return;
@@ -686,175 +472,190 @@ namespace Server.Engines.Instancing
 			if ( master != null && !master.Deleted && master.Map != null && master.Map != Map.Internal && !( master.Region is InstanceVoidRegion ) )
 				m.MoveToWorld( master.Location, master.Map );
 			else if ( bc != null && bc.Controlled && inst != null )
-				m.MoveToWorld( GetLandingPoint( inst, map ), map );
-			else if ( !( bc != null && bc.Controlled ) )
+				m.MoveToWorld( GetLandingPoint( inst ), map );
+			else if ( bc == null || !bc.Controlled )
 				m.Delete();
 		}
 
-		// A player who logged out (or was caught by a restart) inside an instance
-		// reappears on a now-parked, bare pool map. Re-home them: an owner goes back
-		// into their (freshly materialized) instance; anyone else is sent to the exit.
-		public virtual void OnLogin( Mobile m )
+		// PLAYERS, PETS AND PLAYER CORPSES GO HOME; EVERYTHING ELSE IS DELETED
+		protected void ClearMap( Map map, Instance inst )
 		{
-			if ( m == null || !IsPoolMap( m.Map ) )
-				return;
+			ClearMaps( delegate( Map m ) { return Object.ReferenceEquals( m, map ); }, inst );
+		}
 
-			Instance inst = GetByOwner( m );
-			if ( inst != null )
-				SendToInstance( m, inst );
-			else
+		protected void ClearPoolMaps( HashSet<int> keep )
+		{
+			ClearMaps( delegate( Map m ) { return IsPoolMap( m ) && !keep.Contains( m.MapIndex ); }, null );
+		}
+
+		private void ClearMaps( Predicate<Map> match, Instance inst )
+		{
+			List<Mobile> mobiles = new List<Mobile>();
+			foreach ( Mobile m in World.Mobiles.Values )
 			{
-				BaseCreature.TeleportPets( m, ExitPoint, ExitMap, false );
-				m.MoveToWorld( ExitPoint, ExitMap );
+				Map map = m.Map == Map.Internal ? m.LogoutMap : m.Map;
+				if ( map != null && match( map ) && ( m.Map != Map.Internal || m.Player ) )
+					mobiles.Add( m );
 			}
-		}
 
-		// Region hook: keep the live instance from being swept while occupied.
-		public void OnPlayerEnteredMap( int mapIndex, PlayerMobile pm )
-		{
-			Instance inst;
-			if ( _liveMapToInstance.TryGetValue( mapIndex, out inst ) )
-				inst.Touch();
-		}
-
-		// ----- Persistence (persistent types only) -----
-
-		// Refresh each live instance's item list so saved coordinates reflect any
-		// rearrangement done while inside. The items themselves persist normally with
-		// the world save (on a pool map or Internal).
-		public void RefreshAllLiveItems()
-		{
-			if ( _liveMapToInstance.Count == 0 )
-				return;
-
-			foreach ( Instance inst in _liveMapToInstance.Values )
-				inst.Items.Clear();
-
-			foreach ( Item it in World.Items.Values )
+			List<Item> items = new List<Item>();
+			foreach ( Item item in World.Items.Values )
 			{
-				if ( it == null || it.Deleted || it.Parent != null || it.Map == null )
+				if ( item.Parent == null && item.Map != null && match( item.Map ) )
+					items.Add( item );
+			}
+
+			Map returnMap;
+			Point3D returnPoint;
+			GetReturn( inst, out returnMap, out returnPoint );
+
+			for ( int i = 0; i < mobiles.Count; i++ )
+			{
+				Mobile m = mobiles[i];
+				BaseCreature pet = m as BaseCreature;
+
+				if ( m.Deleted )
+				{
+				}
+				else if ( m.Player && m.Map == Map.Internal )
+				{
+					m.LogoutMap = returnMap;
+					m.LogoutLocation = returnPoint;
+				}
+				else if ( m.Player )
+				{
+					Teleport( m, returnPoint, returnMap );
+				}
+				else if ( pet != null && pet.Controlled && !pet.Summoned && pet.ControlMaster != null )
+				{
+					pet.ControlTarget = null;
+					pet.ControlOrder = OrderType.Stay;
+					pet.MoveToWorld( returnPoint, returnMap );
+				}
+				else
+				{
+					m.Delete();
+				}
+			}
+
+			for ( int i = 0; i < items.Count; i++ )
+			{
+				Item item = items[i];
+				Corpse corpse = item as Corpse;
+
+				if ( item.Deleted )
 					continue;
 
-				Instance inst;
-				if ( _liveMapToInstance.TryGetValue( it.Map.MapIndex, out inst ) )
-					inst.Items.Add( new InstanceItem( it, it.Location ) );
+				if ( corpse != null && corpse.Owner != null && corpse.Owner.Player && corpse.TotalItems > 0 )
+					corpse.MoveToWorld( returnPoint, returnMap );
+				else
+					item.Delete();
 			}
 		}
 
-		public void Save()
+		public virtual void OnLoad()
 		{
-			Persistence.Serialize(
-				SavePath,
-				delegate( GenericWriter writer )
-				{
-					writer.Write( (int) 3 ); // version
+			if ( !Persistent )
+				return;
 
-					writer.Write( (int) _byOwner.Count );
-					foreach ( Instance inst in _byOwner.Values )
-					{
-						writer.Write( (int) inst.OwnerSerial );
-						writer.Write( (int) inst.OwnerKind );
-						writer.Write( (DateTime) inst.LastTouched );
-						writer.Write( (bool) inst.Built );
-						writer.Write( (bool) inst.Purchased );
-						writer.Write( (bool) inst.Public );
-						writer.Write( (int) inst.LiveMapIndex );
+			Load();
 
-						writer.Write( (int) inst.Members.Count );
-						for ( int i = 0; i < inst.Members.Count; i++ )
-							writer.Write( (int) inst.Members[i] );
-
-						writer.Write( (int) inst.Items.Count );
-						for ( int i = 0; i < inst.Items.Count; i++ )
-						{
-							writer.Write( (Item) inst.Items[i].Item );
-							writer.Write( (Point3D) inst.Items[i].Loc );
-						}
-					}
-				} );
-		}
-
-		public void Load()
-		{
-			Persistence.Deserialize(
-				SavePath,
-				delegate( GenericReader reader )
-				{
-					if ( reader.End() )
-						return;
-
-					int version = reader.ReadInt();
-					int count = reader.ReadInt();
-
-					for ( int i = 0; i < count; i++ )
-					{
-						Instance inst = new Instance( this );
-						inst.OwnerSerial = (Serial)reader.ReadInt();
-						if ( version >= 3 )
-							inst.OwnerKind = (InstanceOwnerKind)reader.ReadInt();
-						inst.LastTouched = reader.ReadDateTime();
-						inst.Built = reader.ReadBool();
-						if ( version >= 1 )
-							inst.Purchased = reader.ReadBool();
-						if ( version >= 2 )
-							inst.Public = reader.ReadBool();
-						inst.LiveMapIndex = reader.ReadInt();
-
-						int memberCount = reader.ReadInt();
-						for ( int j = 0; j < memberCount; j++ )
-							inst.Members.Add( (Serial)reader.ReadInt() );
-
-						int itemCount = reader.ReadInt();
-						for ( int j = 0; j < itemCount; j++ )
-						{
-							Item it = reader.ReadItem();
-							Point3D loc = reader.ReadPoint3D();
-							if ( it != null && !it.Deleted )
-								inst.Items.Add( new InstanceItem( it, loc ) );
-						}
-
-						_byOwner[inst.OwnerSerial] = inst;
-					}
-				} );
-		}
-
-		// After world load every instance starts parked. One that was live at save
-		// time has its items sitting on the pool map (they deserialized there); move
-		// them to Internal so we boot into a clean all-parked state. Instances that
-		// should not persist when idle (e.g. an unpurchased look-around dwelling)
-		// were transient, so free them outright.
-		public void ResolveAfterLoad()
-		{
-			List<Instance> toFree = null;
-
-			foreach ( Instance inst in _byOwner.Values )
+			List<Instance> drop = new List<Instance>();
+			foreach ( Instance inst in m_ByOwner.Values )
 			{
 				inst.Items.RemoveAll( delegate( InstanceItem di ) { return di.Item == null || di.Item.Deleted; } );
 
 				if ( !ShouldPersistOnIdle( inst ) )
 				{
-					if ( toFree == null ) toFree = new List<Instance>();
-					toFree.Add( inst );
-					continue;
+					drop.Add( inst );
 				}
-
-				if ( inst.LiveMapIndex >= 0 )
+				else if ( inst.IsLive )
 				{
-					for ( int i = 0; i < inst.Items.Count; i++ )
-					{
-						InstanceItem di = inst.Items[i];
-						if ( di.Item != null && !di.Item.Deleted )
-							di.Item.Internalize();
-					}
+					InternalizeItems( inst );
 					inst.LiveMapIndex = -1;
 				}
 			}
 
-			if ( toFree != null )
+			for ( int i = 0; i < drop.Count; i++ )
+				FreeInstance( drop[i] );
+		}
+
+		public virtual void OnSave()
+		{
+			if ( !Persistent )
+				return;
+
+			foreach ( Instance inst in m_Live.Values )
+				CaptureItems( inst );
+
+			Persistence.Serialize( SavePath, delegate( GenericWriter writer )
 			{
-				foreach ( Instance inst in toFree )
-					FreeInstance( inst );
-			}
+				writer.Write( (int) 4 ); // version
+
+				writer.Write( (int) m_ByOwner.Count );
+				foreach ( Instance inst in m_ByOwner.Values )
+				{
+					writer.Write( (int) inst.OwnerSerial );
+					writer.Write( (DateTime) inst.LastTouched );
+					writer.Write( (bool) inst.Built );
+					writer.Write( (bool) inst.Purchased );
+					writer.Write( (bool) inst.Public );
+					writer.Write( (int) inst.LiveMapIndex );
+
+					writer.Write( (int) inst.Members.Count );
+					for ( int i = 0; i < inst.Members.Count; i++ )
+						writer.Write( (int) inst.Members[i] );
+
+					writer.Write( (int) inst.Items.Count );
+					for ( int i = 0; i < inst.Items.Count; i++ )
+					{
+						writer.Write( (Item) inst.Items[i].Item );
+						writer.Write( (Point3D) inst.Items[i].Loc );
+					}
+				}
+			} );
+		}
+
+		private void Load()
+		{
+			Persistence.Deserialize( SavePath, delegate( GenericReader reader )
+			{
+				if ( reader.End() )
+					return;
+
+				int version = reader.ReadInt();
+				int count = reader.ReadInt();
+
+				for ( int i = 0; i < count; i++ )
+				{
+					Instance inst = new Instance();
+					inst.OwnerSerial = (Serial)reader.ReadInt();
+					if ( version == 3 )
+						reader.ReadInt();
+					inst.LastTouched = reader.ReadDateTime();
+					inst.Built = reader.ReadBool();
+					if ( version >= 1 )
+						inst.Purchased = reader.ReadBool();
+					if ( version >= 2 )
+						inst.Public = reader.ReadBool();
+					inst.LiveMapIndex = reader.ReadInt();
+
+					int members = reader.ReadInt();
+					for ( int j = 0; j < members; j++ )
+						inst.Members.Add( (Serial)reader.ReadInt() );
+
+					int items = reader.ReadInt();
+					for ( int j = 0; j < items; j++ )
+					{
+						Item item = reader.ReadItem();
+						Point3D loc = reader.ReadPoint3D();
+						if ( item != null )
+							inst.Items.Add( new InstanceItem( item, loc ) );
+					}
+
+					m_ByOwner[inst.OwnerSerial] = inst;
+				}
+			} );
 		}
 	}
 }

@@ -4,21 +4,18 @@ using Server;
 using Server.Commands;
 using Server.Items;
 using Server.Mobiles;
+using Server.Network;
 using Server.Regions;
 
 namespace Server.Engines.Instancing
 {
-	// Left behind where an outdoor demon comes into the world. The rift stays sealed while its demon
-	// lives; slaying the demon opens it for a while, and it leads to a Dungeon Master's holding room.
-	public class DemonRiftPortal : Item
+	// LEFT WHERE AN OUTDOOR DEMON SPAWNS; SEALED UNTIL THAT DEMON IS SLAIN
+	public class DemonRiftPortal : InstancePortal
 	{
 		public static double SpawnChance = 0.10;
 		public static int MaxActive = 20;
 		public static int MinSpacing = 40;
 		public static TimeSpan OpenDuration = TimeSpan.FromMinutes( 30 );
-
-		private const int SealedHue = 0x497;
-		private static readonly TimeSpan CheckInterval = TimeSpan.FromSeconds( 5.0 );
 
 		private static readonly List<DemonRiftPortal> m_Active = new List<DemonRiftPortal>();
 
@@ -32,37 +29,24 @@ namespace Server.Engines.Instancing
 		private Mobile m_Demon;
 		private bool m_Open;
 		private DateTime m_ClosesAt;
-		private readonly List<Serial> m_Entrants = new List<Serial>();
+		private readonly Dictionary<Serial, Serial> m_Entrants = new Dictionary<Serial, Serial>();
 		private Timer m_Timer;
-
-		public static int ActiveCount { get { return m_Active.Count; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public Mobile Demon { get { return m_Demon; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool IsOpen
-		{
-			get { return m_Open; }
-			set
-			{
-				if ( value && !m_Open )
-					Open();
-			}
-		}
+		public bool IsOpen { get { return m_Open; } set { if ( value ) Open(); } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public TimeSpan TimeUntilClose
-		{
-			get { return m_Open && m_ClosesAt > DateTime.Now ? m_ClosesAt - DateTime.Now : TimeSpan.Zero; }
-		}
+		public TimeSpan TimeUntilClose { get { return m_Open && m_ClosesAt > DateTime.Now ? m_ClosesAt - DateTime.Now : TimeSpan.Zero; } }
 
 		public DemonRiftPortal( Mobile demon ) : base( 0xDDA )
 		{
-			Movable = false;
+			Name = "a sealed demonic rift";
+			Hue = 0x497;
 			Light = LightType.Circle150;
 			m_Demon = demon;
-			ApplySealedLook();
 
 			m_Active.Add( this );
 			StartTimer();
@@ -72,20 +56,6 @@ namespace Server.Engines.Instancing
 		{
 		}
 
-		private void ApplySealedLook()
-		{
-			Name = "a sealed demonic rift";
-			Hue = SealedHue;
-		}
-
-		private void ApplyOpenLook()
-		{
-			Name = "a demonic rift";
-			Hue = 0;
-		}
-
-		// ----- Spawning -----
-
 		public static void Configure()
 		{
 			CommandSystem.Register( "demonrift", AccessLevel.GameMaster, new CommandEventHandler( OnCommand ) );
@@ -93,58 +63,42 @@ namespace Server.Engines.Instancing
 
 		public static bool IsRiftDemon( BaseCreature bc )
 		{
-			if ( bc == null || bc.Deleted || bc.Summoned || bc.Controlled || bc.ControlMaster != null || bc.IsParagon )
+			if ( bc.Summoned || bc.Controlled || bc.ControlMaster != null || bc.IsParagon || Array.IndexOf( ExcludedDemons, bc.GetType() ) >= 0 )
 				return false;
-
-			Type type = bc.GetType();
-			for ( int i = 0; i < ExcludedDemons.Length; i++ )
-			{
-				if ( ExcludedDemons[i] == type )
-					return false;
-			}
 
 			SlayerEntry demons = SlayerGroup.GetEntryByName( SlayerName.Exorcism );
 			return demons != null && demons.Slays( bc );
 		}
 
-		// Called once a spawner has placed a creature.
 		public static void OnCreatureSpawned( BaseCreature bc )
 		{
-			if ( SpawnChance <= 0.0 || m_Active.Count >= MaxActive || !IsRiftDemon( bc ) || Utility.RandomDouble() >= SpawnChance )
+			if ( m_Active.Count >= MaxActive || Utility.RandomDouble() >= SpawnChance || !IsRiftDemon( bc ) )
 				return;
 
-			// Deferred: the spawner may still move the creature after this.
+			// THE SPAWNER MAY STILL MOVE THE CREATURE
 			Timer.DelayCall( TimeSpan.Zero, delegate { TryOpenFor( bc ); } );
 		}
 
-		private static bool TryOpenFor( BaseCreature bc )
+		private static void TryOpenFor( BaseCreature bc )
 		{
-			if ( bc == null || bc.Deleted || !bc.Alive || m_Active.Count >= MaxActive || !IsOverworld( bc.Map, bc.Location ) || HasRiftNear( bc.Map, bc.Location ) )
-				return false;
+			if ( bc.Deleted || !bc.Alive || m_Active.Count >= MaxActive || !IsOverworld( bc.Map, bc.Location ) || HasRiftNear( bc.Map, bc.Location ) )
+				return;
 
-			DemonRiftPortal rift = new DemonRiftPortal( bc );
-			rift.MoveToWorld( bc.Location, bc.Map );
+			new DemonRiftPortal( bc ).MoveToWorld( bc.Location, bc.Map );
 
 			Effects.SendLocationParticles( EffectItem.Create( bc.Location, bc.Map, EffectItem.DefaultDuration ), 0x3709, 10, 30, 0x497, 0, 5052, 0 );
 			Effects.PlaySound( bc.Location, bc.Map, 0x20E );
-			return true;
 		}
 
-		// Out in the open on one of the surface lands: no dungeon, cave, town or instance.
+		// OUT IN THE OPEN ON A SURFACE LAND: NO DUNGEON, CAVE, TOWN, WATER OR INSTANCE
 		public static bool IsOverworld( Map map, Point3D p )
 		{
-			if ( map == null || map == Map.Internal || InstanceManager.IsInstanceMap( map ) )
-				return false;
-
 			if ( !Object.ReferenceEquals( map, Map.Lodor ) && !Object.ReferenceEquals( map, Map.Sosaria ) && !Object.ReferenceEquals( map, Map.SerpentIsland )
 				&& !Object.ReferenceEquals( map, Map.IslesDread ) && !Object.ReferenceEquals( map, Map.SavagedEmpire ) )
 				return false;
 
 			Region reg = Region.Find( p, map );
-			if ( !( reg.IsDefault || reg is OutDoorRegion || reg is OutDoorBadRegion ) )
-				return false;
-
-			return !IsWater( map, p );
+			return ( reg.IsDefault || reg is OutDoorRegion || reg is OutDoorBadRegion ) && !IsWater( map, p );
 		}
 
 		private static bool IsWater( Map map, Point3D p )
@@ -165,9 +119,8 @@ namespace Server.Engines.Instancing
 
 		private static bool HasRiftNear( Map map, Point3D p )
 		{
-			for ( int i = 0; i < m_Active.Count; i++ )
+			foreach ( DemonRiftPortal rift in m_Active )
 			{
-				DemonRiftPortal rift = m_Active[i];
 				if ( Object.ReferenceEquals( rift.Map, map ) && Utility.InRange( rift.Location, p, MinSpacing ) )
 					return true;
 			}
@@ -177,13 +130,9 @@ namespace Server.Engines.Instancing
 
 		public static void OnCreatureDeath( BaseCreature bc )
 		{
-			if ( bc == null || m_Active.Count == 0 )
-				return;
-
-			for ( int i = 0; i < m_Active.Count; i++ )
+			foreach ( DemonRiftPortal rift in m_Active )
 			{
-				DemonRiftPortal rift = m_Active[i];
-				if ( !rift.m_Open && Object.ReferenceEquals( rift.m_Demon, bc ) )
+				if ( Object.ReferenceEquals( rift.m_Demon, bc ) )
 				{
 					rift.Open();
 					return;
@@ -191,30 +140,23 @@ namespace Server.Engines.Instancing
 			}
 		}
 
-		// ----- Lifecycle -----
-
 		private void StartTimer()
 		{
-			if ( m_Timer == null )
-				m_Timer = Timer.DelayCall( CheckInterval, CheckInterval, new TimerCallback( Check ) );
+			m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 5.0 ), TimeSpan.FromSeconds( 5.0 ), new TimerCallback( Check ) );
 		}
 
 		private void Check()
 		{
-			if ( Deleted )
-				return;
-
-			if ( !m_Open )
+			if ( !m_Open && ( m_Demon == null || m_Demon.Deleted ) )
 			{
-				// The demon went back to wherever it came from without being slain.
-				if ( m_Demon == null || m_Demon.Deleted )
-					Delete();
-
-				return;
+				Delete();
 			}
-
-			if ( DateTime.Now >= m_ClosesAt )
-				Collapse();
+			else if ( m_Open && DateTime.Now >= m_ClosesAt )
+			{
+				Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3728, 8, 20, 0x497, 0, 5042, 0 );
+				Effects.PlaySound( Location, Map, 0x1FE );
+				Delete();
+			}
 		}
 
 		public void Open()
@@ -225,79 +167,36 @@ namespace Server.Engines.Instancing
 			m_Open = true;
 			m_Demon = null;
 			m_ClosesAt = DateTime.Now + OpenDuration;
-			ApplyOpenLook();
+			Name = "a demonic rift";
+			Hue = 0;
 
 			Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 0x21, 0, 5022, 0 );
 			Effects.PlaySound( Location, Map, 0x20F );
-			PublicOverheadMessage( Server.Network.MessageType.Regular, 0x21, false, "With its master slain, the rift tears open!" );
+			PublicOverheadMessage( MessageType.Regular, 0x21, false, "With its master slain, the rift tears open!" );
 		}
 
-		private void Collapse()
+		// EACH PLAYER GETS ONE TRIP, THOUGH THEY MAY RETURN TO THE HALL THEY JOINED WHILE IT STANDS
+		protected override bool Use( Mobile from )
 		{
-			Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3728, 8, 20, 0x497, 0, 5042, 0 );
-			Effects.PlaySound( Location, Map, 0x1FE );
-			Delete();
-		}
+			Serial hall = DungeonLobbyInstanceType.Instance.OwnerKey( from );
+			Serial joined;
 
-		// ----- Entering -----
-
-		public override void OnDoubleClick( Mobile from )
-		{
-			if ( from == null )
-				return;
-
-			if ( !from.InRange( GetWorldLocation(), 2 ) )
-			{
-				from.SendLocalizedMessage( 500446 ); // That is too far away.
-				return;
-			}
-
-			Enter( from );
-		}
-
-		public override bool OnMoveOver( Mobile m )
-		{
-			if ( m == null || !m.Player )
-				return true;
-
-			return !Enter( m );
-		}
-
-		private bool Enter( Mobile from )
-		{
 			if ( !from.Alive )
-			{
 				from.SendMessage( "The rift will not carry the dead." );
-				return false;
-			}
-
-			if ( !m_Open )
-			{
+			else if ( !m_Open )
 				from.SendMessage( "The rift is sealed. It will not open while the demon that came through it still lives." );
-				return false;
-			}
-
-			if ( from.Criminal || Server.Spells.SpellHelper.CheckCombat( from ) )
-			{
+			else if ( from.Criminal || Server.Spells.SpellHelper.CheckCombat( from ) )
 				from.SendMessage( "You are too agitated to step into the rift." );
-				return false;
-			}
-
-			bool returning = m_Entrants.Contains( from.Serial );
-			if ( returning && !DungeonLobbyInstanceType.Instance.HasLiveLobby( from ) )
-			{
+			else if ( m_Entrants.TryGetValue( from.Serial, out joined ) && ( joined != hall || !DungeonLobbyInstanceType.Instance.IsLive( hall ) ) )
 				from.SendMessage( "The rift has already carried you once. It will not do so again." );
-				return false;
+			else if ( DungeonLobbyInstanceType.Instance.Enter( from, Map, Location ) )
+			{
+				m_Entrants[from.Serial] = hall;
+				Effects.PlaySound( Location, Map, 0x1FE );
+				return true;
 			}
 
-			if ( !DungeonLobbyInstanceType.Instance.Enter( from, Map, Location ) )
-				return false;
-
-			if ( !returning )
-				m_Entrants.Add( from.Serial );
-
-			Effects.PlaySound( Location, Map, 0x1FE );
-			return true;
+			return false;
 		}
 
 		public override void AddNameProperties( ObjectPropertyList list )
@@ -315,10 +214,7 @@ namespace Server.Engines.Instancing
 			base.OnAfterDelete();
 
 			if ( m_Timer != null )
-			{
 				m_Timer.Stop();
-				m_Timer = null;
-			}
 
 			m_Active.Remove( this );
 		}
@@ -326,15 +222,18 @@ namespace Server.Engines.Instancing
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 
 			writer.Write( (Mobile) m_Demon );
 			writer.Write( (bool) m_Open );
 			writer.Write( (DateTime) m_ClosesAt );
 
 			writer.Write( (int) m_Entrants.Count );
-			for ( int i = 0; i < m_Entrants.Count; i++ )
-				writer.Write( (int) m_Entrants[i] );
+			foreach ( KeyValuePair<Serial, Serial> kvp in m_Entrants )
+			{
+				writer.Write( (int) kvp.Key );
+				writer.Write( (int) kvp.Value );
+			}
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -348,64 +247,47 @@ namespace Server.Engines.Instancing
 
 			int count = reader.ReadInt();
 			for ( int i = 0; i < count; i++ )
-				m_Entrants.Add( (Serial)reader.ReadInt() );
+				m_Entrants[(Serial)reader.ReadInt()] = version >= 1 ? (Serial)reader.ReadInt() : Serial.MinusOne;
 
 			m_Active.Add( this );
 			StartTimer();
 		}
 
-		// ----- Staff -----
-
 		private static void OnCommand( CommandEventArgs e )
 		{
 			Mobile from = e.Mobile;
 			string sub = e.Arguments.Length > 0 ? e.Arguments[0].ToLower() : "";
+			double pct;
 
 			switch ( sub )
 			{
 				case "chance":
-				{
-					if ( e.Arguments.Length > 1 )
-					{
-						double pct;
-						if ( Double.TryParse( e.Arguments[1], out pct ) )
-							SpawnChance = Math.Max( 0.0, Math.Min( 100.0, pct ) ) / 100.0;
-					}
+					if ( e.Arguments.Length > 1 && Double.TryParse( e.Arguments[1], out pct ) )
+						SpawnChance = Math.Max( 0.0, Math.Min( 100.0, pct ) ) / 100.0;
 
 					from.SendMessage( "Outdoor demons open a rift {0:0.##}% of the time ({1} active, max {2}).", SpawnChance * 100.0, m_Active.Count, MaxActive );
 					break;
-				}
 				case "spawn":
-				{
 					Daemon demon = new Daemon();
 					demon.MoveToWorld( from.Location, from.Map );
-
-					DemonRiftPortal rift = new DemonRiftPortal( demon );
-					rift.MoveToWorld( from.Location, from.Map );
+					new DemonRiftPortal( demon ).MoveToWorld( from.Location, from.Map );
 					from.SendMessage( "A daemon comes through a sealed rift. Slay it to open the way." );
 					break;
-				}
 				case "open":
-				{
 					DemonRiftPortal rift = new DemonRiftPortal( null );
 					rift.MoveToWorld( from.Location, from.Map );
 					rift.Open();
 					break;
-				}
 				case "clear":
-				{
 					List<DemonRiftPortal> all = new List<DemonRiftPortal>( m_Active );
-					for ( int i = 0; i < all.Count; i++ )
-						all[i].Delete();
+					foreach ( DemonRiftPortal r in all )
+						r.Delete();
 
 					from.SendMessage( "Removed {0} demonic rift(s).", all.Count );
 					break;
-				}
 				default:
-				{
 					from.SendMessage( "[demonrift chance [percent] | spawn | open | clear  ({0} active)", m_Active.Count );
 					break;
-				}
 			}
 		}
 	}

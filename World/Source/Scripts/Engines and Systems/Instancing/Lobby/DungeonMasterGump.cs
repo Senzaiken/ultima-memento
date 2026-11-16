@@ -5,7 +5,6 @@ using Server.Network;
 
 namespace Server.Engines.Instancing
 {
-	// The champion skull gump's layout, with a difficulty slider and a time limit slider.
 	public class DungeonMasterGump : Gump
 	{
 		private enum Buttons
@@ -36,14 +35,14 @@ namespace Server.Engines.Instancing
 			x += 10;
 			y += 30;
 			TextDefinition.AddHtmlText( this, x, y, 540, 60,
-				"I can open the way to a dungeon of my choosing. Tell me how dangerous its creatures should be, and how long you will have to slay every one of them. " +
+				"I can open the way to a dungeon of my choosing. Tell me how dangerous its creatures should be, and how long you will have to defeat its master. " +
 				"If you would rather not race the clock, choose Untimed.", HtmlColors.COOL_BLUE );
 			y += 70;
 
 			AddSlider( x, y, "Monster Difficulty", "Increase the health and damage of every creature", Buttons.DifficultyBase, (int)Difficulty.Deadly + 1, (int)m_Difficulty );
 			y += 75;
 
-			AddSlider( x, y, "Time Limit", "How long you have to slay every creature before the dungeon crumbles", Buttons.TimeLimitBase, DungeonMaster.TimeLimits.Length, m_TimeIndex );
+			AddSlider( x, y, "Time Limit", "How long you have to defeat its master before the dungeon crumbles", Buttons.TimeLimitBase, DungeonMaster.TimeLimits.Length, m_TimeIndex );
 			y += 75;
 
 			TextDefinition.AddHtmlText( this, x, y, 540, 20, String.Format( "Difficulty: {0}     Time limit: {1}",

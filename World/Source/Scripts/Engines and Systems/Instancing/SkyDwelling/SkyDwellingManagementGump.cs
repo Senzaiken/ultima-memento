@@ -4,9 +4,6 @@ using Knives.TownHouses;
 
 namespace Server.Engines.Instancing
 {
-	// Owner-only control reached by double-clicking the owned sky-dwelling sign.
-	// Sets the dwelling public (listed for anyone to visit from the climb chooser)
-	// or private (owner + invited friends only).
 	public class SkyDwellingManagementGump : GumpPlusLight
 	{
 		public SkyDwellingManagementGump( Mobile m ) : base( m, 100, 100 )

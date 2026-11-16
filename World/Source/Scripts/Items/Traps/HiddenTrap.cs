@@ -961,7 +961,6 @@ namespace Server.Items
 						textSay = "A fall into a deep pit!";
 						textLog = "a deep pit";
 
-						// In an instance the pit lands inside it, with no saved way back to it.
 						Point3D instancePit;
 						bool inInstance = Server.Engines.Instancing.InstanceManager.TryGetRandomPlayablePoint( m.Map, out instancePit );
 

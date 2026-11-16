@@ -1,21 +1,11 @@
 using System;
 using Server;
 using Server.Items;
-using Server.Mobiles;
-using Server.Engines.Instancing;
 using Knives.TownHouses;
 
 namespace Server.Engines.Instancing
 {
-	// A TownHouseSign that is auto-placed inside a freshly generated sky-dwelling
-	// instance. Buying it claims that instance permanently for the player. It reuses
-	// the standard sign's price, buyer requirements (CanBuyHouse) and confirm gump,
-	// so the purchase looks and costs exactly like the non-instanced one -- but the
-	// outcome is the player owning the instance they are already standing in.
-	//
-	// The sign is NOT removed on purchase: it converts into an owned "management"
-	// sign that the owner double-clicks to set their dwelling public or private.
-	// Per-player ownership lives in SkyDwellingInstanceType.
+	// BUYING IT CLAIMS THE DWELLING IT HANGS IN; IT THEN BECOMES THE OWNER'S PUBLIC/PRIVATE SWITCH
 	[Flipable( 0xC0B, 0xC0C )]
 	public class SkyDwellingSign : TownHouseSign
 	{
@@ -23,7 +13,6 @@ namespace Server.Engines.Instancing
 		private Serial m_OwnerSerial;
 
 		public bool OwnedSign { get { return m_Owned; } }
-		public Serial DwellingOwner { get { return m_OwnerSerial; } }
 
 		[Constructable]
 		public SkyDwellingSign()
@@ -31,7 +20,10 @@ namespace Server.Engines.Instancing
 			Name = "Purchase this Sky Dwelling";
 		}
 
-		// Convert this sign into the owner's management sign (kept after purchase).
+		public SkyDwellingSign( Serial serial ) : base( serial )
+		{
+		}
+
 		public void SetOwned( Serial owner )
 		{
 			m_Owned = true;
@@ -43,7 +35,6 @@ namespace Server.Engines.Instancing
 
 		public override void OnDoubleClick( Mobile m )
 		{
-			// Staff get the standard setup gump to configure price/requirements.
 			if ( m.AccessLevel != AccessLevel.Player )
 			{
 				base.OnDoubleClick( m );
@@ -55,25 +46,15 @@ namespace Server.Engines.Instancing
 
 			if ( m_Owned )
 			{
-				// Post-purchase: only the owner manages it (public/private).
-				if ( m.Serial != m_OwnerSerial )
-				{
-					Mobile owner = World.FindMobile( m_OwnerSerial );
+				Mobile owner = World.FindMobile( m_OwnerSerial );
+				if ( m == owner )
+					new SkyDwellingManagementGump( m );
+				else
 					m.SendMessage( "This sky dwelling belongs to {0}.", owner != null ? owner.Name : "someone else" );
-					return;
-				}
-
-				new SkyDwellingManagementGump( m );
-				return;
 			}
-
-			if ( SkyDwellingInstanceType.Instance.OwnsDwelling( m ) )
-			{
+			else if ( SkyDwellingInstanceType.Instance.OwnsDwelling( m ) )
 				m.SendMessage( "You already own a sky dwelling." );
-				return;
-			}
-
-			if ( CanBuyHouse( m ) )
+			else if ( CanBuyHouse( m ) )
 				new TownHouseConfirmGump( m, this );
 			else
 				m.SendMessage( "You cannot purchase a sky dwelling." );
@@ -81,9 +62,6 @@ namespace Server.Engines.Instancing
 
 		public override void Purchase( Mobile m, bool sellitems )
 		{
-			if ( m == null )
-				return;
-
 			if ( m_Owned )
 				return;
 
@@ -110,16 +88,9 @@ namespace Server.Engines.Instancing
 			if ( m.AccessLevel == AccessLevel.Player && price > 0 )
 				m.SendLocalizedMessage( 1060398, price.ToString() ); // ~1_AMOUNT~ gold has been withdrawn from your bank box.
 
-			if ( !SkyDwellingInstanceType.Instance.Purchase( m ) )
-			{
-				m.SendMessage( "You already own a sky dwelling." );
-				return;
-			}
-
-			// The buyer now owns the instance they are standing in. The sign stays as
-			// their management control (double-click to set public/private).
-			m.SendMessage( "You have purchased this sky dwelling! Double-click this sign to set it public or private." );
+			SkyDwellingInstanceType.Instance.Purchase( m );
 			SetOwned( m.Serial );
+			m.SendMessage( "You have purchased this sky dwelling! Double-click this sign to set it public or private." );
 		}
 
 		public override void AddNameProperties( ObjectPropertyList list )
@@ -129,14 +100,8 @@ namespace Server.Engines.Instancing
 			if ( m_Owned )
 			{
 				Mobile owner = World.FindMobile( m_OwnerSerial );
-				list.Add( 1070722, owner != null
-					? String.Format( "{0}'s sky dwelling -- double-click to manage", owner.Name )
-					: "an owned sky dwelling" );
+				list.Add( 1070722, owner != null ? String.Format( "{0}'s sky dwelling -- double-click to manage", owner.Name ) : "an owned sky dwelling" );
 			}
-		}
-
-		public SkyDwellingSign( Serial serial ) : base( serial )
-		{
 		}
 
 		public override void Serialize( GenericWriter writer )
