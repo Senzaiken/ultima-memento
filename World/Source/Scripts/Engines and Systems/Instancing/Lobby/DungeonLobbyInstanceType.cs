@@ -172,8 +172,6 @@ namespace Server.Engines.Instancing
 
 			Place( map, new Static( WallNorthwestCorner ), west, north, z, 0 );
 			Place( map, new Static( WallEastWest ), east, north, z, 0 );
-			Place( map, new Static( WallNorthSouth ), east, north, z, 0 );
-			Place( map, new Static( WallEastWest ), west, south, z, 0 );
 			Place( map, new Static( WallNorthSouth ), west, south, z, 0 );
 			Place( map, new Static( WallSoutheastPost ), east, south, z, 0 );
 		}

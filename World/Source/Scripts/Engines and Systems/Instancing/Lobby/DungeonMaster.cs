@@ -54,7 +54,7 @@ namespace Server.Engines.Instancing
 
 		private static int Chance( int floor, double progress )
 		{
-			return (int)Math.Round( floor + ( 100 - floor ) * Math.Min( 1.0, progress ) );
+			return (int)Math.Round( ( floor + ( 100 - floor ) * Math.Min( 1.0, progress ) ) / 5 ) * 5;
 		}
 
 		private DungeonLobbyPortal m_Portal;
