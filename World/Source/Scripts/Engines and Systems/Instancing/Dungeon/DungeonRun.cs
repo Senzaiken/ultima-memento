@@ -143,13 +143,13 @@ namespace Server.Engines.Instancing
 				}
 				else if ( m_BossPhase == BossPhase.Awake )
 				{
-					p.Master = m_Boss != null && !m_Boss.Deleted ? String.Format( "{0} {1}", m_Boss.Name, m_Boss.Title ) : MasterStates[MasterStates.Length - 1];
 					p.MasterAwake = m_Boss != null && !m_Boss.Deleted;
+					p.Master = p.MasterAwake ? String.Format( "{0} {1}", m_Boss.Name, m_Boss.Title ) : MasterStates[Omens.Length];
 					p.Omen = WakeOmen;
 				}
 				else
 				{
-					p.Master = MasterStates[Math.Min( m_Omens, MasterStates.Length - 1 )];
+					p.Master = MasterStates[m_Omens];
 					p.Omen = m_Omens > 0 ? Omens[m_Omens - 1] : "The sigil is quiet. Nothing below has noticed you yet.";
 				}
 
@@ -267,8 +267,8 @@ namespace Server.Engines.Instancing
 					bc.RangeHome = 10;
 					bc.MoveToWorld( p, m_Map );
 
-					if ( m_Scaled.Add( bc.Serial ) )
-						BaseCreature.BeefUp( bc, m_Run.Difficulty, false );
+					m_Scaled.Add( bc.Serial );
+					BaseCreature.BeefUp( bc, m_Run.Difficulty, false );
 
 					m_Monsters[bc] = Math.Max( 1, IntelligentAction.GetCreatureLevel( bc ) );
 				}
@@ -373,7 +373,6 @@ namespace Server.Engines.Instancing
 			private void WakeBoss( Point3D near, bool hasNear )
 			{
 				m_BossPhase = BossPhase.Awake;
-				m_Omens = Omens.Length;
 				Broadcast( 0x22, WakeOmen );
 
 				if ( hasNear )

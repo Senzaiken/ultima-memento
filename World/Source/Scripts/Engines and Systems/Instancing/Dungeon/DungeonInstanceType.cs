@@ -137,8 +137,7 @@ namespace Server.Engines.Instancing
 
 		public DungeonInstanceDefinition GetRandomDefinition()
 		{
-			List<DungeonInstanceDefinition> all = Definitions;
-			return all.Count > 0 ? all[Utility.Random( all.Count )] : null;
+			return Definitions.Count > 0 ? Definitions[Utility.Random( Definitions.Count )] : null;
 		}
 
 		public bool SummonBoss( Mobile near )

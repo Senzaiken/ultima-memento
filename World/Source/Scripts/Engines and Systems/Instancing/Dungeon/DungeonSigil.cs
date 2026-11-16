@@ -8,16 +8,7 @@ namespace Server.Engines.Instancing
 	// A GLOWING ORB ON A PEDESTAL BY A DUNGEON RUN'S ENTRANCE; DOUBLE-CLICK TO READ HOW FAR THE RUN HAS COME
 	public class DungeonSigil : BaseAddon
 	{
-		private const int SearchRange = 10;
-		private const int Clearance = 20;
-		private const int DetourRange = 3;
 		private const int PedestalHeight = 9;
-
-		// SIDES DRAWN IN FRONT OF THE LANDING FIRST, SO DECORATION BEHIND IT NEVER HIDES THE STONE
-		private static readonly Direction[] Sides = new Direction[]
-		{
-			Direction.East, Direction.South, Direction.Down, Direction.Right, Direction.Left, Direction.North, Direction.West, Direction.Up
-		};
 
 		// HAND-PICKED FLOOR FOR EACH DUNGEON'S SIGIL: AGAINST A WALL, IN VIEW OF THE LANDING, 5 TO 10 TILES AWAY WHERE THE ROOM ALLOWS
 		private static readonly Dictionary<string, Point3D> Spots = new Dictionary<string, Point3D>
@@ -124,125 +115,10 @@ namespace Server.Engines.Instancing
 		public static void Place( Map map, DungeonInstanceType.DungeonInstanceDefinition definition )
 		{
 			Point3D floor;
-			if ( !Spots.TryGetValue( definition.DisplayName, out floor ) )
-				floor = FindFloor( map, definition );
-
-			new DungeonSigil().MoveToWorld( floor, map );
-		}
-
-		// FOR A DUNGEON WITH NO PICKED SPOT: THE NEAREST CLEAR FLOOR A PLAYER CAN WALK TO FROM THE LANDING, NEVER A CHOKE POINT
-		private static Point3D FindFloor( Map map, DungeonInstanceType.DungeonInstanceDefinition definition )
-		{
-			Point3D landing = definition.Landing;
-			Point3D fallback = landing;
-			DungeonSigil test = new DungeonSigil();
-			Mobile probe = new Mobile();
-
-			try
-			{
-				foreach ( Point3D p in Reachable( map, probe, definition, landing, SearchRange ) )
-				{
-					if ( p == landing || !IsClearFloor( map, p ) )
-						continue;
-
-					List<Point3D> around = Reachable( map, probe, definition, p, 1 );
-					around.Remove( p );
-
-					test.MoveToWorld( p, map );
-					bool cuts = CutsOff( map, probe, definition, around );
-					test.Internalize();
-
-					if ( !cuts )
-						return p;
-
-					if ( fallback == landing )
-						fallback = p;
-				}
-
-				return fallback;
-			}
-			finally
-			{
-				test.Delete();
-				probe.Delete();
-			}
-		}
-
-		// EVERY TILE A PLAYER CAN WALK TO FROM START, NEAREST FIRST
-		private static List<Point3D> Reachable( Map map, Mobile probe, DungeonInstanceType.DungeonInstanceDefinition definition, Point3D start, int range )
-		{
-			List<Point3D> found = new List<Point3D>();
-			HashSet<Point2D> seen = new HashSet<Point2D>();
-			found.Add( start );
-			seen.Add( new Point2D( start.X, start.Y ) );
-
-			for ( int i = 0; i < found.Count; i++ )
-			{
-				foreach ( Direction d in Sides )
-				{
-					Point3D next;
-					if ( TryStep( map, probe, definition, found[i], d, out next ) && Utility.InRange( start, next, range ) && seen.Add( new Point2D( next.X, next.Y ) ) )
-						found.Add( next );
-				}
-			}
-
-			return found;
-		}
-
-		private static bool TryStep( Map map, Mobile probe, DungeonInstanceType.DungeonInstanceDefinition definition, Point3D from, Direction d, out Point3D to )
-		{
-			int x = from.X, y = from.Y, z;
-			Server.Movement.Movement.Offset( d, ref x, ref y );
-			to = new Point3D( x, y, from.Z );
-
-			if ( !definition.Contains( to ) || InstanceManager.IsInstanceVoid( map, to ) || !Server.Movement.Movement.CheckMovement( probe, map, from, d, out z ) )
-				return false;
-
-			to = new Point3D( x, y, z );
-			return true;
-		}
-
-		// NO ITEMS, STAIRS OR DECORATION WHERE THE STONE WOULD STAND; WHAT IS BURIED BELOW OR BUILT ABOVE IT DOES NOT MATTER
-		private static bool IsClearFloor( Map map, Point3D p )
-		{
-			foreach ( StaticTile tile in map.Tiles.GetStaticTiles( p.X, p.Y, true ) )
-			{
-				ItemData id = TileData.ItemTable[tile.ID & TileData.MaxItemValue];
-				int top = tile.Z + id.CalcHeight;
-
-				if ( top < p.Z || tile.Z >= p.Z + Clearance )
-					continue;
-
-				if ( top > p.Z || !id.Surface || id.Bridge )
-					return false;
-			}
-
-			IPooledEnumerable eable = map.GetItemsInRange( p, 0 );
-			bool clear = true;
-			foreach ( Item item in eable )
-			{
-				clear = false;
-				break;
-			}
-			eable.Free();
-
-			return clear;
-		}
-
-		// WITH THE PEDESTAL IN PLACE, THE TILES THAT SURROUNDED IT MUST STILL REACH EACH OTHER, BOTH WAYS, BY A SHORT DETOUR
-		private static bool CutsOff( Map map, Mobile probe, DungeonInstanceType.DungeonInstanceDefinition definition, List<Point3D> around )
-		{
-			foreach ( Point3D from in around )
-			{
-				List<Point3D> reached = Reachable( map, probe, definition, from, DetourRange );
-				foreach ( Point3D to in around )
-				{
-					if ( !reached.Contains( to ) )
-						return true;
-				}
-			}
-
-			return false;
+			if ( Spots.TryGetValue( definition.DisplayName, out floor ) )
+				new DungeonSigil().MoveToWorld( floor, map );
+			else
+				Console.WriteLine( "[Instancing] No sigil spot for {0}; add one to DungeonSigil.Spots.", definition.DisplayName );
 		}
 
 		public override void OnComponentUsed( AddonComponent c, Mobile from )
