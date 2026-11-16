@@ -11,6 +11,7 @@ namespace Server.Engines.Instancing
 		public string Dungeon;
 		public Difficulty Difficulty;
 		public int Percent;
+		public bool Risen;
 		public string Master;
 		public bool MasterAwake;
 		public string Clock;
@@ -26,7 +27,7 @@ namespace Server.Engines.Instancing
 		private const int Width = 460;
 		private const int LabelX = 20;
 		private const int ValueX = 130;
-		private const int ValueChars = 38;
+		private const int ValueChars = 44;
 		private const int OmenHeight = 46;
 		private const int FontHue = LabelColors.OFFWHITE;
 
@@ -36,13 +37,15 @@ namespace Server.Engines.Instancing
 			int masterHeight = RowHeight + ( master.Count - 1 ) * LineHeight;
 
 			int top = Border;
-			AddBackground( 0, 0, Width, Border * 2 + RowHeight * 5 + masterHeight + RowHeight / 2 + OmenHeight, 3600 );
+			int rows = p.Risen ? 4 : 5;
+			AddBackground( 0, 0, Width, Border * 2 + RowHeight * rows + masterHeight + RowHeight / 2 + OmenHeight, 3600 );
 
 			AddLabel( Border, top, FontHue, String.Format( "Sigil of {0}", p.Dungeon ) );
 			top += RowHeight;
 
 			top = AddRow( top, "Difficulty", p.Difficulty.ToString() );
-			top = AddRow( top, "Progress", String.Format( "{0}%", p.Percent ) );
+			if ( !p.Risen )
+				top = AddRow( top, "Progress", String.Format( "{0}%", p.Percent ) );
 
 			AddLabel( LabelX, top, FontHue, "Master" );
 			for ( int i = 0; i < master.Count; i++ )

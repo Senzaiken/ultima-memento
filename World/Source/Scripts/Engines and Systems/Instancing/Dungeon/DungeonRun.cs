@@ -40,7 +40,7 @@ namespace Server.Engines.Instancing
 			private const int BossThresholdPercent = 70;
 			private const int MinMonsters = 25;
 
-			private static readonly int[] OmenPercents = new int[] { 15, 30, 45, 60 };
+			private static readonly int[] OmenPercents = new int[] { 20, 40, 60, 80 };
 
 			private static readonly string[] Omens = new string[]
 			{
@@ -103,12 +103,13 @@ namespace Server.Engines.Instancing
 				}
 			}
 
+			// HOW CLOSE THE MASTER IS TO WAKING: 100% IS THE KILLS THAT WAKE IT
 			public int ProgressPercent
 			{
 				get
 				{
-					int total = TotalPoints;
-					return total > 0 ? (int)( m_KilledPoints * 100L / total ) : 0;
+					long needed = (long)TotalPoints * BossThresholdPercent;
+					return needed > 0 ? (int)Math.Min( 100, m_KilledPoints * 10000L / needed ) : 0;
 				}
 			}
 
@@ -132,6 +133,7 @@ namespace Server.Engines.Instancing
 				p.Dungeon = m_Run.Definition.Name;
 				p.Difficulty = m_Run.Difficulty;
 				p.Percent = ProgressPercent;
+				p.Risen = m_BossPhase != BossPhase.Dormant;
 				p.Clock = m_Run.Timed ? ClockLabel : "Untimed";
 
 				if ( m_BossPhase == BossPhase.Slain )
