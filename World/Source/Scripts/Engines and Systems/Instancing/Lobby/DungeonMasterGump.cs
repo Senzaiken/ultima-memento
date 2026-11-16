@@ -5,6 +5,7 @@ using Server.Network;
 
 namespace Server.Engines.Instancing
 {
+	// THE CHAMPION SKULL GUMP'S LAYOUT: REWARDS ON TOP, THEN THE SLIDERS THAT IMPROVE THEM
 	public class DungeonMasterGump : Gump
 	{
 		private enum Buttons
@@ -26,27 +27,26 @@ namespace Server.Engines.Instancing
 			m_Difficulty = DungeonInstanceType.ClampDifficulty( difficulty );
 			m_TimeIndex = Math.Max( 0, Math.Min( DungeonMaster.TimeLimits.Length - 1, timeIndex ) );
 
+			from.CloseGump( typeof( DungeonMasterGump ) );
+
 			AddImage( 0, 0, 9582, Server.Misc.PlayerSettings.GetGumpHue( from ) );
 
 			int x = 10;
 			int y = 10;
-			TextDefinition.AddHtmlText( this, x, y, 550, 20, String.Format( "{0} {1}", master.Name, master.Title ), HtmlColors.COOL_BLUE );
-
+			TextDefinition.AddHtmlText( this, x, y, 550, 20, String.Format( "Dungeon Master - {0}", master.Name ), HtmlColors.COOL_BLUE );
 			x += 10;
-			y += 30;
-			TextDefinition.AddHtmlText( this, x, y, 540, 60,
-				"I can open the way to a dungeon of my choosing. Tell me how dangerous its creatures should be, and how long you will have to defeat its master. " +
-				"If you would rather not race the clock, choose Untimed.", HtmlColors.COOL_BLUE );
-			y += 70;
+			y += 20;
 
-			AddSlider( x, y, "Monster Difficulty", "Increase the health and damage of every creature", Buttons.DifficultyBase, (int)Difficulty.Deadly + 1, (int)m_Difficulty );
-			y += 75;
+			TextDefinition.AddHtmlText( this, x, y, 540, 40, "I will open the way to a dungeon of my choosing. Defeat its master before your time runs out.", HtmlColors.COOL_BLUE );
+			y += 40;
+
+			AddRewards( x, y, DungeonMaster.TimeLimits[m_TimeIndex] );
+			y += 102;
 
 			AddSlider( x, y, "Time Limit", "How long you have to defeat its master before the dungeon crumbles", Buttons.TimeLimitBase, DungeonMaster.TimeLimits.Length, m_TimeIndex );
 			y += 75;
 
-			TextDefinition.AddHtmlText( this, x, y, 540, 20, String.Format( "Difficulty: {0}     Time limit: {1}",
-				m_Difficulty, DungeonMaster.GetTimeLimitLabel( DungeonMaster.TimeLimits[m_TimeIndex] ) ), HtmlColors.COOL_BLUE );
+			AddSlider( x, y, "Monster Difficulty", "Increase the health and damage of every creature", Buttons.DifficultyBase, (int)Difficulty.Deadly + 1, (int)m_Difficulty );
 
 			x = 471;
 			y = 350;
@@ -54,9 +54,32 @@ namespace Server.Engines.Instancing
 			TextDefinition.AddHtmlText( this, x + 33, y + 3, 100, 20, "OPEN THE WAY", HtmlColors.COOL_BLUE );
 		}
 
+		private void AddRewards( int x, int y, TimeSpan limit )
+		{
+			TextDefinition.AddHtmlText( this, x, y, 300, 20, "Rewards", HtmlColors.COOL_BLUE );
+			x += 10;
+			y += 20;
+
+			TextDefinition.AddHtmlText( this, x, y, 550, 20, "Improved by shortening the Time Limit and increasing Difficulty", HtmlColors.COOL_BLUE );
+			y += 25;
+
+			AddReward( x, y, 10329, "Gold", DungeonMaster.GoldPercent( m_Difficulty, limit ) );
+			AddReward( x + 50, y, 10349, "A powerful item", DungeonMaster.PowerfulItemChance( m_Difficulty, limit ) );
+			AddReward( x + 100, y, 10349, "Treasure Chest", DungeonMaster.TreasureChestChance( m_Difficulty, limit ) );
+			AddReward( x + 150, y, 10339, "Artifact", DungeonMaster.ArtifactChance( m_Difficulty, limit ) );
+		}
+
+		private void AddReward( int x, int y, int image, string tooltip, int percent )
+		{
+			AddImage( x, y, image );
+			AddTooltip( tooltip );
+			TextDefinition.AddHtmlText( this, x, y + 35, 32, 20, String.Format( "<CENTER>{0}%</CENTER>", percent ), HtmlColors.COOL_BLUE );
+		}
+
 		private void AddSlider( int x, int y, string label, string tooltip, Buttons baseValue, int ticks, int selected )
 		{
-			TextDefinition.AddHtmlText( this, x, y, 300, 20, label, HtmlColors.COOL_BLUE );
+			TextDefinition.AddHtmlText( this, x, y, 300, 20, String.Format( "{0}: {1}", label, baseValue == Buttons.DifficultyBase
+				? m_Difficulty.ToString() : DungeonMaster.GetTimeLimitLabel( DungeonMaster.TimeLimits[m_TimeIndex] ) ), HtmlColors.COOL_BLUE );
 			AddTooltip( tooltip );
 			x += 10;
 			y += 20;

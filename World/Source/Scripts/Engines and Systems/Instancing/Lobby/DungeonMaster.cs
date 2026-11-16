@@ -1,5 +1,6 @@
 using System;
 using Server;
+using Server.Engines.CannedEvil;
 using Server.Items;
 using Server.Mobiles;
 
@@ -17,6 +18,44 @@ namespace Server.Engines.Instancing
 		};
 
 		private const int TalkRange = 4;
+
+		// HOW A TIME LIMIT COUNTS ON THE CHAMPION SPAWN'S SIZE SCALE: 15 MINUTES IS 10, AN HOUR IS 1, NO LIMIT IS 0
+		private static int RewardSize( TimeSpan timeLimit )
+		{
+			return timeLimit > TimeSpan.Zero ? Math.Max( 1, 13 - (int)timeLimit.TotalMinutes / 5 ) : 0;
+		}
+
+		// HOW HARD A RUN IS, FROM 0 (EASY, UNTIMED) TO 1 (DEADLY, 15 MINUTES)
+		private static double Challenge( Difficulty difficulty, TimeSpan timeLimit )
+		{
+			return ( (double)difficulty / (int)Difficulty.Deadly + RewardSize( timeLimit ) / 10.0 ) / 2;
+		}
+
+		// EACH CHANCE CLIMBS FROM ITS FLOOR: THE POWERFUL ITEM IS CERTAIN HALFWAY UP, THE TREASURE CHEST AT THREE QUARTERS, THE ARTIFACT ONLY AT THE TOP
+		public static int PowerfulItemChance( Difficulty difficulty, TimeSpan timeLimit )
+		{
+			return Chance( 25, Challenge( difficulty, timeLimit ) / 0.5 );
+		}
+
+		public static int TreasureChestChance( Difficulty difficulty, TimeSpan timeLimit )
+		{
+			return Chance( 10, Challenge( difficulty, timeLimit ) / 0.75 );
+		}
+
+		public static int ArtifactChance( Difficulty difficulty, TimeSpan timeLimit )
+		{
+			return Chance( 10, Challenge( difficulty, timeLimit ) );
+		}
+
+		public static int GoldPercent( Difficulty difficulty, TimeSpan timeLimit )
+		{
+			return ChampionRewards.GetGoldPercent( RewardSize( timeLimit ), difficulty );
+		}
+
+		private static int Chance( int floor, double progress )
+		{
+			return (int)Math.Round( floor + ( 100 - floor ) * Math.Min( 1.0, progress ) );
+		}
 
 		private DungeonLobbyPortal m_Portal;
 		private bool m_Spent;
@@ -113,8 +152,9 @@ namespace Server.Engines.Instancing
 			}
 			else if ( PortalIsOpen )
 			{
+				DungeonInstanceType.DungeonInstanceDefinition def = DungeonInstanceType.Instance.FindDefinition( m_Portal.DungeonName );
 				SayTo( from, String.Format( "The way is open to {0}: {1}, {2}. Climb the dais and step through.",
-					m_Portal.DungeonName, m_Portal.Difficulty, GetTimeLimitLabel( m_Portal.TimeLimit ).ToLower() ) );
+					def != null ? def.Name : m_Portal.DungeonName, m_Portal.Difficulty, GetTimeLimitLabel( m_Portal.TimeLimit ).ToLower() ) );
 			}
 			else if ( m_Spent )
 			{
@@ -180,7 +220,7 @@ namespace Server.Engines.Instancing
 			if ( Deleted || m_Spent || PortalIsOpen )
 				return;
 
-			m_Portal = new DungeonLobbyPortal( this, def.DisplayName, difficulty, timeLimit );
+			m_Portal = new DungeonLobbyPortal( this, def, difficulty, timeLimit );
 			m_Portal.MoveToWorld( top, map );
 
 			Effects.SendLocationParticles( EffectItem.Create( top, map, EffectItem.DefaultDuration ), 0x375A, 9, 20, 0x21, 0, 5016, 0 );
@@ -188,7 +228,7 @@ namespace Server.Engines.Instancing
 			Effects.PlaySound( top, map, 0x20E );
 
 			Direction = Direction.South;
-			Say( String.Format( "The way is open. {0} awaits you{1}.", def.DisplayName,
+			Say( String.Format( "The way is open. {0}{1} awaits you{2}.", Char.ToUpper( def.Name[0] ), def.Name.Substring( 1 ),
 				timeLimit > TimeSpan.Zero ? String.Format( ", and you have {0} minutes to defeat its master", (int)timeLimit.TotalMinutes ) : "" ) );
 		}
 

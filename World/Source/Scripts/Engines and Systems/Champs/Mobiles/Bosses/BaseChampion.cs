@@ -219,33 +219,7 @@ namespace Server.Mobiles
 		public override void OnDeath(Container c)
 		{
 			if (!NoKillAwards)
-			{
-				c.DropItem(new HoardMinionFamiliarItem());
-
-				if (TreasureChestRewardChance > 0 && Utility.RandomDouble() < TreasureChestRewardChance / 100.0)
-				{
-					LootChest MyChest = new LootChest(10);
-					Server.Misc.ContainerFunctions.MakeDemonBox(MyChest, this);
-					c.DropItem(MyChest);
-				}
-
-				if (BossItemRewardChance > 0 && Utility.RandomDouble() < BossItemRewardChance / 100.0)
-				{
-					var killer = MobileUtilities.TryGetMasterPlayer(this);
-					var item = Loot.RandomMagicalItem(Server.LootPackEntry.playOrient(killer));
-					item = LootPackEntry.Enchant(killer, 500, item);
-					string owner = Name;
-					if (!string.IsNullOrWhiteSpace(Title)) { owner = Name + " " + Title; }
-					item.InfoText1 = string.Format("[Belonged to: {0}]", owner);
-					c.DropItem(item);
-				}
-
-				if (ArtifactRewardChance > 0 && Utility.RandomDouble() < ArtifactRewardChance / 100.0)
-				{
-					Item item = Loot.RandomArty();
-					c.DropItem(item);
-				}
-			}
+				Server.Engines.CannedEvil.ChampionRewards.AddBossRewards(c, this, TreasureChestRewardChance, BossItemRewardChance, ArtifactRewardChance);
 
 			base.OnDeath(c);
 		}

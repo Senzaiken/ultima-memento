@@ -1,4 +1,7 @@
 using System;
+using Server.Items;
+using Server.Misc;
+using Server.Mobiles;
 
 namespace Server.Engines.CannedEvil
 {
@@ -43,6 +46,33 @@ namespace Server.Engines.CannedEvil
 			var sizeBonus = spawnSize / 3;
 
 			return difficultyBonus + sizeBonus;
+		}
+
+		// A HOARD MINION ALWAYS, AND BY CHANCE A TREASURE CHEST, A POWERFUL ITEM AND AN ARTIFACT
+		public static void AddBossRewards(Container c, BaseCreature boss, int treasureChestChance, int bossItemChance, int artifactChance)
+		{
+			c.DropItem(new HoardMinionFamiliarItem());
+
+			if (treasureChestChance > 0 && Utility.RandomDouble() < treasureChestChance / 100.0)
+			{
+				LootChest chest = new LootChest(10);
+				ContainerFunctions.MakeDemonBox(chest, boss);
+				c.DropItem(chest);
+			}
+
+			if (bossItemChance > 0 && Utility.RandomDouble() < bossItemChance / 100.0)
+			{
+				var killer = MobileUtilities.TryGetMasterPlayer(boss);
+				var item = Loot.RandomMagicalItem(LootPackEntry.playOrient(killer));
+				item = LootPackEntry.Enchant(killer, 500, item);
+				string owner = boss.Name;
+				if (!string.IsNullOrWhiteSpace(boss.Title)) { owner = boss.Name + " " + boss.Title; }
+				item.InfoText1 = string.Format("[Belonged to: {0}]", owner);
+				c.DropItem(item);
+			}
+
+			if (artifactChance > 0 && Utility.RandomDouble() < artifactChance / 100.0)
+				c.DropItem(Loot.RandomArty());
 		}
 
 		public static int GetTreasureChestDropChance(int spawnSize, Difficulty difficulty)

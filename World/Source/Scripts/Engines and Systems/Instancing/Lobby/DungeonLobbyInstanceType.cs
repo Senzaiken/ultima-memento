@@ -130,16 +130,8 @@ namespace Server.Engines.Instancing
 			int dx = cx, dy = cy + DaisOffsetY;
 
 			for ( int x = cx - HalfSize; x <= cx + HalfSize; x++ )
-			{
 				for ( int y = cy - HalfSize; y <= cy + HalfSize; y++ )
-				{
-					bool underDais = Math.Abs( x - dx ) <= 2 && Math.Abs( y - dy ) <= 2;
-					bool underPentagram = Math.Abs( x - cx ) <= 1 && Math.Abs( y - cy ) <= 1;
-
-					if ( !underDais && !underPentagram )
-						Place( map, new Static( 0x500 + Utility.Random( 4 ) ), x, y, z, 0 );
-				}
-			}
+					Place( map, new Static( 0x500 + Utility.Random( 4 ) ), x, y, z, 0 );
 
 			BuildWalls( map, cx, cy, z );
 			BuildDais( map, dx, dy, z );
@@ -179,18 +171,16 @@ namespace Server.Engines.Instancing
 			}
 
 			Place( map, new Static( WallNorthwestCorner ), west, north, z, 0 );
+			Place( map, new Static( WallEastWest ), east, north, z, 0 );
 			Place( map, new Static( WallNorthSouth ), east, north, z, 0 );
 			Place( map, new Static( WallEastWest ), west, south, z, 0 );
+			Place( map, new Static( WallNorthSouth ), west, south, z, 0 );
 			Place( map, new Static( WallSoutheastPost ), east, south, z, 0 );
 		}
 
 		// THE CHAMPION PLATFORM: A 3X3 TOP WITH STAIRS ON EVERY SIDE
 		private static void BuildDais( Map map, int dx, int dy, int z )
 		{
-			for ( int x = -2; x <= 2; x++ )
-				for ( int y = -2; y <= 2; y++ )
-					Place( map, new Static( 0x750 ), dx + x, dy + y, z - DaisHeight, DaisHue );
-
 			for ( int x = -1; x <= 1; x++ )
 				for ( int y = -1; y <= 1; y++ )
 					Place( map, new Static( 0x750 ), dx + x, dy + y, z, DaisHue );

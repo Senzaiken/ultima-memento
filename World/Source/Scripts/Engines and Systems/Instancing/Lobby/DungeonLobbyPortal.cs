@@ -26,14 +26,14 @@ namespace Server.Engines.Instancing
 		[CommandProperty( AccessLevel.GameMaster )]
 		public string InstanceStatus { get { return DungeonInstanceType.Instance.GetInstanceStatus( Serial ); } }
 
-		public DungeonLobbyPortal( DungeonMaster master, string dungeonName, Difficulty difficulty, TimeSpan timeLimit ) : base( 0xF6C )
+		public DungeonLobbyPortal( DungeonMaster master, DungeonInstanceType.DungeonInstanceDefinition def, Difficulty difficulty, TimeSpan timeLimit ) : base( 0xF6C )
 		{
 			m_Master = master;
-			m_DungeonName = dungeonName;
+			m_DungeonName = def.DisplayName;
 			m_Difficulty = difficulty;
 			m_TimeLimit = timeLimit;
 
-			Name = "a portal to " + dungeonName;
+			Name = "a portal to " + def.Name;
 			Hue = 0x21;
 			Light = LightType.Circle300;
 

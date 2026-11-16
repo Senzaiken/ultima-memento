@@ -274,12 +274,38 @@ namespace Server.Engines.Instancing
 
 			CloneWorldContent( map, run.Definition );
 			DungeonSigil.Place( map, run.Definition );
+			EnsureExitAtLanding( map, run.Definition.Landing );
 
 			run.State = new RuntimeDungeonState( run, map );
 			run.State.ApplyDifficulty();
 			run.State.TrackMonsters();
 			run.State.StartClock();
 			run.State.Start( regions );
+		}
+
+		// WHERE A DUNGEON'S OWN WAY OUT IS NOT RIGHT BY THE LANDING, A GATE THERE ALWAYS LEADS BACK
+		private static void EnsureExitAtLanding( Map map, Point3D landing )
+		{
+			IPooledEnumerable eable = map.GetItemsInRange( landing, 3 );
+			bool near = false;
+			foreach ( Item item in eable )
+			{
+				if ( item is DungeonInstanceExitTeleporter )
+				{
+					near = true;
+					break;
+				}
+			}
+			eable.Free();
+
+			if ( near )
+				return;
+
+			DungeonInstanceExitTeleporter gate = new DungeonInstanceExitTeleporter( 0xF6C );
+			gate.Name = "the way out";
+			gate.Hue = 0;
+			gate.Light = LightType.Circle300;
+			gate.MoveToWorld( landing, map );
 		}
 
 		protected override void OnFreeInstance( Instance inst, Map liveMap )

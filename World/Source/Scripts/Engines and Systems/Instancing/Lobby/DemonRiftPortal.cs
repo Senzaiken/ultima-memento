@@ -12,7 +12,7 @@ namespace Server.Engines.Instancing
 	// LEFT WHERE AN OUTDOOR DEMON SPAWNS; SEALED UNTIL THAT DEMON IS SLAIN
 	public class DemonRiftPortal : InstancePortal
 	{
-		public static double SpawnChance = 0.10;
+		public static double SpawnChance = 1.0;
 		public static int MaxActive = 20;
 		public static int MinSpacing = 40;
 		public static TimeSpan OpenDuration = TimeSpan.FromMinutes( 30 );

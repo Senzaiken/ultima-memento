@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server;
+using Server.Engines.CannedEvil;
 using Server.Items;
 using Server.Mobiles;
 using Server.Misc;
@@ -520,21 +521,26 @@ namespace Server.Engines.Instancing
 				m_Boss = null;
 				m_BossPhase = BossPhase.Slain;
 
+				Difficulty difficulty = m_Run.Difficulty;
+				TimeSpan limit = m_Run.TimeLimit;
 				DungeonBossChest chest = new DungeonBossChest( Math.Min( 10, 4 + Level ) );
 				chest.SetOwner( boss );
+				ChampionRewards.AddBossRewards( chest, boss, DungeonMaster.TreasureChestChance( difficulty, limit ),
+					DungeonMaster.PowerfulItemChance( difficulty, limit ), DungeonMaster.ArtifactChance( difficulty, limit ) );
 				chest.MoveToWorld( boss.Location, m_Map );
 
 				Effects.SendLocationParticles( EffectItem.Create( boss.Location, m_Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 5008 );
 				Effects.PlaySound( boss.Location, m_Map, 0x1F7 );
 
-				// THE QUEST VILLAIN'S SHOWER OF COINS AND GEMS, KEPT INSIDE THE DUNGEON
+				// THE QUEST VILLAIN'S SHOWER OF COINS AND GEMS, KEPT INSIDE THE DUNGEON AND THINNED BY THE GOLD PERCENT
+				int goldPercent = DungeonMaster.GoldPercent( difficulty, limit );
 				int radius = 7 + Level;
 				for ( int x = -radius; x <= radius; x++ )
 				{
 					for ( int y = -radius; y <= radius; y++ )
 					{
 						Point3D p = new Point3D( boss.X + x, boss.Y + y, boss.Z );
-						if ( x * x + y * y <= radius * radius && m_Run.Definition.Contains( p ) )
+						if ( x * x + y * y <= radius * radius && m_Run.Definition.Contains( p ) && Utility.Random( 100 ) < goldPercent )
 							new GoodiesTimer( m_Map, p.X, p.Y ).Start();
 					}
 				}
