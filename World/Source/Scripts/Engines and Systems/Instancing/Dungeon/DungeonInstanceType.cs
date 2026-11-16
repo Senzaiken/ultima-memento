@@ -114,7 +114,19 @@ namespace Server.Engines.Instancing
 			if ( !SendToInstance( from, inst ) )
 				return false;
 
+			from.SendMessage( 0x22, "A sigil stone by the entrance marks how far you have come." );
 			GetRun( inst ).State.SendTimeRemaining( from );
+			return true;
+		}
+
+		public bool SendProgress( Mobile from )
+		{
+			RuntimeDungeonState state = GetState( from.Map );
+			if ( state == null )
+				return false;
+
+			from.CloseGump( typeof( DungeonSigilGump ) );
+			from.SendGump( new DungeonSigilGump( state.GetProgress() ) );
 			return true;
 		}
 
@@ -125,8 +137,8 @@ namespace Server.Engines.Instancing
 
 		public DungeonInstanceDefinition GetRandomDefinition()
 		{
-			List<DungeonInstanceDefinition> pool = Definitions.FindAll( delegate( DungeonInstanceDefinition def ) { return def.SpawnCount > 0; } );
-			return pool.Count > 0 ? pool[Utility.Random( pool.Count )] : null;
+			List<DungeonInstanceDefinition> all = Definitions;
+			return all.Count > 0 ? all[Utility.Random( all.Count )] : null;
 		}
 
 		public bool SummonBoss( Mobile near )
@@ -262,6 +274,7 @@ namespace Server.Engines.Instancing
 			}
 
 			CloneWorldContent( map, run.Definition );
+			DungeonSigil.Place( map, run.Definition );
 
 			run.State = new RuntimeDungeonState( run, map );
 			run.State.ApplyDifficulty();

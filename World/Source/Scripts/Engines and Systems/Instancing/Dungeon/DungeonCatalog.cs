@@ -371,21 +371,32 @@ namespace Server.Engines.Instancing
 				return best;
 			}
 
-			// WHERE REAL ENTRANCES DROP PLAYERS, ELSE THE RECORDED ENTRANCE, THE GO LOCATION, ANY INSIDE DESTINATION OR ANY STANDABLE TILE
+			// DUNGEONS NO TELEPORTER LEADS INTO: WHERE THE GAME'S OWN PORTALS AND MAPS BRING PLAYERS IN
+			private static readonly Dictionary<string, Point3D> KnownEntrances = new Dictionary<string, Point3D>
+			{
+				{ "the Azure Castle", new Point3D( 231, 3650, 25 ) },
+				{ "the City of the Dead", new Point3D( 5815, 3260, 0 ) }
+			};
+
+			// WHERE PLAYERS REALLY COME IN, ELSE THE GO LOCATION, ANY INSIDE DESTINATION OR ANY STANDABLE TILE
 			private static Point3D GetLandingFor( BaseRegion region, CatalogIndex catalog, Rectangle3D[] area )
 			{
 				Map map = region.Map;
 				Point3D standable;
+				Point3D known;
 
-				foreach ( TeleportLink link in catalog.AllLinks )
-				{
-					bool entrance = Object.ReferenceEquals( link.DestMap, map ) && region.Contains( link.Dest ) && !( Object.ReferenceEquals( link.SourceMap, map ) && Contains( area, link.Location, 0 ) );
-					if ( entrance && TryStandable( map, area, link.Dest, out standable ) )
-						return standable;
-				}
+				if ( KnownEntrances.TryGetValue( region.Name, out known ) && TryStandable( map, area, known, out standable ) )
+					return standable;
+
+				// THE MAIN WAY IN FROM OUTSIDE, ELSE THE RECORDED ENTRANCE, ELSE THE DOORWAY FROM THE DUNGEON THIS ONE IS REACHED THROUGH
+				if ( TryBestEntrance( catalog, map, area, delegate( TeleportLink link ) { return region.Contains( link.Dest ) && !( Object.ReferenceEquals( link.SourceMap, map ) && Contains( area, link.Location, 0 ) ); }, out standable ) )
+					return standable;
 
 				DungeonRegion dungeon = region as DungeonRegion;
 				if ( dungeon != null && Object.ReferenceEquals( dungeon.EntranceMap, map ) && TryStandable( map, area, dungeon.EntranceLocation, out standable ) )
+					return standable;
+
+				if ( TryBestEntrance( catalog, map, area, delegate( TeleportLink link ) { return region.Contains( link.Dest ) && !( Object.ReferenceEquals( link.SourceMap, map ) && region.Contains( link.Location ) ); }, out standable ) )
 					return standable;
 
 				if ( TryStandable( map, area, region.GoLocation, out standable ) )
@@ -404,6 +415,36 @@ namespace Server.Engines.Instancing
 				}
 
 				return region.GoLocation;
+			}
+
+			// AMONG THE GIVEN LINKS INTO THIS MAP: ONE THAT STARTS ABOVE GROUND RATHER THAN IN ANOTHER DUNGEON OR A MAGIC CHAMBER, THEN THE WIDEST
+			private static bool TryBestEntrance( CatalogIndex catalog, Map map, Rectangle3D[] area, Predicate<TeleportLink> into, out Point3D landing )
+			{
+				List<TeleportLink> entrances = catalog.AllLinks.FindAll( delegate( TeleportLink link ) { return Object.ReferenceEquals( link.DestMap, map ) && into( link ); } );
+				int bestScore = -1;
+				landing = Point3D.Zero;
+
+				foreach ( TeleportLink link in entrances )
+				{
+					Point3D standable;
+					if ( !TryStandable( map, area, link.Dest, out standable ) )
+						continue;
+
+					int score = ( StartsAboveGround( link ) ? 1000 : 0 ) + entrances.FindAll( delegate( TeleportLink other ) { return Utility.InRange( other.Dest, link.Dest, 2 ); } ).Count;
+					if ( score > bestScore )
+					{
+						bestScore = score;
+						landing = standable;
+					}
+				}
+
+				return bestScore >= 0;
+			}
+
+			private static bool StartsAboveGround( TeleportLink link )
+			{
+				BaseRegion from = Region.Find( link.Location, link.SourceMap ) as BaseRegion;
+				return from == null || !( IsDungeonRegion( from ) || from is PublicRegion );
 			}
 
 			private static bool TryStandable( Map map, Rectangle3D[] area, Point3D p, out Point3D standable )

@@ -38,6 +38,22 @@ namespace Server.Engines.Instancing
 		private sealed class RuntimeDungeonState
 		{
 			private const int BossThresholdPercent = 70;
+			private const int MinMonsters = 25;
+
+			private static readonly int[] OmenPercents = new int[] { 15, 30, 45, 60 };
+
+			private static readonly string[] Omens = new string[]
+			{
+				"A low groan rolls through the stone. Something deep below has noticed you.",
+				"The torches gutter and the air turns cold. The master of this place stirs in its sleep.",
+				"Dust sifts down from above as heavy footsteps pace somewhere in the dark.",
+				"The walls seem to breathe around you. Its patience is nearly at an end."
+			};
+
+			// WHAT THE SIGIL SAYS OF THE MASTER BEFORE IT WAKES, ONE FOR EACH OMEN REACHED
+			private static readonly string[] MasterStates = new string[] { "Sleeping", "Dreaming", "Stirring", "Restless", "Awakening" };
+
+			private const string WakeOmen = "The ground heaves and a terrible voice fills the halls. The master of this place has awoken!";
 
 			private static readonly TimeSpan[] ClockWarnings = new TimeSpan[] { TimeSpan.FromMinutes( 10 ), TimeSpan.FromMinutes( 5 ), TimeSpan.FromMinutes( 1 ) };
 			private static readonly TimeSpan MinimumRestoredTime = TimeSpan.FromMinutes( 2 );
@@ -50,6 +66,7 @@ namespace Server.Engines.Instancing
 			private readonly Dictionary<Mobile, int> m_Monsters = new Dictionary<Mobile, int>();
 			private List<BaseRegion> m_Regions = new List<BaseRegion>();
 			private int m_KilledPoints;
+			private int m_Omens;
 			private Timer m_Timer;
 			private bool m_Deleted;
 
@@ -109,6 +126,34 @@ namespace Server.Engines.Instancing
 				}
 			}
 
+			public DungeonProgress GetProgress()
+			{
+				DungeonProgress p = new DungeonProgress();
+				p.Dungeon = m_Run.Definition.Name;
+				p.Difficulty = m_Run.Difficulty;
+				p.Percent = ProgressPercent;
+				p.Clock = m_Run.Timed ? ClockLabel : "Untimed";
+
+				if ( m_BossPhase == BossPhase.Slain )
+				{
+					p.Master = "Slain";
+					p.Omen = "The master of this place is dead. The sigil has gone still.";
+				}
+				else if ( m_BossPhase == BossPhase.Awake )
+				{
+					p.Master = m_Boss != null && !m_Boss.Deleted ? String.Format( "{0} {1}", m_Boss.Name, m_Boss.Title ) : MasterStates[MasterStates.Length - 1];
+					p.MasterAwake = m_Boss != null && !m_Boss.Deleted;
+					p.Omen = WakeOmen;
+				}
+				else
+				{
+					p.Master = MasterStates[Math.Min( m_Omens, MasterStates.Length - 1 )];
+					p.Omen = m_Omens > 0 ? Omens[m_Omens - 1] : "The sigil is quiet. Nothing below has noticed you yet.";
+				}
+
+				return p;
+			}
+
 			public void Start( List<BaseRegion> regions )
 			{
 				m_Regions = regions;
@@ -120,6 +165,7 @@ namespace Server.Engines.Instancing
 				ApplyDifficulty();
 				PruneMonsters();
 				CheckClock();
+				CheckOmens();
 				CheckBoss( Point3D.Zero, false );
 			}
 
@@ -194,7 +240,36 @@ namespace Server.Engines.Instancing
 						m_Monsters[bc] = Math.Max( 1, IntelligentAction.GetCreatureLevel( bc ) );
 				}
 
+				TopUp();
 				ChooseBossType();
+			}
+
+			// A DUNGEON THAT IS ALMOST EMPTY GETS MORE OF WHAT ALREADY LIVES THERE
+			private void TopUp()
+			{
+				List<Type> kinds = new List<Type>();
+				foreach ( Mobile m in m_Monsters.Keys )
+				{
+					if ( m.GetType().GetConstructor( Type.EmptyTypes ) != null )
+						kinds.Add( m.GetType() );
+				}
+
+				for ( int count = m_Monsters.Count; kinds.Count > 0 && count < MinMonsters; count++ )
+				{
+					Point3D p;
+					if ( !m_Run.Definition.TryGetRandomStandable( m_Map, out p ) )
+						return;
+
+					BaseCreature bc = (BaseCreature)Activator.CreateInstance( kinds[Utility.Random( kinds.Count )] );
+					bc.Home = p;
+					bc.RangeHome = 10;
+					bc.MoveToWorld( p, m_Map );
+
+					if ( m_Scaled.Add( bc.Serial ) )
+						BaseCreature.BeefUp( bc, m_Run.Difficulty, false );
+
+					m_Monsters[bc] = Math.Max( 1, IntelligentAction.GetCreatureLevel( bc ) );
+				}
 			}
 
 			public bool CreditKill( BaseCreature bc )
@@ -212,13 +287,34 @@ namespace Server.Engines.Instancing
 				m_Monsters.Remove( bc );
 				m_KilledPoints += points;
 
-				if ( m_BossPhase == BossPhase.Dormant && !m_Expired )
-				{
-					Broadcast( 0x3B2, String.Format( "Slain: {0}/{1} points ({2}%). The master of this place awakens at {3}%.", m_KilledPoints, TotalPoints, ProgressPercent, BossThresholdPercent ) );
-					CheckBoss( bc.Location, true );
-				}
-
+				CheckOmens();
+				CheckBoss( bc.Location, true );
 				return true;
+			}
+
+			// ONE OMEN PER THRESHOLD CROSSED, ONLY THE LATEST IF A KILL CROSSES SEVERAL
+			private void CheckOmens()
+			{
+				if ( m_BossPhase != BossPhase.Dormant || m_Expired )
+					return;
+
+				int reached = OmensReached();
+				if ( reached > m_Omens )
+				{
+					m_Omens = reached;
+					Broadcast( 0x22, Omens[m_Omens - 1] );
+				}
+			}
+
+			private int OmensReached()
+			{
+				int percent = ProgressPercent;
+				int reached = 0;
+
+				while ( reached < OmenPercents.Length && percent >= OmenPercents[reached] )
+					reached++;
+
+				return reached;
 			}
 
 			// TAMED, DELETED OR LOST MONSTERS LEAVE THE TOTAL
@@ -275,7 +371,8 @@ namespace Server.Engines.Instancing
 			private void WakeBoss( Point3D near, bool hasNear )
 			{
 				m_BossPhase = BossPhase.Awake;
-				Broadcast( 0x22, "The ground trembles. The master of this place has been roused!" );
+				m_Omens = Omens.Length;
+				Broadcast( 0x22, WakeOmen );
 
 				if ( hasNear )
 					Effects.PlaySound( near, m_Map, 0x2F3 );
@@ -568,6 +665,8 @@ namespace Server.Engines.Instancing
 
 				if ( m_BossType == null )
 					ChooseBossType();
+
+				m_Omens = OmensReached();
 
 				if ( Won )
 					m_StoppedAt = remaining;
