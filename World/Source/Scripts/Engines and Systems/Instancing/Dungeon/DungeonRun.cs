@@ -59,6 +59,11 @@ namespace Server.Engines.Instancing
 			private static readonly TimeSpan[] ClockWarnings = new TimeSpan[] { TimeSpan.FromMinutes( 10 ), TimeSpan.FromMinutes( 5 ), TimeSpan.FromMinutes( 1 ) };
 			private static readonly TimeSpan MinimumRestoredTime = TimeSpan.FromMinutes( 2 );
 
+			// WHEN THE DUNGEON MASTER JUDGES THE PACE OF A TIMED RUN, AS A SHARE OF ITS TIME
+			private static readonly double[] PaceChecks = new double[] { 0.5, 0.75 };
+			private const int PaceMargin = 20;
+			private static readonly TimeSpan RemarkCooldown = TimeSpan.FromSeconds( 60 );
+
 			private enum BossPhase { Dormant, Awake, Slain }
 
 			private readonly DungeonRun m_Run;
@@ -79,6 +84,9 @@ namespace Server.Engines.Instancing
 			private DateTime m_Deadline;
 			private TimeSpan m_StoppedAt;
 			private int m_NextWarning;
+			private int m_NextPace;
+			private int m_BigKill;
+			private DateTime m_NextRemark;
 			private bool m_Expired;
 
 			public RuntimeDungeonState( DungeonRun run, Map map )
@@ -275,6 +283,57 @@ namespace Server.Engines.Instancing
 				}
 			}
 
+			// THE KILLS WORTH A REMARK: THE STRONGEST TENTH OF WHAT LIVES HERE
+			private int BigKill
+			{
+				get
+				{
+					if ( m_BigKill == 0 && m_Monsters.Count > 0 )
+					{
+						List<int> points = new List<int>( m_Monsters.Values );
+						points.Sort();
+						m_BigKill = Math.Max( 2, points[points.Count * 9 / 10] );
+					}
+
+					return m_BigKill > 0 ? m_BigKill : int.MaxValue;
+				}
+			}
+
+			// THE DUNGEON MASTER SPEAKS ONLY NOW AND THEN, EXCEPT WHEN IT MATTERS
+			private void Remark( DungeonMaster.Remark remark, bool always )
+			{
+				DungeonMaster master = DungeonInstanceType.Instance.MasterOf( m_Map );
+				if ( master == null || ( !always && DateTime.Now < m_NextRemark ) )
+					return;
+
+				m_NextRemark = DateTime.Now + RemarkCooldown;
+				master.Speak( remark, m_Map );
+			}
+
+			// THE BOSS'S FALL OPENS A WAY BACK TO WHERE THE RUN BEGAN
+			private void OpenWayBack( Point3D near )
+			{
+				Point3D p = near;
+				for ( int i = 0; i < 8; i++ )
+				{
+					int x = near.X + Utility.RandomMinMax( -3, 3 ), y = near.Y + Utility.RandomMinMax( -3, 3 );
+					if ( ( x != near.X || y != near.Y ) && m_Map.CanFit( x, y, near.Z, 16, false, false ) && m_Run.Definition.Contains( new Point3D( x, y, near.Z ) ) )
+					{
+						p = new Point3D( x, y, near.Z );
+						break;
+					}
+				}
+
+				DungeonInstanceExitTeleporter gate = new DungeonInstanceExitTeleporter( 0xF6C );
+				gate.Name = DungeonInstanceType.Instance.MasterOf( m_Map ) != null ? "a portal to the Dungeon Master's hall" : "the way out";
+				gate.Hue = 0x21;
+				gate.Light = LightType.Circle300;
+				gate.MoveToWorld( p, m_Map );
+
+				Effects.SendLocationParticles( EffectItem.Create( p, m_Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 0x21, 0, 5030, 0 );
+				Effects.PlaySound( p, m_Map, 0x20E );
+			}
+
 			public bool CreditKill( BaseCreature bc )
 			{
 				if ( Object.ReferenceEquals( bc, m_Boss ) )
@@ -289,6 +348,9 @@ namespace Server.Engines.Instancing
 
 				m_Monsters.Remove( bc );
 				m_KilledPoints += points;
+
+				if ( points >= BigKill && Utility.RandomBool() )
+					Remark( DungeonMaster.Remark.BigKill, false );
 
 				CheckOmens();
 				CheckBoss( bc.Location, true );
@@ -375,6 +437,7 @@ namespace Server.Engines.Instancing
 			{
 				m_BossPhase = BossPhase.Awake;
 				Broadcast( 0x22, WakeOmen );
+				Remark( DungeonMaster.Remark.BossRises, true );
 
 				if ( hasNear )
 					Effects.PlaySound( near, m_Map, 0x2F3 );
@@ -549,6 +612,9 @@ namespace Server.Engines.Instancing
 					Broadcast( 0x3B2, String.Format( "{0} {1} has fallen with {2} to spare! Its treasure is yours.", boss.Name, boss.Title, FormatTime( m_StoppedAt ) ) );
 				else
 					Broadcast( 0x3B2, String.Format( "{0} {1} has fallen! Its treasure is yours.", boss.Name, boss.Title ) );
+
+				OpenWayBack( boss.Location );
+				Remark( DungeonMaster.Remark.BossFalls, true );
 			}
 
 			public void StartClock()
@@ -561,6 +627,10 @@ namespace Server.Engines.Instancing
 			{
 				m_Deadline = DateTime.Now + remaining;
 				m_NextWarning = 0;
+				m_NextPace = 0;
+
+				while ( m_NextPace < PaceChecks.Length && remaining.TotalSeconds <= m_Run.TimeLimit.TotalSeconds * ( 1 - PaceChecks[m_NextPace] ) )
+					m_NextPace++;
 
 				while ( m_NextWarning < ClockWarnings.Length && ClockWarnings[m_NextWarning] >= remaining )
 					m_NextWarning++;
@@ -623,6 +693,17 @@ namespace Server.Engines.Instancing
 
 					Map map = m_Map;
 					Timer.DelayCall( TimeSpan.Zero, delegate { DungeonInstanceType.Instance.ExpireInstance( map ); } );
+				}
+				else if ( m_NextPace < PaceChecks.Length && left.TotalSeconds <= m_Run.TimeLimit.TotalSeconds * ( 1 - PaceChecks[m_NextPace] ) )
+				{
+					int expected = (int)( PaceChecks[m_NextPace++] * 100 );
+					if ( m_BossPhase != BossPhase.Dormant )
+						return;
+
+					if ( ProgressPercent + PaceMargin < expected )
+						Remark( DungeonMaster.Remark.Hurry, true );
+					else if ( ProgressPercent > expected + PaceMargin )
+						Remark( DungeonMaster.Remark.Praise, true );
 				}
 				else if ( m_NextWarning < ClockWarnings.Length && left <= ClockWarnings[m_NextWarning] )
 				{

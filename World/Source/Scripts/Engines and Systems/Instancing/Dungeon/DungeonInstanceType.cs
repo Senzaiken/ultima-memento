@@ -21,6 +21,11 @@ namespace Server.Engines.Instancing
 		{
 		}
 
+		public static void Configure()
+		{
+			EventSink.PlayerDeath += new PlayerDeathEventHandler( OnPlayerDeath );
+		}
+
 		public override string Key { get { return "Dungeon"; } }
 		public override int PoolBaseIndex { get { return 72; } }
 		public override int PoolSize { get { return CloneBases.Length * ClonesPerBaseMap; } }
@@ -59,6 +64,99 @@ namespace Server.Engines.Instancing
 		{
 			DungeonRun run = GetRun( GetLiveInstance( map ) );
 			return run != null ? run.State : null;
+		}
+
+		public bool TryGetRunDifficulty( Map map, out Difficulty difficulty )
+		{
+			DungeonRun run = GetRun( GetLiveInstance( map ) );
+			difficulty = run != null ? run.Difficulty : Difficulty.Normal;
+			return run != null;
+		}
+
+		// THE DUNGEON MASTER WHOSE PORTAL OPENED THIS RUN, WHILE HIS HALL STANDS
+		private static DungeonMaster MasterOf( Instance inst )
+		{
+			DungeonLobbyPortal portal = inst != null ? World.FindItem( inst.OwnerSerial ) as DungeonLobbyPortal : null;
+			DungeonMaster master = portal != null ? portal.Master : null;
+			return master != null && !master.Deleted && InstanceManager.IsInstanceMap( master.Map ) ? master : null;
+		}
+
+		private DungeonMaster MasterOf( Map map )
+		{
+			return MasterOf( GetLiveInstance( map ) );
+		}
+
+		protected override void GetReturn( Instance inst, out Map map, out Point3D p )
+		{
+			DungeonMaster master = MasterOf( inst );
+			if ( master == null )
+			{
+				base.GetReturn( inst, out map, out p );
+				return;
+			}
+
+			map = master.Map;
+			p = DungeonLobbyInstanceType.Instance.Landing;
+		}
+
+		public bool IsRunMap( Serial key, Map map )
+		{
+			Instance inst = GetByKey( key );
+			return inst != null && inst.IsLive && Object.ReferenceEquals( inst.LiveMap, map );
+		}
+
+		// THE DUNGEON MASTER PULLS A LONE FALLEN PLAYER BACK TO HIS ANKH; WITH COMPANIONS STILL STANDING, THEY CHOOSE
+		private static void OnPlayerDeath( PlayerDeathEventArgs e )
+		{
+			Mobile m = e.Mobile;
+			Map map = m.Map;
+			if ( Instance.MasterOf( map ) == null )
+				return;
+
+			Timer.DelayCall( TimeSpan.Zero, delegate
+			{
+				DungeonMaster master = Instance.MasterOf( map );
+				if ( m.Deleted || m.Alive || !Object.ReferenceEquals( m.Map, map ) || master == null )
+					return;
+
+				if ( HasCompanions( m, map ) )
+				{
+					m.CloseGump( typeof( DungeonRecallGump ) );
+					m.SendGump( new DungeonRecallGump( master, map ) );
+				}
+				else
+				{
+					PullBack( m, map );
+				}
+			} );
+		}
+
+		private static bool HasCompanions( Mobile m, Map map )
+		{
+			foreach ( Mobile other in PlayersOn( map ) )
+			{
+				if ( other != m && other.Alive && !other.Hidden )
+					return true;
+			}
+
+			return false;
+		}
+
+		public static void PullBack( Mobile m, Map map )
+		{
+			DungeonMaster master = Instance.MasterOf( map );
+			if ( master == null || m.Alive || !Object.ReferenceEquals( m.Map, map ) )
+				return;
+
+			Point3D landing = DungeonLobbyInstanceType.Instance.Landing;
+			Container corpse = m.Corpse;
+
+			Teleport( m, landing, master.Map );
+			if ( corpse != null && !corpse.Deleted && Object.ReferenceEquals( corpse.Map, map ) )
+				corpse.MoveToWorld( landing, master.Map );
+
+			m.SendMessage( 0x22, "Your spirit and your body are drawn back to the Dungeon Master's hall." );
+			master.Speak( DungeonMaster.Remark.PlayerDied, m );
 		}
 
 		protected override bool CanHost( Instance inst, Map map )
@@ -114,9 +212,26 @@ namespace Server.Engines.Instancing
 			if ( !SendToInstance( from, inst ) )
 				return false;
 
-			from.SendMessage( 0x22, "A sigil stone by the entrance marks how far you have come." );
+			GiveSigil( from, inst );
+			from.SendMessage( 0x22, "The sigil in your pack, like the stone by the entrance, marks how far you have come." );
 			GetRun( inst ).State.SendTimeRemaining( from );
 			return true;
+		}
+
+		private static void GiveSigil( Mobile m, Instance inst )
+		{
+			Container pack = m.Backpack;
+			if ( !m.Player || pack == null )
+				return;
+
+			foreach ( Item item in pack.Items )
+			{
+				DungeonRunSigil sigil = item as DungeonRunSigil;
+				if ( sigil != null && sigil.Run == inst.OwnerSerial )
+					return;
+			}
+
+			pack.DropItem( new DungeonRunSigil( inst.OwnerSerial, GetRun( inst ).Definition.Name ) );
 		}
 
 		public bool SendProgress( Mobile from )

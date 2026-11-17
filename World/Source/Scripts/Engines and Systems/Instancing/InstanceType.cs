@@ -399,7 +399,7 @@ namespace Server.Engines.Instancing
 			m.MoveToWorld( p, map );
 		}
 
-		protected void GetReturn( Instance inst, out Map map, out Point3D p )
+		protected virtual void GetReturn( Instance inst, out Map map, out Point3D p )
 		{
 			if ( inst != null && inst.ReturnMap != null )
 			{

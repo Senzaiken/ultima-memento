@@ -64,8 +64,8 @@ namespace Server.Engines.Instancing
 			y += 25;
 
 			AddReward( x, y, 10329, "Gold", DungeonMaster.GoldPercent( m_Difficulty, limit ) );
-			AddReward( x + 50, y, 10349, "A powerful item", DungeonMaster.PowerfulItemChance( m_Difficulty, limit ) );
-			AddReward( x + 100, y, 10349, "Treasure Chest", DungeonMaster.TreasureChestChance( m_Difficulty, limit ) );
+			AddReward( x + 50, y, 10344, "A powerful item", DungeonMaster.PowerfulItemChance( m_Difficulty, limit ) );
+			AddReward( x + 100, y, 10331, "Treasure Chest", DungeonMaster.TreasureChestChance( m_Difficulty, limit ) );
 			AddReward( x + 150, y, 10339, "Artifact", DungeonMaster.ArtifactChance( m_Difficulty, limit ) );
 		}
 

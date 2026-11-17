@@ -15,7 +15,7 @@ namespace Server.Engines.Instancing
 		public static void Configure()
 		{
 			CommandSystem.Register( "dungeon", AccessLevel.GameMaster, new CommandEventHandler( OnEnterCommand ) );
-			CommandSystem.Register( "leavedungeon", AccessLevel.Player, new CommandEventHandler( OnLeaveCommand ) );
+			CommandSystem.Register( "leavedungeon", AccessLevel.Counselor, new CommandEventHandler( OnLeaveCommand ) );
 			CommandSystem.Register( "dungeoninstance", AccessLevel.GameMaster, new CommandEventHandler( OnAdminCommand ) );
 		}
 

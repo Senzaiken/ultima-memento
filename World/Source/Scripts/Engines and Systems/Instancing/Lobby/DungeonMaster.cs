@@ -18,6 +18,19 @@ namespace Server.Engines.Instancing
 		};
 
 		private const int TalkRange = 4;
+		private const int VoiceHue = 0x59;
+
+		public enum Remark { BigKill, Hurry, Praise, BossRises, BossFalls, PlayerDied }
+
+		private static readonly string[][] Remarks = new string[][]
+		{
+			new string[] { "Ha! That one will not be getting up again.", "Now THAT was worth watching.", "I had coin on that beast. No matter.", "Splendid. Do it again.", "The halls shudder at that one's fall." },
+			new string[] { "The sand runs low and the master still sleeps. Move faster.", "You dawdle. The dungeon will not wait for you.", "At this pace you will be buried with the rest of them.", "Less sightseeing, more slaughter!" },
+			new string[] { "You carve through them faster than I hoped.", "Impressive. The master will wake to find its house in ruins.", "Keep this pace and you will have time to spare.", "Oh, I like you. Keep going." },
+			new string[] { "There it is. Show it what you showed its servants.", "The master is awake. Do not disappoint me.", "Now the real test begins." },
+			new string[] { "Well fought! The way back to my hall stands open.", "Magnificent. Come, a portal waits to bring you home.", "That is how it is done. Step through the portal and return to me." },
+			new string[] { "Back so soon? Kneel at the ankh and try again.", "Death is only a setback here. The ankh will see to you.", "I brought your bones along. You are welcome." }
+		};
 
 		// HOW A TIME LIMIT COUNTS ON THE CHAMPION SPAWN'S SIZE SCALE: 15 MINUTES IS 10, AN HOUR IS 1, NO LIMIT IS 0
 		private static int RewardSize( TimeSpan timeLimit )
@@ -165,6 +178,25 @@ namespace Server.Engines.Instancing
 				from.CloseGump( typeof( DungeonMasterGump ) );
 				from.SendGump( new DungeonMasterGump( from, this, Difficulty.Normal, 1 ) );
 			}
+		}
+
+		// HIS VOICE CARRIES TO EVERYONE IN THE GIVEN MAP, OR TO ONE PLAYER
+		public void Speak( Remark remark, Map map )
+		{
+			string line = RemarkLine( remark );
+			foreach ( Mobile m in InstanceType.PlayersOn( map ) )
+				m.SendMessage( VoiceHue, line );
+		}
+
+		public void Speak( Remark remark, Mobile to )
+		{
+			to.SendMessage( VoiceHue, RemarkLine( remark ) );
+		}
+
+		private string RemarkLine( Remark remark )
+		{
+			string[] lines = Remarks[(int)remark];
+			return String.Format( "{0} whispers, \"{1}\"", Name, lines[Utility.Random( lines.Length )] );
 		}
 
 		public bool CanOpenFor( Mobile from )

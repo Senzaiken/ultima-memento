@@ -17,6 +17,8 @@ namespace Server.Engines.Instancing
 		[CommandProperty( AccessLevel.GameMaster )]
 		public string DungeonName { get { return m_DungeonName; } }
 
+		public DungeonMaster Master { get { return m_Master; } }
+
 		[CommandProperty( AccessLevel.GameMaster )]
 		public new Difficulty Difficulty { get { return m_Difficulty; } }
 

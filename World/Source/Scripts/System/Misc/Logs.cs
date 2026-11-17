@@ -556,7 +556,8 @@ namespace Server.Misc
 		{
 			if ( m is PlayerMobile )
 			{
-				int nDifficulty = Server.Difficult.GetDifficulty( m.Location, m.Map );
+				Difficulty run;
+				int nDifficulty = Server.Engines.Instancing.InstanceManager.TryGetRunDifficulty( m.Map, out run ) ? (int)run - 1 : Server.Difficult.GetDifficulty( m.Location, m.Map );
 				string sDifficulty = "";
 
 				if ( nDifficulty == -1 ){ sDifficulty = " (Easy)"; }

@@ -25,6 +25,14 @@ namespace Server.Engines.Instancing
 		private const int WallSoutheastPost = 0x243;
 		private const int WallNorthwestCorner = 0x244;
 
+		// FURNISHINGS ALONG THE TWO BACK WALLS: ITEM ID AND OFFSET FROM THE CENTRE
+		private static readonly int[,] Decor = new int[,]
+		{
+			{ 0xA99, -8, -6 }, { 0xA9A, -8, -5 }, { 0x1709, -8, -3 }, { 0x1709, -8, 2 }, { 0x124A, -8, 4 },
+			{ 0xA97, -6, -8 }, { 0xA98, -5, -8 }, { 0x170A, 4, -8 }, { 0x1249, 5, -8 },
+			{ 0xB26, -4, -7 }, { 0x1B09, -6, 6 }, { 0x1B0B, 6, 3 }
+		};
+
 		private DungeonLobbyInstanceType()
 		{
 		}
@@ -136,6 +144,11 @@ namespace Server.Engines.Instancing
 			BuildWalls( map, cx, cy, z );
 			BuildDais( map, dx, dy, z );
 			BuildPentagram( map, cx, cy, z );
+
+			for ( int i = 0; i < Decor.GetLength( 0 ); i++ )
+				Place( map, new Static( Decor[i, 0] ), cx + Decor[i, 1], cy + Decor[i, 2], z, 0 );
+
+			Place( map, new AnkhWest(), cx - HalfSize, cy - 1, z, -1 );
 
 			for ( int i = 0; i < 4; i++ )
 				Place( map, new BrazierTall(), cx + ( i % 2 == 0 ? -1 : 1 ) * ( HalfSize - 1 ), cy + ( i < 2 ? -1 : 1 ) * ( HalfSize - 1 ), z, -1 );

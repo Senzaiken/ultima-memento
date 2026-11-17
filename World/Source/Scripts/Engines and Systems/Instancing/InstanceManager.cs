@@ -41,6 +41,11 @@ namespace Server.Engines.Instancing
 			return null;
 		}
 
+		public static bool TryGetRunDifficulty( Map map, out Difficulty difficulty )
+		{
+			return DungeonInstanceType.Instance.TryGetRunDifficulty( map, out difficulty );
+		}
+
 		public static bool IsInstanceMap( Map map )
 		{
 			return Find( map ) != null;
