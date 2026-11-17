@@ -28,9 +28,9 @@ namespace Server.Engines.Instancing
 		// FURNISHINGS ALONG THE TWO BACK WALLS: ITEM ID AND OFFSET FROM THE CENTRE
 		private static readonly int[,] Decor = new int[,]
 		{
-			{ 0xA99, -8, -6 }, { 0xA9A, -8, -5 }, { 0x1709, -8, -3 }, { 0x1709, -8, 2 }, { 0x124A, -8, 4 },
-			{ 0xA97, -6, -8 }, { 0xA98, -5, -8 }, { 0x170A, 4, -8 }, { 0x1249, 5, -8 },
-			{ 0xB26, -4, -7 }, { 0x1B09, -6, 6 }, { 0x1B0B, 6, 3 }
+			{ 0xA99, -8, -6 }, { 0xA9A, -8, -5 }, { 0x1709, -8, -3 }, { 0x1709, -8, 2 }, { 0xA99, -8, 4 }, { 0xA9A, -8, 5 },
+			{ 0xA97, -6, -8 }, { 0xA98, -5, -8 }, { 0x170A, 3, -8 }, { 0xA97, 5, -8 }, { 0xA98, 6, -8 },
+			{ 0xB26, -4, -7 }, { 0xB26, 4, -7 }, { 0x1B09, -6, 6 }, { 0x1B0B, 6, 1 }
 		};
 
 		private DungeonLobbyInstanceType()

@@ -26,7 +26,7 @@ namespace Server.Engines.Instancing
 
 		public override void HandleInvalidTransfer( Mobile from )
 		{
-			from.SendMessage( "The sigil will not leave the top of your pack." );
+			from.SendMessage( "The sigil refuses to be moved." );
 		}
 
 		public override void AddNameProperties( ObjectPropertyList list )
