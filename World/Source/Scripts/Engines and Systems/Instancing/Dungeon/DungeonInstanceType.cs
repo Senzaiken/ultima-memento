@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server;
+using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Regions;
@@ -23,7 +24,8 @@ namespace Server.Engines.Instancing
 
 		public static void Configure()
 		{
-			EventSink.PlayerDeath += new PlayerDeathEventHandler( OnPlayerDeath );
+			EventSink.PlayerDeath += delegate( PlayerDeathEventArgs e ) { QueueFate( e.Mobile ); };
+			EventSink.Login += delegate( LoginEventArgs e ) { QueueFate( e.Mobile ); };
 		}
 
 		public override string Key { get { return "Dungeon"; } }
@@ -105,37 +107,108 @@ namespace Server.Engines.Instancing
 			return inst != null && inst.IsLive && Object.ReferenceEquals( inst.LiveMap, map );
 		}
 
-		// THE DUNGEON MASTER PULLS A LONE FALLEN PLAYER BACK TO HIS ANKH; WITH COMPANIONS STILL STANDING, THEY CHOOSE
-		private static void OnPlayerDeath( PlayerDeathEventArgs e )
+		// A DEATH THAT LEAVES NOBODY STANDING ALSO ENDS THE WAIT OF THOSE WHO LINGERED TO BE RAISED
+		private static void QueueFate( Mobile m )
 		{
-			Mobile m = e.Mobile;
 			Map map = m.Map;
 			if ( Instance.MasterOf( map ) == null )
 				return;
 
 			Timer.DelayCall( TimeSpan.Zero, delegate
 			{
-				DungeonMaster master = Instance.MasterOf( map );
-				if ( m.Deleted || m.Alive || !Object.ReferenceEquals( m.Map, map ) || master == null )
+				if ( !IsFallen( m, map ) )
 					return;
 
+				OfferFate( m, map );
+
 				if ( HasCompanions( m, map ) )
+					return;
+
+				foreach ( Mobile other in PlayersOn( map ) )
 				{
-					m.CloseGump( typeof( DungeonRecallGump ) );
-					m.SendGump( new DungeonRecallGump( master, map ) );
-				}
-				else
-				{
-					PullBack( m, map );
+					if ( other != m && IsFallen( other, map ) )
+						OfferFate( other, map );
 				}
 			} );
 		}
 
+		private static bool IsFallen( Mobile m, Map map )
+		{
+			return m.Player && !m.Deleted && !m.Alive && Object.ReferenceEquals( m.Map, map ) && Instance.MasterOf( map ) != null;
+		}
+
+		// IN THE HALL AND ITS RUNS THE ANKH IS NEVER FAR, SO NOBODY IS ASKED TO BEG THE GODS FOR THEIR LIFE
+		public static bool AnkhAwaits( Mobile m )
+		{
+			return DungeonLobbyInstanceType.Instance.IsPoolMap( m.Map ) || Instance.MasterOf( m.Map ) != null;
+		}
+
+		private static bool DiesForGood( Mobile m )
+		{
+			PlayerMobile pm = m as PlayerMobile;
+			return pm != null && ( pm.Avatar.Active || pm.Temptations.HasPermanentDeath );
+		}
+
+		// THE FALLEN CHOOSE BETWEEN WHATEVER CAN STILL RAISE THEM BELOW AND THE HALL'S ANKH; WITH NOTHING BELOW, THE HALL IT IS
+		private static void OfferFate( Mobile m, Map map )
+		{
+			m.CloseGump( typeof( SpiritChoiceGump ) );
+
+			if ( DiesForGood( m ) )
+			{
+				CastOut( m, map );
+				return;
+			}
+
+			SoulOrb orb = SoulOrb.FindActive( m );
+			bool companions = HasCompanions( m, map );
+
+			if ( orb == null && !companions )
+			{
+				PullBack( m, map );
+				return;
+			}
+
+			m.SendGump( FateGump( m, map, Instance.MasterOf( map ).Name, orb, companions ) );
+		}
+
+		private static SpiritChoiceGump FateGump( Mobile m, Map map, string master, SoulOrb orb, bool companions )
+		{
+			List<SpiritChoice> choices = new List<SpiritChoice>();
+			string text = String.Format( "{0} calls to your spirit.", master );
+
+			if ( orb != null )
+			{
+				text += String.Format( " The {0} you carry can raise you where you fell.", orb.Name );
+				choices.Add( new SpiritChoice( String.Format( "Use the {0}", orb.Name ), delegate
+				{
+					if ( IsFallen( m, map ) )
+						orb.Release( m );
+				} ) );
+			}
+
+			if ( companions )
+			{
+				text += " Your companions still stand, and may yet raise you if you linger.";
+				choices.Add( new SpiritChoice( "Wait for my companions", delegate
+				{
+					if ( IsFallen( m, map ) )
+						m.SendMessage( 0x22, "Your spirit lingers below. Your companions may yet raise you." );
+				} ) );
+			}
+
+			text += " Or he can draw you back to his hall, body and all, to rise at his ankh.";
+			choices.Add( new SpiritChoice( "Return to the hall", delegate { PullBack( m, map ); } ) );
+
+			return new SpiritChoiceGump( m, "YOU HAVE FALLEN", text, companions, choices.ToArray() );
+		}
+
+		// A STEALTHED COMPANION COUNTS; HIDDEN STAFF DO NOT
 		private static bool HasCompanions( Mobile m, Map map )
 		{
 			foreach ( Mobile other in PlayersOn( map ) )
 			{
-				if ( other != m && other.Alive && !other.Hidden )
+				if ( other != m && other.Alive && ( !other.Hidden || other.AccessLevel == AccessLevel.Player ) )
 					return true;
 			}
 
@@ -144,19 +217,33 @@ namespace Server.Engines.Instancing
 
 		public static void PullBack( Mobile m, Map map )
 		{
-			DungeonMaster master = Instance.MasterOf( map );
-			if ( master == null || m.Alive || !Object.ReferenceEquals( m.Map, map ) )
+			if ( !IsFallen( m, map ) )
 				return;
 
-			Point3D landing = DungeonLobbyInstanceType.Instance.Landing;
-			Container corpse = m.Corpse;
-
-			Teleport( m, landing, master.Map );
-			if ( corpse != null && !corpse.Deleted && Object.ReferenceEquals( corpse.Map, map ) )
-				corpse.MoveToWorld( landing, master.Map );
+			DungeonMaster master = Instance.MasterOf( map );
+			MoveWithCorpse( m, map, DungeonLobbyInstanceType.Instance.Landing, master.Map );
 
 			m.SendMessage( 0x22, "Your spirit and your body are drawn back to the Dungeon Master's hall." );
 			master.Speak( DungeonMaster.Remark.PlayerDied, m );
+		}
+
+		// NO ANKH RAISES THOSE WHO DIE FOR GOOD: THEY ARE LEFT, BODY AND ALL, WHERE THEY FIRST STEPPED INTO THE HALL
+		private static void CastOut( Mobile m, Map map )
+		{
+			DungeonMaster master = Instance.MasterOf( map );
+			bool known = master.ReturnMap != null && master.ReturnMap != Map.Internal;
+
+			MoveWithCorpse( m, map, known ? master.ReturnPoint : Instance.ExitPoint, known ? master.ReturnMap : Instance.ExitMap );
+			m.SendMessage( 0x22, "The Dungeon Master has no use for the truly dead. Your spirit and your body are cast out of his hall, back to where you entered." );
+		}
+
+		private static void MoveWithCorpse( Mobile m, Map from, Point3D p, Map to )
+		{
+			Container corpse = m.Corpse;
+
+			Teleport( m, p, to );
+			if ( corpse != null && !corpse.Deleted && Object.ReferenceEquals( corpse.Map, from ) )
+				corpse.MoveToWorld( p, to );
 		}
 
 		protected override bool CanHost( Instance inst, Map map )

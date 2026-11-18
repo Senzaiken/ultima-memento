@@ -189,6 +189,44 @@ namespace Server.Items
 			}
         }
 
+		// SPENDS THE ORB TO RAISE ITS DEAD OWNER WHERE THEY STAND
+		public bool Release( Mobile from )
+		{
+			if ( Deleted || from.Alive || OrbType == SoulOrbType.PermadeathPlaceholder )
+				return false;
+
+			if( from.Map == null || !from.Map.CanFit( from.Location, 16, false, false ) )
+			{
+				from.SendLocalizedMessage( 502391 ); // Thou can not be resurrected there!
+				return false;
+			}
+
+			switch ( OrbType )
+			{
+				case SoulOrbType.BloodOfVampire:
+					from.SendMessage("The blood pours out of the bottle, restoring your life.");
+					break;
+
+				case SoulOrbType.CloningCrystalJedi:
+				case SoulOrbType.CloningCrystalSyth:
+					from.SendMessage("The crystal forms a clone of your body, restoring your life.");
+					break;
+
+				case SoulOrbType.RestorativeSoil:
+				case SoulOrbType.Default:
+				default:
+					from.SendMessage("The orb glows, releasing your soul.");
+					break;
+			}
+
+			from.Resurrect();
+			from.FixedEffect( 0x376A, 10, 16, Server.Misc.PlayerSettings.GetMySpellHue( true, from, 0 ), 0 );
+			Server.Misc.Death.Penalty( from, false );
+			BuffInfo.RemoveBuff( from, BuffIcon.Resurrection );
+			Delete();
+			return true;
+		}
+
         public void StartTimer()
         {
 			if ( Owner.Alive || Owner.Deleted ) return;
@@ -273,7 +311,7 @@ namespace Server.Items
         }
     }
 
-	public class AutoResurrectGump : Gump
+	public class AutoResurrectGump : SpiritGump
 	{
 		private readonly SoulOrb m_Orb;
 
@@ -281,67 +319,16 @@ namespace Server.Items
 		{
 			m_Orb = orb;
 
-            Closable=true;
-			Disposable=true;
-			Dragable=true;
-
-			const string color = "#b7cbda";
-
-			AddPage(0);
-
-			int img = 9586;
-			if ( orb.Owner.Karma < 0 ){ img = 9587; }
-
-			AddImage(0, 0, img, Server.Misc.PlayerSettings.GetGumpHue( orb.Owner ));
-			AddHtml( 10, 11, 349, 20, @"<BODY><BASEFONT Color=" + color + ">RESURRECTION</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddButton(368, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-
-			AddHtml( 11, 41, 385, 141, @"<BODY><BASEFONT Color=" + color + ">The spirits offer their aid.<br><br>Do you accept?</BASEFONT></BODY>", (bool)false, (bool)false);
-
-			AddButton(10, 225, 4023, 4023, 1, GumpButtonType.Reply, 0);
-			AddButton(367, 225, 4020, 4020, 0, GumpButtonType.Reply, 0);
+			AddFrame( orb.Owner, Calm, "RESURRECTION", "The spirits offer their aid.<br><br>Do you accept?" );
+			AddAcceptDecline();
 		}
 
 		public override void OnResponse( NetState state, RelayInfo info )
 		{
-			Mobile from = state.Mobile;
-
-			if ( info.ButtonID == 1 )
-			{
-				if( from.Map == null || !from.Map.CanFit( from.Location, 16, false, false ) )
-				{
-					from.SendLocalizedMessage( 502391 ); // Thou can not be resurrected there!
-					return;
-				}
-
-				switch ( m_Orb.OrbType )
-				{
-					case SoulOrbType.BloodOfVampire:
-						from.SendMessage("The blood pours out of the bottle, restoring your life.");
-						break;
-
-					case SoulOrbType.CloningCrystalJedi:
-					case SoulOrbType.CloningCrystalSyth:
-						from.SendMessage("The crystal forms a clone of your body, restoring your life.");
-						break;
-
-					case SoulOrbType.RestorativeSoil:
-					case SoulOrbType.Default:
-					default:
-						from.SendMessage("The orb glows, releasing your soul.");
-						break;
-				}
-
-				from.Resurrect();
-				from.FixedEffect( 0x376A, 10, 16, Server.Misc.PlayerSettings.GetMySpellHue( true, from, 0 ), 0 );
-				Server.Misc.Death.Penalty( from, false );
-				BuffInfo.RemoveBuff( from, BuffIcon.Resurrection );
-				m_Orb.Delete();
-			}
+			if ( info.ButtonID == AcceptButton )
+				m_Orb.Release( state.Mobile );
 			else
-			{
 				m_Orb.StartTimer();
-			}
 		}
 	}
 }

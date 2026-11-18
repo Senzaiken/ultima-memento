@@ -358,6 +358,7 @@ namespace Server.Engines.Instancing
 			return list;
 		}
 
+		// AN INSTANCE WHOSE OWNER IS GONE LASTS UNTIL THOSE STILL USING IT ARE DONE
 		public int ReleaseDeadOwners()
 		{
 			List<Instance> dead = new List<Instance>();
@@ -365,7 +366,7 @@ namespace Server.Engines.Instancing
 			foreach ( Instance inst in m_ByOwner.Values )
 			{
 				bool exists = inst.OwnerSerial.IsItem ? World.FindItem( inst.OwnerSerial ) != null : World.FindMobile( inst.OwnerSerial ) != null;
-				if ( !exists )
+				if ( !exists && !IsInUse( inst ) )
 					dead.Add( inst );
 			}
 

@@ -9,7 +9,7 @@ using Server.Regions;
 
 namespace Server.Gumps
 {
-	public class ResurrectCostGump : Gump
+	public class ResurrectCostGump : SpiritGump
 	{
 		private string GetLossMessage( Mobile owner )
 		{
@@ -33,8 +33,7 @@ namespace Server.Gumps
 
 		public ResurrectCostGump( Mobile owner, int healer ) : base( 50, 50 )
 		{
-			owner.SendSound( 0x0F8 ); 
-			string color = "#b7cbda";
+			owner.SendSound( 0x0F8 );
 
 			m_Healer = healer;
 			m_Price = GetPlayerInfo.GetResurrectCost( owner );
@@ -227,41 +226,16 @@ namespace Server.Gumps
 				case 3:	sGrave = "RETURN FROM THE DEAD";	break;
 			}
 
-            this.Closable=true;
-			this.Disposable=true;
-			this.Dragable=true;
-			this.Resizable=false;
-
-			AddPage(0);
-
-			int img = 9586;
-				if ( owner.Karma < 0 ){ img = 9587; }
-
-			AddImage(0, 0, img, Server.Misc.PlayerSettings.GetGumpHue( owner ));
-			AddHtml( 10, 11, 349, 20, @"<BODY><BASEFONT Color=" + color + ">" + sGrave + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddButton(368, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-
-			AddHtml( 11, 41, 385, 141, @"<BODY><BASEFONT Color=" + color + ">" + sText + "</BASEFONT></BODY>", (bool)false, (bool)false);
-
-			AddButton(10, 225, 4023, 4023, 1, GumpButtonType.Reply, 0);
-			AddButton(367, 225, 4020, 4020, 2, GumpButtonType.Reply, 0);
+			AddFrame( owner, Calm, sGrave, sText );
+			AddAcceptDecline();
 
 			if ( m_Price > 0 )
-			{
-				AddHtml( 238, 193, 100, 20, @"<BODY><BASEFONT Color=" + color + ">Resurrect:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 343, 194, 54, 20, @"<BODY><BASEFONT Color=" + color + ">" + String.Format("{0} Gold", m_Price ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			}
+				AddCost( m_Price );
 
 			if ( m_Bank >= m_Price && m_Price > 0 )
-			{
-				AddHtml( 11, 195, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Bank:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 77, 195, 100, 20, @"<BODY><BASEFONT Color=" + color + ">" + String.Format("{0} Gold", m_Bank ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			}
+				AddFunds( "Bank:", String.Format( "{0} Gold", m_Bank ) );
 			else if ( m_Tithe >= m_Price && m_Price > 0 )
-			{
-				AddHtml( 11, 195, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Tithe:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 77, 195, 100, 20, @"<BODY><BASEFONT Color=" + color + ">" + (owner.TithingPoints).ToString() + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			}
+				AddFunds( "Tithe:", m_Tithe.ToString() );
 		}
 
 		public override void OnResponse( NetState state, RelayInfo info )
@@ -355,7 +329,7 @@ namespace Server
 			m.CloseGump( typeof( ResurrectNowGump ) );
 
 			Item orb = SoulOrb.FindActive( m );
-			if ( orb == null )
+			if ( orb == null && !Server.Engines.Instancing.DungeonInstanceType.AnkhAwaits( m ) )
 			{
 				BuffInfo.RemoveBuff( m, BuffIcon.Resurrection );
 				m.SendGump( new ResurrectNowGump( m ) );
@@ -366,7 +340,7 @@ namespace Server
 
 namespace Server.Gumps
 {
-	public class ResurrectNowGump : Gump
+	public class ResurrectNowGump : SpiritGump
 	{
 		private string GetLossMessage( Mobile owner )
 		{
@@ -413,44 +387,19 @@ namespace Server.Gumps
 				case 3:	sGrave = "YOUR LIFE HAS ENDED!";	break;
 			}
 
-			from.SendSound( 0x0F8 ); 
-			string color = "#da3f3f";
+			from.SendSound( 0x0F8 );
 
-            this.Closable=true;
-			this.Disposable=true;
-			this.Dragable=true;
-			this.Resizable=false;
-
-			AddPage(0);
-
-			int img = 9586;
-				if ( from.Karma < 0 ){ img = 9587; }
-
-			AddImage(0, 0, img, Server.Misc.PlayerSettings.GetGumpHue( from ));
-
-			AddHtml( 10, 11, 349, 20, @"<BODY><BASEFONT Color=" + color + ">" + sGrave + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddButton(368, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-
-			AddHtml( 11, 41, 385, 141, @"<BODY><BASEFONT Color=" + color + ">" + sText + "</BASEFONT></BODY>", (bool)false, (bool)false);
-
-			AddButton(10, 225, 4023, 4023, 1, GumpButtonType.Reply, 0);
-			AddButton(367, 225, 4020, 4020, 2, GumpButtonType.Reply, 0);
+			AddFrame( from, Dire, sGrave, sText );
+			AddAcceptDecline();
 
 			if ( ResPenalty )
 			{
-				AddHtml( 238, 193, 100, 20, @"<BODY><BASEFONT Color=" + color + ">Resurrect:</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddHtml( 343, 194, 54, 20, @"<BODY><BASEFONT Color=" + color + ">" + String.Format("{0} Gold", HealCost ) + "</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddCost( HealCost );
 
 				if ( BankGold >= HealCost )
-				{
-					AddHtml( 11, 195, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Bank:</BASEFONT></BODY>", (bool)false, (bool)false);
-					AddHtml( 77, 195, 100, 20, @"<BODY><BASEFONT Color=" + color + ">" + Banker.GetBalance( from ).ToString() + "</BASEFONT></BODY>", (bool)false, (bool)false);
-				}
+					AddFunds( "Bank:", BankGold.ToString() );
 				else if ( TithePoints >= HealCost )
-				{
-					AddHtml( 11, 195, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Tithe:</BASEFONT></BODY>", (bool)false, (bool)false);
-					AddHtml( 77, 195, 100, 20, @"<BODY><BASEFONT Color=" + color + ">" + (from.TithingPoints).ToString() + "</BASEFONT></BODY>", (bool)false, (bool)false);
-				}
+					AddFunds( "Tithe:", TithePoints.ToString() );
 			}
 		}
 

@@ -16,7 +16,7 @@ namespace Server.Gumps
 		Generic = 3,
 	}
 
-	public class ResurrectGump : Gump
+	public class ResurrectGump : SpiritGump
 	{
 		private Mobile m_Healer;
 		private int m_Price;
@@ -55,8 +55,7 @@ namespace Server.Gumps
 
 		public ResurrectGump( Mobile owner, Mobile healer, ResurrectMessage msg, bool fromSacrifice, double hitsScalar ): base( 50, 50 )
 		{
-			owner.SendSound( 0x0F8 ); 
-			string color = "#b7cbda";
+			owner.SendSound( 0x0F8 );
 
 			m_Healer = healer;
 			m_FromSacrifice = fromSacrifice;
@@ -64,24 +63,8 @@ namespace Server.Gumps
 			m_Bank = Banker.GetBalance( owner );
 			m_Tithe = owner.TithingPoints;
 
-            this.Closable=true;
-			this.Disposable=true;
-			this.Dragable=true;
-			this.Resizable=false;
-
-			AddPage(0);
-
-			int img = 9586;
-				if ( owner.Karma < 0 ){ img = 9587; }
-
-			AddImage(0, 0, img, Server.Misc.PlayerSettings.GetGumpHue( owner ));
-			AddHtml( 10, 11, 349, 20, @"<BODY><BASEFONT Color=" + color + ">RESURRECTION</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddButton(368, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
-
-			AddHtml( 11, 41, 385, 141, @"<BODY><BASEFONT Color=" + color + ">It is possible for you to be resurrected here by this healer. Do you want to return to the land of the living? If not, you can remain in the spirit realm.</BASEFONT></BODY>", (bool)false, (bool)false);
-
-			AddButton(10, 225, 4023, 4023, 1, GumpButtonType.Reply, 0);
-			AddButton(367, 225, 4020, 4020, 0, GumpButtonType.Reply, 0);
+			AddFrame( owner, Calm, "RESURRECTION", "It is possible for you to be resurrected here by this healer. Do you want to return to the land of the living? If not, you can remain in the spirit realm." );
+			AddAcceptDecline();
 		}
 
 		public ResurrectGump( Mobile owner, Mobile healer, int price ): base( 25, 25 )
